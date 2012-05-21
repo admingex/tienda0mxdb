@@ -1,0 +1,36 @@
+<!--h1>Orden de Compra de <?php echo $this->session->userdata('username');?></h1-->
+<div class="contenedor-gris">
+	<div id="list_results">
+
+		<h4>Respuesta de CCTC</h4>
+		<?php 
+		if (isset($resultado)) {
+			/*
+			echo "<pre>";
+			print_r($resultado);
+			echo "</pre>";	
+			*/
+			echo "<p>Número de Transacción: " . $resultado->id_transaccionNu . "</p>";
+			echo "<p>Respuesta del Banco: " . $resultado->respuesta_banco . "</p>";
+			//echo "<p>Código de Autorización: " . $resultado->codigo_autorizacion . "</p>";
+			echo "<p>Mensaje: " . $resultado->mensaje . "</p>";
+		?>	
+		
+			<form name="envio_result" action="<?php echo site_url('pago);?>" method="POST" accept-charset="UTF8">
+				<input type="hidden" name="cadena_comprobacion" value='<?php echo $cadena_comprobacion; ?>' />
+				<textarea name="datos_login" style="display: none"><?php echo $datos_login; ?></textarea>							
+				<input type="submit" name="Continuar" value="Continuar"/>	
+			</form>
+			<script>
+				setTimeout('document.envio_result.submit();', 3000);
+			</script>			
+		<?php	
+		
+		}
+		?>
+		<h5>
+			Envío de un mail al cliente notificándole del resultado de la solicitud de cobro, en el caso de pago con depósito bancario, 
+			también se le enviará un correo con la información para completar el proceso de pago/cobro.
+		</h5>
+	</div>
+</div>

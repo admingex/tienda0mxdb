@@ -1,0 +1,105 @@
+<script>
+	var id_ant=0;
+	function cambia_boton(id){				
+		if(document.getElementById(id_ant)){
+			document.getElementById(id_ant).innerHTML='';
+			document.getElementById('div'+id_ant).className='radio_no_selected';
+			document.getElementById('radio'+id_ant).checked='';  									 			
+		}				
+		document.getElementById(id).innerHTML='<input type="submit" id="usar_tarjeta" name="usar_tarjeta" value="&nbsp;" class="usar_tarjeta"/>';
+		document.getElementById('div'+id).className='radio_selected';
+		document.getElementById('radio'+id).checked='checked';	
+				
+		id_ant=id;
+	}
+</script>	
+<div class="contenedor-blanco">
+	<form id="form_forma_pago" action="<?php echo site_url("forma_pago/seleccionar/tarjeta"); ?>" method="POST">
+		<table cellspacing="0" cellpadding="0" width="100%">
+			<thead>
+				<tr>
+					<th colspan="2">
+						Tus tarjetas guardadas
+					</th>									
+					<th>
+						Nombre
+					</th>
+					<th colspan="3">
+						Expira
+					</th>														
+				</tr>
+			</thead>
+			<tbody class="contenedor-gris">			
+		<?php
+			if (isset($lista_tarjetas) && $lista_tarjetas->num_rows()) {
+				$hay_tarjetas = true;
+				$tarjetas = $lista_tarjetas;
+				foreach($tarjetas->result_array() as $tarjeta) {
+					$check = "";
+					$class = "";
+					$classsi = "class='radio_no_selected'";
+					$value_r = "value='".$tarjeta['id_TCSi']."'";
+					if ($tarjeta['id_estatusSi'] == 3){	//$default
+						$check = "checked='true'";
+						$classsi = "class='radio_selected'";
+						$class="<br /><span style='color: #D81830; height: 20px; font-size: 11px; font-family: italic'>pago express</span>";
+					}
+			?>
+				<tr>
+					<td>
+						<input type="radio" id="radio<?php echo $tarjeta['id_TCSi']; ?>" name="tajeta_selecionada" <?php echo $check." ".$value_r;?>/>
+						<div id="div<?php echo $tarjeta['id_TCSi']; ?>" <?php echo $classsi;?> onclick="cambia_boton(<?php echo $tarjeta['id_TCSi'] ?>)">&nbsp;					
+						</div>							
+					</td>
+					<td class="item-lista borde-derecho tam15">
+						<?php echo $tarjeta['descripcionVc'].' terminaci&oacute;n '.
+							substr($tarjeta['terminacion_tarjetaVc'],strlen($tarjeta['terminacion_tarjetaVc']) - 4); ?>
+						<?php echo $class;?>
+					</td>
+					<td class="item-lista borde-derecho">
+						<?php echo $tarjeta['nombre_titularVc'].' '.$tarjeta['apellidoP_titularVc'].' '.$tarjeta['apellidoM_titularVc']; ?>
+					</td>
+					<td class="item-lista borde-derecho"><?php echo $tarjeta['mes_expiracionVc'].'/'.$tarjeta['anio_expiracionVc']; ?></td>
+					<td class="item-lista borde-derecho">
+						<a href="<?php echo site_url('forma_pago/editar/tc/'.$tarjeta['id_TCSi']); ?>" title="editar">editar</a>
+						<a href="<?php echo site_url('forma_pago/eliminar/'.$tarjeta['id_TCSi']); ?>" title="eliminar">eliminar</a>	
+					</td>
+					<td id="<?php echo $tarjeta['id_TCSi']?>">&nbsp;</td>
+				</tr>
+							
+							
+			<?php 
+					if($tarjeta['id_estatusSi']==3){
+						echo "<script>cambia_boton(".$tarjeta['id_TCSi'].");</script>";
+					}
+				}
+			} else {
+				$hay_tarjetas = false;
+			?>			
+			<?php 
+			}
+			?>		
+		<?php if (!$hay_tarjetas): ?>
+			<h4>No tiene tarjetas registradas</h4>
+		<?php endif ?> 
+		</tbody>	
+			<tfoot class="contenedor-gris">
+				<tr>
+					<td colspan="7" >
+						<h3><?php if(isset($mensaje)) { echo $mensaje; } ?></h3>
+					</td>
+				</tr>
+				<tr>
+						<td colspan="7" class="borde-top">
+						<div id="div_enlace">
+							<a class="agregar_tarjeta" href="<?php echo site_url('forma_pago/registrar/tc'); ?>">
+								<span class="agregar">&nbsp;</span>
+								<span class="texto_agregar">Agregar nueva tarjeta</span>
+							</a>
+						</div>
+					</td>
+				</tr>
+			</tfoot>		
+		</table>	
+	</form>	
+</div>

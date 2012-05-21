@@ -1,0 +1,9 @@
+<?php 
+	if ($dir_facturacion->company) {
+		echo "Raz&oacute;n social:".
+			  $dir_facturacion->company."<br/>".
+			 "RFC:". $dir_facturacion->tax_id_number. "<br/>".
+			 "Enviar a : ". $dir_facturacion->email. "&nbsp;";
+	} 
+?>
+<span><a href="<?php echo site_url('direccion_facturacion/registrar_rs/');?>">Cambiar</a></span>			
