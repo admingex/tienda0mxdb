@@ -1,0 +1,12 @@
+{"categorias":[
+		{"id_categoriaSi":"0", "descripcionVc":"Inicio", "url":"/tienda/index.php"},
+		{"id_categoriaSi":"1", "descripcionVc":"Negocios", "url":"#"},
+		{"id_categoriaSi":"2", "descripcionVc":"Femeninas", "url":"#"},
+		{"id_categoriaSi":"3", "descripcionVc":"Estilo de Vida", "url":"#"},
+		{"id_categoriaSi":"4", "descripcionVc":"Entretenimiento", "url":"#"},
+		{"id_categoriaSi":"5", "descripcionVc":"Interés General", "url":"#"},
+		{"id_categoriaSi":"6", "descripcionVc":"B2B", "url":"#"},
+		{"id_categoriaSi":"7", "descripcionVc":"Promociones Especiales", "url":"#"}
+	]
+
+}

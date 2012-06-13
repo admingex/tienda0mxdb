@@ -1,5 +1,4 @@
-/*
-@font-face
+y@font-face
 {
     font-family: 'Gotham-Book';  
     src: local('Gotham-Book'), url('Gotham-Book.otf') format('opentype');
@@ -10,7 +9,7 @@
   font-weight: 400;
   src: local('Muli'), url('http://themes.googleusercontent.com/static/fonts/muli/v4/kU4XYdV4jtS72BIidPtqyw.woff') format('woff');
 }
-*/
+
 
 html
 {
@@ -23,6 +22,10 @@ body
     margin: 0 auto;
     width: 1024px;
     font-family: 'Arial';
+}
+
+header, footer, article, section, hgroup, nav, figure div {
+	display:block;
 }
 
 #header-container
@@ -41,8 +44,141 @@ body
     background: #FFF;
     float: left;
     width: 768px;
-    min-height: 728px;   
+    min-height: 728px;
 }
+
+#header_tienda {	
+	margin-top: 10px;
+	width: 100%;
+	/*border: solid 2px #0f0;*/
+}
+
+.header_section 
+{
+	width: 100%;
+	height: 62px;
+	float:left;
+	/*border: solid 2px #f00;*/
+	clear: both;
+}
+.blank_section {
+	width: 100%;
+	height: 8px;
+	clear: both;
+}
+
+#header_tienda figure img {
+	float:left;
+}
+
+.titulo_logo 
+{
+	float:left;
+	/*border: solid 1px #0000FF;*/
+	width: 390px;
+	text-align: center;
+	font-size: 30px;
+	height: 32px;
+}
+
+#contenido 
+{
+	/*border: solid 1px #0000FF;*/
+	height: 100%;
+	clear: both;
+}
+/*categorias banner*/
+.banner_categorias{
+	font-family: Helvetica;
+	clear: both;
+	margin: 0 5% 0 5%;
+    padding:auto;
+    
+}
+
+.banner_categorias ul{
+    list-style: none;
+}
+.banner_categorias ul li{
+	float: left;
+    margin:0;
+    padding:0;
+    width: 16%px;
+}
+
+.banner_categorias ul li a{
+    border: 1px solid gray;
+    padding-top: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    font-size: 11px;
+    height: 30px;
+    font-weight: bold;
+}
+
+
+/*Menú vertical*/
+.menuv
+{
+	margin-left: auto; 
+	margin-right: auto;
+	
+	text-indent: 34px;
+	width: 164px;
+	
+	/*border: solid 1px #0000FF;*/
+	float: left;
+}
+
+.contenido_promos
+{
+	/*border: solid 1px #0000FF;*/
+	float: left;
+}
+
+/* home de la tienda*/
+.contenedor-promo{
+		margin-left: auto; 
+		margin-right: auto;
+		
+		width: 600px;
+		/*padding-left: 170px;*/
+		/*padding-right: 170px;*/	
+		margin-top: 30px;
+	}
+	
+	.contenedor-promo a{		
+		color: #063F84;
+		display: block;
+		text-align: center;
+	}
+	
+	.contenedor-promo img{
+		width: 100px;
+		height: 133px;
+		
+	}
+	
+	.contenedor-promo .descripcion{
+		color: #000;
+		font-size: 12px;
+		font-weight: bold;
+	}
+	
+	.promo-left{
+		float: left;
+		width: 190px;
+		margin: 12px;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center; 
+	}
+
+
 
 #footer-container
 {
@@ -55,8 +191,8 @@ body
     margin: 65px 10px 0;
 }
 
-#encabezado{	
-	margin-top: 50px;
+#encabezado {	
+	margin-top: 30px;
 	margin-bottom: 40px;
 	width: 100%;
 	display: block;	

@@ -1,0 +1,52 @@
+.banner_categorias{
+	font-family: Helvetica;
+	clear: both;
+	margin: 0 5% 0 5%;
+    padding:auto;
+    
+}
+
+.banner_categorias ul{
+    list-style: none;
+}
+.banner_categorias ul li{
+	float: left;
+    margin:0;
+    padding:0;
+    width: 16%px;
+}
+
+.banner_categorias ul li a{
+    border: 1px solid gray;
+    padding-top: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    font-size: 11px;
+    height: 30px;
+    font-weight: bold;
+}
+.menu ul li ul a{
+    border:0;
+    margin-top:2px;
+    padding-left: 10px;
+    display:block;
+    text-decoration: none;
+    color:black;
+    font-size:11px;
+    height:25px;
+    font-weight: normal;
+}
+.menu ul li a:hover{
+    background-color: #CEE1FF;
+}
+.menu ul li ul a:hover{
+    background-color: #FFFDCE;
+}
+.menu ul li ul{
+    display:none;
+
+}
