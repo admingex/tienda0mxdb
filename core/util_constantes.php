@@ -1,6 +1,7 @@
 <?php
 #root 
-const VIDEOCENTRO = 'videocentro/';
+const TIENDA = 		'tienda/';
+
 # acciones
 const CREATE = 		'create';
 const READ = 		'read';
@@ -14,9 +15,9 @@ const VIEW_CREATE = 	'agregar';
 const VIEW_READ = 		'buscar';
 const VIEW_UPDATE = 	'modificar';
 const VIEW_DELETE = 	'borrar';
-const VIEW_LIST_ALL = 'listar';
+const VIEW_LIST_ALL = 	'listar';
 const VIEW_DETAIL =		'detalle';
 
-# resultados por página
+# resultados por pÃ¡gina
 const PAGE_SIZE = 5;
 ?>
