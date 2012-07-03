@@ -81,10 +81,10 @@
         
         <section id="contenido">    <!--contenido-->
             <!--Categorías -->
-            <?php include('componentes/banner_categorias.php');?>
+            <?php include('components/banner_categorias.php');?>
             <div class="contenidos">    <!--contenidos-->
                 <div class="blank_section">&nbsp;</div>
                 <!--Publicaciones-->
-                <?php include('componentes/menu_vertical.php');?>
+                <?php include('components/menu_vertical.php');?>
                 
                 <div class="contenido_promos">  <!--contenido promos-->

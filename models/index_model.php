@@ -62,7 +62,7 @@ class Index extends DBAbstractModel {
         }
     }
 		
-		public function read_buscar($datos_cliente=array(), $limit='') {
+	public function read_buscar($datos_cliente=array(), $limit='') {
         if(array_key_exists('nombreVc', $datos_cliente) || 
 					array_key_exists('emailVc', $datos_cliente) ||
 					array_key_exists('cpCh', $datos_cliente) ) {

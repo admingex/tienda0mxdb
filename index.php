@@ -1,14 +1,17 @@
 <?php
-    require('./config/settings.php');
+	//requiredincludes
+    require('/config/settings.php');
+	
+	
     //menús
-    require('./templates/header.php');
+    require('/templates/header.php');
     
     
     //contenido
-    include('componentes/slider.php');
-    include('componentes/promociones.php');
+    include('/components/slider.php');
+    include('/components/promociones.php');
     
     //footer
-    require('./templates/footer.php');
+    require('/templates/footer.php');
 ?>
 

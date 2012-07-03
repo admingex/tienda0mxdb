@@ -1,7 +1,7 @@
 <?php
-require_once('Cliente_Controller.php');
+require_once('Front_Controller.php');
 
-$manager = new Cliente_Controller;
+$manager = new Front_Controller;
 
 $manager->atiende();
 ?>

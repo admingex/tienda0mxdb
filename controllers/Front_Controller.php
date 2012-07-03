@@ -1,8 +1,8 @@
 <?php
-require_once('../core/util_constantes.php');
-require_once('../modelo/publicacion_model.php');
+//require_once('../core/util_constantes.php');
+//require_once('../modelo/publicacion_model.php');
 
-class Publicacion_Controller {
+class Front_Controller {
 	protected $accion;
 	protected $data = array();
 
@@ -185,4 +185,3 @@ class Publicacion_Controller {
 		return $parametro_lista;
 	}
 } 
-?>
