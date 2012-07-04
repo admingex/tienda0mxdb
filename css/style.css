@@ -1,16 +1,3 @@
-y@font-face
-{
-    font-family: 'Gotham-Book';  
-    src: local('Gotham-Book'), url('Gotham-Book.otf') format('opentype');
-}
-@font-face {
-  font-family: 'Muli';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Muli'), url('http://themes.googleusercontent.com/static/fonts/muli/v4/kU4XYdV4jtS72BIidPtqyw.woff') format('woff');
-}
-
-
 html
 {
     min-height: 100%;
@@ -63,7 +50,7 @@ header, footer, article, section, hgroup, nav, figure div {
 }
 .blank_section {
 	width: 100%;
-	height: 15px;
+	height: 8px;
 	clear: both;
 }
 
@@ -126,7 +113,7 @@ header, footer, article, section, hgroup, nav, figure div {
 {
 	margin-left: auto; 
 	margin-right: auto;
-	padding-top: 15px;
+	
 	text-indent: 34px;
 	width: 164px;
 	
@@ -138,11 +125,10 @@ header, footer, article, section, hgroup, nav, figure div {
 {
 	/*border: solid 1px #0000FF;*/
 	float: left;
-	padding-top: 15px;
 }
 
 /* home de la tienda*/
-.contenedor-promo {
+.contenedor-promo{
 		margin-left: auto; 
 		margin-right: auto;
 		
@@ -150,13 +136,6 @@ header, footer, article, section, hgroup, nav, figure div {
 		/*padding-left: 170px;*/
 		/*padding-right: 170px;*/	
 		margin-top: 30px;
-	}
-	
-	/*Clase para la tienda*/
-	.contenedor-tienda {
-		float: left;
-		width: 600px;
-		padding: 0;
 	}
 	
 	.contenedor-promo a{		
@@ -383,16 +362,14 @@ header, footer, article, section, hgroup, nav, figure div {
 	float: left;	
 }
 
-.contenedor {			
+.contenedor{			
 	height: auto;	
 	background-color: #FFF;		
 }
-
 .contenedor-gris{
 	background-color: #e5e5e5;
-	margin: 0px 35px 0px 30px;	
+	margin: 0px;	
 	padding: 15px 10px;
-	float: left;
 }
 
 .contenedor-blanco{	
