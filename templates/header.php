@@ -15,21 +15,21 @@
     <meta name="author" content=""/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/-->
     
-    <link rel="stylesheet" href="css/style.css" />
-    <link type="text/css" href="css/blitzer/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
-    <link type="text/css" href="css/validacion.css" rel="stylesheet" /> 
+    <link rel="stylesheet" href="<?php echo TIENDA;?>css/style.css" />
+    <link type="text/css" href="<?php echo TIENDA;?>css/blitzer/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
+    <link type="text/css" href="<?php echo TIENDA;?>css/validacion.css" rel="stylesheet" /> 
     
     
-    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
+    <script type="text/javascript" src="<?php echo TIENDA;?>js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="<?php echo TIENDA;?>js/jquery-ui-1.8.18.custom.min.js"></script>
 
-    <link rel="stylesheet" href="css/orbit-1.2.3.css" />
+    <link rel="stylesheet" href="<?php echo TIENDA;?>css/orbit-1.2.3.css" />
 
     <!--link rel="stylesheet" href="css/banner_categories.css" /-->
-    <link rel="stylesheet" href="css/demo-style.css" />         
-    <script type="text/javascript" src="js/jquery.orbit-1.2.3.min.js"></script>
+    <link rel="stylesheet" href="<?php echo TIENDA;?>css/demo-style.css" />         
+    <script type="text/javascript" src="<?php echo TIENDA;?>js/jquery.orbit-1.2.3.min.js"></script>
     
-    <script type="text/javascript" src="js/home.js"></script>
+    <script type="text/javascript" src="<?php echo TIENDA;?>js/home.js"></script>
  
         
 <!--[if IE]>
@@ -39,7 +39,14 @@
     </style>
 <![endif]-->    
     
-    <?php if (isset($script)) echo $script; ?>  
+    <?php 
+    	if (isset($scripts)) {
+    		foreach ($scripts as $script) {
+				$script = "<script type='text/javascript' src='". $script. "'></script>";  
+    			echo $script."\n";
+			}
+		}
+    ?>  
     
     <title><?php if (isset($title)) echo $title; else echo "Portal"; ?> - Tienda GEX</title>
     
@@ -47,7 +54,7 @@
 <body>
     <div id="header-container">
         <header>
-            <img src="images/logo_expansion.gif" alt="logo gex" width="52" height="52"/>            
+            <img src="<?php echo TIENDA;?>images/logo_expansion.gif" alt="logo gex" width="52" height="52"/>            
         </header>        
     </div>
     
@@ -55,7 +62,7 @@
         <section id="encabezado_tienda">
             <header id="header_tienda">
                 <div class="header_section">
-                    <div style="float:left;"><img src="images/logo_expansion2.gif" alt="logo gex" width="150" height="52"/></div>
+                    <div style="float:left;"><img src="<?php echo TIENDA;?>images/logo_expansion2.gif" alt="logo gex" width="150" height="52"/></div>
                     <div style="float:left;"><h1 class="titulo_logo">GEX-Store</h1></div>
                     <div class="necesita-ayuda img-ayuda" style="float: right;">&nbsp;</div>
                 </div>
@@ -72,8 +79,8 @@
                         </form>
                     </div>
                     <div style="float:left;">
-                        <img src="images/logo_expansion2.gif" alt="Tu cuenta" width="50" height="52"/>
-                        <img src="images/logo_expansion2.gif" alt="Carrito" width="50" height="52"/>
+                        <img src="<?php echo TIENDA;?>images/logo_expansion2.gif" alt="Tu cuenta" width="50" height="52"/>
+                        <img src="<?php echo TIENDA;?>images/logo_expansion2.gif" alt="Carrito" width="50" height="52"/>
                     </div>
                 </section>
             </header>
@@ -81,10 +88,11 @@
         
         <section id="contenido">    <!--contenido-->
             <!--Categorías -->
-            <?php include('components/banner_categorias.php');?>
+            
+            <?php if ($menues) include('components/banner_categorias.php'); ?>
             <div class="contenidos">    <!--contenidos-->
                 <div class="blank_section">&nbsp;</div>
                 <!--Publicaciones-->
-                <?php include('components/menu_vertical.php');?>
+                <?php if ($menues) include('components/menu_vertical.php');?>
                 
                 <div class="contenido_promos">  <!--contenido promos-->

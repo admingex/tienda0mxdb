@@ -4,7 +4,7 @@
 		$data = json_decode($json);				
 			foreach($data->promociones as $v){
 				echo "<div class='promo-left'>
-					      <img src='".$v->urltumb."' />	
+					      <img src='".TIENDA.$v->urltumb."' />	
 					      <a href='".$v->linkPromocion."'>".$v->tituloPromocion."</a>
 					      <div class='descripcion'>".$v->descripcionPromocion."
 					      </div>

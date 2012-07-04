@@ -1,0 +1,79 @@
+<table width="100%">	
+	<form id="form_registro_usuario" action="<?php echo site_url('registro/usuario'); ?>" method="POST">	
+	<tr>
+		<td class="label"> 
+			Nombre
+		</td>
+		<td>
+			<input type="text" name="txt_nombre" id="txt_nombre" 
+				value="<?php if(isset($_POST['txt_nombre'])) echo htmlspecialchars($_POST['txt_nombre']);?>" />
+			<?php if(isset($registro_errores['txt_nombre'])) echo $registro_errores['txt_nombre'];?>
+		</td>
+	</tr>	
+	<tr>
+		<td class="label">
+			Apellido Paterno	
+		</td>
+		<td>
+			<input type="text" name="txt_apellidoPaterno" id="txt_apellidoPaterno" 
+				value="<?php if(isset($_POST['txt_apellidoPaterno'])) echo htmlspecialchars($_POST['txt_apellidoPaterno']);?>" />
+			<?php if(isset($registro_errores['txt_apellidoPaterno'])) echo $registro_errores['txt_apellidoPaterno'];?>
+		</td>
+	</tr>	
+	<tr>
+		<td class="label">
+			Apellido Materno
+		</td>
+		<td>
+			<input type="text" name="txt_apellidoMaterno" id="txt_apellidoMaterno" 
+				value="<?php if(isset($_POST['txt_apellidoMaterno'])) echo htmlspecialchars($_POST['txt_apellidoMaterno']);?>" />
+			<?php if(isset($registro_errores['txt_apellidoMaterno'])) echo $registro_errores['txt_apellidoMaterno'];?>
+		</td>
+	</tr>							
+	<tr>
+		<td class="label">
+			Correo electr&oacute;nico
+		</td>
+		<td>
+			<input type="text" name="email" id="email" maxlength="60" 
+				value="<?php if(isset($_POST['email'])) echo htmlspecialchars($_POST['email']);?>" size="35"/>
+			<?php if((isset($_POST['email'])&& isset($_POST['txt_nombre']))&&(isset($registro_errores['email']))) echo $registro_errores['email'];?>
+		</td>
+	</tr>
+	<tr>
+		<td class="label">
+			Contrase&ntilde;a
+		</td>
+		<td>
+			<input type="password" name="password" id="password"  
+				value="<?php if(isset($_POST['password'])) echo htmlspecialchars($_POST['password']);?>" />							
+				<?php if(isset($registro_errores['password']) && isset($_POST['txt_nombre'])) echo $registro_errores['password'];?>			
+		</td>
+	</tr>			
+	<tr>
+		<td>&nbsp;</td>
+		<td>
+			<div class="instrucciones">La contraseña debe tener al menos 8 caracteres, incluir mayúsculas y minúsculas, y al menos un número</div>
+		</td>
+	</tr>
+	<tr>
+		<td class="label">
+			Confirmar&nbsp;Contrase&ntilde;a
+		</td>
+		<td>
+			<input type="password" name="password_2" id="password_2"  
+				value="<?php if(isset($_POST['password_2'])) echo htmlspecialchars($_POST['password_2']);?>" />
+				<?php if(isset($registro_errores['password_2'])) echo $registro_errores['password_2'];?>											
+		</td>
+	</tr>	
+	<tr>
+		<td colspan="2" class="label_izq">			
+			<?php if(isset($registro_errores['user_reg'])) echo "<span class='validation_message'>".$registro_errores['user_reg']."</span>";?>			
+		</td>
+	</tr>	
+	<tr>
+		<td>&nbsp;</td>
+		<td><input type="submit" id="enviar" value="&nbsp;" class="crear_cuenta"/></td>
+	</tr>			
+	</form>
+</table>

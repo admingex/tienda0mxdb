@@ -5,10 +5,10 @@
 			$data = json_decode($json);				
 				foreach($data->imagenes as $k){
 					if(!empty($k->linkPromocion)){
-						echo "<a href='".$k->linkPromocion."'><img src='".$k->urlImagen."' /></a>";		
+						echo "<a href='".$k->linkPromocion."'><img src='".TIENDA.$k->urlImagen."' /></a>";		
 					}
 					else{
-						echo "<img src='".$k->urlImagen."' />";
+						echo "<img src='".TIENDA.$k->urlImagen."' />";
 					}					
 				}	
 		?>					  						 											
