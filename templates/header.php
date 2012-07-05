@@ -89,10 +89,10 @@
         <section id="contenido">    <!--contenido-->
             <!--Categorías -->
             
-            <?php if ($menues) include('components/banner_categorias.php'); ?>
+            <?php include('components/banner_categorias.php'); ?>
             <div class="contenidos">    <!--contenidos-->
                 <div class="blank_section">&nbsp;</div>
                 <!--Publicaciones-->
-                <?php if ($menues) include('components/menu_vertical.php');?>
+                <?php include('components/menu_vertical.php');?>
                 
                 <div class="contenido_promos">  <!--contenido promos-->

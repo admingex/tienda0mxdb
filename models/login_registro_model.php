@@ -1,13 +1,13 @@
 <?php
 # Importar modelo de abstracción de base de datos
-require_once('../core/db_abstract_model.php');
+require_once('./core/db_abstract_model.php');
 
 
-class Index extends DBAbstractModel {
+class Login_Registro_Model extends DBAbstractModel {
 
     ############################### PROPIEDADES ################################
-    private $publicaciones;
-	private $categorias;
+    private $email;
+	private $password;
 	
     private $id_clienteIn;
     private $nombreVc;
@@ -16,7 +16,18 @@ class Index extends DBAbstractModel {
 	private $emailVc;
     private $cpCh;
 	private $fechaRegistroDt;
-		
+
+	############################ CONSTRUCTOR Y DESTRUCTOR #######################
+    # Método constructor
+    function __construct() {
+		$this->db_name = 'cms0mxdb';
+    }
+
+    # Método destructor del objeto
+    function __destruct() {
+        unset($this);
+    }
+			
 	//Metodos de acceso
 	public function get_id_clienteIn() { return $this->id_clienteIn; }
     public function get_nombreVc() { return $this->nombreVc; }
@@ -28,6 +39,58 @@ class Index extends DBAbstractModel {
 		
     ################################# MÉTODOS ##################################
     
+    ################## LOGIN ################
+    /**
+	 * Verificar que el email no esté registrado
+	 * Regresa un array con la información
+	 * Si no encuentra el correo regresa un array vacío: isset($e) === TRUE
+	 */
+    public function verifica_registro_email($email='') {
+		$this->query = "SELECT id_clienteIn, email, LastLockoutDate 
+						FROM CMS_IntCliente
+						WHERE email = '".$email."' LIMIT 1";
+
+		//regresa un array
+		$this->get_results_from_query();
+		
+		//echo count($this->rows)." qey: ". $this->query." correo ".$email;
+		/*
+		echo "<pre>";
+		print_r($this->rows);
+		echo "</pre>";
+		exit();
+		*/
+		return $this->rows[0];
+	}
+    
+	/**
+	 * Desbloquea la cuenta del usuario para que intente loggearse
+	 */
+	function desbloquear_cuenta($id_cliente) {								
+		$this->query = "UPDATE  CMS_IntCliente SET FailedPasswordAttemptCount = NULL, LastLockoutDate = NULL  WHERE id_clienteIn = '" . $id_cliente . "'";
+		//regresa TRUE ó FALSE dependiendo de si se ejecutó correctamente o no 
+		$res = $this->execute_single_query($this->query);
+		
+		return $res;				
+	}
+    
+	######################### PASSWORD #######################
+	/**
+	 * Registrar la actividad en la base
+	 */
+	function guarda_actividad_historico($id_cliente, $clave, $actividad, $time) {
+		$this->query = "INSERT INTO CMS_IntHistoricoCliente (id_clienteIn, claveVc, id_tipoActividadSi, timestampTs) VALUES (" . $id_cliente .", '".
+						$clave . "', ". $actividad . ", '". $time . "')";
+
+		//$mysqli->affected_rows
+
+		return $this->execute_single_query($this->query);		
+	}
+	
+	
+	################## REGISTRO Y CONTRASEÑA ################
+	
+	
     #recupera las publicaciones para colocarlas en el archivo JSON
     public function get_publicaciones() {
     	$this->query = "
@@ -36,6 +99,7 @@ class Index extends DBAbstractModel {
             FROM   cliente 
             WHERE  emailVc = '$email'
         ";
+		
         $this->get_results_from_query();
     }
     
@@ -175,14 +239,5 @@ class Index extends DBAbstractModel {
 			$this->mensaje_db = 'Lista vacía';
 		}
 	}
-    # Método constructor
-    function __construct() {
-			$this->db_name = 'helladyo_videocentro';
-    }
-
-    # Método destructor del objeto
-    function __destruct() {
-        unset($this);
-    }
 }
 ?>

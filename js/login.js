@@ -43,11 +43,11 @@ $(document).ready(function() {
 				return false;
 			}
 			else{
-				$("form").submit();
+				$("#login_tienda").submit();
 			}									
 		} else {
-			$("form").attr("action", "/ecommerce/index.php/registro/")
-			$("form").submit();
+			$("login_tienda").attr("action", "/tienda/registro/")
+			$("login_tienda").submit();
 		}
 	});
 	

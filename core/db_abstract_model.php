@@ -1,7 +1,7 @@
 <?php
 abstract class DBAbstractModel {
 	#para la conexión
-	private static $db_host = 'localhost';
+	private static $db_host = '10.177.73.120';
 	private static $db_user = 'ecommerce_user';
 	private static $db_pass = 'ecommerce';
 	
@@ -34,13 +34,17 @@ abstract class DBAbstractModel {
 
 	# Ejecutar un query simple del tipo INSERT, DELETE, UPDATE
 	protected function execute_single_query() {
-		if($_POST) {
-			$this->crear_conexion();
-			$this->conn->query($this->query);
-			$this->cerrar_conexion();
-		} else {
-			$this->mensaje_db = 'Método no permitido';
+		//ejecución de un single command
+		$this->crear_conexion();
+		//$this->conn->query($this->query);
+		if (!$this->conn->query($this->query)) {
+			die($this->conn->error().$this->query);
+			$this->mensaje_db = $this->conn->error().$this->query;
+			return FALSE;
 		}
+		//return $conn->insert_id;		
+		$this->cerrar_conexion();
+		return TRUE;
 	}
 
 	# Traer resultados de una consulta en un Array, SELECT
