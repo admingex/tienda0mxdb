@@ -1,7 +1,7 @@
 <?php
 abstract class DBAbstractModel {
 	#para la conexión
-	private static $db_host = '10.177.73.120';
+	private static $db_host = 'localhost';
 	private static $db_user = 'ecommerce_user';
 	private static $db_pass = 'ecommerce';
 	
@@ -38,8 +38,8 @@ abstract class DBAbstractModel {
 		$this->crear_conexion();
 		//$this->conn->query($this->query);
 		if (!$this->conn->query($this->query)) {
-			die($this->conn->error().$this->query);
-			$this->mensaje_db = $this->conn->error().$this->query;
+			die($this->conn->error . $this->query);
+			$this->mensaje_db = $this->conn->error . $this->query;
 			return FALSE;
 		}
 		//return $conn->insert_id;		
@@ -49,6 +49,9 @@ abstract class DBAbstractModel {
 
 	# Traer resultados de una consulta en un Array, SELECT
 	protected function get_results_from_query() {
+		//para vaciar posibles resultados previos
+		$this->rows = array();
+		
 		$this->crear_conexion();
 		$result = $this->conn->query($this->query);
 		while ($row = $result->fetch_assoc())
