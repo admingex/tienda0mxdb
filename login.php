@@ -52,6 +52,17 @@
 			//echo "registrar hist: " . $modelo->guarda_actividad_historico(8, 'ffd', $TIPO_ACTIVIDAD['DESBLOQUEO'], $t);
 			
 			//echo "desbloqueó?" . $modelo->desbloquear_cuenta(8);
+			
+			//echo "intentos: ". $modelo->obtiene_numero_intentos(8);
+			
+			//echo "verifica cliente:<br/>";
+			//$y = $modelo->verifica_cliente('helladyo_@hotmail.comg', 'Kali2012');
+			/*echo "hh<pre>";
+			print_r($y);
+			echo "</pre>";
+			*/
+			
+			
 			exit;
 			
 			if (empty($login_errores)) {
@@ -64,24 +75,25 @@
 					$fecha_lock = $mail_cte['LastLockoutDate'];
 					$id_cliente = $mail_cte['id_clienteIn'];
 											
-					if ($fecha_lock != '0000-00-00 00:00:00'){
+					if ($fecha_lock != '0000-00-00 00:00:00') {
 						//Checa si puede intentar iniciar sesión
 						if ($this->tiempo_desbloqueo($fecha_lock)) {
 							$modelo->desbloquear_cuenta($id_cliente);
 							//hora actual
 							$t = date('Y/m/d h:i:s', time());
 							
-							$this->password_model->guarda_actividad_historico($id_cliente, '', $TIPO_ACTIVIDAD['DESBLOQUEO'], $t);							
+							$modelo->guarda_actividad_historico($id_cliente, '', $TIPO_ACTIVIDAD['DESBLOQUEO'], $t);							
 						}
 					}
-					//acá vas																	
-					$num_intentos = $this->login_registro_model->obtiene_numero_intentos($id_cliente);	
+					//Obtener la cuenta de los intentos realizados
+					$num_intentos = $modelo->obtiene_numero_intentos($id_cliente);	
 					
-					if($num_intentos<3){
-						$resultado = $this->login_registro_model->verifica_cliente($this->email, $this->password);							
-						if ($resultado->num_rows() > 0) {
-							//Reguardar la información de la promoción
+					if ($num_intentos < 3) {
+						$resultado = $modelo->verifica_cliente($this->email, $this->password);							
+						if (count($resultado) > 0) {	//si no es un arreglo vacío: SI !empty($resultado)
+							//Resguardar la información de la promoción
 							
+		############VAS ACÁ
 							//destruir la sesión de PHP y mandar la información en la sesión de CI con un nuevo ID
 							$this->cambiar_session();
 							
@@ -107,9 +119,12 @@
 							//Flujo
 							redirect($destino);
 						} 
-						else{
-							$this->login_errores['user_login'] = "Hubo un error con la combinación ingresada de correo y contraseña.<br />Por favor intenta de nuevo.";																			
-							$t= mdate('%Y/%m/%d %h:%i:%s',time());								
+						else {	//No está correcta la información para iniciar sesión
+							$login_errores['user_login'] = "Hubo un error con la combinación ingresada de correo y contraseña.<br />Por favor intenta de nuevo.";
+																									
+							$t = date('Y/m/d h:i:s', time());
+							
+							////////////Vas aCA								
 							$this->password_model->guarda_actividad_historico($id_cliente, $this->password, self::$TIPO_ACTIVIDAD['ACCESO_INCORRECTO'], $t);							
 							$this->login_registro_model->suma_intento_fallido($id_cliente, $num_intentos, $t);	
 						}
@@ -168,6 +183,7 @@
 		*/
 	}
 	
+	######################## LOGIN ################################
 	/**
 	 * Recuperación de los datos para el inicio de sesión
 	 */
@@ -228,6 +244,6 @@
 		$value['mail']=$res->num_rows();
 		echo json_encode($value);			
 	}
-?>
+
 
 

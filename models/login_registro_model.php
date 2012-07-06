@@ -48,7 +48,7 @@ class Login_Registro_Model extends DBAbstractModel {
     public function verifica_registro_email($email='') {
 		$this->query = "SELECT id_clienteIn, email, LastLockoutDate 
 						FROM CMS_IntCliente
-						WHERE email = '".$email."' LIMIT 1";
+						WHERE email = '" . $email. "' LIMIT 1";
 
 		//regresa un array
 		$this->get_results_from_query();
@@ -60,7 +60,13 @@ class Login_Registro_Model extends DBAbstractModel {
 		echo "</pre>";
 		exit();
 		*/
-		return $this->rows[0];
+		
+		//Si encontró resultado lo devuelve, si nom regresa un array vacío
+		if (count($this->rows) > 0) {
+			return $this->rows[0];
+		} else {
+			return $this->rows;
+		}
 	}
     
 	/**
@@ -89,7 +95,64 @@ class Login_Registro_Model extends DBAbstractModel {
 	
 	
 	################## REGISTRO Y CONTRASEÑA ################
+	/**
+	 * Número de intentos que el usuario ha utilizado para intentar iniciar sesión
+	 */
+	function obtiene_numero_intentos($id_cliente) {
+		$this->query = "SELECT FailedPasswordAttemptCount FROM CMS_IntCliente WHERE id_clienteIn = " . $id_cliente;
+		
+		$this->get_results_from_query();
+		
+		$intentos = 0;
+		
+		if (!empty($this->rows)) {	//count($this->rows > 0)
+			$intentos = $this->rows[0]['FailedPasswordAttemptCount'];
+		}
+		
+		return $intentos;
+	}
 	
+	/**
+	 * Verifcar el cliente en el sistema
+	 */
+	function verifica_cliente($email = '', $password = '')
+	{
+		$m5_pass = md5($email.'|'.$password);		//encriptación definida en el registro de usuarios
+		$this->query = " 
+				SELECT id_clienteIn as id_cliente, salutation as nombre, email, password
+				FROM CMS_IntCliente
+				WHERE email = '" . $email . "' AND password = '" . $m5_pass . "'
+				LIMIT 1
+				";
+		
+				
+		$this->get_results_from_query();
+		
+		if (count($this->rows) == 1) {
+			//echo "<pre>";
+			return $this->rows[0];	//regresa el registro si es que lo encontró
+			//echo "</pre>";
+		} else {	//si no encontró nada regresa un array vacío
+			//echo "está vacio " . empty($this->rows);		
+			return $this->rows;
+		}
+	}
+	
+	/**
+	 * Regresa la Suma de los intentos fallidos 
+	 */
+	function suma_intento_fallido($id_cliente, $num_intentos, $t){						
+		$numin = $num_intentos + 1;		
+		
+		$this->query = "UPDATE  CMS_IntCliente SET FailedPasswordAttemptCount = " . $numin .", LastLockoutDate = '" . $t . "' WHERE id_clienteIn = " . $id_cliente;
+		
+		$res = $this->execute_single_query($this->query);
+		
+		return $res;				
+	}
+		
+	
+	################### END TIENDA ###########################
 	
     #recupera las publicaciones para colocarlas en el archivo JSON
     public function get_publicaciones() {
@@ -240,4 +303,4 @@ class Login_Registro_Model extends DBAbstractModel {
 		}
 	}
 }
-?>
+
