@@ -59,9 +59,6 @@
 			
 			$data['mensaje'] = "";
 			
-			//echo "intentos: ". $n = $modelo->obtiene_numero_intentos(8);
-			//exit;
-			
 			if (empty($login_errores)) {
 				//verificar que el usuario esté registrado
 				$email 		= $login_info['email'];
@@ -71,8 +68,8 @@
 				if (count($mail_cte) != 0) {
 					$fecha_lock = $mail_cte['LastLockoutDate'];
 					$id_cliente = $mail_cte['id_clienteIn'];
-											
-					if ($fecha_lock != '0000-00-00 00:00:00') {
+					
+					if ($fecha_lock != '0000-00-00 00:00:00' && $fecha_lock != NULL) {
 						//Checa si puede intentar iniciar sesión
 						if (tiempo_desbloqueo($fecha_lock)) {
 							$modelo->desbloquear_cuenta($id_cliente);
@@ -83,7 +80,7 @@
 						}
 					}
 					//Obtener la cuenta de los intentos realizados
-					$num_intentos = $modelo->obtiene_numero_intentos($id_cliente);	
+					$num_intentos = $modelo->obtiene_numero_intentos("'".$id_cliente."'");	
 					
 					if ($num_intentos < 3) {
 						//si el cliente existe, lo regresa en un arreglo: id_clienteIn as id_cliente, salutation as nombre, email, password
@@ -119,14 +116,15 @@
 							//redirect($destino);
 							$url = site_url($destino);
 			###### TO DO:	//header("Location: $url", TRUE, 302);
-							echo "Sesión iniciada!";
-							echo "Sesión:<pre>";
+							echo "¡Sesión iniciada!";
+							
+							/*echo "Sesión:<pre>";
 							print_r($_SESSION); 
 							echo "<pre>";
+							 * */
 							exit;
 							
 						} else {	//No está correcta la información para iniciar sesión
-							echo "Intento fallido de login: $num_intentos";
 							$login_errores['user_login'] = "Hubo un error con la combinación ingresada de correo y contraseña.<br />Por favor intenta de nuevo.";
 																									
 							$t = date('Y/m/d h:i:s', time());

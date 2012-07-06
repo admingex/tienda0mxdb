@@ -1,7 +1,7 @@
 <?php
 abstract class DBAbstractModel {
 	#para la conexión
-	private static $db_host = 'localhost';
+	private static $db_host = '10.177.73.120';
 	private static $db_user = 'ecommerce_user';
 	private static $db_pass = 'ecommerce';
 	
@@ -21,6 +21,10 @@ abstract class DBAbstractModel {
 	abstract protected function update();		//update
 	abstract protected function delete();		//delete
 	abstract protected function list_items(); //listado de elementos
+    
+    public function set_query($q) {
+    	$this->query = $q;
+    }
     
 	# Conectar a la base de datos
 	private function crear_conexion() {

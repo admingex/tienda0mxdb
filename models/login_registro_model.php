@@ -46,7 +46,7 @@ class Login_Registro_Model extends DBAbstractModel {
 	 * Si no encuentra el correo regresa un array vacío: isset($e) === TRUE
 	 */
     public function verifica_registro_email($email='') {
-		$this->query = "SELECT id_clienteIn, email, LastLockoutDate 
+		$this->query = "SELECT id_clienteIn, email, COALESCE(LastLockoutDate,'0000-00-00 00:00:00') AS LastLockoutDate 
 						FROM CMS_IntCliente
 						WHERE email = '" . $email. "' LIMIT 1";
 
@@ -58,8 +58,9 @@ class Login_Registro_Model extends DBAbstractModel {
 		echo "<pre>";
 		print_r($this->rows);
 		echo "</pre>";
-		exit();
-		*/
+		 */
+		//exit();
+		
 		
 		//Si encontró resultado lo devuelve, si nom regresa un array vacío
 		if (count($this->rows) > 0) {
@@ -75,7 +76,7 @@ class Login_Registro_Model extends DBAbstractModel {
 	function desbloquear_cuenta($id_cliente) {								
 		$this->query = "UPDATE  CMS_IntCliente SET FailedPasswordAttemptCount = NULL, LastLockoutDate = NULL  WHERE id_clienteIn = '" . $id_cliente . "'";
 		//regresa TRUE ó FALSE dependiendo de si se ejecutó correctamente o no 
-		$res = $this->execute_single_query($this->query);
+		$res = $this->execute_single_query();
 		
 		return $res;				
 	}
@@ -90,8 +91,8 @@ class Login_Registro_Model extends DBAbstractModel {
 						$clave . "', ". $actividad . ", '". $time . "')";
 
 		//$mysqli->affected_rows
-		echo "save $this->query";
-		return $this->execute_single_query($this->query);		
+		//echo "save $this->query";
+		return $this->execute_single_query();		
 	}
 	
 	
@@ -100,21 +101,23 @@ class Login_Registro_Model extends DBAbstractModel {
 	 * Número de intentos que el usuario ha utilizado para intentar iniciar sesión
 	 */
 	function obtiene_numero_intentos($id_cliente) {
-		$this->query = "SELECT COALESCE(FailedPasswordAttemptCount, 0) AS  FailedPasswordAttemptCount FROM CMS_IntCliente WHERE id_clienteIn = " . $id_cliente;
+		$this->query = "SELECT COALESCE(FailedPasswordAttemptCount, 0) AS FailedPasswordAttemptCount FROM CMS_IntCliente WHERE id_clienteIn = " . $id_cliente;
 		
-		$this->get_results_from_query();
+		print_r($this->get_results_from_query($this->query));
 		
 		$intentos = 0;
 		
 		if (!empty($this->rows)) {	//count($this->rows > 0)
 			$intentos = $this->rows[0]['FailedPasswordAttemptCount'];
 		}
+		
 		/*
 		echo "cte:  $id_cliente<br/>". $this->rows[0]['FailedPasswordAttemptCount'];
 		echo "<pre>";
 		print_r($this->rows);
 		echo "</pre>$this->query<br/>";
 		*/
+		//exit;
 		return $intentos;
 	}
 	
@@ -155,7 +158,6 @@ class Login_Registro_Model extends DBAbstractModel {
 		
 		$this->query = "UPDATE  CMS_IntCliente SET FailedPasswordAttemptCount = " . $numin .", LastLockoutDate = '" . $t . "' WHERE id_clienteIn = " . $id_cliente;
 		
-		echo "suma intentos $this->query";
 		$res = $this->execute_single_query($this->query);
 		//TRUE / FALSE
 		return $res;				
