@@ -1,6 +1,27 @@
 <?php
-	#root 
-	const 	TIENDA =	'/tienda/';	//http://tienda.grupoexpansion.mx
+	#root path
+	const 	TIENDA 	=	'/tienda/';	//http://tienda.grupoexpansion.mx
+	
+	#API
+	const 	API_KEY =	'AC35-4564-AE4D-0B881031F295';	//la que aparece en el controlador del API de la plataforma
+	#Funciones de encriptación/descencriptación
+	function encrypt($str, $key) {
+		$str = trim($str);
+    	$block = mcrypt_get_block_size('des', 'ecb');
+    	$pad = $block - (strlen($str) % $block);
+    	$str .= str_repeat(chr($pad), $pad);
+    	return base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $key, $str, MCRYPT_MODE_ECB));
+	}
+	
+	function decrypt($str, $key) {
+		$str = base64_decode($str);
+    	$str = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $key, $str, MCRYPT_MODE_ECB);
+    	$block = mcrypt_get_block_size('des', 'ecb');
+    	$pad = ord($str[($len = strlen($str)) - 1]);
+    	return substr($str, 0, strlen($str) - $pad);
+	}
+	
+	
 	
 	//Para el inicio de sessión de la tienda y bloqueos e intentos
 	$TIPO_ACTIVIDAD = array(
