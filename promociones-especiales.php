@@ -15,9 +15,10 @@
 	//header
     require('./templates/header.php');
     
-    //contenido
-    include('./components/detalle_suscripcion.php');    
-    
+    //contenido    
+    echo "..";
+    include('./components/promociones-especiales.php');
+	echo "..";        
     //footer
     require('./templates/footer.php');
 	

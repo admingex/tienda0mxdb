@@ -6,7 +6,7 @@
 		{"id_categoriaSi":"4", "descripcionVc":"Entretenimiento", "url":"#"},
 		{"id_categoriaSi":"5", "descripcionVc":"Interés General", "url":"#"},
 		{"id_categoriaSi":"6", "descripcionVc":"B2B", "url":"#"},
-		{"id_categoriaSi":"7", "descripcionVc":"Promociones Especiales", "url":"#"}
+		{"id_categoriaSi":"7", "descripcionVc":"Promociones Especiales", "url":"promociones-especiales"}
 	]
 
 }
