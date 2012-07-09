@@ -15,10 +15,9 @@
 	//header
     require('./templates/header.php');
     
-    //contenido    
-    echo "..";
+    //contenido        
     include('./components/promociones-especiales.php');
-	echo "..";        
+        
     //footer
     require('./templates/footer.php');
 	
