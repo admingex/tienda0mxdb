@@ -42,6 +42,9 @@
 		//no caché
 		no_cache();
 		
+		echo "sended";
+		exit;
+		
 		//si es usuario nuevo, se debe registrar, cuando no hay JS
 		if (array_key_exists('tipo_inicio', $_POST) && $_POST['tipo_inicio'] == NUEVO) {
 			$url = site_url('registro');

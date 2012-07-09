@@ -51,13 +51,13 @@ $(document).ready(function() {
 				passwd.focus().after("<div class='error2'>Por favor escribe tu contraseña o elige iniciar sesión como cliente nuevo</div>");
 				return false;
 			}
-			else{
+			else {
 				$("login_tienda").submit();
-			}									
-		} 		
+			}
+		}
 		else {
-			$("form").attr("action", "registro")
-			$("form").submit();
+			$("login_tienda").attr("action", "registro")
+			$("login_tienda").submit();
 		}
 	});
 	
