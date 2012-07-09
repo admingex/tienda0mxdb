@@ -27,7 +27,7 @@
     
     #Test Redirect
     #RewriteRule ^(*.php)$ /$1 [L]
-    RewriteRule ^login/?((.(aspx)*)*)$ login.php
+    RewriteRule ^login/?$ login.php
     RewriteRule ^publicaciones controllers/publicaciones.php
 	RewriteRule ^categorias controllers/categorias.php
 	#RewriteRule ^home controllers/home.php	
