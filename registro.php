@@ -41,17 +41,23 @@
 		$registro_controller = new Registro_Controller();
 		//se atiende la petición con la instancia del controlador
 		$registro_controller->registrar();
-		echo "<pre>";
-		print_r($data);
-		echo "<pre>";
-		exit;			
+		
+		//si hubo errores, se pasan a la vista para que se muestre, de otro modo, se redirecciona a otro controlador
+		$td = $registro_controller->get_data();
+		if (!empty($td)) {
+			foreach ($td as $key => $value) {
+				$data[$key] = $value;
+			}
+		}
 	}
 	####### END Lógica de login
+	//echo "DATA<pre>";
+	//print_r($data);
+	//echo "<pre>";
+	//exit;
 	
 	//Si no hay petición POST, cargar la vista sencilla de login
 	cargar_vista('registro', $data);
 	exit;
-	//}
 	
-// FIN del front controller del registro 
-	
+// FIN del front controller del registro /registro.php

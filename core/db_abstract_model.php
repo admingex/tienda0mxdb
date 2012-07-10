@@ -31,6 +31,12 @@ abstract class DBAbstractModel {
 		$this->conn = new mysqli(self::$db_host, self::$db_user, self::$db_pass, $this->db_name);
 	}
 	
+	# Cambiar el Charset a UTF-8
+	private function set_charset() {
+		//regresa bool
+		$this->conn->set_charset("utf8");
+	}
+	
 	# Desconectar la base de datos
 	private function cerrar_conexion() {
 		$this->conn->close();
@@ -40,6 +46,9 @@ abstract class DBAbstractModel {
 	protected function execute_single_query() {
 		//ejecución de un single command
 		$this->crear_conexion();
+		//cambiar el charset
+		$this->set_charset();
+		
 		//$this->conn->query($this->query);
 		if (!$this->conn->query($this->query)) {
 			die($this->conn->error . $this->query);

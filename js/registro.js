@@ -24,11 +24,10 @@ $(document).ready(function() {
 	    		}
 	    		else{        			
 	    			if(!valida_password($("#email").val(),$("#password").val())){
-	    				$("#password_2").focus().after("<span class='error2'>Por favor ingresa una contrase&ntilde;a v&aacute;lida</span>");        				        				
+	    				//$("#password_2").focus().after("<span class='error2'>Por favor ingresa una contrase&ntilde;a v&aacute;lida</span>");        				        				
 	    				return false;
-	    			}
-	    			else{
-	    				if($("#password").val()!=$("#password_2").val()){
+	    			} else {
+	    				if ($("#password").val()!=$("#password_2").val()) {
 	    					$("#password_2").focus().after("<span class='error2'>Las contraseñas ingresadas no son idénticas. Por favor intenta de nuevo.</span>");
 	    					return false;
 	    				}
@@ -126,6 +125,7 @@ function valida_password(acc,pass){
 		}					
 	}
 }
+
 function contiene_mayuscula(cad){
 	var may='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	for(i=0; i<cad.length; i++){				
@@ -135,6 +135,7 @@ function contiene_mayuscula(cad){
    	}
    	return 0;
 }
+
 function contiene_minuscula(cad){
 	var min='abcdefghijklmnopqrstuvwxyz';
 	for(i=0; i<cad.length; i++){				
@@ -144,6 +145,7 @@ function contiene_minuscula(cad){
    	}
    	return 0;
 }
+
 function contiene_numero(cad){
 	var num='0123456789';
 	for(i=0; i<cad.length; i++){				

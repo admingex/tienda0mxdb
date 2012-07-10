@@ -167,12 +167,20 @@ class Login_Registro_Model extends DBAbstractModel {
 	 */
 	function registrar_cliente($cliente = array())
     {
-    	###Hacerlo con un SP
+    	//password encriptado
     	$m5_pass = md5($cliente['email'].'|'.$cliente['password']);		//encriptaciónn definida en el registro de usuarios
-    	$cliente['password'] = $m5_pass;
-        $res = $this->db->insert('CMS_IntCliente', $cliente);		//true si se inserta
-
-        return $res;	//true_false
+    	//echo "Cliente<pre>";
+		//print_r($cliente);
+		//echo "<pre>".$m5_pass;
+		
+		
+		//llamada al SP_Registrar_Cliente(nombre, ap_P, ap_M, email, pass)
+		$this->query = "CALL SP_Registrar_Cliente('" . $cliente['salutation'] . "', '" . $cliente['fname'] ."', '" .
+						$cliente['lname'] . "', '" . $cliente['email'] . "', '". $m5_pass . "')";
+		
+		//echo "<br/>query: " . $this->query;
+		
+        return $this->execute_single_query();		//true si se inserta
     }
 	
 	/**

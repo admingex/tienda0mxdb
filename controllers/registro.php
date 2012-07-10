@@ -5,7 +5,8 @@ class Registro_Controller {
 	####### Propiedades
 	private $cliente_info;		//información enviada para el registro
 	private $registro_errores;	//mensajes de error
-	private $modelo;					//modelo a utilizar
+	private $data;				//información que pasará a la vista
+	private $modelo;			//modelo a utilizar
 	
 	#### Registro de cliente nuevo
 	
@@ -13,6 +14,21 @@ class Registro_Controller {
 		$this->modelo = new Login_Registro_Model();
 		$this->cliente_info = array();
 		$this->registro_errores = array();
+		$this->data = array();
+	}
+	
+	/**
+	 * Regresa el arreglo con información para mostrar la vista
+	 */
+	public function get_data() {
+		return $this->data;
+	}
+	
+	/**
+	 * Asigna un elemento del arreglo destinado a pasar información a la vista
+	 */
+	public function set_data($clave, $valor) {
+		$this->data[$clave] = $valor;
 	}
 	
 	/**
@@ -20,30 +36,35 @@ class Registro_Controller {
 	 * Se asume que siempre viene de una petición post
 	 */
 	public function registrar() {
-		
+		//prevenir que no se revise si viene de la página de login
+		if (array_key_exists('tipo_inicio', $_POST)) {
+			return;
+		}
+				
 		//recupera y valida info de los campos
 		$this->cliente_info = $this->get_datos_registro();
 		
-		echo "<pre>";
-		print_r($this->cliente_info);
-		print_r($this->registro_errores);
-		echo "<pre>";
+		//echo "Cliente Info y errores <pre>";
+		//print_r($this->cliente_info);
+		//print_r($this->registro_errores);
+		//echo "<pre>";
 		
 		
 		if (empty($this->registro_errores)) {
 			//si está registrado regresa un arreglo de tres elementos con la información, si no, viene vacío
 			$email_registrado = $this->modelo->verifica_registro_email($this->cliente_info['email']);
 			
-			echo "email?: " . $email_registrado;
-			echo "<pre>";
-			print_r($email_registrado);
-			echo "<pre>".count($email_registrado);
+			//echo "email?: " . count($email_registrado);
+			
+			//echo "<pre>";
+			//print_r($email_registrado);
+			//echo "<pre>".count($email_registrado);
 			//exit;
 			//email no está registrado
 			if (count($email_registrado) == 0) {
 		##### TO DO Esto debe quedar en el sp
-				$this->cliente_info['id_clienteIn'] = $this->modelo->next_cliente_id();	//id del cliente
-				exit;	
+				//$this->cliente_info['id_clienteIn'] = $this->modelo->next_cliente_id();	//id del cliente
+				//exit;
 				$res = $this->modelo->registrar_cliente($this->cliente_info);
 				/*$m5_pass = md5($this->cliente_info['email'].'|'.$this->cliente_info['password']);		//encriptaciónn definida en el registro de usuarios
 				$this->cliente_info['password'] = $m5_pass;
@@ -53,7 +74,10 @@ class Registro_Controller {
     			echo "resultado del query:".$res;        			
 				*/
 				//if($this->modelo->registrar_cliente($this->cliente_info)) {							//registro exitoso
-				if($res){	
+				if ($res) {
+					echo "Cliente registrado, creando sesión";
+					exit;
+					
 					$this->crear_sesion($this->cliente_info['id_clienteIn'], $this->cliente_info['salutation'], $this->cliente_info['email']);	//crear sesion,
 					//se va a revisar el inicio de sesión
 					//$url = $this->config->item('base_url').'/index.php/forma_pago/'; 
@@ -62,26 +86,29 @@ class Registro_Controller {
 					$_POST = array();	
 					exit();					
 				} else {
+					echo "Cliente NO registrado";
+					//exit;
+					
 					$this->registro_errores['user_reg'] = "No se pudo realizar el registro en el sistema";
 					$_POST = array();
-					$this->cargar_vista('', 'registro', $data);
+					
+			###### TO DO: Revisar Flujo
 				}
 				
 			} else {
+				//echo "El Cliente YA está registrado: ".$this->cliente_info['email'];	//Ok
+				//exit;
+		##### TO DO: Revisar el flujo
+		
 				//$url = site_url('registro');
 				//header("Location: $url", TRUE, 302);
 				$this->registro_errores['user_reg'] = "Solicitaste registrarte como cliente nuevo, pero ya existe una cuenta con el correo ".$this->cliente_info['email'];
-				$data['login_errores'] = $this->registro_errores;
-				//$this->cargar_vista('', 'registro', $data);
+				$this->data['registro_errores'] = $this->registro_errores;
 			}
 		} else { // IF hubo errores
-			$data['login_errores'] = $this->registro_errores;
-			//cargar_vista('login', $data);
-			//exit;
+			//echo "Hubo errores en el formulario";
+			$this->data['registro_errores'] = $this->registro_errores;			
 		}
-			echo "<pre>";
-			print_r($this->registro_errores);
-			echo "<pre>";
 	}
 	#### END Registro de cliente nuevo
 	
@@ -95,25 +122,41 @@ class Registro_Controller {
 	{
 		$datos = array();
 		
+		//echo "<pre>";
+		//print_r($_POST);
+		//echo "<pre>";
 		if (array_key_exists('txt_nombre', $_POST)) {
-			if (preg_match('/^[A-Z \'.-áéíóúÁÉÍÓÚÑñ]{2,30}$/i', $_POST['txt_nombre'])) { 
+			if (preg_match('/^[A-Z \'.-áéíóúÁÉÍÓÚÑñ]{1,30}$/i', $_POST['txt_nombre'])) { 
 				$datos['salutation'] = $_POST['txt_nombre'];
 			} else {
 				$this->registro_errores['txt_nombre'] = "<span class='error'>Por favor ingresa tu nombre</span>";
 			}
 		}
+		
 		if (array_key_exists('txt_apellidoPaterno', $_POST)) {
-			if (preg_match('/^[A-Z \'.-áéíóúÁÉÍÓÚÑñ]{2,30}$/i', $_POST['txt_apellidoPaterno'])) { 
+			if (preg_match('/^[A-Z \'.-áéíóúÁÉÍÓÚÑñ]{1,30}$/i', $_POST['txt_apellidoPaterno'])) { 
 				$datos['fname'] = $_POST['txt_apellidoPaterno'];
 			} else {
 				$this->registro_errores['txt_apellidoPaterno'] = "<span class='error'>Por favor ingresa tu apellido paterno</span>";
 			}
-		}		
+		}
+		
+		if (array_key_exists('txt_apellidoMaterno', $_POST)) {
+			if (preg_match('/^[A-Z \'.-áéíóúÁÉÍÓÚÑñ]{0,30}$/i', $_POST['txt_apellidoMaterno'])) { 
+				$datos['lname'] = $_POST['txt_apellidoMaterno'];
+			} else {
+				$this->registro_errores['txt_apellidoMaterno'] = "<span class='error2'>Por favor ingresa tu apellido materno correctamente</span>";
+			}
+		} else {
+			$datos['lname'] = '';
+		}
+		
 		if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {			
 			$datos['email'] = htmlspecialchars(trim($_POST['email']));
 		} else {			
 			$this->registro_errores['email'] = "<span class='error2'>Por favor ingresa un correo electrónico <br />válido. Ejemplo: nombre@dominio.mx</span>";
 		}
+		
 		if (isset($_POST['email']) && isset($_POST['password'])) {
 			if ($_POST['email']!="") {
 				$pass_info = $this->valida_password($_POST['email'], $_POST['password']);	
@@ -361,4 +404,4 @@ class Registro_Controller {
 ############## END MÉTODOS ##############################
 }
 
-// Fin del controlador del login en la tienda login.php
+// Fin del controlador del login en la tienda /controllers/login.php

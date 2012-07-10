@@ -56,5 +56,5 @@
 	exit;
 	//}
 	
-// FIn del front controller de loginarchivo que 
-	
+// FIn del front controller de login archivo /login.php
+ 
