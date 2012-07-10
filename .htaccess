@@ -27,7 +27,9 @@
     
     #Test Redirect
     #RewriteRule ^(*.php)$ /$1 [L]
-    RewriteRule ^login/?$ login.php
+    RewriteRule ^login/?$ 		login.php
+    RewriteRule ^registro/?$ 	registro.php
+    
     RewriteRule ^publicaciones controllers/publicaciones.php
 	RewriteRule ^categorias controllers/categorias.php
 	#RewriteRule ^home controllers/home.php	

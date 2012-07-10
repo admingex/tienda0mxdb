@@ -43,8 +43,8 @@ our demo gets from this sheet) */
 		font-size: 15px; }
 		
 	a { 
-		color: #00baff;
-		text-decoration: none; 
+		color: #094C86;
+		text-decoration: underline; 
 		font-weight: bold;
 		font-size: 12px; }
 		

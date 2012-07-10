@@ -43,11 +43,11 @@
 	
 	//Para el inicio de sessión de la tienda y bloqueos e intentos
 	$TIPO_ACTIVIDAD = array(
-		"BLOQUEO"=> 0, 
-		"DESBLOQUEO"=> 1, 
-		"SOLICITUD_PASSWORD"=>2,
-		"CAMBIO_PASSWORD"=>3,
-		"ACCESO_INCORRECTO"=>4
+		"BLOQUEO"				=> 0, 
+		"DESBLOQUEO"			=> 1, 
+		"SOLICITUD_PASSWORD"	=> 2,
+		"CAMBIO_PASSWORD"		=> 3,
+		"ACCESO_INCORRECTO"		=> 4
 	);
 
 # acciones
@@ -60,7 +60,7 @@
 	# const PAGE_SIZE = 5;
 	
 	/**
-	 * Imprime una cadena
+	 * Imprime una cadena con el web root del sitio
 	 */
 	function site_url($url = '') {
 		return TIENDA.$url;

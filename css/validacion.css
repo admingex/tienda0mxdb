@@ -30,8 +30,9 @@
 }
 
 .validation_message{
-	font-size: 10px;
+	font-size: 12px;
 	color: #E70030;
+	font-weight: bold;
 }
 
 .result_fail{

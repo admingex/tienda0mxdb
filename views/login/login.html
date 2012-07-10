@@ -6,8 +6,7 @@
 			</td>
 			<td colspan="2">
 				<input type="text" name="email" id="email" size="40"
-					value="<?php if(isset($_POST['email'])) echo htmlspecialchars($_POST['email']);?>"/>
-					<?php if(isset($login_errores['email'])) echo $login_errores['email'];?>
+					value="<?php if(isset($_POST['email'])) echo htmlspecialchars($_POST['email']);?>"/><?php if(isset($login_errores['email'])) echo $login_errores['email'];?>
 			</td>
 		</tr>
 		<tr>
@@ -49,7 +48,8 @@
 						if(isset($login_errores['password'])) echo $login_errores['password'];
 					?>
 				</span>
-				<div id="message">				
+				<div class="blank_section">&nbsp;</div>
+				<div>				
 					<?php
 					 if(isset($login_errores['user_login'])) echo "<span class='validation_message'>".$login_errores['user_login']."</span>";
 					?>

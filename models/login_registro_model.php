@@ -1,5 +1,5 @@
 <?php
-# Importar modelo de abstracción de base de datos
+# Importar modelo de abstracción de base de datos 
 require_once('./core/db_abstract_model.php');
 
 
@@ -62,7 +62,7 @@ class Login_Registro_Model extends DBAbstractModel {
 		//exit();
 		
 		
-		//Si encontró resultado lo devuelve, si nom regresa un array vacío
+		//Si encontró resultado lo devuelve, si no, regresa un array vacío
 		if (count($this->rows) > 0) {
 			return $this->rows[0];
 		} else {
@@ -81,23 +81,7 @@ class Login_Registro_Model extends DBAbstractModel {
 		return $res;				
 	}
     
-	######################### PASSWORD #######################
-	/**
-	 * Registrar la actividad en la base
-	 * Ok
-	 */
-	function guarda_actividad_historico($id_cliente, $clave, $actividad, $time) {
-		$this->query = "INSERT INTO CMS_IntHistoricoCliente (id_clienteIn, claveVc, id_tipoActividadSi, timestampTs) VALUES (" . $id_cliente .", '".
-						$clave . "', ". $actividad . ", '". $time . "')";
-
-		//$mysqli->affected_rows
-		//echo "save $this->query";
-		return $this->execute_single_query();		
-	}
-	
-	
-	################## REGISTRO Y CONTRASEÑA ################
-	/**
+    /**
 	 * Número de intentos que el usuario ha utilizado para intentar iniciar sesión
 	 */
 	function obtiene_numero_intentos($id_cliente) {
@@ -162,7 +146,62 @@ class Login_Registro_Model extends DBAbstractModel {
 		//TRUE / FALSE
 		return $res;				
 	}
+	######################### PASSWORD #######################
+	/**
+	 * Registrar la actividad en la base
+	 * Ok
+	 */
+	function guarda_actividad_historico($id_cliente, $clave, $actividad, $time) {
+		$this->query = "INSERT INTO CMS_IntHistoricoCliente (id_clienteIn, claveVc, id_tipoActividadSi, timestampTs) VALUES (" . $id_cliente .", '".
+						$clave . "', ". $actividad . ", '". $time . "')";
+
+		//$mysqli->affected_rows
+		//echo "save $this->query";
+		return $this->execute_single_query();		
+	}
+	
+	
+	################## REGISTRO Y CONTRASEÑA ################
+	/**
+	 * Registra la información de un cliente en la BD
+	 */
+	function registrar_cliente($cliente = array())
+    {
+    	###Hacerlo con un SP
+    	$m5_pass = md5($cliente['email'].'|'.$cliente['password']);		//encriptaciónn definida en el registro de usuarios
+    	$cliente['password'] = $m5_pass;
+        $res = $this->db->insert('CMS_IntCliente', $cliente);		//true si se inserta
+
+        return $res;	//true_false
+    }
+	
+	/**
+	 * Esta función ya no se ocupa, se llama al SP que se enecarga de obtener un id y  registrara la información
+	 */	
+	function next_cliente_id()
+	{
+		$this->quuery = "SELECT MAX(id_clienteIn) as consecutivo 
+						FROM  CMS_IntCliente";
 		
+		$this->get_results_from_query();
+		
+		if (count($this->rows) == 1) {
+			//echo "<pre>";
+			return $this->rows[0]['consecutivo'] + 1;	//regresa el registro si es que lo encontró
+			//echo "</pre>";
+		} else {	//si no encontró nada regresa un array vacío
+			//echo "está vacio " . empty($this->rows);		
+			return 0;
+		}
+		
+		$row = $res->row();	//regresa un objeto
+		
+		if(!$row->consecutivo)	{//si regresa null
+			return 0;
+		} else {
+			return $row->consecutivo + 1;	
+		}
+	}
 	
 	################### END TIENDA ###########################
 	

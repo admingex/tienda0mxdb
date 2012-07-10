@@ -147,7 +147,7 @@ header, footer, article, section, hgroup, nav, figure div {
 	}
 	
 	.contenedor-promo a{		
-		color: #063F84;
+		color: #0944C86;
 		display: block;
 		text-align: center;
 	}
@@ -419,6 +419,7 @@ input .text{
 
 .instrucciones{
 	font-size: 12px;
+	font-weight: bold;
 	color: #4e4e4e;
 }
 b{

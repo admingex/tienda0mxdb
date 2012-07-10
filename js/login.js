@@ -1,5 +1,5 @@
 /**
- * @author harteaga956
+ * * @author gex
  */
 $(document).ready(function() {
 	var reg_email = /^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/;
@@ -52,12 +52,12 @@ $(document).ready(function() {
 				return false;
 			}
 			else {
-				$("login_tienda").submit();
+				$("#login_tienda").submit();
 			}
 		}
 		else {
-			$("login_tienda").attr("action", "registro")
-			$("login_tienda").submit();
+			$("#login_tienda").attr("action", "registro")
+			$("#login_tienda").submit();
 		}
 	});
 	
