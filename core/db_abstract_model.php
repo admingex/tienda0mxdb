@@ -16,16 +16,12 @@ abstract class DBAbstractModel {
 	public $mensaje_db = 'Ok';
 
 	# métodos abstractos para el CRUD de clases que hereden (modelos)
-	abstract protected function read();			//select 1 elemento
-	abstract protected function create();		//insert
-	abstract protected function update();		//update
-	abstract protected function delete();		//delete
-	abstract protected function list_items(); //listado de elementos
-    
-    public function set_query($q) {
-    	$this->query = $q;
-    }
-    
+	//abstract protected function read();		//select 1 elemento
+	//abstract protected function create();		//insert
+	//abstract protected function update();		//update
+	//abstract protected function delete();		//delete
+	//abstract protected function list_items(); //listado de elementos
+        
 	# Conectar a la base de datos
 	private function crear_conexion() {
 		$this->conn = new mysqli(self::$db_host, self::$db_user, self::$db_pass, $this->db_name);
@@ -66,6 +62,9 @@ abstract class DBAbstractModel {
 		$this->rows = array();
 		
 		$this->crear_conexion();
+		//cambiar el charset
+		$this->set_charset();
+		
 		$result = $this->conn->query($this->query);
 		while ($row = $result->fetch_assoc())
 			$this->rows[] = $row;

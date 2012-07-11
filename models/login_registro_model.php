@@ -7,15 +7,8 @@ class Login_Registro_Model extends DBAbstractModel {
 
     ############################### PROPIEDADES ################################
     private $email;
-	private $password;
-	
+	private $password;	
     private $id_clienteIn;
-    private $nombreVc;
-    private $telefonoVc;
-	private $direccionVc;
-	private $emailVc;
-    private $cpCh;
-	private $fechaRegistroDt;
 
 	############################ CONSTRUCTOR Y DESTRUCTOR #######################
     # Método constructor
@@ -30,12 +23,6 @@ class Login_Registro_Model extends DBAbstractModel {
 			
 	//Metodos de acceso
 	public function get_id_clienteIn() { return $this->id_clienteIn; }
-    public function get_nombreVc() { return $this->nombreVc; }
-	public function get_telefonoVc() { return $this->telefonoVc; }
-	public function get_direccionVc() { return $this->direccionVc; }
-	public function get_emailVc() { return $this->emailVc; }
-    public function get_cpCh() { return $this->cpCh; }
-	public function get_fechaRegistroDt() { return $this->fechaRegistroDt; }
 		
     ################################# MÉTODOS ##################################
     
@@ -52,15 +39,6 @@ class Login_Registro_Model extends DBAbstractModel {
 
 		//regresa un array
 		$this->get_results_from_query();
-		
-		//echo count($this->rows)." qey: ". $this->query." correo ".$email;
-		/*
-		echo "<pre>";
-		print_r($this->rows);
-		echo "</pre>";
-		 */
-		//exit();
-		
 		
 		//Si encontró resultado lo devuelve, si no, regresa un array vacío
 		if (count($this->rows) > 0) {
@@ -140,28 +118,98 @@ class Login_Registro_Model extends DBAbstractModel {
 	function suma_intento_fallido($id_cliente, $num_intentos, $t){						
 		$numin = $num_intentos + 1;		
 		
-		$this->query = "UPDATE  CMS_IntCliente SET FailedPasswordAttemptCount = " . $numin .", LastLockoutDate = '" . $t . "' WHERE id_clienteIn = " . $id_cliente;
+		$this->query = "UPDATE CMS_IntCliente SET FailedPasswordAttemptCount = " . $numin .", LastLockoutDate = '" . $t . "' WHERE id_clienteIn = " . $id_cliente;
 		
 		$res = $this->execute_single_query($this->query);
 		//TRUE / FALSE
 		return $res;				
 	}
-	######################### PASSWORD #######################
+
+	############### PASSWORD / CONTRASEÑA #######################
 	/**
-	 * Registrar la actividad en la base
+	 * Registrar la actividad del cliente en la base
 	 * Ok
 	 */
 	function guarda_actividad_historico($id_cliente, $clave, $actividad, $time) {
 		$this->query = "INSERT INTO CMS_IntHistoricoCliente (id_clienteIn, claveVc, id_tipoActividadSi, timestampTs) VALUES (" . $id_cliente .", '".
 						$clave . "', ". $actividad . ", '". $time . "')";
 
-		//$mysqli->affected_rows
-		//echo "save $this->query";
+		#### TO DO : $mysqli->affected_rows
+
 		return $this->execute_single_query();		
 	}
 	
+	/**
+	 * Verifica que el correo exista en la BD
+	 */
+	function revisa_mail($email = '') {
+		$this->query = "SELECT * FROM CMS_IntCliente WHERE email = '".$email."' LIMIT 1";
+		$this->get_results_from_query();
+		
+		if (count($this->rows) == 1) {
+			return $this->rows[0];		//regresa el registro si es que lo encontró
+		} else {	//si no encontró nada regresa un array vacío
+			return $this->rows;
+		}
+	}
 	
-	################## REGISTRO Y CONTRASEÑA ################
+	/**
+	 * Almacena la clave temporal asignada al cliente en la BD
+	 */
+	function guardar_clave_temporal($id_cliente, $clave) {
+		$this->query = "UPDATE CMS_IntCliente SET clave_temporalVc = '" . $clave . "' WHERE id_clienteIn = " . $id_cliente;
+		
+		return $this->execute_single_query();
+	}
+	
+	/**
+	 * Cambia la contraseña del cliente
+	 */
+	function cambia_password($id_cliente, $email, $password){
+		$pass = md5($email.'|'.$password);
+		
+		$this->query = "UPDATE CMS_IntCliente SET clave_temporalVc = NULL, password = '". $pass . "' WHERE id_clienteIn = " . $id_cliente;
+		
+		return $this->execute_single_query();
+	}
+	
+	/**
+	 * Regresa el cliente de acuerdo a la clave temporal
+	 */
+	function obtiene_cliente($clave_temporal) {					
+		$this->query = "SELECT * FROM CMS_IntCliente WHERE clave_temporalVc = '".$clave_temporal."'";
+		$this->get_results_from_query();
+		
+		if (count($this->rows) == 1) {
+			return $this->rows[0];		//regresa el registro si es que lo encontró
+		} else {	//si no encontró nada regresa un array vacío
+			return $this->rows;
+		}
+	}
+	
+	/**
+	 * Revisa que no se repita la nueva contraseña
+	 */
+	function historico_clave($id_cliente, $email, $passw) {
+		$this->query = "SELECT * FROM CMS_IntHistoricoCliente WHERE id_clienteIn = ".$id_cliente." && id_tipoActividadSi = 3";
+		
+		$this->get_results_from_query();
+		
+				
+		if (count($this->rows) > 0 && (count($this->rows) < 8)) {
+			$pass = md5($email.'|'.$passw);
+			
+			foreach ($this->rows as $row) {
+				if ($row['claveVc'] == $pass) {
+					return 1;
+				}
+			}
+		} else {
+			return 0;
+		}
+	}
+	
+	################## REGISTRO ################
 	/**
 	 * Registra la información de un cliente en la BD
 	 */
@@ -169,22 +217,17 @@ class Login_Registro_Model extends DBAbstractModel {
     {
     	//password encriptado
     	$m5_pass = md5($cliente['email'].'|'.$cliente['password']);		//encriptaciónn definida en el registro de usuarios
-    	//echo "Cliente<pre>";
-		//print_r($cliente);
-		//echo "<pre>".$m5_pass;
-		
 		
 		//llamada al SP_Registrar_Cliente(nombre, ap_P, ap_M, email, pass)
 		$this->query = "CALL SP_Registrar_Cliente('" . $cliente['salutation'] . "', '" . $cliente['fname'] ."', '" .
 						$cliente['lname'] . "', '" . $cliente['email'] . "', '". $m5_pass . "')";
-		
-		//echo "<br/>query: " . $this->query;
 		
         return $this->execute_single_query();		//true si se inserta
     }
 	
 	/**
 	 * Esta función ya no se ocupa, se llama al SP que se enecarga de obtener un id y  registrara la información
+	 * NO SE USA
 	 */	
 	function next_cliente_id()
 	{
@@ -213,153 +256,4 @@ class Login_Registro_Model extends DBAbstractModel {
 	
 	################### END TIENDA ###########################
 	
-    #recupera las publicaciones para colocarlas en el archivo JSON
-    public function get_publicaciones() {
-    	$this->query = "
-            SELECT id_clienteIn, nombreVc, telefonoVc, direccionVc, 
-											emailVc, cpCh, fechaRegistroDt
-            FROM   cliente 
-            WHERE  emailVc = '$email'
-        ";
-		
-        $this->get_results_from_query();
-    }
-    
-    # Traer datos de un cliente
-    public function read($datos_cliente=array()) {
-        if(array_key_exists('emailVc', $datos_cliente) &&
-					($email = $datos_cliente['emailVc']) != '') {
-            $this->query = "
-                SELECT id_clienteIn, nombreVc, telefonoVc, direccionVc, 
-												emailVc, cpCh, fechaRegistroDt
-                FROM   cliente 
-                WHERE  emailVc = '$email'
-            ";
-            $this->get_results_from_query();
-        }
-				
-        if(count($this->rows) == 1) {
-            foreach ($this->rows[0] as $propiedad=>$valor) {
-                $this->$propiedad = $valor;
-            }	
-            $this->mensaje_db = 'Cliente encontrado';
-        } else {
-            $this->mensaje_db = 'No hubo coincidencias';
-        }
-    }
-		
-	public function read_buscar($datos_cliente=array(), $limit='') {
-        if(array_key_exists('nombreVc', $datos_cliente) || 
-					array_key_exists('emailVc', $datos_cliente) ||
-					array_key_exists('cpCh', $datos_cliente) ) {
-            $this->query = "
-                SELECT id_clienteIn, nombreVc, telefonoVc, direccionVc, 
-											cpCh, emailVc, fechaRegistroDt
-                FROM   cliente 
-                WHERE  
-								nombreVc = '".$datos_cliente['nombreVc']."' OR 
-								emailVc = '".$datos_cliente['emailVc']."' OR 
-								cpCh = '".$datos_cliente['cpCh']."'
-            ";
-						if(!empty($limit))
-							$this->query .= "$limit";
-            $this->get_results_from_query();
-        }
-        if(count($this->rows) >= 1) {
-						$clientes = array();
-            foreach ($this->rows as $cliente) {
-                $clientes[] = $cliente;
-            }
-            $this->mensaje_db = 'Cliente(s) encontrado(s):';
-						return $clientes;
-        } else {
-            $this->mensaje_db = 'No hubo coincidencias';
-        }
-    }
-
-    # Crear un nuevo cliente
-    public function create($datos_cliente=array()) {
-        if(array_key_exists('nombreVc', $datos_cliente) && !empty($datos_cliente['nombreVc']) &&
-						array_key_exists('telefonoVc', $datos_cliente) && !empty($datos_cliente['telefonoVc']) &&
-						array_key_exists('direccionVc', $datos_cliente) && !empty($datos_cliente['direccionVc']) &&
-						array_key_exists('emailVc', $datos_cliente) && !empty($datos_cliente['emailVc']) &&
-						array_key_exists('cpCh', $datos_cliente) && !empty($datos_cliente['cpCh'])) {
-            $this->read(array('emailVc'=>$datos_cliente['emailVc']));
-            if($datos_cliente['nombreVc'] != $this->nombreVc &&
-								$datos_cliente['emailVc'] != $this->emailVc) {
-                foreach ($datos_cliente as $campo=>$valor) {
-                    $$campo = $valor;
-                }
-                $this->query = "
-									INSERT INTO cliente 
-										(id_clienteIn, nombreVc, telefonoVc, direccionVc,  
-										cpCh, fechaRegistroDt, emailVc)
-									VALUES
-										(null,'$nombreVc', '$telefonoVc', '$direccionVc', 
-										'$cpCh', NOW(), '$emailVc')
-                ";
-                $this->execute_single_query();
-                $this->mensaje_db = 'Cliente agregado exitosamente';
-            } else {
-                $this->mensaje_db = 'La cliente ya existe';
-            }
-        } else {
-            $this->mensaje_db = 'No se ha agregado el cliente';
-        }
-    }
-
-    # Modificar un cliente
-    public function update($datos_cliente=array()) {
-        foreach ($datos_cliente as $campo=>$valor) {
-            $$campo = $valor;
-        }
-				
-        $this->query = "
-					UPDATE cliente
-					SET nombreVc = '$nombreVc',
-							telefonoVc '$telefonoVc', 
-							direccionVc = '$direccionVc', 
-							cpCh = '$cpCh',
-							fechaRegistroDt = '$fechaRegistroDt', 
-							emailVc = '$emailVc'
-					WHERE  id_clienteIn = '$id_clienteIn'
-        ";
-        $this->execute_single_query();
-        $this->mensaje_db = 'Cliente modificado';
-    }
-
-    # Eliminar un cliente
-    public function delete($id='') {
-        $this->query = "
-                DELETE FROM  cliente
-                WHERE       id = '$id'
-        ";
-        $this->execute_single_query();
-        $this->mensaje_db = 'Cliente eliminado';
-    }
-
-	#lista todos los clientes o varios
-	public function list_items($limit='') {
-		$this->query = "
-				SELECT id_clienteIn, nombreVc, telefonoVc, direccionVc, cpCh,
-								fechaRegistroDt, emailVc
-				FROM   cliente 
-		";
-		if(!empty($limit))
-			$this->query .= "limit $limit";
-
-		$this->get_results_from_query();
-		
-		if(count($this->rows) >= 1) {
-			$clientes = array();
-			foreach ($this->rows as $cliente) {
-					$clientes[] = $cliente;
-			}
-			$this->mensaje_db = 'Lista de clientes';			
-			return $clientes;
-		} else {
-			$this->mensaje_db = 'Lista vacía';
-		}
-	}
 }
-

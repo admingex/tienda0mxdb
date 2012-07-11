@@ -29,6 +29,11 @@
     #RewriteRule ^(*.php)$ /$1 [L]
     RewriteRule ^login/?$ 		login.php
     RewriteRule ^registro/?$ 	registro.php
+    RewriteRule ^password/?$ 	password.php
+    RewriteRule ^password/([A-Za-z\+]+)/?$ 	password.php?accion=$1
+    ##La siguiente debe ser: RewriteRule ^password/([A-Za-z\+]+)/([A-Za-z0-9\+]+)/([A-Za-z0-9\+]+)/?$ 	password.php?accion=$1&passtemp=$2&datcont=$3
+    RewriteRule ^password/([A-Za-z\+]+)/([A-Za-z0-9\+]+)/?$ 	password.php?accion=$1&passtemp=$2
+    
     
     RewriteRule ^publicaciones controllers/publicaciones.php
 	RewriteRule ^categorias controllers/categorias.php

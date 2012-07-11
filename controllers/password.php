@@ -1,6 +1,6 @@
 <?php	/** Controlador del login en la tienda */
 
-class Registro_Controller {
+class Password_Controller {
 		
 	####### Propiedades
 	private $cliente_info;		//información enviada para el registro
@@ -29,6 +29,249 @@ class Registro_Controller {
 	 */
 	public function set_data($clave, $valor) {
 		$this->data[$clave] = $valor;
+	}
+	
+	/**
+	 * Envía la nueva contraseña al cliente
+	 */
+	 public function enviar() {
+	 	/*echo "Enviar<pre>";
+		print_r($_GET);
+		print_r($_POST);
+		echo "<pre>";
+		exit;*/
+		
+		// Se verifica el correo
+		if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+			//recupera el cliente							
+			$datamail = $this->modelo->revisa_mail($_POST['email']);
+			/*
+			echo "datamail<pre>";
+			print_r($datamail);
+			echo "<pre>";
+			*/
+			//exit;
+						
+			if (!empty($datamail)) {	//si la dirección está registrada
+				$this->data['accion'] = 'enviado';	//siguiente pantalla			
+				$this->data['cliente']= $datamail;	//se pasa la información del cliente
+				
+				$this->data['password_temporal'] = $p = substr(md5(uniqid(rand( ), true)), 5,10);
+				
+				$this->data['timestamp'] = $t = date('Y/m/d h:i:s', time());
+				
+				
+				
+				$this->modelo->guardar_clave_temporal($this->data['cliente']['id_clienteIn'], $p);
+				
+				$this->modelo->guarda_actividad_historico($this->data['cliente']['id_clienteIn'], $p, ENUMS::$TIPO_ACTIVIDAD['SOLICITUD_PASSWORD'], $t);
+				
+				$encript = '';
+		###################### TO DO:
+				/*encrypt($_SESSION['id_sitio']."|".
+											 $_SESSION['id_canal']."|".
+											 $_SESSION['id_promocion']."|".
+											 $_SESSION['guidx']."|".
+											 $_SESSION['guidy']."|".
+											 $_SESSION['guidz']."|", $this->api->key);
+				 * */
+											 
+				$encript = rtrim(strtr(base64_encode($encript), '+/', '-_'), '=');
+ 
+
+				$headers = "Content-type: text/html; charset=UTF-8\r\n";
+                $headers .= "MIME-Version: 1.0\r\n";
+			    $headers .= "From: GexWeb<servicioaclientes@expansion.com.mx>\r\n";       
+				$mensaje = "<html>
+						  <body>
+						  	   <div>Hola,
+						  	   </div>
+						  	   <div>
+						  	       En pagos.grupoexpansion.mx, la plataforma de pagos de Grupo Expansión, recibimos una solicitud<br />
+						  	       para recuperar la contraseña asociada a este correo. Si tú hiciste esta solicitud, por favor sigue las<br />
+						  	       instrucciones que aparecen abajo. Si no solicitaste cambiar tu contraseña, puedes ignorar este correo<br />
+						  	       con tranquilidad, pues tu cuenta de cliente está segura.
+						  	   </div>
+						  	   <br /><br />
+						  	   <div>
+						  	   	  
+						  	   	   	   1. Sigue el link de abajo para cambiar tu contraseña usando nuestro servidor seguro.<br /><br />".
+						  	   	   	   //<a href='http://pagos.grupoexpansion.mx/password/verificar/".$p."/".$encript."'>https://pagos.grupoexpansion.mx/password/verificar/".$p."/".$encript."</a><br /><br />
+						  	   	   	   "<a href='".TIENDA."password/verificar/".$p."/'>".TIENDA."password/verificar/".$p."/</a><br /><br />".
+						  	   	   	   "Si seguir el link no funciona, puedes copiar y pegar el link en la barra de dirección de tu<br />
+						  	   	   	   navegador, o reescribirla ahí.<br />
+						  	   	   	   2. Ingresa la clave: ".$p."<br />
+						  	   	   	   Esta no es una contraseña, pero la necesitarás para crear una nueva contraseña.<br />
+						  	   	   	   3. Sigue las instrucciones que aparecen en la pantalla para crear tu nueva contraseña.
+						  	   	   
+						  	   </div>
+						  	   <br /><br />
+						  	   <div>
+						  	       Si tienes alguna pregunta, por favor envía un correo a nuestra área de Atención a Clientes.<br />
+						  	       (<u>servicioaclientes@expansion.com.mx</u>).
+						  	   </div>
+						  	   <br /><br />
+						  	   <div>
+						  	   	   Gracias por comprar con Grupo Expansión.
+						  	   </div>
+						  </body>
+						  </html>"; 
+														     		      									
+				if (mail($data['cliente']->email, "=?UTF-8?B?".base64_encode('Recuperar contraseña')."?=", $mensaje, $headers)){
+					$this->cargar_vista('', 'password', $data);	
+				} else {
+					$url = site_url('login');
+					header("Location: $url", TRUE, 302);
+					//redirect('login');	
+				}
+				
+				/*
+				echo "data<pre>";
+				print_r($this->data);
+				echo "<pre>";
+				echo "mensaje:". $mensaje;
+				exit;							
+				*/
+			}		
+			else{
+				$this->data['mensaje'] = 'No se encuentra en nuestra base de datos';
+				//$this->cargar_vista('', 'password', $data);
+			}
+		} else {				
+			$this->data['mensaje'] = '<div class="error2">Por favor ingresa una dirección de correo válida. Ejemplo: nombre@dominio.mx</div>';
+			//$this->cargar_vista('', 'password', $data);
+		}
+	}	
+
+	/**
+	 * Verifica que la contraseña temporal enviada sea válida para que se pueda realizar el cambio de contraseña
+	 * 
+	 * Por POST debe TRAER: 
+	 * 		$passtemp = '' 
+	 * 		$datos_continuar = ''
+	 */	 
+	public function verificar() {
+
+		$this->data['title'] = "Escribe la clave para crear una nueva contraseña";
+		$this->data['proceso'] = "Escribe la clave para crear una nueva contraseña";
+		
+		$this->data['mensaje'] = '';
+		$this->data['accion'] = 'verificar';		//siguiente pantalla para mostrar con la vista
+		
+		$this->data['password_temporal'] = $_POST['password_temporal'];
+		########## TO DO: 
+		//$this->data['datos_continuar'] = $_POST['datos_continuar'];
+		$datos_continuar =  '';
+		
+		if ($datos_continuar != "") {
+			$datos_continuar = base64_decode(str_pad(strtr($datos_continuar, '-_', '+/'), strlen($datos_continuar) % 4, '=', STR_PAD_RIGHT));
+			$datos_decrypt = decrypt($datos_continuar, $this->api->key);
+			$mp = explode('|', $datos_decrypt);
+			
+			$_SESSION['id_sitio'] = $mp[0];
+			$_SESSION['id_canal'] = $mp[1];
+			$_SESSION['id_promocion'] = $mp[2];
+			$_SESSION['guidx'] = $mp[3];
+			$_SESSION['guidy'] = $mp[4];
+			$_SESSION['guidz'] = $mp[5];				
+		}
+		
+		if (!empty($_POST['password_temporal'])) {
+			$result = $this->modelo->obtiene_cliente($_POST['password_temporal']);
+			
+			if (empty($result)) {
+				$this->registro_errores['password_temporal']='<span class="error">clave temporal no encontrada</span>';
+			}			
+			else {
+				foreach ($result as $key => $value) {
+					$_SESSION[$key] = $value;
+				}
+																												
+				$this->data['accion'] = 'cambiar';
+			}
+		}									
+		else {
+			$this->registro_errores['password_temporal'] = '<span class="error2">Por favor ingresa una clave temporal v&aacute;lida</span>';
+		}
+		
+		if (!empty($this->registro_errores)) {
+			$this->data['registro_errores'] = $this->registro_errores;	
+		}
+	}
+	
+	/**
+	 * Cambia la contraseña del cliente
+	 */
+	public function cambiar() {
+		
+		$this->data['title'] = "Escribe una nueva contraseña";
+		$this->data['proceso'] = "Escribe una nueva contraseña";
+		
+		$data['mensaje'] = '';	//NO SE USA	
+		
+		$data['accion'] = 'cambiar';
+		/*
+		echo "Cambiar<pre>";
+		print_r($_GET);
+		print_r($_POST);
+		print_r($_SESSION);
+		echo "<pre>";
+		exit;
+		*/
+		if (!empty($_POST['password'])) {
+			$val_pass = $this->valida_password($_SESSION['email'], $_POST['password']);
+									
+			if (preg_match ('/^(\w*(?=\w*\d)(?=\w*[a-z])(?=\w*[A-Z])\w*){6,20}$/', $_POST['password']) ) {
+				if ($_POST['password'] != $_POST['password_2']) {
+					$this->registro_errores['password_2'] = 'Tus contrase&ntilde;as no coinciden';									
+				} 	
+				else {								
+					$datos['password'] = htmlspecialchars(trim($_POST['password']));
+				}
+			}							
+		}				
+		else {
+			$this->registro_errores['password'] = 'Ingrese una nueva contraseña';			
+		}					 
+		/////revisar
+		if (empty($this->registro_errores)) {
+			$email = $_SESSION['email'];
+			$id_clienteIn = $_SESSION['id_clienteIn'];
+			$password = $_SESSION['password'];
+			$nombre = $_SESSION['salutation'];
+						
+			if ($this->modelo->historico_clave($id_clienteIn, $email, $_POST['password']) != 1) {	//no se repite
+				$this->modelo->cambia_password($id_clienteIn, $email, $_POST['password']);
+				
+				$t = date('Y/m/d h:i:s', time());
+				$this->modelo->guarda_actividad_historico($id_clienteIn, $password, ENUMS::$TIPO_ACTIVIDAD['CAMBIO_PASSWORD'], $t);
+				
+				//creación de la sesión
+				$array_session = array (
+									'logged_in' => TRUE,
+									'username' 	=> $nombre,
+									'id_cliente'=> $id_clienteIn,
+									'email' 	=> $email
+								 );
+				foreach ($array_session as $key => $value) {
+					$_SESSION[$key] = $value;
+				}
+				//$this->session->set_userdata($array_session);				
+				//redirect('forma_pago');
+				$url = site_url('login'); 
+				header("Location: $url", TRUE, 303);
+				//redirect("login", "location", 303);
+					
+			} else {	//Contraseña repetida
+				$this->registro_errores['password'] = 'Por favor ingresa una contraseña que no coincida con ninguna de las últimas ocho contraseñas usadas';
+				$this->data['registro_errores'] = $this->registro_errores;
+				//$this->cargar_vista('', 'password',$data);
+			}	
+			
+		} else {	//Hubo errores
+			$this->data['registro_errores'] = $this->registro_errores;
+			//$this->cargar_vista('', 'password',$data);			
+		}
 	}
 	
 	/**

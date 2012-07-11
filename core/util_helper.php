@@ -50,6 +50,16 @@
 		"ACCESO_INCORRECTO"		=> 4
 	);
 
+	class ENUMS {
+		static $TIPO_ACTIVIDAD = array(
+			"BLOQUEO"				=> 0, 
+			"DESBLOQUEO"			=> 1, 
+			"SOLICITUD_PASSWORD"	=> 2,
+			"CAMBIO_PASSWORD"		=> 3,
+			"ACCESO_INCORRECTO"		=> 4
+		);
+	
+	}
 # acciones
 
 

@@ -51,11 +51,7 @@
 		}
 	}
 	####### END Lógica de login
-	//echo "DATA<pre>";
-	//print_r($data);
-	//echo "<pre>";
-	//exit;
-	
+		
 	//Si no hay petición POST, cargar la vista sencilla de login
 	cargar_vista('registro', $data);
 	exit;
