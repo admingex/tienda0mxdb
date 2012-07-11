@@ -11,4 +11,5 @@
  "promocion_especial_destacada":[
 	    {"id_promocionIn":"54", "id_sitioSi":"3", "id_canalSi":"24", "publicadoBi":"1", "fijoBi":"NULL", "viableBi":"NULL", "url_imagenVc":"images/promocion-especial-destacada.png",
 		 "descripcionVc":"CAMPAÑA VERANO ", "texto_ofertaTx":"descripcin corta", "terminoVc":"", "tarifaDc":"", "descuentoIn":"" }
-]}
+	]
+}

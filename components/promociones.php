@@ -5,8 +5,8 @@
 			foreach($data->promociones as $v){
 				echo "<form name='comprar_home' action='http://localhost/ecommerce/api/3/24/54/pago' method='post'>
 					  <div class='promo-left'>
-					      <input type='hidden' name='guidx' value='".GUIDX."' />					      
-					      <input type='hidden' name='guidz' value='".guid()."' />
+					      <input type='hidden' name='guidx' value='".API::GUIDX."' />					      
+					      <input type='hidden' name='guidz' value='".API::guid()."' />
 					      <a href='".$v->linkPromocion."'><img src='".TIENDA.$v->urltumb."' /></a>	
 					      <a href='".$v->linkPromocion."'>".$v->tituloPromocion."</a>
 					      <div class='descripcion'>".$v->descripcionPromocion."</div>
