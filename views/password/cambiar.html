@@ -7,7 +7,7 @@
 			<td>
 				<input type="password" id="password" name="password" value="<?php if(isset($_POST['password'])) echo htmlspecialchars($_POST['password']);?>" />
 				<span class="validation_message">
-					<?php if(isset($registro_errores['password'])) echo($registro_errores['password']);?>
+					<?php if(isset($password_errores['password'])) echo($password_errores['password']);?>
 				</span>
 			</td>
 		</tr>
@@ -18,7 +18,7 @@
 			<td>
 				<input type="password" id="password_2" name="password_2" value="<?php if(isset($_POST['password_2'])) echo htmlspecialchars($_POST['password_2']); ?>" />
 				<span class="validation_message">
-					<?php if(isset($registro_errores['password_2'])) echo($registro_errores['password_2']);?>
+					<?php if(isset($password_errores['password_2'])) echo($password_errores['password_2']);?>
 				</span>
 			</td>
 		</tr>

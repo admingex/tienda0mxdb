@@ -4,7 +4,7 @@ class Password_Controller {
 		
 	####### Propiedades
 	private $cliente_info;		//información enviada para el registro
-	private $registro_errores;	//mensajes de error
+	private $password_errores;	//mensajes de error
 	private $data;				//información que pasará a la vista
 	private $modelo;			//modelo a utilizar
 	
@@ -13,7 +13,7 @@ class Password_Controller {
 	public function __construct() {
 		$this->modelo = new Login_Registro_Model();
 		$this->cliente_info = array();
-		$this->registro_errores = array();
+		$this->password_errores = array();
 		$this->data = array();
 	}
 	
@@ -68,7 +68,7 @@ class Password_Controller {
 				
 				$encript = '';
 		###################### TO DO:
-				/*encrypt($_SESSION['id_sitio']."|".
+				/*API::encrypt($_SESSION['id_sitio']."|".
 											 $_SESSION['id_canal']."|".
 											 $_SESSION['id_promocion']."|".
 											 $_SESSION['guidx']."|".
@@ -117,21 +117,14 @@ class Password_Controller {
 						  </body>
 						  </html>"; 
 														     		      									
-				if (mail($data['cliente']->email, "=?UTF-8?B?".base64_encode('Recuperar contraseña')."?=", $mensaje, $headers)){
-					$this->cargar_vista('', 'password', $data);	
+				if (mail($this->data['cliente']['email'], "=?UTF-8?B?".base64_encode('Recuperar contraseña')."?=", $mensaje, $headers)){
+					//$this->cargar_vista('', 'password', $data);	
 				} else {
 					$url = site_url('login');
 					header("Location: $url", TRUE, 302);
 					//redirect('login');	
 				}
 				
-				/*
-				echo "data<pre>";
-				print_r($this->data);
-				echo "<pre>";
-				echo "mensaje:". $mensaje;
-				exit;							
-				*/
 			}		
 			else{
 				$this->data['mensaje'] = 'No se encuentra en nuestra base de datos';
@@ -160,12 +153,12 @@ class Password_Controller {
 		
 		$this->data['password_temporal'] = $_POST['password_temporal'];
 		########## TO DO: 
-		//$this->data['datos_continuar'] = $_POST['datos_continuar'];
+		//$datos_continuar = $_POST['datos_continuar'];
 		$datos_continuar =  '';
 		
 		if ($datos_continuar != "") {
 			$datos_continuar = base64_decode(str_pad(strtr($datos_continuar, '-_', '+/'), strlen($datos_continuar) % 4, '=', STR_PAD_RIGHT));
-			$datos_decrypt = decrypt($datos_continuar, $this->api->key);
+			$datos_decrypt = API::decrypt($datos_continuar, API::API_KEY);
 			$mp = explode('|', $datos_decrypt);
 			
 			$_SESSION['id_sitio'] = $mp[0];
@@ -180,7 +173,7 @@ class Password_Controller {
 			$result = $this->modelo->obtiene_cliente($_POST['password_temporal']);
 			
 			if (empty($result)) {
-				$this->registro_errores['password_temporal']='<span class="error">clave temporal no encontrada</span>';
+				$this->password_errores['password_temporal']='<span class="error">Clave temporal no encontrada</span>';
 			}			
 			else {
 				foreach ($result as $key => $value) {
@@ -191,11 +184,11 @@ class Password_Controller {
 			}
 		}									
 		else {
-			$this->registro_errores['password_temporal'] = '<span class="error2">Por favor ingresa una clave temporal v&aacute;lida</span>';
+			$this->password_errores['password_temporal'] = '<span class="error2">Por favor ingresa una clave temporal v&aacute;lida</span>';
 		}
 		
-		if (!empty($this->registro_errores)) {
-			$this->data['registro_errores'] = $this->registro_errores;	
+		if (!empty($this->password_errores)) {
+			$this->data['password_errores'] = $this->password_errores;	
 		}
 	}
 	
@@ -223,7 +216,7 @@ class Password_Controller {
 									
 			if (preg_match ('/^(\w*(?=\w*\d)(?=\w*[a-z])(?=\w*[A-Z])\w*){6,20}$/', $_POST['password']) ) {
 				if ($_POST['password'] != $_POST['password_2']) {
-					$this->registro_errores['password_2'] = 'Tus contrase&ntilde;as no coinciden';									
+					$this->password_errores['password_2'] = 'Tus contrase&ntilde;as no coinciden';									
 				} 	
 				else {								
 					$datos['password'] = htmlspecialchars(trim($_POST['password']));
@@ -231,10 +224,10 @@ class Password_Controller {
 			}							
 		}				
 		else {
-			$this->registro_errores['password'] = 'Ingrese una nueva contraseña';			
+			$this->password_errores['password'] = 'Ingrese una nueva contraseña';			
 		}					 
-		/////revisar
-		if (empty($this->registro_errores)) {
+		
+		if (empty($this->password_errores)) {
 			$email = $_SESSION['email'];
 			$id_clienteIn = $_SESSION['id_clienteIn'];
 			$password = $_SESSION['password'];
@@ -245,6 +238,10 @@ class Password_Controller {
 				
 				$t = date('Y/m/d h:i:s', time());
 				$this->modelo->guarda_actividad_historico($id_clienteIn, $password, ENUMS::$TIPO_ACTIVIDAD['CAMBIO_PASSWORD'], $t);
+				
+				//se registra el evento del desbloqueo de la cuenta
+				$this->modelo->desbloquear_cuenta($id_clienteIn);
+				$this->modelo->guarda_actividad_historico($id_clienteIn, '', ENUMS::$TIPO_ACTIVIDAD['DESBLOQUEO'], $t);
 				
 				//creación de la sesión
 				$array_session = array (
@@ -263,13 +260,13 @@ class Password_Controller {
 				//redirect("login", "location", 303);
 					
 			} else {	//Contraseña repetida
-				$this->registro_errores['password'] = 'Por favor ingresa una contraseña que no coincida con ninguna de las últimas ocho contraseñas usadas';
-				$this->data['registro_errores'] = $this->registro_errores;
+				$this->password_errores['password'] = 'Por favor ingresa una contraseña que no coincida con ninguna de las últimas ocho contraseñas usadas';
+				$this->data['password_errores'] = $this->password_errores;
 				//$this->cargar_vista('', 'password',$data);
 			}	
 			
 		} else {	//Hubo errores
-			$this->data['registro_errores'] = $this->registro_errores;
+			$this->data['password_errores'] = $this->password_errores;
 			//$this->cargar_vista('', 'password',$data);			
 		}
 	}
@@ -289,11 +286,11 @@ class Password_Controller {
 		
 		//echo "Cliente Info y errores <pre>";
 		//print_r($this->cliente_info);
-		//print_r($this->registro_errores);
+		//print_r($this->password_errores);
 		//echo "<pre>";
 		
 		
-		if (empty($this->registro_errores)) {
+		if (empty($this->password_errores)) {
 			//si está registrado regresa un arreglo de tres elementos con la información, si no, viene vacío
 			$email_registrado = $this->modelo->verifica_registro_email($this->cliente_info['email']);
 			
@@ -312,11 +309,11 @@ class Password_Controller {
 					//echo "Cliente NO registrado";
 					//exit;
 					
-					$this->registro_errores['user_reg'] = "No se pudo realizar el registro en el sistema";
+					$this->password_errores['user_reg'] = "No se pudo realizar el registro en el sistema";
 					$_POST = array();
 					
 					//para que se muestre el mensaje en la vista
-					$this->data['registro_errores'] = $this->registro_errores;
+					$this->data['password_errores'] = $this->password_errores;
 				}
 				
 			} else {
@@ -327,12 +324,12 @@ class Password_Controller {
 				header("Location: $url", TRUE, 302);
 				
 				//En teoría esto no se interpreta
-				$this->registro_errores['user_reg'] = "Solicitaste registrarte como cliente nuevo, pero ya existe una cuenta con el correo ".$this->cliente_info['email'];
-				$this->data['registro_errores'] = $this->registro_errores;
+				$this->password_errores['user_reg'] = "Solicitaste registrarte como cliente nuevo, pero ya existe una cuenta con el correo ".$this->cliente_info['email'];
+				$this->data['password_errores'] = $this->password_errores;
 			}
 		} else { // IF hubo errores
 			//echo "Hubo errores en el formulario";
-			$this->data['registro_errores'] = $this->registro_errores;
+			$this->data['password_errores'] = $this->password_errores;
 		}
 	}
 	#### END Registro de cliente nuevo
@@ -351,7 +348,7 @@ class Password_Controller {
 			if (preg_match('/^[A-Z \'.-áéíóúÁÉÍÓÚÑñ]{1,30}$/i', $_POST['txt_nombre'])) { 
 				$datos['salutation'] = $_POST['txt_nombre'];
 			} else {
-				$this->registro_errores['txt_nombre'] = "<span class='error'>Por favor ingresa tu nombre</span>";
+				$this->password_errores['txt_nombre'] = "<span class='error'>Por favor ingresa tu nombre</span>";
 			}
 		}
 		
@@ -359,7 +356,7 @@ class Password_Controller {
 			if (preg_match('/^[A-Z \'.-áéíóúÁÉÍÓÚÑñ]{1,30}$/i', $_POST['txt_apellidoPaterno'])) { 
 				$datos['fname'] = $_POST['txt_apellidoPaterno'];
 			} else {
-				$this->registro_errores['txt_apellidoPaterno'] = "<span class='error'>Por favor ingresa tu apellido paterno</span>";
+				$this->password_errores['txt_apellidoPaterno'] = "<span class='error'>Por favor ingresa tu apellido paterno</span>";
 			}
 		}
 		
@@ -367,7 +364,7 @@ class Password_Controller {
 			if (preg_match('/^[A-Z \'.-áéíóúÁÉÍÓÚÑñ]{0,30}$/i', $_POST['txt_apellidoMaterno'])) { 
 				$datos['lname'] = $_POST['txt_apellidoMaterno'];
 			} else {
-				$this->registro_errores['txt_apellidoMaterno'] = "<span class='error2'>Por favor ingresa tu apellido materno correctamente</span>";
+				$this->password_errores['txt_apellidoMaterno'] = "<span class='error2'>Por favor ingresa tu apellido materno correctamente</span>";
 			}
 		} else {
 			$datos['lname'] = '';
@@ -376,7 +373,7 @@ class Password_Controller {
 		if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {			
 			$datos['email'] = htmlspecialchars(trim($_POST['email']));
 		} else {			
-			$this->registro_errores['email'] = "<span class='error2'>Por favor ingresa un correo electrónico <br />válido. Ejemplo: nombre@dominio.mx</span>";
+			$this->password_errores['email'] = "<span class='error2'>Por favor ingresa un correo electrónico <br />válido. Ejemplo: nombre@dominio.mx</span>";
 		}
 		
 		if (isset($_POST['email']) && isset($_POST['password'])) {
@@ -388,13 +385,13 @@ class Password_Controller {
 				if ($_POST['password'] == $_POST['password_2']) {
 					$datos['password'] = htmlspecialchars(trim($_POST['password']));
 				} else {
-					$this->registro_errores['password_2'] = "<span class='error2'>Las contraseñas ingresadas no son idénticas. Por favor intenta de nuevo.</span>";
+					$this->password_errores['password_2'] = "<span class='error2'>Las contraseñas ingresadas no son idénticas. Por favor intenta de nuevo.</span>";
 				}
 			} else {
-				$this->registro_errores['password'] = "<span class='error2'>Por favor ingresa una contrase&ntilde;a v&aacute;lida</span>";
+				$this->password_errores['password'] = "<span class='error2'>Por favor ingresa una contrase&ntilde;a v&aacute;lida</span>";
 			}
 		} else {
-			$this->registro_errores['password'] = "<span class='error'>Información incompleta</span>";
+			$this->password_errores['password'] = "<span class='error'>Información incompleta</span>";
 		}		
 		
 		return $datos;
@@ -407,31 +404,31 @@ class Password_Controller {
 		$cadlogin = explode('@',$correo);
 		
 		if (strlen($pass) < 8) {		
-			$this->registro_errores['password'] = "<span class='error'>Debe contener por lo menos 8 caracteres</span>";
+			$this->password_errores['password'] = "<span class='error'>Debe contener por lo menos 8 caracteres</span>";
 		}
 		else {
 			if (preg_match('/[^a-zA-Z0-9]/', $pass)) {
-				$this->registro_errores['password'] = "<span class='error'>Sólo debe incluir letras y números</span>";			
+				$this->password_errores['password'] = "<span class='error'>Sólo debe incluir letras y números</span>";			
 			}
 			else {
 				if ($cadlogin[0] == $pass) {
-					$this->registro_errores['password'] = "<span class='error2'>La contraseña no debe contener una parte del correo electrónico ingresado</span>";							
+					$this->password_errores['password'] = "<span class='error2'>La contraseña no debe contener una parte del correo electrónico ingresado</span>";							
 				}					
 				else {
 					if (!$this->contiene_mayuscula($pass)) {
-						$this->registro_errores['password'] = "<span class='error2'>Debe contener por lo menos una mayúscula</span>";					
+						$this->password_errores['password'] = "<span class='error2'>Debe contener por lo menos una mayúscula</span>";					
 					}	
 					else {
 						if (!$this->contiene_minuscula($pass)) {
-							$this->registro_errores['password'] = "<span class='error'>Debe contener por lo menos una minúscula</span>";						
+							$this->password_errores['password'] = "<span class='error'>Debe contener por lo menos una minúscula</span>";						
 						}
 						else {
 							if (!$this->contiene_numero($pass)) {
-								$this->registro_errores['password'] = "<span class='error'>Debe contener por lo menos un número</span>";							
+								$this->password_errores['password'] = "<span class='error'>Debe contener por lo menos un número</span>";							
 							}
 							else {
 								if (!$this->contiene_consecutivos($pass)) {
-									$this->registro_errores['password'] = "<span class='error2'>No se debe incluir el mismo caracter más de 2 veces</span>";								
+									$this->password_errores['password'] = "<span class='error2'>No se debe incluir el mismo caracter más de 2 veces</span>";								
 								}
 								else {
 									$datos['password'] = htmlspecialchars(trim($pass));

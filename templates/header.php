@@ -79,7 +79,7 @@
                         </form>
                     </div>
                     <div style="float:left;">
-                        <img src="<?php echo TIENDA;?>images/logo_expansion2.gif" alt="Tu cuenta" width="50" height="52"/>
+                        <a href="<?php echo site_url('login/');?>"><img src="<?php echo TIENDA;?>images/logo_expansion2.gif" alt="Tu cuenta" width="50" height="52"/></a>
                         <img src="<?php echo TIENDA;?>images/logo_expansion2.gif" alt="Carrito" width="50" height="52"/>
                     </div>
                 </section>

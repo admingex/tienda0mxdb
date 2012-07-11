@@ -44,17 +44,27 @@
 		
 		//Incluir el controlador
 		include ('./controllers/login.php');
+		//se instancia al controlador
+		$login_controller = new Registro_Controller();
+		//se atiende la petición con la instancia del controlador
+		$login_controller->login();
 		
-		//exit;
+		//si hubo errores, se pasan a la vista para que se muestre, de otro modo, se redirecciona a otro controlador
+		$td = $login_controller->get_data();
+		if (!empty($td)) {
+			foreach ($td as $key => $value) {
+				$data[$key] = $value;
+			}
+		}
 					
-	} //else {	//If hay $_POST
+	}
 	
 	####### END Lógica de login
 	
 	//Si no hay petición POST, cargar la vista sencilla de login
 	cargar_vista('login', $data);
 	exit;
-	//}
+	
 	
 // FIn del front controller de login archivo /login.php
  

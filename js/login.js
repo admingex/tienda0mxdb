@@ -6,6 +6,7 @@ $(document).ready(function() {
 	var email = $("#email");
 	var passwd = $("#password");
 	var registro = false;
+	var url = "/tienda/"
 	
 	$('input').bind("click keypress", function() {
 		$(".error").remove();
@@ -56,7 +57,7 @@ $(document).ready(function() {
 			}
 		}
 		else {
-			$("#login_tienda").attr("action", "registro")
+			$("#login_tienda").attr("action", url + "registro")
 			$("#login_tienda").submit();
 		}
 	});
@@ -67,8 +68,8 @@ $(document).ready(function() {
 		e.preventDefault();
 		//alert("tipo " + tipo_inicio.val());
 		$(".error").remove();	//limpiar mensajes de error	
-		$("form").attr("action", "password")
-		$("form").submit();
+		$("#login_tienda").attr("action", url + "password")
+		$("#login_tienda").submit();
 	});
 	
 	//fade out error messsage

@@ -102,9 +102,7 @@ class Login_Registro_Model extends DBAbstractModel {
 		$this->get_results_from_query();
 		
 		if (count($this->rows) == 1) {
-			//echo "<pre>";
 			return $this->rows[0];	//regresa el registro si es que lo encontró
-			//echo "</pre>";
 		} else {	//si no encontró nada regresa un array vacío
 			//echo "está vacio " . empty($this->rows);		
 			return $this->rows;
@@ -237,9 +235,7 @@ class Login_Registro_Model extends DBAbstractModel {
 		$this->get_results_from_query();
 		
 		if (count($this->rows) == 1) {
-			//echo "<pre>";
 			return $this->rows[0]['consecutivo'] + 1;	//regresa el registro si es que lo encontró
-			//echo "</pre>";
 		} else {	//si no encontró nada regresa un array vacío
 			//echo "está vacio " . empty($this->rows);		
 			return 0;
@@ -247,7 +243,7 @@ class Login_Registro_Model extends DBAbstractModel {
 		
 		$row = $res->row();	//regresa un objeto
 		
-		if(!$row->consecutivo)	{//si regresa null
+		if (!$row->consecutivo)	{//si regresa null
 			return 0;
 		} else {
 			return $row->consecutivo + 1;	

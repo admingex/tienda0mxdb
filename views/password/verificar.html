@@ -5,8 +5,8 @@
 			Clave
 		</td>
 		<td>
-			<input type="text" id="password_temporal" name="password_temporal" value="<?php if(isset($password_temporal)) echo $password_temporal; if(isset($_POST['password_temporal'])) echo htmlspecialchars($_POST['password_temporal']); ?>" />			
-				<?php if(isset($registro_errores['password_temporal'])) echo($registro_errores['password_temporal']);?>			
+			<input type="text" id="password_temporal" name="password_temporal" value="<?php if(isset($password_temporal)) echo $password_temporal; else if(isset($_POST['password_temporal'])) echo htmlspecialchars($_POST['password_temporal']); ?>" />			
+				<?php if(isset($password_errores['password_temporal'])) echo($password_errores['password_temporal']);?>			
 		</td>
 	</tr>
 	<tr>

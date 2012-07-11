@@ -9,7 +9,7 @@
 	require_once('./models/login_registro_model.php');
 		
 	$title = 'Recupera tu contraseña'; 				// Capitalize the first letter
-	$subtitle = 'Recupera tu contraseñ'; 	// Capitalize the first letter
+	$subtitle = 'Recupera tu contraseña'; 	// Capitalize the first letter
 	
 	//almacerá información que va a la vista 
 	$data = array();
@@ -25,8 +25,8 @@
 	$data["title"] = $title;
 	$data["subtitle"] = $subtitle;
 	
-	$data["accion"]	= 'recordar';
-	$data['proceso'] = 'Recupera tu contraseña';
+	$data["accion"]	= 'recordar';					//para definir la vista que se mostrará
+	$data['proceso'] = 'Recupera tu contraseña';	//título al interior de la vista
 	####### END carga de la página
 	
 	####### Lógica de recuperación de contraseña
