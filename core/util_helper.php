@@ -1,7 +1,9 @@
 <?php
 	#root path
-	const 	TIENDA 	=	'/tienda/';	//http://tienda.grupoexpansion.mx
-	
+	const 	TIENDA 	=	'http://localhost/tienda/';	//http://tienda.grupoexpansion.mx
+	/**
+	 * Clase genérica para la funcionalidad del API
+	 */
 	class API {
 		const   GUIDX   =   '{ADE835D7-3DEA-F42C-31EA-B7950C54D592}';
 		#API

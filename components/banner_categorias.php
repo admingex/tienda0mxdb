@@ -1,7 +1,6 @@
 <nav class="banner_categorias">
 	<ul>		
-		<?php 
-		
+		<?php
 		/*$json = '{"publicaciones":[
 				{"id_publicacionSi":"1", "descripcionVc":"IDC", "url":"#"},
 				{"id_publicacionSi":"1", "descripcionVc":"Expansion", "url":"#"}
@@ -14,8 +13,8 @@
 		$categorias = json_decode($json);
 		
 		foreach($categorias->categorias as $categoria) {
-			echo "<li><a href='".$categoria->url."'>".$categoria->descripcionVc."</a></li>";
-		}				
+			echo "<li><a href='".site_url().$categoria->url."'>".$categoria->descripcionVc."</a></li>";
+		}
 		?>
 	</ul>	
 </nav>

@@ -6,7 +6,8 @@ $(document).ready(function() {
 	var email = $("#email");
 	var passwd = $("#password");
 	var registro = false;
-	var url = "/tienda/"
+	var url = "http://localhost/tienda/";
+	var url_ecommerce = "http://localhost/ecommerce/";
 	
 	$('input').bind("click keypress", function() {
 		$(".error").remove();
@@ -15,31 +16,31 @@ $(document).ready(function() {
 	});
 	
 	/*tipo inicio*/
-	$("#divtipo_inicio2").click(function() {	
+	$("#divtipo_inicio2").click(function() {
 		$(".error").remove();
-		$(".error2").remove();				
+		$(".error2").remove();
 		$("#divtipo_inicio2").removeClass('radio_no_selected').addClass('radio_selected');
 		$("#divtipo_inicio").removeClass('radio_selected').addClass('radio_no_selected');
-		document.getElementById('tipo_inicio2').checked='checked';
-		document.getElementById('tipo_inicio').checked='';
+		document.getElementById('tipo_inicio2').checked = 'checked';
+		document.getElementById('tipo_inicio').checked = '';
 		passwd.removeAttr("disabled");
-		registro = false;		
+		registro = false;
 	});
-	
-	$("#divtipo_inicio").click(function() {				
+
+	$("#divtipo_inicio").click(function() {
 		$("#divtipo_inicio").removeClass('radio_no_selected').addClass('radio_selected');
 		$("#divtipo_inicio2").removeClass('radio_selected').addClass('radio_no_selected');
-		document.getElementById('tipo_inicio2').checked='';
-		document.getElementById('tipo_inicio').checked='checked';				
+		document.getElementById('tipo_inicio2').checked = '';
+		document.getElementById('tipo_inicio').checked = 'checked';
 		passwd.attr("disabled", true);
-		registro = true;	
-		consulta_mail($('#email').val());		
+		registro = true;
+		consulta_mail($('#email').val());
 	});
 	
-	/*Inicio de Sesión*/
+	/*Inicio de sesión*/
 	$("#enviar").click(function(e) {
 		e.preventDefault();
-		//alert("tipo " + tipo_inicio.val());
+
 		$(".error").remove();	//limpiar mensajes de error
 		
 		if (!registro) {
@@ -47,12 +48,10 @@ $(document).ready(function() {
 			if (!reg_email.test(email.val())) {
 				email.focus().after("<div class='error2'>Por favor ingresa una dirección de correo válida. Ejemplo: nombre@dominio.mx</div>");
 				return false;
-			} 
-			else if (passwd.val() == "" ) {
+			} else if (passwd.val() == "" ) {
 				passwd.focus().after("<div class='error2'>Por favor escribe tu contraseña o elige iniciar sesión como cliente nuevo</div>");
 				return false;
-			}
-			else {
+			} else {
 				$("#login_tienda").submit();
 			}
 		}
@@ -62,9 +61,8 @@ $(document).ready(function() {
 		}
 	});
 	
-	//Recuperar contrasena			 	
-	
-	$("#olvido_contrasena").click(function(e){
+	//Recuperar contrasena	
+	$("#olvido_contrasena").click(function(e) {
 		e.preventDefault();
 		//alert("tipo " + tipo_inicio.val());
 		$(".error").remove();	//limpiar mensajes de error	
@@ -73,48 +71,46 @@ $(document).ready(function() {
 	});
 	
 	//fade out error messsage
-	email.change(function(){
+	email.change(function() {
 		if (reg_email.test(email.val())) {
 			$(this).siblings(".error").fadeOut();
 		}
 	});
-	passwd.change(function(){
+	
+	passwd.change(function() {
 		if ($.trim(passwd.val()) != "") {
 			$(this).siblings(".error").fadeOut();
 		}
 	});
-	
-	email.keyup(function(){		
-		consulta_mail(this.value);					
+
+	email.keyup(function() {
+		consulta_mail(this.value);
 	});
-		
 });
 
-
-function consulta_mail(mail) {	
+function consulta_mail(mail) {
+	var url_ecommerce = "http://localhost/ecommerce/"
 	$(".error2").remove();
 	$.ajax({
-			type: "GET",
-			data: {'mail' : mail},
-			url: "http://localhost/ecommerce/login/consulta_mail",
-			dataType: "json",				
-			async: true,
-			
-			success: function(data) {	
-				if(data.mail){
-					cte_reg=document.getElementById('tipo_inicio2').checked;							
-					if(!cte_reg && data.mail==1){										
-						$('#email').focus().after("<div class='error2'>Esta dirección de correo ya se encuentra registrada</div>");
-					}	
+		type: "GET",
+		data: {'mail' : mail},
+		url: url_ecommerce + "login/consulta_mail",
+		dataType: "json",
+		async: true,
+		success: function(data) {
+			if (data.mail) {
+				cte_reg=document.getElementById('tipo_inicio2').checked;
+				if (!cte_reg && data.mail==1) {
+					$('#email').focus().after("<div class='error2'>Esta dirección de correo ya se encuentra registrada</div>");
 				}
-																		  				  									  										
-			},
-			error: function(data) {
-				alert("error: " + data);
-			},
-			complete: function(data){				
-			},
-			//async: false,
-			cache: false
-	}); 	
+			}
+		},
+		error: function(data) {
+			alert("error: " + data);
+		},
+		complete: function(data) {
+		},
+		//async: false,
+		cache: false
+	});
 }
