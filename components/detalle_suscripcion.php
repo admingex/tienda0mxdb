@@ -88,6 +88,43 @@
 	</table>		
 </div>
 <div id="pleca-gris"></div>
+<div class="contenedor-promo">
+	<div style="background-color: #CCC; color: #000; height: 20px">
+		<div class="titulo-proceso-img">&nbsp;
+		</div>			
+		<div class="titulo-proceso">
+			Quien
+		</div>
+	</div>	
+	<div>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+		Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+		Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+		Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.		
+	</div>
+	<div style="background-color: #CCC; color: #000; height: 20px">
+		<div class="titulo-proceso-img">&nbsp;
+		</div>			
+		<div class="titulo-proceso">
+			Secciones de la revista
+		</div>
+	</div>
+	<div>
+		Encontraras:<br /><br />
+		<div class="titulo-proceso-img">&nbsp;
+		</div>			
+		<div class="titulo-proceso">
+			Seccion1
+		</div>
+		<div class="titulo-proceso-img">&nbsp;
+		</div>			
+		<div class="titulo-proceso">
+			Seccion2
+		</div>
+	</div>
+		
+</div>
+
 
 
 	
