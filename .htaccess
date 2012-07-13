@@ -1,7 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     
-    
     RewriteBase /tienda/
 	
 	##Removes access to the system folder by users.
@@ -33,6 +32,12 @@
     RewriteRule ^password/?$ 	password.php
     RewriteRule ^categoria/?$ 	categorias.php
     RewriteRule ^publicacion/?$	publicaciones.php
+    ####home
+    RewriteRule ^([A-Za-z\+]*)/home/?$	http://%{HTTP_HOST}/tienda/
+    
+    RewriteRule ^categoria/([0-9]+)/?$ categorias.php?id_categoria=$1
+    ##Por lo mientras para las promoniones especiales
+    RewriteRule ^categoria/promociones-especiales/?$ promociones-especiales.php
 	RewriteRule ^promociones-especiales/?$	promociones-especiales.php
 	RewriteRule ^detalle-suscripcion/?$		detalle-suscripcion.php
     RewriteRule ^password/([A-Za-z\+]+)/?$	password.php?accion=$1
