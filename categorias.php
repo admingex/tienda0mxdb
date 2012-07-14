@@ -16,8 +16,8 @@
     require('./templates/header.php');
     
     //contenido        
-    //include('./components/promociones-especiales.php');
-    echo "Categorías aquí";
+    include('./components/categorias.php');
+    //echo "Categorías aquí";
         
     //footer
     require('./templates/footer.php');
