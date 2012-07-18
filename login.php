@@ -3,7 +3,7 @@
 	require_once('./config/settings.php');
 	 
 	//algunas constantes y funciones genéricas
-	include('./core/util_helper.php');
+	include_once('./core/util_helper.php');
 	
 	//el modelo del login	
 	require_once('./models/login_registro_model.php');
@@ -43,7 +43,7 @@
 		no_cache();
 		
 		//Incluir el controlador
-		include ('./controllers/login.php');
+		include('./controllers/login.php');
 		//se instancia al controlador
 		$login_controller = new Registro_Controller();
 		//se atiende la petición con la instancia del controlador

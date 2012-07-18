@@ -33,6 +33,7 @@
     RewriteRule ^categoria/?$ 	categorias.php
     RewriteRule ^publicacion/?$	publicaciones.php
     ####home
+    RewriteRule ^home/?$	http://%{HTTP_HOST}/tienda/
     RewriteRule ^([A-Za-z\+]*)/home/?$	http://%{HTTP_HOST}/tienda/
     
     RewriteRule ^categoria/([0-9]+)/?$ categorias.php?id_categoria=$1

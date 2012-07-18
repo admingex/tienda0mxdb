@@ -1,5 +1,5 @@
 <?php 
-	header('Content-Type: text/html; charset=utf-8');
+	header('Content-Type: text/html; charset="utf-8"');
 	
 	function no_cache() {
 		header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');

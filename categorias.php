@@ -12,15 +12,25 @@
 	$scripts [] = TIENDA."js/login.js";
 	$scripts [] = TIENDA."js/registro.js";
 	
-	//header
-    require('./templates/header.php');
-    
-    //contenido        
-    include('./components/categorias.php');
-    //echo "Categorías aquí";
-        
-    //footer
-    require('./templates/footer.php');
+	//información para la vista
+	$title = "Publicaciones por Catgoría";
+	$subtitle = "Publicaciones por Catgoría";
 	
-?>
-
+	
+	$data["scripts"] = $scripts;
+	$data["title"] = $title;
+	$data["subtitle"] = $subtitle;
+	
+	
+	if ($_GET) {
+		if (array_key_exists('id_categoria', $_GET)) {	### TO DO seguridad!
+			$id_categoria = $_GET['id_categoria'];
+			$data['id_categoria'] = $id_categoria;
+		}
+	}
+	
+	cargar_vista('categoria_publicaciones', $data);
+	exit;
+    //contenido
+    //include('./components/categorias.php');
+    //echo "Categorías aquí";

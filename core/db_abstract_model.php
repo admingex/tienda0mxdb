@@ -66,9 +66,34 @@ abstract class DBAbstractModel {
 		$this->set_charset();
 		
 		$result = $this->conn->query($this->query);
+		
 		while ($row = $result->fetch_assoc())
 			$this->rows[] = $row;
 		$result->close();
+		
+		$this->cerrar_conexion();
+		//array_pop($this->rows);	//trae uno de más por el while
+		//return $this->rows;
+	}
+	
+	# Traer resultados de una consulta en un Array, SELECT
+	protected function get_results_from_SP() {
+		//para vaciar posibles resultados previos
+		$this->rows = array();
+		
+		$this->crear_conexion();
+		//cambiar el charset
+		$this->set_charset();
+		
+		$result = $this->conn->query($this->query);
+		/*echo "qry $this->query result: <pre>";
+		print_r($result);
+		echo "</pre>";
+		exit;*/
+		while ($row = $result->fetch_object())
+			$this->rows[] = $row;
+		$result->close();
+		
 		$this->cerrar_conexion();
 		//array_pop($this->rows);	//trae uno de más por el while
 		//return $this->rows;

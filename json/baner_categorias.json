@@ -1,12 +1,10 @@
 {
 	"categorias":	[
-		{"id_categoriaSi":"0", "descripcionVc":"Inicio", "id_categoria":"home"},
-		{"id_categoriaSi":"1", "descripcionVc":"Negocios", "id_categoria":"1"},
-		{"id_categoriaSi":"2", "descripcionVc":"Femeninas", "id_categoria":"2"},
-		{"id_categoriaSi":"3", "descripcionVc":"Estilo de Vida", "id_categoria":"3"},
-		{"id_categoriaSi":"4", "descripcionVc":"Entretenimiento", "id_categoria":"4"},
-		{"id_categoriaSi":"5", "descripcionVc":"Interés General", "id_categoria":"5"},
-		{"id_categoriaSi":"6", "descripcionVc":"B2B", "id_categoria":"6"},
-		{"id_categoriaSi":"7", "descripcionVc":"Promociones Especiales", "id_categoria":"promociones-especiales"}
+		{"id_categoriaSi":"1","nombreVc":"NEGOCIOS","descripcionVc":null,"posicionSi":"1","palabras_claveVc":null},
+		{"id_categoriaSi":"2","nombreVc":"FEMENINAS","descripcionVc":null,"posicionSi":"2","palabras_claveVc":null},
+		{"id_categoriaSi":"3","nombreVc":"ESTILO DE VIDA","descripcionVc":null,"posicionSi":"3","palabras_claveVc":null},
+		{"id_categoriaSi":"4","nombreVc":"ENTRETENIMIENTO","descripcionVc":null,"posicionSi":"4","palabras_claveVc":null},
+		{"id_categoriaSi":"5","nombreVc":"B2B","descripcionVc":null,"posicionSi":"5","palabras_claveVc":null},
+		{"id_categoriaSi":"6","nombreVc":"PROMOCIONES ESPECIALES","descripcionVc":null,"posicionSi":"6","palabras_claveVc":null}
 	]
 }
