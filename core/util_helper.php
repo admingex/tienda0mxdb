@@ -1,7 +1,7 @@
 <?php
 	#root path
 	const 	TIENDA 	=	'http://localhost/tienda/';	//http://tienda.grupoexpansion.mx
-	
+	const	ECOMMERCE = 'http://localhost/ecommerce/';	//http://pagos.grupoexpansion.mx
 	/**
 	 * Clase genérica para la funcionalidad del API
 	 */
