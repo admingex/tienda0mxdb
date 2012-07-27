@@ -3,9 +3,9 @@
 		if($p->formatos > 0) {
 			#### TO DO Armar la URL para que se vaya a la lista de promociones y se pueda filtrar por formatos
 		} else {
-			//Si no trae omás de un formato, ir al detalle de la promoción/suscripción /producto
+			//Si no trae más de un formato, ir al detalle de la promoción/suscripción /producto
 			##### TO DO
-		}	
+		}
 		
 		echo "
 			<div class='promo-left'>

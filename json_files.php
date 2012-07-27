@@ -14,8 +14,8 @@
 	$scripts [] = TIENDA."js/registro.js";
 	
 	$data["scripts"] = $scripts;
-	$data["title"] = "Ejemplo generación JSON";
-	$data["subtitle"] = "Ejemplo generación JSON";
+	$data["title"] = "Generación de los JSON files";
+	$data["subtitle"] = "Generación de los JSON files";
 	
 	//header
     require('./templates/header.php');

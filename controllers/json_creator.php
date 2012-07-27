@@ -101,7 +101,51 @@ class Json_Creator {
 		return $publicaciones_por_categoria;
     }
 	
+	
 	/**
+	 * Obteger las categorías y guardarlas en un archivo Json
+	 */
+	public function get_categorias() {
+		$this->categorias = json_encode(array("categorias" => $this->modelo->get_categorias()));
+		//escribirlas a archivo
+		self::Write_To_Json_File($this->archivo_categorias, $this->categorias);
+		
+		return $this->categorias;
+	}
+	############### END Generación de archivos de Categorías ###################
+	
+	
+	####################### Escritura a archivo
+	/**
+	 * Escribe el contenido a un aechivo de tipo .json en el formato establecido
+	 */
+	public static function Write_To_Json_File($file_name, $str = "") {
+		$mensaje = '';
+		//el archivo existe y es escribible
+		if (!file_exists($file_name) || is_writable($file_name)) {
+			if (!$file = fopen($file_name, 'wb')) {
+				$mensaje = "No se puede abrir el archivo ($file_name).";
+				echo "Error: " . $mensaje;
+				exit;
+			}
+			
+			if (fwrite($file, $str) === FALSE) {
+				$mensaje = "No se puede escribir en el archivo abierto ($file_name).";
+				echo "Error: " . $mensaje;
+				exit;
+			}
+			//echo "Escritura exitosa.";
+			
+			fclose($file);
+		} else {
+			$mensaje = "El archivo ($file_name) no tiene permisos de escritura.";
+			echo "Error: " . $mensaje;
+			exit;
+		}
+		
+	}
+    ######################### Funciones Auxiliares ##################################
+    /**
 	 * Encode to UTF8 format to aply json encode
 	 * recibe un array y regresa un array codificado
 	 */
@@ -141,48 +185,4 @@ class Json_Creator {
 		return $rows;
 	}
 	
-	/**
-	 * Obteger las categorías y guardarlas en un Json
-	 */
-	public function get_categorias() {
-		$this->categorias = json_encode(array("categorias" => $this->modelo->get_categorias()));
-		//escribirlas a archivo
-		self::Write_To_Json_File($this->archivo_categorias, $this->categorias);
-		
-		return $this->categorias;
-	}
-	
-	####################### Escritura a archivo
-	/**
-	 * Escribe el contenido a un aechivo de tipo .json en el formato establecido
-	 */
-	public static function Write_To_Json_File($file_name, $str = "") {
-		$mensaje = '';
-		//el archivo existe y es escribible
-		if (!file_exists($file_name) || is_writable($file_name)) {
-			if (!$file = fopen($file_name, 'wb')) {
-				$mensaje = "No se puede abrir el archivo ($file_name).";
-				echo "Error: " . $mensaje;
-				exit;
-			}
-			
-			if (fwrite($file, $str) === FALSE) {
-				$mensaje = "No se puede escribir en el archivo abierto ($file_name).";
-				echo "Error: " . $mensaje;
-				exit;
-			}
-			//echo "Escritura exitosa.";
-			
-			fclose($file);
-		} else {
-			$mensaje = "El archivo ($file_name) no tiene permisos de escritura.";
-			echo "Error: " . $mensaje;
-			exit;
-		}
-		
-	}
-	
-       
-    ############### END Generación de archivos de Categorías ###################
-    	
 }
