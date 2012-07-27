@@ -10,7 +10,7 @@
 	<div id="images">
 	    <?php
 		echo "
-			<form name='comprar_promocion_destacada' action='http://localhost/ecommerce/api/". $j->id_sitioSi."/".$j->id_canalSi."/".$j->id_promocionIn."/pago' method='post'>
+			<form name='comprar_promocion_destacada' action='".ECOMMERCE."api/". $j->id_sitioSi."/".$j->id_canalSi."/".$j->id_promocionIn."/pago' method='post'>
 			  	<div class='promo-left'>
 			      	<input type='hidden' name='guidx' value='".API::GUIDX."'/>
 			      	<input type='hidden' name='guidz' value='".API::guid()."'/>
@@ -33,7 +33,7 @@
 <?php
 	foreach ($data->promociones_especiales as $v) {
 		echo "
-			<form name='comprar_promocion_especial' action='http://localhost/ecommerce/api/". $v->id_sitioSi."/".$v->id_canalSi."/".$v->id_promocionIn."/pago' method='post'>
+			<form name='comprar_promocion_especial' action='".ECOMMERCE."api/". $v->id_sitioSi."/".$v->id_canalSi."/".$v->id_promocionIn."/pago' method='post'>
 				<div class='promo-left'>
 				    <input type='hidden' name='guidx' value='".API::GUIDX."' />
 			     	<input type='hidden' name='guidz' value='".API::guid()."' />

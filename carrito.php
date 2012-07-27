@@ -20,8 +20,7 @@
 	$data = array();
 	$data["scripts"] = $scripts;
 	$data["title"] = $title;
-	$data["subtitle"] = $subtitle;
-	
+	$data["subtitle"] = $subtitle;		
 	
 	if($_GET){	
 		if(isset($_GET['id_sitio']) && isset($_GET['id_canal']) && isset($_GET['id_promocion'])){
@@ -40,7 +39,10 @@
 							$_SESSION['ult_elem']=$i;						
 						}
 					}
-				}									
+				}	
+				if(count($_SESSION['carrito']) >= 20){
+					$agregar=FALSE;					
+				}								
 			}						
 			if($agregar==TRUE){
 				// Guarda el id del ultimo elemento agregado
