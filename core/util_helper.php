@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 	#root path
 	const 	TIENDA 	=	'http://localhost/tienda/';	//http://tienda.grupoexpansion.mx
 	const	ECOMMERCE = 'http://localhost/ecommerce/';	//http://pagos.grupoexpansion.mx
@@ -6,7 +6,7 @@
 	 * Clase genérica para la funcionalidad del API
 	 */
 	class API {
-		const   GUIDX   =   '{2A629162-9A1B-11E1-A5B0-5DF26188709B}';
+		const   GUIDX   =   '{ADE835D7-3DEA-F42C-31EA-B7950C54D592}';
 		const 	API_URL	=	'http://localhost/ecommerce/api/';	//http://tienda.grupoexpansion.mx
 		#API
 		const 	API_KEY =	'AC35-4564-AE4D-0B881031F295';	//la que aparece en el controlador del API de la plataforma

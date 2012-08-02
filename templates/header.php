@@ -79,8 +79,19 @@
                         </form>
                     </div>
                     <div style="float:left;">
-                        <a href="<?php echo site_url('login/');?>">Mi cuenta/ Iniciar sesión</a>
-                        <a href="<?php echo site_url('carrito.php');?>">Carrito</a>
+                    	<a href="<?php echo site_url('carrito.php');?>">Carrito</a>
+                    	<?php                    	
+                    		if(isset($_SESSION['logged_in'])){
+								if($_SESSION['logged_in']==1){
+                    				echo "<a href=".site_url('promociones-especiales').">Mi cuenta</a>";
+									echo "&nbsp;<a href=".site_url('logout').">Cerrar Sesion</a>";                    								
+                    			}
+                    		}
+							else{
+								echo "<a href=".site_url('login/').">Iniciar sesión</a>";								
+							}
+                    	?>                        
+                                                
                     </div>
                 </section>
             </header>

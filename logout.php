@@ -52,6 +52,7 @@
 		foreach ($_SESSION as $key => $value) {
 			unset($_SESSION[$key]);
 		}
+		session_destroy();
 	}
 			
 	//Si no hay petición POST, redireccionar al home

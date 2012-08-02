@@ -1,11 +1,11 @@
 {"promociones_especiales":[
-		{"id_promocionIn":"1189", "id_sitioSi":"1", "id_canalSi":"1", "publicadoBi":"1", "fijoBi":"NULL", "viableBi":"NULL", "url_imagenVc":"images/img1.jpg",
+		{"id_promocionIn":"99", "id_sitioSi":"3", "id_canalSi":"22", "publicadoBi":"1", "fijoBi":"NULL", "viableBi":"NULL", "url_imagenVc":"images/img1.jpg",
 		 "descripcionVc":"CAMPAÑA VERANO ", "texto_ofertaTx":"descripcin corta", "terminoVc":"", "tarifaDc":"", "descuentoIn":"" },
-		{"id_promocionIn":"1189", "id_sitioSi":"1", "id_canalSi":"1", "publicadoBi":"1", "fijoBi":"NULL", "viableBi":"NULL", "url_imagenVc":"images/img2.jpg", 
+		{"id_promocionIn":"100", "id_sitioSi":"3", "id_canalSi":"22", "publicadoBi":"1", "fijoBi":"NULL", "viableBi":"NULL", "url_imagenVc":"images/img2.jpg", 
 		 "descripcionVc":"CAMPAÑA CLUB MOVISTAR", "texto_ofertaTx":"descripcin corta", "terminoVc":"", "tarifaDc":"", "descuentoIn":"" },
-		{"id_promocionIn":"1189", "id_sitioSi":"1", "id_canalSi":"1", "publicadoBi":"1", "fijoBi":"NULL", "viableBi":"NULL", 
+		{"id_promocionIn":"103", "id_sitioSi":"3", "id_canalSi":"22", "publicadoBi":"1", "fijoBi":"NULL", "viableBi":"NULL", 
 		 "url_imagenVc":"images/img3.jpg", "descripcionVc":"GROUPON L&S", "texto_ofertaTx":"descripcin corta", "terminoVc":"", "tarifaDc":"", "descuentoIn":"" },
-		{"id_promocionIn":"1189", "id_sitioSi":"1", "id_canalSi":"1", "publicadoBi":"1", "fijoBi":"NULL", "viableBi":"NULL", "url_imagenVc":"images/img4.jpg", 
+		{"id_promocionIn":"104", "id_sitioSi":"3", "id_canalSi":"22", "publicadoBi":"1", "fijoBi":"NULL", "viableBi":"NULL", "url_imagenVc":"images/img4.jpg", 
 		 "descripcionVc":"PROMOCIÓN EN CAJAS DE CEREAL FITNESS", "texto_ofertaTx":"descripcin corta", "terminoVc":"", "tarifaDc":"", "descuentoIn":"" }
 	],
  "promocion_especial_destacada":[

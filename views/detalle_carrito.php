@@ -24,13 +24,18 @@ if(isset($_SESSION['carrito'])){
 		
 		$datos_encrypt = API::encrypt(serialize($_SESSION['carrito']), API::API_KEY);
 		$datos_encrypt_url=rtrim(strtr(base64_encode($datos_encrypt), '+/', '-_'), '=');
+		
 					
 		echo "</div>
 			  
 			  <form name='' action='".ECOMMERCE."api/carrito/".$datos_encrypt_url."' method='post'>	
-			  	  <input type='text' name='guidx' value='".API::GUIDX."' />
-			  	  <input type='text' name='guidz' value='".API::guid()."' />			      
-			      <input type='submit' name='tienda_arrito' value='pagar' />
+			  	  <input type='text' name='guidx' value='".API::GUIDX."' style='display: none' />
+			  	  <input type='text' name='guidz' value='".API::guid()."' style='display: none' />";
+				  	if(isset($_SESSION['datos_login'])){
+						$datos_login=$_SESSION['datos_login'];
+					  	echo "<textarea name='datos_login' style='display: none'>".$datos_login."</textarea>";	
+					}		  				  			  	  
+		echo "	  <input type='submit' name='tienda_carrito' value='pagar' />
 			  </form>
 			  
 			  ";

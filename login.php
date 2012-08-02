@@ -33,8 +33,6 @@
 	
 	####### Lógica de login	
 	if ($_POST) {
-		//inicio de la sesión
-		session_start();
 		
 		//para pruebas
 		//$_SESSION = array();

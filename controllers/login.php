@@ -88,7 +88,7 @@ class Registro_Controller {
 							
 							//encryptar login y pass y guardarlo en session											
 							//$cliente = $resultado->row();
-							$dl = API::encrypt($cliente['email']."|".$password, API::API_KEY);
+							$dl = API::encrypt($cliente['email']."|".$password."|", API::API_KEY);
 							//session PHP
 							$_SESSION['datos_login'] = $dl;
 							
@@ -106,10 +106,12 @@ class Registro_Controller {
 							
 							//Flujo
 							//redirect($destino);
-							$url = site_url($destino);
+							$url = site_url($destino); // Define the URL.
 			###### TO DO:	//header("Location: $url", TRUE, 302);
-							echo "¡Sesión iniciada!";
-							exit;
+							//echo "¡Sesión iniciada!".$url;
+							//print_r($_SESSION);
+							//exit;													
+							header("Location: $url");							
 							
 						} else {	//No está correcta la información para iniciar sesión
 							//echo "Error en el login<br/>";
@@ -290,8 +292,7 @@ class Registro_Controller {
 	{
 		//En la invocación del login se cargará la información necesaria.
 		//Por el momento pasará a una página temporal
-		
-		return 'categorias';
+		return 'promociones-especiales.php';		
 	}
 	
 	/**
