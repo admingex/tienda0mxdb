@@ -28,17 +28,18 @@
 			
 			//Sacar la información de la categoría
 			$path_categoria = "./json/categorias/categorias.json";
+			
 			if (file_exists($path_categoria)) {
 				$json = file_get_contents($path_categoria);
 				$c = json_decode($json);
-				//el índice de la categoría es el id de la misma:
-				/*
-				echo "<pre>";
-				print_r($c->categorias[$id_categoria - 1]);
-				echo "</pre>";
-				exit;
-				*/
-				$data["info_categoria"] = $c->categorias[$id_categoria - 1];
+				
+				//obtener la información de la categoría que se consulta
+				foreach ($c->categorias as $cat) {
+					if ($cat->id_categoriaSi == $id_categoria) {
+						$data["info_categoria"] = $cat;
+						break;
+					}
+				}
 			}
 		}
 	}
@@ -49,6 +50,5 @@
 	*/
 	cargar_vista('categoria_publicaciones', $data);
 	exit;
-    //contenido
-    //include('./components/categorias.php');
-    //echo "Categorías aquí";
+
+?>

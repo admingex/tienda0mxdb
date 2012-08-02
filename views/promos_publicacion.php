@@ -1,27 +1,25 @@
 <?php
 	////////////////Encabezado_Cstegoría
-	if (isset($info_categoria)) {
+	if (isset($info_publicacion)) {
 		//es un objeto
 		echo "<div>
-				<h3>$info_categoria->nombreVc</h3>
-				<p>$info_categoria->descripcionVc</p>
+				<h3>$info_publicacion->nombreVc</h3>
+				<p>$info_publicacion->descripcionVc</p>
 			</div>";
-			/*echo "<pre>dads";
-			print_r(info_categoria);
+			/*echo "<pre>info_publicacion";
+			print_r($info_publicacion);
 			echo "</pre>";
 			exit;*/
-	}
-	
-	
+	} 
+		echo $pubs_m."<br/>";	
 ?>
 <div class="contenedor-promo">
 <?php
-	//Viene en el data del controlador
+/*
 	$id = isset($id_categoria) ? $id_categoria : 0;
-	//ruta del archivo de la categoría en cuestión
 	$path_categorias = "./json/categorias/publicaciones_categoria_".$id.".json";
 	
-	############ TO DO /////////////// revisar si hay promoción destacada por categoría
+	///////////////revisar si hay promoción destacada
 	$path_promo_destacada= "./json/promociones_destacadas/promo_destacada_categoria_".$id.".json";
 	
 	if (file_exists($path_promo_destacada)) {
@@ -33,14 +31,16 @@
 		}
 	}
 	
-	//revisar si hay publicaciones en la categoría y mostrarlas
+	///////////////revisar si hay publicaciones en la categoría
 	if (file_exists($path_categorias)) {
 		$json = file_get_contents($path_categorias);
-		$categoria = json_decode($json);
+		$data = json_decode($json);
 		
-		if (count($categoria->publicaciones) > 0) {
-			include_once('./components/categoria_publicaciones.php');
+		if (count($data->publicaciones) > 0) {
+			include_once('./components/categorias.php');
 		}
 	}
+ 
+ */
 ?>
 </div>

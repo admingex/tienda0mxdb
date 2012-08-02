@@ -1,6 +1,6 @@
 <div class="contenedor-promo">	
 <?php				    
-	$json = file_get_contents('json/promocioneshome.js');
+	$json = file_get_contents('./json/promociones_home.json');
 	$data = json_decode($json);
 	foreach ($data->promociones as $v) {
 		echo "

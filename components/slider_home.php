@@ -1,7 +1,7 @@
 <div class="container">		
 	<div id="images"> 				
 	    <?php				    
-			$json = file_get_contents('json/sliderhome.js');
+			$json = file_get_contents('./json/slider_home.json');
 			$data = json_decode($json);				
 				foreach($data->imagenes as $k){
 					if(!empty($k->linkPromocion)){

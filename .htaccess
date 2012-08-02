@@ -31,19 +31,28 @@
     RewriteRule ^registro/?$ 	registro.php
     RewriteRule ^password/?$ 	password.php
     RewriteRule ^categoria/?$ 	categorias.php
-    RewriteRule ^publicacion/?$	publicaciones.php
-    ####home
+    
+    #### Publicaciones
+    RewriteRule ^publicacion/?$						publicaciones.php
+    RewriteRule ^publicacion/ofertas/([0-9]+)$		publicaciones.php?mostrar=ofertas&id_publicacion=$1
+    RewriteRule ^publicacion/detalle/([0-9]+)$ 		publicaciones.php?mostrar=detalle&id_publicacion=$1
+    
+    #### Home
     RewriteRule ^home/?$	http://%{HTTP_HOST}/tienda/
     RewriteRule ^([A-Za-z\+]*)/home/?$	http://%{HTTP_HOST}/tienda/
     
+    #### Categorías
     RewriteRule ^categoria/([0-9]+)/?$ categorias.php?id_categoria=$1
+    
     ##Por lo mientras para las promoniones especiales
     RewriteRule ^categoria/promociones-especiales/?$ promociones-especiales.php
 	RewriteRule ^promociones-especiales/?$	promociones-especiales.php
 	RewriteRule ^detalle-suscripcion/?$		detalle-suscripcion.php
     RewriteRule ^password/([A-Za-z\+]+)/?$	password.php?accion=$1
+    
+    #### Login y Password
     ##La siguiente debe ser: RewriteRule ^password/([A-Za-z\+]+)/([A-Za-z0-9\+]+)/([A-Za-z0-9\+]+)/?$  password.php?accion=$1&passtemp=$2&datcont=$3
-    RewriteRule ^password/([A-Za-z\+]+)/([A-Za-z0-9\+]+)/?$ password.php?accion=$1&passtemp=$2
+    RewriteRule ^password/([A-Za-z\+]+)/([A-Za-z0-9\+]+)/?$ 	password.php?accion=$1&passtemp=$2
     
     #RewriteRule ^publicaciones controllers/publicaciones.php
 	#RewriteRule ^categorias controllers/categorias.php

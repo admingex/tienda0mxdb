@@ -11,8 +11,8 @@
     
     
     //contenido
-    include('./components/slider.php');
-    include('./components/promociones.php');
+    include('./components/slider_home.php');
+    include('./components/promociones_home.php');
     
     //footer
     require('./templates/footer.php');

@@ -4,27 +4,14 @@
 			<p>
 			    <strong>Publicaciones</strong>
 			</p>
-			
-			
-			<ul>		
+			<ul>
 			<?php
-			
-			/*$json = '{"publicaciones":[
-					{"id_publicacionSi":"1", "descripcionVc":"IDC", "url":"#"},
-					{"id_publicacionSi":"1", "descripcionVc":"Expansion", "url":"#"}
-				]
-			
-			}';
-			*/
-			$json = file_get_contents("json/publicaciones.json");
-			
-			$publicaciones = json_decode($json);
-			
-			foreach($publicaciones->publicaciones as $publicacion) {
-				echo "<li><a href='".$publicacion->url."'>".$publicacion->descripcionVc."</a></li>";
-			}
-			
+				$json = file_get_contents("./json/publicaciones/publicaciones.json");
+				$publicaciones = json_decode($json);
 				
+				foreach ($publicaciones->publicaciones as $publicacion) {
+					echo "<li><a href='".site_url('publicacion/').$publicacion->id_publicacionSi."'>".$publicacion->nombreVc."</a></li>";
+				}
 			?>
 			</ul>
 		</li>
