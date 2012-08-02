@@ -64,7 +64,9 @@ class Registro_Controller {
 					$this->crear_sesion($this->cliente_info['id_clienteIn'], $this->cliente_info['salutation'], $this->cliente_info['email']);	//crear sesion,
 					//se va a revisar el inicio de sesión
 					$url = ''; 
-					header("Location: $url", TRUE, 302);
+					echo 'registrado';
+					exit;
+					//header("Location: $url", TRUE, 302);
 				} else {
 					//echo "Cliente NO registrado";
 					//exit;
@@ -78,9 +80,10 @@ class Registro_Controller {
 				
 			} else {
 				//Para los casos en que el IE intenta registrar dos veces al cliente.
-				//echo "El Cliente YA está registrado: ".$this->cliente_info['email'];
-		
+				echo "El Cliente YA está registrado: ".$this->cliente_info['email'];
+				exit;
 				$url = site_url('registro');
+				
 				header("Location: $url", TRUE, 302);
 				
 				//En teoría esto no se interpreta
