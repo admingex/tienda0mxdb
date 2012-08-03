@@ -36,9 +36,9 @@ if(isset($_SESSION['carrito'])){
 					  	echo "<textarea name='datos_login' style='display: none'>".$datos_login."</textarea>";	
 					}		  				  			  	  
 		echo "	  <input type='submit' name='tienda_carrito' value='pagar' />
-			  </form>
-			  
+			  </form>			  
 			  ";
+		echo "<a href='".site_url('promociones-especiales.php')."'>Seguir comprando</a>";	  
 	}	
 	else{
 		echo "<p class='titulo-promo-rojo-deposito'>No hay productos en el carrito</p>";

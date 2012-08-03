@@ -28,9 +28,7 @@
 	####### END carga de la página
 	
 	####### Lógica de registro	
-	if ($_POST) {
-		//inicio de la sesión
-		session_start();
+	if ($_POST) {		
 		
 		//no caché
 		no_cache();
