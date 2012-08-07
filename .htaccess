@@ -31,6 +31,7 @@
     RewriteRule ^registro/?$ 	registro.php
     RewriteRule ^password/?$ 	password.php
     RewriteRule ^categoria/?$ 	categorias.php
+    RewriteRule ^categoria/6/?$	promociones-especiales.php
     
     #### Publicaciones
     RewriteRule ^publicacion/?$						publicaciones.php

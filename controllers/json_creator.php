@@ -214,7 +214,7 @@ class Json_Creator {
 		
 		/*
 		 *$json = file_get_contents("./json/categorias/categorias.json");
-		$categorias = json_decode($json);		
+		$categorias = json_decode($json);
 		*/
 		
 		return $promos_por_publicacion;
@@ -254,6 +254,7 @@ class Json_Creator {
 	 */
 	public static function Write_To_Json_File($file_name, $str = "") {
 		$mensaje = '';
+		$file_name = realpath($file_name);
 		//el archivo existe y es escribible
 		if (!file_exists($file_name) || is_writable($file_name)) {
 			if (!$file = fopen($file_name, 'wb')) {

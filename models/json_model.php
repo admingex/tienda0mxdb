@@ -14,8 +14,8 @@ class Json_Model extends DBAbstractModel {
 	############################ CONSTRUCTOR Y DESTRUCTOR #######################
     # Método constructor
     function __construct() {
-		$this->db_name = 'cms0mxdb';
-		//$this->db_name = 'cms_ecommerce';
+		//$this->db_name = 'cms0mxdb';
+		$this->db_name = 'cms_ecommerce';
     }
 
     # Método destructor del objeto
@@ -48,7 +48,7 @@ class Json_Model extends DBAbstractModel {
     }
     
 	/**
-	 * Devuelve listado de categorías
+	 * Devuelve el listado de las categorías existentes.
 	 */
 	public function get_categorias() {
 		$this->query = "CALL SP_Obtener_Categorias()";
@@ -65,7 +65,7 @@ class Json_Model extends DBAbstractModel {
 	}
 	
 	/**
-	 * Devuelve listado de publicaciones
+	 * Devuelve el listado de las publicaciones que existen.
 	 */
 	public function get_publicaciones() {
 		$this->query = "CALL SP_Obtener_Publicaciones()";
@@ -82,7 +82,7 @@ class Json_Model extends DBAbstractModel {
 	}
 	
 	/**
-	 * Devuelve la información para la página de categorías
+	 * Devuelve la información de las publicaciones asociadas con una categoría.
 	 */
 	public function get_publicaciones_por_categoria($id_categoria) {
 		$this->query = "CALL SP_Publicaciones_Por_Categoria(".$id_categoria.")";
@@ -95,7 +95,7 @@ class Json_Model extends DBAbstractModel {
 	}
 	
 	/**
-	 * Devuelve las promociones vigentes de una publicación 
+	 * Devuelve las promociones vigentes que pertenecen a una publicación.
 	 */
 	public function get_promos_por_publicacion($id_publicacion) {
 		$this->query = "CALL SP_Promociones_Por_Publicacion(".$id_publicacion.")";
