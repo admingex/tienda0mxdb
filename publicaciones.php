@@ -28,8 +28,7 @@
 		if (array_key_exists('id_publicacion', $_GET) && filter_var($_GET['id_publicacion'], FILTER_VALIDATE_INT, array('min_range' => 1))) {	### TO DO seguridad!
 			$id_publicacion = $_GET['id_publicacion'];
 			$data['id_publicacion'] = $id_publicacion;
-			
-			
+	
 			if (strtolower($mostrar) === "detalle" ) {			//la publicación sólo tiene un formato
 				$view .= $mostrar;
 			} else if (strtolower($mostrar) === "ofertas" ) {	//la publicación tiene varios formatos

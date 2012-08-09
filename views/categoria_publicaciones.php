@@ -15,15 +15,14 @@
 ?>
 <div class="contenedor-promo">
 <?php
-	//Viene en el data del controlador
+	//viene en el data del controlador
 	$id = isset($id_categoria) ? $id_categoria : 0;
-	
 	
 	//ruta del archivo de la categoría en cuestión
 	$path_categorias = "./json/categorias/publicaciones_categoria_".$id.".json";
 	
 	############ TO DO /////////////// revisar si hay promoción destacada por categoría
-	$path_promo_destacada= "./json/promociones_destacadas/promo_destacada_categoria_".$id.".json";
+	$path_promo_destacada = "./json/promociones_destacadas/promo_destacada_categoria_".$id.".json";
 	
 	if (file_exists($path_promo_destacada)) {
 		$json = file_get_contents($path_promo_destacada);

@@ -7,7 +7,7 @@
 			//URL para que se vaya a la lista de promociones y se pueda filtrar por formatos y precios
 			$url_p = site_url('publicacion/ofertas/') . $p->id_publicacion;
 		} else {
-			//Si no trae más de un formato, ir al detalle de la promoción/suscripción / producto
+			//Si no trae más de un formato, ir al detalle de la promoción: suscripción / producto / PDF
 			$url_p = site_url('publicacion/detalle/') . $p->id_publicacion;
 		}
 		
@@ -16,7 +16,7 @@
 		    	<a href='". $url_p . "'><img src='".TIENDA."images/img1.jpg' /></a>
 		      	<div class='descripcion'>".$p->nombre_publicacion."</div>
 		      	<div class='descripcion'>".$p->desc_publicacion."</div>
-		      	<div class='descripcion'>".$p->formatos."-"./*strlen($p->desc_publicacion).*/"</div>
+		      	<div class='descripcion'>".$p->formatos./*."-".strlen($p->desc_publicacion).*/"</div>
       		</div>
 	      ";
 	}
