@@ -1,4 +1,5 @@
 <?php
+	/*Despliega las publicaciones de una categoría*/
 	foreach ($categoria->publicaciones as $p) {
 		//url de la puclicación
 		$url_p = '';
@@ -15,8 +16,7 @@
 		    	<a href='". $url_p . "'><img src='".TIENDA."images/img1.jpg' /></a>
 		      	<div class='descripcion'>".$p->nombre_publicacion."</div>
 		      	<div class='descripcion'>".$p->desc_publicacion."</div>
-		      	<div class='descripcion'>".$p->formatos."-".strlen($p->desc_publicacion)."</div>
+		      	<div class='descripcion'>".$p->formatos."-"./*strlen($p->desc_publicacion).*/"</div>
       		</div>
 	      ";
 	}
-?>

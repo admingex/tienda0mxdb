@@ -40,6 +40,8 @@
 						break;
 					}
 				}
+			} else {
+				//si no existe el archivo con la información ¿¿ir a BD??
 			}
 		}
 	}

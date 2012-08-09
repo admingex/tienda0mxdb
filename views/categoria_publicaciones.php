@@ -1,23 +1,24 @@
 <?php
-	////////////////Encabezado_Cstegoría
+	/*Vista que lista las publicaciones de una categoría*/
 	if (isset($info_categoria)) {
-		//es un objeto
-		echo "<div>
-				<h3>$info_categoria->nombreVc</h3>
-				<p>$info_categoria->descripcionVc</p>
-			</div>";
-			/*echo "<pre>dads";
-			print_r(info_categoria);
-			echo "</pre>";
-			exit;*/
+		##### TO DO: Colocar aquí el BREADCRUM
+		$url_breadcum = site_url("categoria/".$info_categoria->id_categoriaSi);
+		
+		//breadcum
+		//echo "<div><h3><a href='".site_url("home")."'> Home </a> > <a href='".$url_breadcum."'> $info_categoria->nombreVc </a></h3></div>";
+		echo "<div><h3><a href='".site_url("home")."'> Home </a> > <a href='#'> $info_categoria->nombreVc </a></h3></div>";
+		/*echo "<pre>dads";
+		print_r(info_categoria);
+		echo "</pre>";
+		exit;*/
 	}
-	
-	
 ?>
 <div class="contenedor-promo">
 <?php
 	//Viene en el data del controlador
 	$id = isset($id_categoria) ? $id_categoria : 0;
+	
+	
 	//ruta del archivo de la categoría en cuestión
 	$path_categorias = "./json/categorias/publicaciones_categoria_".$id.".json";
 	

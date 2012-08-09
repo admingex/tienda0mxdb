@@ -1,26 +1,38 @@
-<?php		/*		    
+<?php
+ 	/*		    
 	$json = file_get_contents('json/promociones-especiales.js');
 	$data = json_decode($json);	
 		
 	if(count($data->promocion_especial_destacada)!=0)
 		
 	foreach($data->promocion_especial_destacada as $j){			
-	}		*/			
+	}
+	*/
 ?>	
 <div class="contenedor-promo" style="background-color: #800">
 	<div style="float: left; width: 20%;">
-		<img src="<?php echo TIENDA?>images/img1.jpg" />kk
+		<img src="images/img1.jpg" />
 	</div>
-	<div style="float: left; margin-left: 20px; width: 70%; border: solid; border-width: 1px; border-color: #ccc">							
-		<div class="titulo-proceso">
-			DESCRIPCION DE LA OFERTA
+	<div style="float: left; margin-left: 20px; width: 70%;">
+		<div class="titulo-promo-rojo-deposito">
+			<?php echo $info_publicacion->nombreVc."\n";?>
 		</div>
-		<br />
-		<div class="instrucciones">
-			Precio: $00.00
-		</div>				
+		<div id="pleca-gris">		
+		</div>
+	
+		<div class="titulo-proceso-img">&nbsp;
+		</div>			
+		<div class="titulo-proceso">
+			descripcion corta
+		</div>
 		<div class="blank_section"></div>
-		<div style="background-color: #CCCCCC">
+		<div class="titulo-proceso-img">&nbsp;
+		</div>			
+		<div class="titulo-proceso">
+			fecha de portada del primer ejemplar
+		</div>
+		<div class="blank_section"></div>
+		<div style="float: right; background-color: #CCCCCC">
 			<div style="padding: 10px">
 				<input type="button" name="carrito" value=" " class="boton_continuar_compra" />	
 			</div>
@@ -31,13 +43,59 @@
 	</div>		
 </div>
 <div class="blank_section"></div>
+<div class="contenedor-promo">
+	<div class="titulo-proceso-img">&nbsp;
+	</div>			
+	<div class="titulo-proceso">
+		Selecciona el país de envio para ver los precios y promociones aplicables.
+	</div>	
+	<select name="pais">
+			<option value="mexico">México</option>
+	</select>
+	<div class="blank_section"></div>
+	<table width="95%">
+		<thead>	
+			<tr>											
+				<th>
+					&nbsp;
+				</th>
+				<th>
+					Promoción	
+				</th>
+				<th>
+					Descripción
+				</th>
+				<th>
+					Precio
+				</th>
+			</tr>	
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<input type="radio" id="radio" name="promocion" value="id_promocion"/>
+					<div id="promocion" class="radio_selected">&nbsp;</div>					
+				</td>
+				<td>
+					Descripcion de la oferta
+				</td>
+				<td>
+					Contenido de la promocion(ejemplares, suplementos, regalos, etc.)
+				</td>
+				<td>
+					Precio y descuento aplicado sobre precio de portada
+				</td>
+			</tr>
+		</tbody>
+	</table>		
+</div>
 <div id="pleca-gris"></div>
 <div class="contenedor-promo">
 	<div style="background-color: #CCC; color: #000; height: 20px">
 		<div class="titulo-proceso-img">&nbsp;
 		</div>			
 		<div class="titulo-proceso">
-			Sobre el producto
+			Quien
 		</div>
 	</div>	
 	<div>
@@ -46,15 +104,15 @@
 		Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 		Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.		
 	</div>
-	<div class="blank_section"></div>
 	<div style="background-color: #CCC; color: #000; height: 20px">
 		<div class="titulo-proceso-img">&nbsp;
 		</div>			
 		<div class="titulo-proceso">
-			Lista de contenido
+			Secciones de la revista
 		</div>
 	</div>
-	<div>		
+	<div>
+		Encontraras:<br /><br />
 		<div class="titulo-proceso-img">&nbsp;
 		</div>			
 		<div class="titulo-proceso">
@@ -68,3 +126,7 @@
 	</div>
 		
 </div>
+
+
+
+	

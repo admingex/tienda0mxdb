@@ -16,7 +16,7 @@
     require('./templates/header.php');
     
     //contenido
-    include('./components/detalle_suscripcion.php');    
+    include('./components/detalle-suscripcion.php');    
     
     //footer
     require('./templates/footer.php');

@@ -23,19 +23,21 @@
 	
 	if ($_GET) {
 		$mostrar = (array_key_exists('mostrar', $_GET)) ? $_GET['mostrar'] : "";		
+		$view = 'promos_publicacion_';			//vista que se cargará dependiendo del número de formatos de la publicación
 		
 		if (array_key_exists('id_publicacion', $_GET) && filter_var($_GET['id_publicacion'], FILTER_VALIDATE_INT, array('min_range' => 1))) {	### TO DO seguridad!
 			$id_publicacion = $_GET['id_publicacion'];
 			$data['id_publicacion'] = $id_publicacion;
 			
-			if (strtolower($mostrar) === "detalle" ) {	//Sólo tiene un formato la publicación
-				
-			} else if (strtolower($mostrar) === "ofertas" ) {	
-				
+			
+			if (strtolower($mostrar) === "detalle" ) {			//la publicación sólo tiene un formato
+				$view .= $mostrar;
+			} else if (strtolower($mostrar) === "ofertas" ) {	//la publicación tiene varios formatos
+				$view .= $mostrar;
 			}
 			
 			### BORRAR
-			$data['pubs_m'] = $mostrar;
+			$data['mostrar'] = $mostrar;
 			
 			
 			//sacar la información de la publicación
@@ -48,6 +50,7 @@
 				//Obtener la información de la publicación que se consulta
 				foreach ($p->publicaciones as $pub) {
 					if ($pub->id_publicacionSi == $id_publicacion) {
+						//se pasa la info a la vista
 						$data["info_publicacion"] = $pub;
 						break;
 					}
@@ -60,7 +63,9 @@
 			}
 		}
 	} else {	//si no trae parámetros de la publicación manda al home
-		$data['pubs_m'] = "Promos de la publicación";
+		##### TO DO: definir este flujo
+		$view = "$mostrar";		
+		$data['pubs_m'] = "Promos de la publicación, no trae get";
 		$url = site_url("home");
 		header("Location: $url");
 	} 
@@ -69,7 +74,7 @@
 	print_r($data);
 	echo "</pre>";
 	*/
-	cargar_vista('promos_publicacion', $data);
+	cargar_vista($view, $data);
 	exit;
 	
 ?>
