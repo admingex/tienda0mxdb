@@ -107,4 +107,16 @@ class Json_Model extends DBAbstractModel {
 		return $promociones;		
 	}
 	
+	/**
+	 * Devuelve el detalle de una promoción
+	 */
+	public function get_detalle_promocion($id_promocion) {
+		$this->query = "CALL SP_Obtener_Detalle_Promocion(".$id_promocion.")";
+		
+		$this->get_results_from_query();
+		
+		$detalle_promocion = $this->rows;
+		
+		return $detalle_promocion;		
+	}
 }

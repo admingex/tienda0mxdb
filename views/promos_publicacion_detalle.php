@@ -8,7 +8,8 @@
 		$bread_cat 		= (!empty($url_breadcum))	? " <a href='$url_breadcum'> ".ucwords(strtolower($info_categoria->nombreVc))."</a> > " : '';
 		
 		//breadcum
-		echo "<div><h3><a href='".site_url("home")."'> Home </a> > ". $bread_cat ." <a href=''>".ucwords(strtolower($info_publicacion->nombreVc))."</a></h3></div>$info_publicacion->formatos";
+		echo "<div><h3><a href='".site_url("home")."'> Home </a> > ". $bread_cat ." <a href=''>".ucwords(strtolower($info_publicacion->nombreVc))."</a></h3></div>";
+		//$info_publicacion->formatos
 		
 			/*echo "<pre>info_publicacion";
 			 * //<p>$info_publicacion->descripcionVc</p>

@@ -17,6 +17,7 @@ class Json_Creator {
 	
 	private $base_publicacion_por_categoria	= "./json/categorias/publicaciones_categoria_";
 	private $base_promos_por_publicacion	= "./json/publicaciones/promos_publicacion_";
+	private $base_detalle_promo				= "./json/promociones_publicacion/detalle_promo_";
 	############################ CONSTRUCTOR Y DESTRUCTOR #######################
     # Método constructor
     function __construct() {
@@ -111,21 +112,34 @@ class Json_Creator {
 			//echo "desde la propiedad";
 			foreach ($jp->publicaciones as $publicacion) {
 				$id = $publicacion->id_publicacionSi;
-				
+				//recuperar las promociones
 				$ppp = $this->modelo->get_promos_por_publicacion($id);
 				//para cada publicación
 				$promos_por_publicacion[$id] = json_encode(array('promociones' => $ppp));
 				
 				$filename = $this->base_promos_por_publicacion.$id.".json";
-				
+				//registrar las promos por publicación
 				self::Write_To_Json_File($filename, $promos_por_publicacion[$id]);
+				
+				//obtener el detalle de las promociones
+				foreach ($ppp as $promocion) {
+					$id_promocion = $promocion['id_promocion'];
+					
+					$file_detalle = $this->base_detalle_promo.$id_promocion.".json";
+					//recuperar el detalle
+					$detalle_promo = $this->modelo->get_detalle_promocion($id_promocion);
+					
+					//echo "'".$file_detalle."'<br/>";
+					self::Write_To_Json_File($file_detalle, json_encode($detalle_promo));
+				}
+				//self::Write_To_Json_File($file_detalle, json_encode(array('detalle_promo' => $detalle_promo)));
+				//echo realpath($_SERVER["DOCUMENT_ROOT"])."<br/>";
 				/*
 				echo "<pre>";
 				print_r(json_decode($publicaciones_por_categoria[$id]));
 				echo "</pre>";
 				*/
 			}
-			
     	} else if (file_exists($this->archivo_categorias)) {	//Si ya está en el archivo, lo toma de ahí
     		//echo "desde el archivo";
     		//$jp = json_decode(file_get_contents("./json/publicaciones/publicaciones.json"));
@@ -141,22 +155,24 @@ class Json_Creator {
 				$filename = $this->base_promos_por_publicacion.$id.".json";
 				
 				self::Write_To_Json_File($filename, $publicaciones_por_categoria[$id]);
+				
+				//registrar las promos por publicación
+				self::Write_To_Json_File($filename, $promos_por_publicacion[$id]);
+				
+				//obtener el detalle de las promociones
+				foreach ($ppp as $promocion) {
+					$file_detalle = $this->base_detalle_promo.$promocion['id_promocion'].".json";
+					//echo "'".$file_detalle."'<br/>";
+					self::Write_To_Json_File($file_detalle, json_encode(array("promocion" => $promocion)));
+				}
 			}
-    	}/*
-    		echo "<pre>File";
-			echo print_r($promos_por_publicacion);
-			echo "</pre>";
-			exit;
-		 * */
-		
-		/*
-		 *$json = file_get_contents("./json/categorias/categorias.json");
-		$categorias = json_decode($json);		
-		*/
+    	}
 		
 		return $promos_por_publicacion;
     }
 	
+	
+	##### TO DO : Tal vez este ya no se utilice por el momento
 	/**
 	 * Generar los archivos con el detalle de las promociones disponibles por publicación.
 	 * Devuelve el arreglo con los detalles de cada promociones por publicacion.
@@ -247,10 +263,12 @@ class Json_Creator {
 	####################### Escritura a archivo
 	/**
 	 * Escribe el contenido a un aechivo de tipo .json en el formato establecido
+	 * $file_name es el nombre del archivo,
+	 * $str = "" lo que se va a escribir en el archivo
 	 */
 	public static function Write_To_Json_File($file_name, $str = "") {
 		$mensaje = '';
-		$file_name = realpath($file_name);
+		//$file_name = realpath($file_name);
 		//el archivo existe y es escribible
 		if (!file_exists($file_name) || is_writable($file_name)) {
 			if (!$file = fopen($file_name, 'wb')) {

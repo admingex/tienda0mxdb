@@ -6,10 +6,6 @@
 		
 		//breadcrum
 		echo "<div><h3><a href='".site_url("home")."'> Home </a> > <a href='#'> ".ucwords(strtolower($info_categoria->nombreVc))." </a></h3></div>";
-		/*echo "<pre>dads";
-		print_r(info_categoria);
-		echo "</pre>";
-		exit;*/
 	}
 ?>
 <div class="contenedor-promo">

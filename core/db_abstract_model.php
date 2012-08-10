@@ -1,7 +1,7 @@
 <?php
 abstract class DBAbstractModel {
 	#para la conexión
-	private static $db_host = 'localhost';//'10.177.73.120';
+	private static $db_host = '10.177.73.120';
 	private static $db_user = 'ecommerce_user';
 	private static $db_pass = 'ecommerce';
 	

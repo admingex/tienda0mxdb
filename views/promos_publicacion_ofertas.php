@@ -1,51 +1,54 @@
+
 <?php
 	/*Motrará una promoción final dependiendo del order code*/
 
 	// encabezado de la categoría
 	if (isset($info_publicacion)) {
-		//es un objeto
-		echo "<div>
-				<h3>$info_publicacion->nombreVc</h3>
-				<p>$info_publicacion->descripcionVc</p>
-			</div>";
-			/*echo "<pre>info_publicacion";
-			print_r($info_publicacion);
-			echo "</pre>";
-			exit;*/
+		//si el flujo proviene de un istado de categoría...
+		$url_breadcum 	= (isset($info_categoria)) 	? site_url("categoria/".$info_categoria->id_categoriaSi) : NULL;
+		$bread_cat 		= (!empty($url_breadcum))	? " <a href='$url_breadcum'> ".ucwords(strtolower($info_categoria->nombreVc))."</a> > " : '';
+		
+		//breadcum
+		echo "<div><h3><a href='".site_url("home")."'> Home </a> > ". $bread_cat ." <a href=''>".ucwords(strtolower($info_publicacion->nombreVc))."</a></h3></div>";
 	}
-	if (isset($mostrar))
-		echo $mostrar;
-	else 
-		echo $pubs_m."<br/>";	
 ?>
 <div class="contenedor-promo">
-<?php
-/*
-	$id = isset($id_categoria) ? $id_categoria : 0;
-	$path_categorias = "./json/categorias/publicaciones_categoria_".$id.".json";
-	
-	///////////////revisar si hay promoción destacada
-	$path_promo_destacada= "./json/promociones_destacadas/promo_destacada_categoria_".$id.".json";
-	
-	if (file_exists($path_promo_destacada)) {
-		$json = file_get_contents($path_promo_destacada);
-		$pd = json_decode($json);
+<?php	
+	if (isset($mostrar)){
+		//echo $mostrar."";
+	} else { 
+		//echo $pubs_m."<br/>";
+	}
+	if (isset($ofertas_publicacion)) {
+		echo "<pre>";
+		print_r($ofertas_publicacion);
+		print_r($detalles_promociones);
+		echo "</pre>";
 		
-		if (count($pd->promocion_especial_destacada) > 0) {
-			include_once('./components/promocion_destacada.php');
+		/*Despliega las publicaciones de una categoría*/
+		foreach ($ofertas_publicacion->promociones as $p) {
+			//url de la puclicación
+			$url_p = '';
+			/*
+			if($p->formatos > 1) {
+				//URL para que se vaya a la lista de promociones y se pueda filtrar por formatos y precios
+				$url_p = site_url('categoria/'.$p->id_categoria.'/publicacion/ofertas/') . $p->id_publicacion;
+			} else {
+				//Si no trae más de un formato, ir al detalle de la promoción: suscripción / producto / PDF
+				$url_p = site_url('categoria/'.$p->id_categoria.'/publicacion/detalle/') . $p->id_publicacion;
+			}
+			*/
+			echo "
+				<div class='promo-left'>
+			    	<a href='". $url_p . "'><img src='".TIENDA."images/img3.jpg' /></a>
+			      	<div class='descripcion'>".$p->descripcion_promocion."</div>
+			      	<div class='descripcion'>"./*$p->id_formato."-".strlen($p->desc_publicacion).*/"</div>
+	      		</div>
+		      ";
 		}
+		
 	}
 	
-	///////////////revisar si hay publicaciones en la categoría
-	if (file_exists($path_categorias)) {
-		$json = file_get_contents($path_categorias);
-		$data = json_decode($json);
-		
-		if (count($data->publicaciones) > 0) {
-			include_once('./components/categorias.php');
-		}
-	}
- 
- */
 ?>
+
 </div>
