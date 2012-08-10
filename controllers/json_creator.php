@@ -91,14 +91,10 @@ class Json_Creator {
 			echo "</pre>";
 			exit;*/
     	}
-    	
-		
 		/*
 		 *$json = file_get_contents("./json/categorias/categorias.json");
 		$categorias = json_decode($json);		
-		*/
-		
-		
+		*/	
 		return $publicaciones_por_categoria;
     }
 	
@@ -110,7 +106,7 @@ class Json_Creator {
     public function generar_json_publicacion_promos() {
     	$promos_por_publicacion = array();
 		
-    	if (isset($this->publicaciones)) {		//Ya se tienen las publicaciones
+    	if (isset($this->publicaciones)) {		//Ya se crearon las publicaciones
 	    	$jp = json_decode($this->publicaciones);
 			//echo "desde la propiedad";
 			foreach ($jp->publicaciones as $publicacion) {
