@@ -1,12 +1,11 @@
 <?php
 	/*Vista que lista las publicaciones de una categoría*/
 	if (isset($info_categoria)) {
-		##### TO DO: Colocar aquí el BREADCRUM
+		// el breadcrum
 		$url_breadcum = site_url("categoria/".$info_categoria->id_categoriaSi);
 		
-		//breadcum
-		//echo "<div><h3><a href='".site_url("home")."'> Home </a> > <a href='".$url_breadcum."'> $info_categoria->nombreVc </a></h3></div>";
-		echo "<div><h3><a href='".site_url("home")."'> Home </a> > <a href='#'> $info_categoria->nombreVc </a></h3></div>";
+		//breadcrum
+		echo "<div><h3><a href='".site_url("home")."'> Home </a> > <a href='#'> ".ucwords(strtolower($info_categoria->nombreVc))." </a></h3></div>";
 		/*echo "<pre>dads";
 		print_r(info_categoria);
 		echo "</pre>";
@@ -21,7 +20,7 @@
 	//ruta del archivo de la categoría en cuestión
 	$path_categorias = "./json/categorias/publicaciones_categoria_".$id.".json";
 	
-	############ TO DO /////////////// revisar si hay promoción destacada por categoría
+	// revisar si hay promoción destacada por categoría
 	$path_promo_destacada = "./json/promociones_destacadas/promo_destacada_categoria_".$id.".json";
 	
 	if (file_exists($path_promo_destacada)) {

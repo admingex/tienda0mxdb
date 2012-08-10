@@ -26,18 +26,9 @@
 		$view = 'promos_publicacion_';			//vista que se cargará dependiendo del número de formatos de la publicación
 		
 		if (array_key_exists('id_publicacion', $_GET) && filter_var($_GET['id_publicacion'], FILTER_VALIDATE_INT, array('min_range' => 1))) {	### TO DO seguridad!
+			//recuperar el parámetro de la consulta
 			$id_publicacion = $_GET['id_publicacion'];
 			$data['id_publicacion'] = $id_publicacion;
-	
-			if (strtolower($mostrar) === "detalle" ) {			//la publicación sólo tiene un formato
-				$view .= $mostrar;
-			} else if (strtolower($mostrar) === "ofertas" ) {	//la publicación tiene varios formatos
-				$view .= $mostrar;
-			}
-			
-			### BORRAR
-			$data['mostrar'] = $mostrar;
-			
 			
 			//sacar la información de la publicación
 			$path_publicaciones = "./json/publicaciones/publicaciones.json";
@@ -54,12 +45,43 @@
 						break;
 					}
 				}
-				
 				/*echo "<pre>";
 				print_r($data["info_publicacion"]);
 				echo "</pre>";
 				exit;*/
 			}
+			
+			//si viene de una categoría... Recuperar la información de la misma (para el breadcrum)
+			if (array_key_exists('id_categoria', $_GET) && filter_var($_GET['id_categoria'], FILTER_VALIDATE_INT, array('min_range' => 1))) {	### TO DO seguridad!
+				$id_categoria = $_GET['id_categoria'];
+				$data['id_categoria'] = $id_categoria;
+				
+				//Sacar la información de la categoría
+				$path_categoria = "./json/categorias/categorias.json";
+				
+				if (file_exists($path_categoria)) {
+					$json = file_get_contents($path_categoria);
+					$c = json_decode($json);
+					
+					//obtener la información de la categoría que se consulta
+					foreach ($c->categorias as $cat) {
+						if ($cat->id_categoriaSi == $id_categoria) {
+							$data["info_categoria"] = $cat;
+							break;
+						}
+					}
+				}
+			}
+			
+			//definir la vista que se cargará
+			if (strtolower($mostrar) === "detalle" ) {			//la publicación sólo tiene un formato
+				$view .= $mostrar;
+			} else if (strtolower($mostrar) === "ofertas" ) {	//la publicación tiene varios formatos
+				$view .= $mostrar;
+			}
+			
+			### BORRAR
+			$data['mostrar'] = $mostrar;
 		}
 	} else {	//si no trae parámetros de la publicación manda al home
 		##### TO DO: definir este flujo
@@ -67,14 +89,9 @@
 		$data['pubs_m'] = "Promos de la publicación, no trae get";
 		$url = site_url("home");
 		header("Location: $url");
-	} 
-	/*
-	echo "<pre>";
-	print_r($data);
-	echo "</pre>";
-	*/
+	}
+	
 	cargar_vista($view, $data);
 	exit;
-	
 ?>
 

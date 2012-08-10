@@ -44,6 +44,8 @@
     
     #### Categorías
     RewriteRule ^categoria/([0-9]+)/?$ categorias.php?id_categoria=$1
+    RewriteRule ^categoria/([0-9]+)/publicacion/ofertas/([0-9]+)$		publicaciones.php?id_categoria=$1&mostrar=ofertas&id_publicacion=$2
+    RewriteRule ^categoria/([0-9]+)/publicacion/detalle/([0-9]+)$ 		publicaciones.php?id_categoria=$1&mostrar=detalle&id_publicacion=$2
     
     ##Por lo mientras para las promoniones especiales
     RewriteRule ^categoria/promociones-especiales/?$ promociones-especiales.php

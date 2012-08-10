@@ -11,7 +11,7 @@
 ?>	
 <div class="contenedor-promo" style="background-color: #800">
 	<div style="float: left; width: 20%;">
-		<img src="images/img1.jpg" />
+		<img src="<?php echo site_url('images/img1.jpg')?>" />
 	</div>
 	<div style="float: left; margin-left: 20px; width: 70%;">
 		<div class="titulo-promo-rojo-deposito">

@@ -22,7 +22,7 @@
 	$data["subtitle"] = $subtitle;
 	
 	if ($_GET) {
-		if (array_key_exists('id_categoria', $_GET)) {	### TO DO seguridad!
+		if (array_key_exists('id_categoria', $_GET) && filter_var($_GET['id_categoria'], FILTER_VALIDATE_INT, array('min_range' => 1))) {	### TO DO seguridad!
 			$id_categoria = $_GET['id_categoria'];
 			$data['id_categoria'] = $id_categoria;
 			

@@ -5,10 +5,10 @@
 		$url_p = '';
 		if($p->formatos > 1) {
 			//URL para que se vaya a la lista de promociones y se pueda filtrar por formatos y precios
-			$url_p = site_url('publicacion/ofertas/') . $p->id_publicacion;
+			$url_p = site_url('categoria/'.$p->id_categoria.'/publicacion/ofertas/') . $p->id_publicacion;
 		} else {
 			//Si no trae más de un formato, ir al detalle de la promoción: suscripción / producto / PDF
-			$url_p = site_url('publicacion/detalle/') . $p->id_publicacion;
+			$url_p = site_url('categoria/'.$p->id_categoria.'/publicacion/detalle/') . $p->id_publicacion;
 		}
 		
 		echo "
