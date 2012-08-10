@@ -24,7 +24,7 @@
 	
 	if($_GET){	
 		if(isset($_GET['id_sitio']) && isset($_GET['id_canal']) && isset($_GET['id_promocion'])){
-			$items=1;
+			$items=0;
 			$agregar=TRUE;
 			if(isset($_SESSION['carrito'])){
 				if(count($_SESSION['carrito'])>0){
