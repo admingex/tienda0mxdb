@@ -69,50 +69,63 @@
 				}
 			}
 			
+			//sacar las promociones de la publicación y sus detalles correspondientes, sin importar cuántos formatos tenga
+			$path_promociones = "./json/publicaciones/promos_publicacion_".$id_publicacion.".json";
+			//echo $path_promociones;
+			if (file_exists($path_promociones)) {
+				$json = file_get_contents($path_promociones);
+				$promos = json_decode($json);
+				
+				//pasar la información de las promociones de la publicación a la vista 
+				//$data['ofertas_publicacion'] = $promos;
+				
+				$detalles = array();
+				//Obtener los detalles de las promociones:
+				foreach ($promos->promociones as $promo) {
+					//sacar las promociones del archivo
+					$path_detalle_promo = "./json/promociones_publicacion/detalle_promo_".$promo->id_promocion.".json";
+					
+					//echo $path_detalle_promo;
+					if (file_exists($path_detalle_promo)) {
+						$json = file_get_contents($path_detalle_promo);
+						$detalle_promo = json_decode($json);
+						$promo->detalle = $detalles[] = $detalle_promo[0];	//Se guarda el primer elemento que viene de un array, sólo debe ser uno
+					}
+				}
+				
+				//toda la información de la promoción
+				$data['ofertas_publicacion'] = $promos;
+				
+				/*
+				echo "Temp<pre>";
+				print_r($detalles);
+				echo "</pre>";
+				*/
+				$data['detalles_promociones'] = ($detalles);
+				/*
+				echo "Temp<pre>";
+				print_r((object)($detalles));
+				echo "</pre>";
+				 * 
+				 */
+			}
+			
+			
 			//definir la vista que se cargará
 			if (strtolower($mostrar) === "detalle" ) {			//la publicación sólo tiene un formato
 				$view .= $mostrar;
+				
+				//recuperar la promoción
+				if (array_key_exists('id_promocion', $_GET) && filter_var($_GET['id_promocion'], FILTER_VALIDATE_INT, array('min_range' => 1))) {	### TO DO seguridad!
+					$id_promocion =$_GET['id_promocion'];
+					$url_promo = site_url((isset($id_categoria) ? 'categoria/' . $id_categoria.'/' : '') . (isset($id_publicacion) ? 'publicacion/' . $id_publicacion. '/' : '') .'promocion/' . $id_promocion);
+					echo $url_promo;
+					exit;
+					header("Location: $url_promo");
+				}
 			} else if (strtolower($mostrar) === "ofertas" ) {	//la publicación tiene varios formatos
 				//definir la vista
 				$view .= $mostrar;
-				
-				//sacar las promociones de la publicación y sus detalles correspondientes
-				$path_promociones = "./json/publicaciones/promos_publicacion_".$id_publicacion.".json";
-				//echo $path_promociones;
-				if (file_exists($path_promociones)) {
-					$json = file_get_contents($path_promociones);
-					$promos = json_decode($json);
-					
-					//recuperar las promociones de la publicación
-					$data['ofertas_publicacion'] = $promos;
-					/*echo "<pre>";
-					print_r($promos);
-					echo "</pre>";*/
-					
-					$temp = new stdClass;//array();
-					$i = 0;
-					//Obtener los detalles de las promociones:
-					foreach ($promos->promociones as $promo) {
-						//sacar las promociones del archivo
-						$path_detalle_promo = "./json/promociones_publicacion/detalle_promo_".$promo->id_promocion.".json";
-						//echo $path_promociones;
-						if (file_exists($path_detalle_promo)) {
-							$json = file_get_contents($path_detalle_promo);
-							$detalle_promo = (object)($json);
-							$temp->$i++ = json_decode($detalle_promo);
-							//recuperar las promociones de la publicación
-							
-						}
-					}
-					echo "<pre>";
-					print_r($temp);
-					echo "</pre>";
-					
-					/*echo "<pre>";
-					print_r(json_encode(array("detalles" => $detalles)));
-					echo "</pre>";*/
-					$data['detalles_promociones'] = ($temp);
-				}
 			}
 			
 			### BORRAR

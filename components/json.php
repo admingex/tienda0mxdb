@@ -21,7 +21,7 @@
 	echo "Publicaciones por Categoría..................</br><br/>";
 	//generar el json que las contenga las promociones por publicación incluídos los json con el detalle de las mismas
 	$promos_por_pub = $jc->generar_json_publicacion_promos();
-	
+	echo "Promociones por publicación..................</br><br/>";
 	
 	echo "Generación finalizada.";
 	//echo "<pre>";

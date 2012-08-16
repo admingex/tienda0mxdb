@@ -33,19 +33,27 @@
     RewriteRule ^categoria/?$ 	categorias.php
     RewriteRule ^categoria/6/?$	promociones-especiales.php
     
-    #### Publicaciones
-    RewriteRule ^publicacion/?$						publicaciones.php
-    RewriteRule ^publicacion/ofertas/([0-9]+)$		publicaciones.php?mostrar=ofertas&id_publicacion=$1
-    RewriteRule ^publicacion/detalle/([0-9]+)$ 		publicaciones.php?mostrar=detalle&id_publicacion=$1
-    
     #### Home
     RewriteRule ^home/?$	http://%{HTTP_HOST}/tienda/
     RewriteRule ^([A-Za-z\+]*)/home/?$	http://%{HTTP_HOST}/tienda/
     
+    
+    #### Promociones
+    RewriteRule ^promocion/([0-9]+)/?$											promociones.php?id_promocion=$1
+    RewriteRule ^publicacion/([0-9]+)/promocion/([0-9]+)/?$						promociones.php?id_publicacion=$1&id_promocion=$2
+    RewriteRule ^categoria/([0-9]+)/publicacion/([0-9]+)/promocion/([0-9]+)/?$	promociones.php?id_categoria=$1&id_publicacion=$3&id_promocion=$2
+    
+    #### Publicaciones
+    RewriteRule ^publicacion/?$						publicaciones.php
+    RewriteRule ^publicacion/ofertas/([0-9]+)/?$	publicaciones.php?mostrar=ofertas&id_publicacion=$1
+    RewriteRule ^publicacion/detalle/([0-9]+)/?$ 	publicaciones.php?mostrar=detalle&id_publicacion=$1
+    
     #### Categorías
     RewriteRule ^categoria/([0-9]+)/?$ categorias.php?id_categoria=$1
-    RewriteRule ^categoria/([0-9]+)/publicacion/ofertas/([0-9]+)$		publicaciones.php?id_categoria=$1&mostrar=ofertas&id_publicacion=$2
-    RewriteRule ^categoria/([0-9]+)/publicacion/detalle/([0-9]+)$ 		publicaciones.php?id_categoria=$1&mostrar=detalle&id_publicacion=$2
+    
+    #### Categoría/Publicaciones
+    RewriteRule ^categoria/([0-9]+)/publicacion/ofertas/([0-9]+)/?$		publicaciones.php?id_categoria=$1&mostrar=ofertas&id_publicacion=$2
+    RewriteRule ^categoria/([0-9]+)/publicacion/detalle/([0-9]+)/?$ 	publicaciones.php?id_categoria=$1&mostrar=detalle&id_publicacion=$2
     
     ##Por lo mientras para las promoniones especiales
     RewriteRule ^categoria/promociones-especiales/?$ promociones-especiales.php
