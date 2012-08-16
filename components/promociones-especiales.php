@@ -6,7 +6,7 @@
 	
 	foreach ($data->promocion_especial_destacada as $j) {
 ?>
-<div class="container">
+<div class="contenedor-promo">
 	<div id="images">
 	    <?php
 		echo "
@@ -33,8 +33,9 @@
 <?php
 	foreach ($data->promociones_especiales as $v) {
 		echo "
+			<div class='promo-left'>
 			<form name='comprar_promocion_especial".$v->id_promocionIn."' action='".ECOMMERCE."api/". $v->id_sitioSi."/".$v->id_canalSi."/".$v->id_promocionIn."/pago' method='post'>
-				<div class='promo-left'>
+			
 				    <input type='hidden' name='guidx' value='".API::GUIDX."' />
 			     	<input type='hidden' name='guidz' value='".API::guid()."' />
 			     	<input type='hidden' name='imagen' value='".TIENDA.$v->url_imagenVc."' />
@@ -43,22 +44,22 @@
 			     	<input type='hidden' name='cantidad' value='1' />
 			     	
 			     	<img src='".TIENDA.$v->url_imagenVc."' />
-			      	<div class='descripcion'>".$v->descripcionVc."</div>
-			      	<div class='descripcion'>".$v->tarifaDc."</div>";
+			      	<div class='descripcion' style='height: 40px'>".$v->descripcionVc."<br />
+			      	".$v->tarifaDc."</div>";
 					if(isset($_SESSION['datos_login'])){
 						if(isset($_SESSION['datos_login'])){
 							$datos_login=$_SESSION['datos_login'];
 							echo "<textarea name='datos_login' style='display: none'>".$datos_login."</textarea>";	
 						}
 					}			      	
-		echo "     	<div class='descripcion'>
+		echo "     	<div>
 		          		<input type='submit' name='comprar_ahora' value=' ' class='boton_continuar_compra' />
 			      	</div>
-			      	<div class='descripcion'>
+			      	<div>
 		          		<input type='button' name='comprar_ahora' value='Añadir al Carrito' onclick=\"document.comprar_promocion_especial".$v->id_promocionIn.".action ='".TIENDA."carrito.php?id_sitio=". $v->id_sitioSi."&id_canal=". $v->id_canalSi."&id_promocion=". $v->id_promocionIn."'; document.comprar_promocion_especial".$v->id_promocionIn.".submit()\"/>
-			      	</div>
-	      		</div>
-	      </form>";
+			      	</div>	      	
+	      	</form>
+	      	</div>";
 	}
 ?>
 </div>
