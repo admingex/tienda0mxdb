@@ -22,8 +22,8 @@
 	$data["title"] = $title;
 	$data["subtitle"] = $subtitle;		
 	
-	if($_GET){	
-		if(isset($_GET['id_sitio']) && isset($_GET['id_canal']) && isset($_GET['id_promocion'])){
+	if(($_GET)){	
+		if(isset($_GET['id_sitio']) && isset($_GET['id_canal']) && isset($_GET['id_promocion']) && $_POST){						
 			$items=0;
 			$agregar=TRUE;
 			if(isset($_SESSION['carrito'])){
@@ -51,15 +51,15 @@
 				$_SESSION['carrito'][$items]=array( 'id_sitio'=>$_GET['id_sitio'], 
 		 									   		'id_canal'=> $_GET['id_canal'],
 											   		'id_promocion'=>$_GET['id_promocion'],
-													'cantidad'=>1,
-													'imagenVc'=>'images/img1.jpg',
-													'descripcion'=>'descripcion de la oferta',
-													'precio'=>50
+													'cantidad'=>$_POST['cantidad'],
+													'imagenVc'=>$_POST['imagen'],
+													'descripcion'=>$_POST['descripcion'],
+													'precio'=>$_POST['precio']
 													);	
 			}																		   
 		}
 		else{
-			$_SESSION['ult_elem']=0;	
+			$_SESSION['ult_elem']=NULL;	
 		}
 	
 		## eliminar items del carrito
@@ -69,7 +69,7 @@
 	}
 
 	else{	
-		$_SESSION['ult_elem']=0;	
+		$_SESSION['ult_elem']=NULL;	
 	}
 	
 	cargar_vista('detalle_carrito', $data);

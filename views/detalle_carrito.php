@@ -1,18 +1,25 @@
 <?php
 echo "<div style='width: 580px; padding-right: 10px'>";
 if(isset($_SESSION['carrito'])){
-	if(isset($_SESSION['ult_elem']) && $_SESSION['ult_elem']!=0){
+	if(isset($_SESSION['ult_elem']) ){
 		$ind=$_SESSION['ult_elem'];
-		echo "<div style='float: left; background-color: #DDD; width: 25%; height: 100%;'>";
-		echo "    <img src='".TIENDA.$_SESSION['carrito'][$ind]['imagenVc']."' />";
+		echo "<div>Producto agregado al carrito:</div>";
+		echo "<div style='float: left; background-color: #DDD; width: 25%; height: 100%; text-align: center'>";
+		echo "    <img src='".$_SESSION['carrito'][$ind]['imagenVc']."' />";
 		echo "		<br />".$_SESSION['carrito'][$ind]['descripcion'];
-		echo "		<br />".$_SESSION['carrito'][$ind]['precio'];
+		echo "		<br />Precio: ".$_SESSION['carrito'][$ind]['precio'];
 		echo "</div>";	
 	}	
 	
 	$na=count($_SESSION['carrito']);
 	if($na>0){
 		echo "<div style='background-color: #CCC; height: 100%;'>";
+		
+		$total=0;		
+		foreach($_SESSION['carrito'] as $item){
+			$total+=($item['cantidad']*$item['precio']);
+		}
+		echo "total del carrito: ".$total;
 		echo "Numero de articulos en el carrito: ".$na;
 		foreach($_SESSION['carrito'] as $k => $v){
 			echo "<div>sitio: ".$v['id_sitio'].
@@ -21,8 +28,16 @@ if(isset($_SESSION['carrito'])){
 		        	 "  cantidad:".$v['cantidad'].
 		         	 "  <a href='carrito.php?eliminar_item=".$k."'>borrar articulo:'".$k."'</a></div>";
 		}		
+		## quitamos informacion que no es necesaria para procesar el pedido solo necesitamos id_sitio, id_canal, id_promocion  
+		$promos_env=$_SESSION['carrito'];
+		foreach ($promos_env as $key => $value) {
+			unset($promos_env[$key]['descripcion']);
+			unset($promos_env[$key]['imagenVc']);
+			unset($promos_env[$key]['precio']);
+		}		
+		##############
 		
-		$datos_encrypt = API::encrypt(serialize($_SESSION['carrito']), API::API_KEY);
+		$datos_encrypt = API::encrypt(serialize($promos_env), API::API_KEY);
 		$datos_encrypt_url=rtrim(strtr(base64_encode($datos_encrypt), '+/', '-_'), '=');
 		
 					
