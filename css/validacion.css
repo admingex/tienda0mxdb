@@ -51,3 +51,36 @@
     padding: 10px 20px;
     text-align: center;
 }
+
+
+#actual {
+	font-size: 14px;
+	color:#993300;	
+	font-weight: bold;
+}
+
+a {
+	color:#0066CC;
+	text-decoration:none;
+}
+a:hover {
+	color:#000066;
+}
+
+.numPages {
+	margin: 0px 3px 0px 3px;
+	font-size: 14px;
+	color:#063F84;	
+	font-weight: bold;	
+}
+
+.numPages:hover {
+	background:#CCCCCC;
+}
+
+.actualPage{
+	margin: 0px 5px 0px 5px;
+	font-size: 16px;
+	color:#800;	
+	font-weight: bold;	
+}

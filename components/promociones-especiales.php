@@ -29,37 +29,96 @@
 <?php
 	}
 ?>
+
 <div class="contenedor-promo">
-<?php
-	foreach ($data->promociones_especiales as $v) {
-		echo "
-			<div class='promo-left'>
-			<form name='comprar_promocion_especial".$v->id_promocionIn."' action='".ECOMMERCE."api/". $v->id_sitioSi."/".$v->id_canalSi."/".$v->id_promocionIn."/pago' method='post'>
+	<?php		
+		$total=count($data->promociones_especiales);	
+				
+		if(isset($_GET['page'])){
+			$pg = $_GET['page'];	
+		}
+		else{
+			$pg=0;
+		}
+		$cantidad = 6; //Cantidad de registros que se desea mostrar por pagina
+		//Para probar solo le coloque 3
+	
+		$paginacion = new paginacion($cantidad, $pg);
+		$desde = $paginacion->getFrom();		
 			
-				    <input type='hidden' name='guidx' value='".API::GUIDX."' />
-			     	<input type='hidden' name='guidz' value='".API::guid()."' />
-			     	<input type='hidden' name='imagen' value='".TIENDA.$v->url_imagenVc."' />
-			     	<input type='hidden' name='descripcion' value='".$v->descripcionVc."' />
-			     	<input type='hidden' name='precio' value='".$v->tarifaDc."' />
-			     	<input type='hidden' name='cantidad' value='1' />
-			     	
-			     	<img src='".TIENDA.$v->url_imagenVc."' />
-			      	<div class='descripcion' style='height: 40px'>".$v->descripcionVc."<br />
-			      	".$v->tarifaDc."</div>";
-					if(isset($_SESSION['datos_login'])){
-						if(isset($_SESSION['datos_login'])){
-							$datos_login=$_SESSION['datos_login'];
-							echo "<textarea name='datos_login' style='display: none'>".$datos_login."</textarea>";	
-						}
-					}			      	
-		echo "     	<div>
-		          		<input type='submit' name='comprar_ahora' value=' ' class='boton_continuar_compra' />
-			      	</div>
-			      	<div>
-		          		<input type='button' name='comprar_ahora' value='Añadir al Carrito' onclick=\"document.comprar_promocion_especial".$v->id_promocionIn.".action ='".TIENDA."carrito.php?id_sitio=". $v->id_sitioSi."&id_canal=". $v->id_canalSi."&id_promocion=". $v->id_promocionIn."'; document.comprar_promocion_especial".$v->id_promocionIn.".submit()\"/>
-			      	</div>	      	
-	      	</form>
-	      	</div>";
-	}
-?>
+		$recorrer = $data->promociones_especiales;
+		
+		$limite = ($desde+$cantidad);
+		if($limite>$total){
+			$limite = $total;
+		}
+		
+		for($i=$desde; $i<($limite); $i++){
+			//echo "<br />->".$i."<-";
+				/*
+				echo "<pre>";
+					print_r($recorrer[$i]);
+				echo "</pre>";
+				*/
+				$v = $recorrer[$i];
+				//**
+				
+				echo "
+					<div class='promo-left'>
+					<form name='comprar_promocion_especial".$v->id_promocionIn."' action='".ECOMMERCE."api/". $v->id_sitioSi."/".$v->id_canalSi."/".$v->id_promocionIn."/pago' method='post'>
+					
+						    <input type='hidden' name='guidx' value='".API::GUIDX."' />
+					     	<input type='hidden' name='guidz' value='".API::guid()."' />
+					     	<input type='hidden' name='imagen' value='".TIENDA.$v->url_imagenVc."' />
+					     	<input type='hidden' name='descripcion' value='".$v->descripcionVc."' />
+					     	<input type='hidden' name='precio' value='".$v->tarifaDc."' />
+					     	<input type='hidden' name='cantidad' value='1' />
+					     	
+					     	<img src='".TIENDA.$v->url_imagenVc."' />
+					      	<div class='descripcion' style='height: 40px'>".$v->id_promocionIn."-".$v->descripcionVc."<br />
+					      	".$v->tarifaDc."</div>";
+							if(isset($_SESSION['datos_login'])){
+								if(isset($_SESSION['datos_login'])){
+									$datos_login=$_SESSION['datos_login'];
+									echo "<textarea name='datos_login' style='display: none'>".$datos_login."</textarea>";	
+								}
+							}			      	
+				echo "     	<div>
+				          		<input type='submit' name='comprar_ahora' value=' ' class='boton_continuar_compra' />
+					      	</div>
+					      	<div>
+				          		<input type='button' name='comprar_ahora' value='Añadir al Carrito' onclick=\"document.comprar_promocion_especial".$v->id_promocionIn.".action ='".TIENDA."carrito.php?id_sitio=". $v->id_sitioSi."&id_canal=". $v->id_canalSi."&id_promocion=". $v->id_promocionIn."'; document.comprar_promocion_especial".$v->id_promocionIn.".submit()\"/>
+					      	</div>	      	
+			      	</form>
+			      	</div>";
+				
+				//**
+				
+		}
+	?>
 </div>
+<div class="paginacion" style="clear: both">
+		<?php
+			### obtener la url mapeada por el htacces y poder envoar el numero de pagina por GET
+			//echo site_url();				
+			if(stristr(basename($_SERVER['REQUEST_URI']), '?')){
+				$mp=explode('?',basename($_SERVER['REQUEST_URI']));				
+				$url=$mp[0]."?";				
+			}
+			else{
+				$url = basename($_SERVER['REQUEST_URI'])."?";
+			}
+			#####			 																	
+			
+			$classCss = "numPages";
+			#$classCss = "actualPage";
+			
+			//Clase CSS que queremos asignarle a los links 
+			
+			$back = "Atras";
+			$next = "Siguiente";
+			
+			$paginacion->generaPaginacion($total, $back, $next, $url, $classCss);
+		?>
+</div>	
+
