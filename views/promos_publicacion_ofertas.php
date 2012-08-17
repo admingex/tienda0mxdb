@@ -1,23 +1,32 @@
 <?php
-	/*Motrará una promoción final dependiendo del order code */
+	/** 
+	 * Mostrará el listado de promocionesde una publicación que tiene promociones en diferentes formatos,
+	 * además de permitir filtrarlas por formato y precio
+	 * 
+	 */
 
-	// encabezado de la categoría
+	// formación del breadcum correspondiente
 	if (isset($info_publicacion)) {
-		//si el flujo proviene de un istado de categoría...
+		//si el flujo proviene de un listado de categoría...se incluye esta parte para la navegación
 		$url_breadcum 	= (isset($info_categoria)) 	? site_url("categoria/".$info_categoria->id_categoriaSi) : NULL;
 		$bread_cat 		= (!empty($url_breadcum))	? " <a href='$url_breadcum'> ".ucwords(strtolower($info_categoria->nombreVc))."</a> > " : '';
 		
-		//breadcum
-		echo "<div><h3><a href='".site_url("home")."'> Home </a> > ". $bread_cat ." <a href=''>".ucwords(strtolower($info_publicacion->nombreVc))."</a></h3></div>";
+		//la ruta de la publicación va siempre en este caso
+		//$bread_pub		= " <a href=''>".ucwords(strtolower($info_publicacion->nombreVc))."</a></h3></div>";
+		$bread_pub		= " <a href=''>" . $info_publicacion->nombreVc . "</a></h3></div>";
+		
+		//breadcum final
+		echo "<div><h3><a href='".site_url("home")."'> Home </a> > ". $bread_cat . $bread_pub;
 	}
 	
 	##### Promos destacadas por publicación
 	
 	##### Filtro por formatos y precio
-	
-	
+
 	if (isset($ofertas_publicacion)) {
 		//último nivel de detalle
 		include_once('./components/promociones_publicacion.php');
 		exit;
 	}
+	
+// fin del archivo de la vista que despliega las promociones de una publicación con más de un formato asociado: "promos_publicacion_ofertas.php"

@@ -1,66 +1,123 @@
-<div class="contenedor-promo" style="background-color: #800">
-	<div style="float: left; width: 20%;">
-		<img src="<?php echo site_url('images/img1.jpg')?>" />
-	</div>
-	<div style="float: left; margin-left: 20px; width: 70%;">
-		<div class="titulo-promo-rojo-deposito">
-			<?php echo $info_publicacion->nombreVc."\n";?>
-		</div>
-		<div id="pleca-gris">		
-		</div>
+<?php
+	//promoción inicial
+	$promo_inicial = $detalles_promociones[0];	//siempre viene
+	//para pasar a pagar en la plataforma de pagos, es la acción por defecto:
+	$action_pagos_inicial = ECOMMERCE."api/". $promo_inicial->id_sitio . "/" . $promo_inicial->id_canal . "/" . $promo_inicial->id_promocion . "/pago";
+	$onclick_action_pagos = "document.comprar_promocion" . $promo_inicial->id_promocion . ".action='" . $action_pagos_inicial . "'; ";
 	
-		<div class="titulo-proceso-img">&nbsp;
-		</div>			
-		<div class="titulo-proceso">
-			<?php echo $info_publicacion->descripcionVc; ?>
+	//para agregar la promoción al carrito:
+	$action_carrito_inicial = TIENDA . "carrito.php?id_sitio=" . $promo_inicial->id_sitio . "&id_canal=" . $promo_inicial->id_canal . "&id_promocion=" . $promo_inicial->id_promocion;
+	$onclick_action_carrito = "document.comprar_promocion" . $promo_inicial->id_promocion . ".action='" . $action_carrito_inicial . "'; ";
+
+	$onclick_event = "document.comprar_promocion". $promo_inicial->id_promocion . ".submit()";
+	
+?>
+<script type="text/javascript">
+	var id_ant = <?php echo $promo_inicial->id_promocion; ?>;
+	
+	function cambia_boton(id) {
+		if (document.getElementById(id_ant)) {	
+			//limpia la selección anterior
+			//document.getElementById(id_ant).innerHTML = '';
+			document.getElementById('div_promocion' + id_ant).className = 'radio_no_selected';
+			document.getElementById('radio' + id_ant).checked = '';  									 			
+		}
+		
+		//document.getElementById(id).innerHTML = '<input type="submit" id="usar_tarjeta" name="usar_tarjeta" value="&nbsp;" class="usar_tarjeta"/>';
+		document.getElementById('div_promocion' + id).className = 'radio_selected';
+		document.getElementById('radio' + id).checked = 'checked';
+		
+		alert($("#comprar_promocion"+id).attr('onclick'));
+		
+		id_ant = id;
+	}
+</script>
+
+	<div class="contenedor-promo" style="background-color: #800">
+		<div style="float: left; width: 20%;">
+			<img src="<?php echo site_url('images/img1.jpg')?>" />
 		</div>
-		<div class="blank_section"></div>
-		<div class="titulo-proceso-img">&nbsp;
-		</div>			
-		<div class="titulo-proceso">
-			Fecha de portada del primer ejemplar/ Inicio de la promoción:
-		 	<?php echo $detalles_promociones[0]->fecha_inicio_promo;?>
-		</div>
-		<div class="blank_section"></div>
-		<div style="float: right; background-color: #CCCCCC">
-			<div style="padding: 10px">
-				<input type="button" name="carrito" value=" " class="boton_continuar_compra" />	
+		<div style="float: left; margin-left: 20px; width: 70%;">
+			<div class="titulo-promo-rojo-deposito">
+				<?php echo $info_publicacion->nombreVc;?>
 			</div>
-			<div style="padding: 10px; background-color: #DDD">
-				<input type="button" name="pago_express" value=" " class="boton_login" />
+			<div id="pleca-gris">		
+			</div>
+		
+			<div class="titulo-proceso-img">&nbsp;
+			</div>			
+			<div class="titulo-proceso">
+				<?php echo $info_publicacion->descripcionVc; ?>
+			</div>
+			<div class="blank_section"></div>
+			<div class="titulo-proceso-img">&nbsp;
+			</div>			
+			<div class="titulo-proceso">
+				Fecha de portada del primer ejemplar/ Inicio de la promoci&oacute;n:
+			 	<?php echo $promo_inicial->fecha_inicio_promo;?>
+			</div>
+			<div class="blank_section"></div>
+			
+			<div style="float: right; background-color: #CCCCCC">
+				<div style="padding: 10px">
+					<input type="button" name="btn_comprar_ahora" value=" " class="boton_continuar_compra" onclick="<?php echo $onclick_action_pagos.$onclick_event;?>"/>	
+				</div>
+				<div style="padding: 10px; background-color: #DDD">
+					<input type="button" name="btn_agregar_carrito" value="Añadir al Carrito" onclick="<?php echo $onclick_action_carrito.$onclick_event;?>"/>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<div class="blank_section"></div>
-<div class="contenedor-promo">
-	<div class="titulo-proceso-img">&nbsp;
-	</div>			
-	<div class="titulo-proceso">
-		Selecciona el país de envío para ver los precios y promociones aplicables.
-	</div>	
-	<select name="pais">
-			<option value="mexico">México</option>
-	</select>
 	<div class="blank_section"></div>
-	<form method="post" action="carrito.php ">
+	<div class="contenedor-promo">
+		<div class="titulo-proceso-img">&nbsp;
+		</div>			
+		<div class="titulo-proceso">
+			Selecciona el pa&iacute;s de env&iacute;o para ver los precios y promociones aplicables.
+		</div>	
+		<select name="pais">
+				<option value="mexico">México</option>
+		</select>
+		<div class="blank_section"></div>
 		<table width="95%">
 			<thead>
 				<tr>
 					<th>&nbsp;</th>
-					<th>Promoción</th>
-					<th>Descripción</th>
+					<th>Promoci&oacute;n</th>
+					<th>Descripci&oacute;n</th>
 					<th>Precio</th>
 				</tr>	
 			</thead>
 			<tbody>
 			<?php
 				foreach ($detalles_promociones as $detalle) {
+					//para pasar a pagar en la plataforma de pagos, es la acción por defecto:
+					$action_pagos = ECOMMERCE."api/". $detalle->id_sitio . "/" . $detalle->id_canal . "/" . $detalle->id_promocion . "/pago";
+					//para agregar la promoción al carrito:
+					$action_carrito = TIENDA . "carrito.php?id_sitio=" . $detalle->id_sitio . "&id_canal=" . $detalle->id_canal . "&id_promocion=" . $detalle->id_promocion;
+					$onclick_action = "document.comprar_promocion" . $detalle->id_promocion . ".action='" . $action_carrito . "'; ";
+					$onclick_event = "document.comprar_promocion". $detalle->id_promocion . ".submit()";
+					
+					//datos para que se procese el pago en la plataforma 
+					echo "
+					<form id='comprar_promocion" . $detalle->id_promocion ." name='comprar_promocion" . $detalle->id_promocion . "' action='" . $action_pagos_inicial . "' method='post'>\n".
+						"<input type='hidden' name='guidx' value='".API::GUIDX."'/>\n" . 
+						"<input type='hidden' name='guidz' value='".API::guid()."'/>\n". 
+					    "<input type='hidden' name='imagen' value='".TIENDA."images/img3.jpg' />\n" .
+					    "<input type='hidden' name='descripcion' value='". $detalle->descripcion_promocion."' />\n" .
+					    "<input type='hidden' name='precio' value='".$detalle->costo."' />\n" .
+					    "<input type='hidden' name='cantidad' value='1' />\n
+					</form>";
+					
+					//promoción seleccionada inicialmente:
+					$class_radio = "class='radio_no_selected'";
+					if ($promo_inicial->id_promocion == $detalle->id_promocion)
+						$class_radio = "class='radio_selected'";
 			?>
 				<tr>
-					<td>
-						<input type="radio" id="radio" name="promocion" value="<?php echo $detalle->id_promocion; ?>"/>
-						<div id="promocion" class="radio_selected">&nbsp;</div>					
+					<td id="<?php echo $detalle->id_promocion;?>">
+						<input type="radio" id="radio<?php echo $detalle->id_promocion; ?>" name="promocion" value="<?php echo $detalle->id_promocion; ?>"/>
+						<div id="div_promocion<?php echo $detalle->id_promocion; ?>" <?php echo $class_radio;?>  onclick="cambia_boton(<?php echo $detalle->id_promocion; ?>);" >&nbsp;</div>					
 					</td>
 					<td><?php echo $detalle->descripcion_promocion; ?></td>
 					<td><?php echo $detalle->texto_oferta; //Contenido de la promocion(ejemplares, suplementos, regalos, etc.)?></td>
@@ -71,21 +128,18 @@
 			?>
 			</tbody>
 		</table>
-	</form>
-</div>
+	</div>
+
 <div id="pleca-gris"></div>
 <div class="contenedor-promo">
 	<div style="background-color: #CCC; color: #000; height: 20px">
 		<div class="titulo-proceso-img">&nbsp;</div>			
-		<div class="titulo-proceso"><?php echo $info_publicacion->nombreVc."\n";?>: <?php echo $info_publicacion->descripcionVc; ?></div>
+		<div class="titulo-proceso"><?php echo $info_publicacion->nombreVc;?>: <?php echo $info_publicacion->descripcionVc; ?></div>
 	</div>	
 	<div>
 		<br/>
 		<p>
-		Descripción larga de la publicación.	
-		
-		
-		Falta en BD.
+		<?php echo $info_publicacion->descripcion_largaVc; ?>
 		</p>
 		<br/>
 	</div>
@@ -97,7 +151,7 @@
 		</div>
 	</div>
 	<div>
-		<br/>En <?php echo $info_publicacion->nombreVc; ?> encontra&aacute;s:
+		<br/>En <?php echo $info_publicacion->nombreVc; ?> encontrar&aacute;s:
 		<br/><br/>
 		<div class="titulo-proceso-img">&nbsp;</div>			
 		<div class="titulo-proceso">Seccion1</div>
@@ -105,7 +159,6 @@
 		<div class="titulo-proceso-img">&nbsp;</div>			
 		<div class="titulo-proceso">Seccion2</div>
 		<br/>
-		Vienene del admin.
 	</div>
 </div>
 
