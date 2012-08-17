@@ -7,46 +7,38 @@
 		$url_breadcum 	= (isset($info_categoria)) 	? site_url("categoria/".$info_categoria->id_categoriaSi) : NULL;
 		$bread_cat 		= (!empty($url_breadcum))	? " <a href='$url_breadcum'> ".ucwords(strtolower($info_categoria->nombreVc))."</a> > " : '';
 		$bread_pub 		= '';
-		$desc_producto	= '';
 		
 		//Para cuando se regresa del datalle
 		if ($info_publicacion->formatos > 1) {
-			//$url_mostrar = "detalle/";
+			//$bread_pub 	= " <a href='".site_url("publicacion/ofertas/$info_publicacion->id_publicacionSi"). "'> ".ucwords(strtolower($info_publicacion->nombreVc))."</a> ";
 			$bread_pub 	= (!empty($url_breadcum))	? " <a href='$url_breadcum/publicacion/ofertas/$info_publicacion->id_publicacionSi'> ".ucwords(strtolower($info_publicacion->nombreVc))."</a> " 
 			: " <a href='".site_url("publicacion/ofertas/$info_publicacion->id_publicacionSi"). "'> ".ucwords(strtolower($info_publicacion->nombreVc))."</a> ";
 		} else {
+			//$bread_pub 	= " <a href='".site_url("publicacion/detalle/$info_publicacion->id_publicacionSi"). "'> ".ucwords(strtolower($info_publicacion->nombreVc))."</a> ";
 			$bread_pub 	= (!empty($url_breadcum))	? " <a href='$url_breadcum/publicacion/detalle/$info_publicacion->id_publicacionSi'> ".ucwords(strtolower($info_publicacion->nombreVc))."</a> " 
 			: " <a href='".site_url("publicacion/detalle/$info_publicacion->id_publicacionSi"). "'> ".ucwords(strtolower($info_publicacion->nombreVc))."</a> ";
-			
-		}
-		
-		$order_code_cat = array(
-			0	=> 	"Suscripción",				//"Subscription",
-			1	=>	"PDF / Ejemplar Suelto",	//"Single Copy",	//PDF
-			2	=>	"Producto",					//"Product",		//Seminario
-			3	=>	"PDF"						//"Electronic Document"	//PDF
-		);
-		
-		
-		if (isset($detalles_promociones) && count($detalles_promociones) > 0) {
-			$oc = $detalles_promociones[0]->order_code_type;
-			$desc_producto 	= " > <b>". $order_code_cat[$oc] . "</b>";
 		}
 		
 		//breadcum
-		echo "<div><h3><a href='".site_url("home")."'> Home </a> > ". $bread_cat . $bread_pub . $desc_producto;
-		//echo "<div><h3><a href='".site_url("home")."'> Home </a> > ". $bread_cat ." <a href=''>".ucwords(strtolower($info_publicacion->nombreVc))."</a></h3></div>";
+		echo "<div><h3><a href='".site_url("home")."'> Home </a> > ". $bread_cat . $bread_pub ;//" <a href='$bread_pub'>".ucwords(strtolower($info_publicacion->nombreVc))."</a></h3></div>";
+		echo "<br/>detalle_promocion_general<br/>";
 		
-		//echo $info_publicacion->formatos;
-		//echo "<br/>detalle_promocion_publicacion<br/>";
+		echo $info_publicacion->formatos;
 		
-		echo "<pre>";
-		//print_r($info_publicacion);
-		//print_r($ofertas_publicacion);
-		//print_r($detalles_promociones);
+		$oc = $detalles_promociones[0]->order_code_type;
+		
+		echo "order_code_type: $oc<pre>";
+		//if (isset($info_publicacion)) print_r($info_publicacion);
+		//if (isset($info_categoria)) print_r($info_categoria);
+		//if (isset($detalles_promociones)) print_r($detalles_promociones);
 		echo "</pre>";
 		
-		
+		$order_code_cat = array(
+			0	=> 	"Subscription",
+			1	=>	"Single Copy",	//PDF
+			2	=>	"Product",		//Seminario
+			3	=>	"Electronic Document"	//PDF
+		);
 		
 		if (!empty($detalles_promociones)) {
 			switch ($detalles_promociones[0]->order_code_type) {

@@ -41,7 +41,7 @@
     #### Promociones
     RewriteRule ^promocion/([0-9]+)/?$											promociones.php?id_promocion=$1
     RewriteRule ^publicacion/([0-9]+)/promocion/([0-9]+)/?$						promociones.php?id_publicacion=$1&id_promocion=$2
-    RewriteRule ^categoria/([0-9]+)/publicacion/([0-9]+)/promocion/([0-9]+)/?$	promociones.php?id_categoria=$1&id_publicacion=$3&id_promocion=$2
+    RewriteRule ^categoria/([0-9]+)/publicacion/([0-9]+)/promocion/([0-9]+)/?$	promociones.php?id_categoria=$1&id_publicacion=$2&id_promocion=$3
     
     #### Publicaciones
     RewriteRule ^publicacion/?$						publicaciones.php

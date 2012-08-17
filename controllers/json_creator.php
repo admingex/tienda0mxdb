@@ -268,6 +268,9 @@ class Json_Creator {
 	 */
 	public static function Write_To_Json_File($file_name, $str = "") {
 		$mensaje = '';
+		//echo $_SERVER['DOCUMENT_ROOT']."<br/>";
+		//echo TIENDA;
+		 
 		//$file_name = realpath($file_name);
 		//el archivo existe y es escribible
 		if (!file_exists($file_name) || is_writable($file_name)) {

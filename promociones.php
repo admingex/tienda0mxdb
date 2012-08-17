@@ -33,15 +33,19 @@
 			//Sacar la información de la promoción para mostrarla
 			$path_promocion = "./json/promociones_publicacion/detalle_promo_".$id_promocion.".json";
 			
+			//recuperar la promoción
 			if (file_exists($path_promocion)) {
 				$json = file_get_contents($path_promocion);
 				$detalle_promocion = json_decode($json);
 				
-				$data["detalle_promocion"] = $detalle_promocion;
-				echo "<pre>";
+				$data["detalles_promociones"] = $detalle_promocion;
+				/*
+				echo "Detalle_promocion<pre>";
 				print_r($detalle_promocion);
 				echo "</pre>";
-				//obtener la información del detalle de la promoción que se consulta
+				*/
+				
+				//obtener la información del detalle de la promoción que se consulta, artículos y demás ...
 				/*
 				foreach ($promocion as $pr) {
 					if ($pr->id_categoriaSi == $id_categoria) {
@@ -54,7 +58,38 @@
 				//si no existe el archivo con la información ¿¿ir a BD??
 			}
 		}
-		
+		//si trae, recuperar la información de la publicación
+		if (array_key_exists('id_publicacion', $_GET) && filter_var($_GET['id_publicacion'], FILTER_VALIDATE_INT, array('min_range' => 1))) {	### TO DO seguridad!
+			//recuperar el parámetro de la consulta
+			$id_publicacion = $_GET['id_publicacion'];
+			$data['id_publicacion'] = $id_publicacion;
+			
+			//sacar la información de la publicación
+			$path_publicaciones = "./json/publicaciones/publicaciones.json";
+			
+			if (file_exists($path_publicaciones)) {
+				$json = file_get_contents($path_publicaciones);
+				$p = json_decode($json);
+				
+				//Obtener la información de la publicación que se consulta
+				foreach ($p->publicaciones as $pub) {
+					if ($pub->id_publicacionSi == $id_publicacion) {
+						//se pasa la info a la vista
+						$data["info_publicacion"] = $pub;
+						break;
+					}
+				}
+				/*
+				if (!empty($data["info_publicacion"])) {
+					echo "Info_publicacion<pre>";
+					print_r($data["info_publicacion"]);
+					echo "</pre>";
+				}
+				*/ 
+			}
+		}
+
+		//si trae, recuperar la información de la categoría
 		if (array_key_exists('id_categoria', $_GET) && filter_var($_GET['id_categoria'], FILTER_VALIDATE_INT, array('min_range' => 1))) {	### TO DO seguridad!
 			$id_categoria = $_GET['id_categoria'];
 			$data['id_categoria'] = $id_categoria;
@@ -73,6 +108,13 @@
 						break;
 					}
 				}
+				/*
+				if (!empty($data["info_categoria"])) {
+					echo "Info_categoria<pre>";
+					print_r($data["info_categoria"]);
+					echo "</pre>";
+				}
+				*/
 			} else {
 				//si no existe el archivo con la información ¿¿ir a BD??
 			}
@@ -83,7 +125,7 @@
 	print_r($data);
 	echo "</pre>";
 	*/
-	cargar_vista('categoria_publicaciones', $data);
+	cargar_vista('promos_publicacion_detalle', $data);
 	exit;
 
 ?>
