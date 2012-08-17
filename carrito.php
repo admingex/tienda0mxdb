@@ -21,8 +21,15 @@
 	$data["scripts"] = $scripts;
 	$data["title"] = $title;
 	$data["subtitle"] = $subtitle;		
+	/*
+	echo "<pre>";
+		print_r($_GET);
+		print_r($_POST);
+	echo "<pre>";
+	*/
 	
-	if(($_GET)){	
+	if(($_GET)){
+			
 		if(isset($_GET['id_sitio']) && isset($_GET['id_canal']) && isset($_GET['id_promocion']) && $_POST){						
 			$items=0;
 			$agregar=TRUE;
@@ -71,7 +78,13 @@
 	else{	
 		$_SESSION['ult_elem']=NULL;	
 	}
+	if(array_key_exists('ajax', $_GET)){		
+		include('./views/detalle_carrito.php');	
+	}
+	else{		
+		cargar_vista('detalle_carrito', $data);
+	}
 	
-	cargar_vista('detalle_carrito', $data);
+	
 	exit;
 ?>
