@@ -12,14 +12,33 @@
 		 	Precio: <?php echo $detalle_promocion->costo;?>
 		</div>
 		<div class="blank_section"></div>
-		<div style="float: right; background-color: #CCCCCC">
-			<div style="padding: 10px">
-				<input type="button" name="carrito" value=" " class="boton_continuar_compra" />	
+		<?php
+			$action_pagos = ECOMMERCE."api/". $detalle_promocion->id_sitio . "/" . $detalle_promocion->id_canal . "/" . $detalle_promocion->id_promocion . "/pago";
+			//para agregar la promoción al carrito:
+			$action_carrito = TIENDA . "carrito.php?id_sitio=" . $detalle_promocion->id_sitio . "&id_canal=" . $detalle_promocion->id_canal . "&id_promocion=" . $detalle_promocion->id_promocion;
+			$onclick_action_carrito = "document.comprar_promocion" . $detalle_promocion->id_promocion . ".action='" . $action_carrito . "'; ";
+			//submit
+			$onclick_submit = "document.comprar_promocion". $detalle_promocion->id_promocion . ".submit();";
+		?>
+		<form id='comprar_promocion<?php echo $detalle_promocion->id_promocion;?>' name='comprar_promocion<?php echo $detalle_promocion->id_promocion;?>' action='<?php echo $action_pagos;?>' method='post'>
+		<?php
+		echo		
+			"<input type='hidden' name='guidx' value='".API::GUIDX."'/>\n" . 
+			"<input type='hidden' name='guidz' value='".API::guid()."'/>\n". 
+		    "<input type='hidden' name='imagen' value='".TIENDA."images/img3.jpg' />\n" .
+		    "<input type='hidden' name='descripcion' value='". $detalle_promocion->descripcion_promocion."' />\n" .
+		    "<input type='hidden' name='precio' value='".$detalle_promocion->costo."' />\n" .
+		    "<input type='hidden' name='cantidad' value='1' />\n";
+		?>
+			<div style="float: right; background-color: #CCCCCC">
+				<div style="padding: 10px">
+					<input type="submit" id="btn_comprar_ahora" name="btn_comprar_ahora" value=" " class="boton_continuar_compra" />
+				</div>
+				<div style="padding: 10px; background-color: #DDD">
+					<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value="Añadir al Carrito" onclick="<?php echo $onclick_action_carrito . $onclick_submit;?>"/>
+				</div>
 			</div>
-			<div style="padding: 10px; background-color: #DDD">
-				<input type="button" name="pago_express" value=" " class="boton_login" />
-			</div>
-		</div>
+		</form>
 	</div>
 </div>
 <div class="blank_section"></div>
@@ -37,8 +56,6 @@
 		<p>
 		Descripción del material web.
 		
-		
-		Falta en datos.
 		</p>
 		<br/>
 	</div>
@@ -53,9 +70,9 @@
 		<br/>
 		<ol>
 			<li>Introducción</li>
-			<ol start="1.1">
-				<li>Sobre IDC</li>
-			</ol>
+			<li>
+				<ol><li>Sobre IDC</li></ol>
+			</li>
 		</ol>		
 	</div>
 </div>
