@@ -122,8 +122,7 @@
 		?>
 </div>
 <script type="text/javascript">
-	function anadir_carrito(id, sitio, canal, promocion){				
-		alert("sitio"+sitio+"canal"+canal+"promocion"+promocion);							
+	function anadir_carrito(id, sitio, canal, promocion){												
 		var parametros = {
 			"guidx" 	  : $("#comprar_promocion_especial"+ id +" input[name=guidx]").val(),
 			'guidz'   	  : $("#comprar_promocion_especial"+ id +" input[name=guidz]").val(),
