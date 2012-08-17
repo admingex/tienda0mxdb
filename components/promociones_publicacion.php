@@ -1,26 +1,39 @@
 <div class="contenedor-promo">
 <?php	
-	/*despliega las promociones de una publicación */
+	/**
+	 * Despliega las promociones de una publicación cuando se tienen más de un formato para dicha publicación
+	 * $ofertas_publicacion: trae la descripción de la promoción y el detalle de la misma, lo cual incluye
+	 * el precio y el order code type del primer produecto de la promoción, además del texto de la oferta
+	 * y posibles descuentos de la promoción -esta información se trae del primer artículo de la promoción-,
+	 * de aqu[i se mostrará el detalle final del contenido de la promoción. 
+	 */
+	
 	foreach ($ofertas_publicacion->promociones as $p) {
-	/*foreach ($detalles_promociones as $detalle) {
+	/*
+	 * //también se pueden ver los detalles por separado, es posible que esto cambie de acuerdo al funcionamiento final...
+	 * foreach ($detalles_promociones as $detalle) {
 		echo "<pre>";
 		print_r((object)$detalle[0]);
 		echo "</pre>";
 		echo $detalle[0]->id_sitio."<br/>";
 	}
 	*/
-		//url de la promoción para el detalle final de la promoción
-		$url_promo = '';
-		$url_promo = site_url((isset($id_categoria) ? 'categoria/' . $id_categoria.'/' : '') . (isset($id_publicacion) ? 'publicacion/' . $id_publicacion. '/' : '') .'promocion/' . $p->detalle->id_promocion);
+		//creación de la URL para mostrar el detalle final de la promoción
+		$url_detalle_promo = '';
+		//los ids se recuperan desde el front controller: "publicaciones.php"
+		$url_detalle_promo = site_url((isset($id_categoria) ? 'categoria/' . $id_categoria.'/' : '') . (isset($id_publicacion) ? 'publicacion/' . $id_publicacion. '/' : '') .'promocion/' . $p->detalle->id_promocion);
+				
+		//para pasar a pagar en la plataforma de pagos, es la acción por defecto:
+		$action_pagos = ECOMMERCE."api/". $p->detalle->id_sitio . "/" . $p->detalle->id_canal . "/" . $p->detalle->id_promocion . "/pago";
 		
-		$action = TIENDA . "carrito.php?id_sitio=" . $p->detalle->id_sitio . "&id_canal=" . $p->detalle->id_canal . "&id_promocion=" . $p->detalle->id_promocion;
-		$action_form = ECOMMERCE."api/". $p->detalle->id_sitio . "/" . $p->detalle->id_canal . "/" . $p->detalle->id_promocion . "/pago";
-		$onclick_action = "document.comprar_promocion" . $p->detalle->id_promocion . ".action='" . $action . "'; ";
+		//para agregar la promoción al carrito:
+		$action_carrito = TIENDA . "carrito.php?id_sitio=" . $p->detalle->id_sitio . "&id_canal=" . $p->detalle->id_canal . "&id_promocion=" . $p->detalle->id_promocion;
+		$onclick_action = "document.comprar_promocion" . $p->detalle->id_promocion . ".action='" . $action_carrito . "'; ";
 		$onclick_event = "document.comprar_promocion".$p->detalle->id_promocion.".submit()";
 		
-		
+		//formulario para la promoción
 		echo "
-		<form name='comprar_promocion".$p->detalle->id_promocion."' action='". $action_form ."' method='post'>
+		<form name='comprar_promocion".$p->detalle->id_promocion."' action='". $action_pagos ."' method='post'>
 			<div class='promo-left'>
 				<input type='hidden' name='guidx' value='".API::GUIDX."' />
 			    <input type='hidden' name='guidz' value='".API::guid()."' />
@@ -29,10 +42,10 @@
 			    <input type='hidden' name='precio' value='".$p->detalle->costo."' />
 			    <input type='hidden' name='cantidad' value='1' />
 			    
-		    	<a href='". $url_promo . "'><img src='".TIENDA."images/img3.jpg' /></a>
+		    	<a href='". $url_detalle_promo . "'><img src='".TIENDA."images/img3.jpg' /></a>
 		      	<div class='descripcion'>".$p->descripcion_promocion."</div>
 		      	<div class='descripcion'>".$p->detalle->costo."</div>
-		      	<div class='descripcion'>"./*$p->id_formato."-".strlen($p->desc_publicacion).*/"</div>
+		      	
 		      	<div class='descripcion'>
 	          		<input type='submit' name='btn_comprar_ahora' value=' ' class='boton_continuar_compra' />
 		      	</div>

@@ -101,7 +101,7 @@
 				print_r($detalles);
 				echo "</pre>";
 				*/
-				$data['detalles_promociones'] = ($detalles);
+				$data['detalles_promociones'] = $detalles;
 				/*
 				echo "Temp<pre>";
 				print_r((object)($detalles));
@@ -115,6 +115,7 @@
 			if (strtolower($mostrar) === "detalle" ) {			//la publicación sólo tiene un formato
 				$view .= $mostrar;
 				
+				/*
 				//recuperar la promoción
 				if (array_key_exists('id_promocion', $_GET) && filter_var($_GET['id_promocion'], FILTER_VALIDATE_INT, array('min_range' => 1))) {	### TO DO seguridad!
 					$id_promocion =$_GET['id_promocion'];
@@ -123,6 +124,7 @@
 					exit;
 					header("Location: $url_promo");
 				}
+				*/
 			} else if (strtolower($mostrar) === "ofertas" ) {	//la publicación tiene varios formatos
 				//definir la vista
 				$view .= $mostrar;
