@@ -46,9 +46,9 @@ if(isset($_SESSION['carrito'])){
 		        	   <div>
 		        	   		<div style='float: left; padding-left: 10px; width: 290px;'>
 		        	   			".$v['cantidad']."		        	   			
-		        	   			".$v['descripcion']."<br />
-		        	   			<a href='carrito.php?eliminar_item=".$k."'>Eliminar</a>		        	   			
-		        	   		</div>
+		        	   			".$v['descripcion']."<br />";
+			echo " 	   			<a href='".site_url("carrito.php?eliminar_item=".$k)."'>Eliminar</a>";		        	   			
+		    echo " 	   		</div>
 		        	   		<div style='float: right'>".$v['precio']."</div>		        	   		
 		        	   </div>
 		        	   
@@ -61,7 +61,7 @@ if(isset($_SESSION['carrito'])){
 						$datos_login=$_SESSION['datos_login'];
 					  	echo "<textarea name='datos_login' style='display: none'>".$datos_login."</textarea>";	
 					}
-		echo "<div style='clear: both;'><div style='float: right'>".$total."</div></div>";							  				  			  	  
+		echo "<div style='clear: both;'><div style='float: right'>".number_format($total,2,'.',',')."</div></div>";							  				  			  	  
 		echo "<div style='background-color: #CCC; clear: both;'><a href='".site_url('promociones-especiales.php')."'>Seguir comprando</a>
 				  <input type='submit' name='tienda_carrito' value='pagar' /></div>	
 		</form>

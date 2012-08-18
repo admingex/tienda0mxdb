@@ -65,7 +65,7 @@
 				
 				echo "
 					<div class='promo-left'>
-					<form name='comprar_promocion_especial".$v->id_promocionIn."' action='".ECOMMERCE."api/". $v->id_sitioSi."/".$v->id_canalSi."/".$v->id_promocionIn."/pago' method='post'>
+					<form id='comprar_promocion_especial".$v->id_promocionIn."' name='comprar_promocion_especial".$v->id_promocionIn."' action='".ECOMMERCE."api/". $v->id_sitioSi."/".$v->id_canalSi."/".$v->id_promocionIn."/pago' method='post'>
 					
 						    <input type='hidden' name='guidx' value='".API::GUIDX."' />
 					     	<input type='hidden' name='guidz' value='".API::guid()."' />
@@ -87,7 +87,7 @@
 				          		<input type='submit' name='comprar_ahora' value=' ' class='boton_continuar_compra' />
 					      	</div>
 					      	<div>
-				          		<input type='button' name='comprar_ahora' value='Añadir al Carrito' onclick=\"document.comprar_promocion_especial".$v->id_promocionIn.".action ='".TIENDA."carrito.php?id_sitio=". $v->id_sitioSi."&id_canal=". $v->id_canalSi."&id_promocion=". $v->id_promocionIn."'; document.comprar_promocion_especial".$v->id_promocionIn.".submit()\"/>
+				          		<input type='button' name='carrito' id='carrito".$v->id_promocionIn."' value='Añadir al Carrito' onclick='anadir_carrito(".$v->id_promocionIn.", ".$v->id_sitioSi.", ".$v->id_canalSi." ,".$v->id_promocionIn.")'/>
 					      	</div>	      	
 			      	</form>
 			      	</div>";
@@ -97,7 +97,7 @@
 		}
 	?>
 </div>
-<div class="paginacion" style="clear: both">
+<div class="paginacion" style="clear: both; margin-left: auto; margin-right: auto; width: 250px ">
 		<?php
 			### obtener la url mapeada por el htacces y poder envoar el numero de pagina por GET
 			//echo site_url();				
@@ -120,5 +120,57 @@
 			
 			$paginacion->generaPaginacion($total, $back, $next, $url, $classCss);
 		?>
-</div>	
+</div>
+<script type="text/javascript">
+	function anadir_carrito(id, sitio, canal, promocion){												
+		var parametros = {
+			"guidx" 	  : $("#comprar_promocion_especial"+ id +" input[name=guidx]").val(),
+			'guidz'   	  : $("#comprar_promocion_especial"+ id +" input[name=guidz]").val(),
+			'imagen'  	  : $("#comprar_promocion_especial"+ id +" input[name=imagen]").val(),
+			'descripcion' : $("#comprar_promocion_especial"+ id +" input[name=descripcion]").val(),
+			'precio'	  : $("#comprar_promocion_especial"+ id +" input[name=precio]").val(),
+			'cantidad'    : $("#comprar_promocion_especial"+ id +" input[name=cantidad]").val(), 
+		}		
+				
+		//document.comprar_promocion_especial".$v->id_promocionIn.".action ='".TIENDA."carrito.php?id_sitio=". $v->id_sitioSi."&id_canal=". $v->id_canalSi."&id_promocion=". $v->id_promocionIn."'; document.comprar_promocion_especial".$v->id_promocionIn.".submit()
+		var url_carrito = '<?php echo TIENDA."carrito.php?id_sitio="?>'+sitio+'&id_canal='+canal+'&id_promocion='+promocion+'&ajax=1';
+		//$("#comprar_promocion_especial"+ id).attr('action', url_carrito);
+        //alert($("#comprar_promocion_especial"+ id).attr('action'));
+        
+        $.ajax({
+                data:  parametros,
+                url:   url_carrito,
+                type:  'post',
+                beforeSend: function () {
+                      $("#vista_carrito").html("Procesando, espere por favor...");
+                },
+          		success:  function (response) {
+          				$( "#dialog-modal" ).dialog( "open" );
+                        $("#dialog-modal").html(response);
+                }
+        });
+        
+	}
+	
+	$(function(){
+		$('#dialog-modal').dialog({
+			position:['top', 120],
+			modal: true,
+			show: 'slide',
+			width:'620px',
+			stack: true,
+			autoOpen: false,
+			draggable: false,
+			//esta parte hace que se cierre el popup al dar click en cualquier parte fuera del mismo
+			open: function(){
+            	$('.ui-widget-overlay').bind('click',function(){
+                	$('#dialog-modal').dialog('close');
+            	})
+        	}	
+																
+		});																								
+	});
+
+</script>
+<div id='dialog-modal'></div>
 
