@@ -9,8 +9,13 @@ class Json_Creator {
     private $categorias;
 	private $publicaciones;
     private $promocion;
-	private $modelo;			//modelo a utilizar
+	private $modelo;
+	private $promos_carrusel;
+	private $promos_home;
+				//modelo a utilizar
 	#### Rutas de los archivos
+	private $archivo_carrusel_home 	= "./json/carrusel_home.json";
+	private $archivo_promos_home	= "./json/promociones_home.json";
 	private $archivo_categorias 	= "./json/categorias/categorias.json";
 	private $archivo_publicaciones 	= "./json/publicaciones/publicaciones.json";
 	private $archido_id_sitio		= "./json/id_tsitio_tienda.json";
@@ -107,17 +112,19 @@ class Json_Creator {
     public function generar_json_publicacion_promos() {
     	$promos_por_publicacion = array();
 		
-    	if (isset($this->publicaciones)) {		//Ya se crearon las publicaciones
+    	if (!isset($this->publicaciones)) {		//Ya se crearon las publicaciones
 	    	$jp = json_decode($this->publicaciones);
 			//echo "desde la propiedad";
 			foreach ($jp->publicaciones as $publicacion) {
 				$id = $publicacion->id_publicacionSi;
 				//recuperar las promociones
 				$ppp = $this->modelo->get_promos_por_publicacion($id);
-				//para cada publicación
+				//para cada publicación se registran las promociones
 				$promos_por_publicacion[$id] = json_encode(array('promociones' => $ppp));
 				
+				//ruta: ./json/promos_publicacion_[id].json
 				$filename = $this->base_promos_por_publicacion.$id.".json";
+				
 				//registrar las promos por publicación
 				self::Write_To_Json_File($filename, $promos_por_publicacion[$id]);
 				
@@ -126,6 +133,7 @@ class Json_Creator {
 					$id_promocion = $promocion['id_promocion'];
 					
 					$file_detalle = $this->base_detalle_promo.$id_promocion.".json";
+					
 					//recuperar el detalle
 					$detalle_promo = $this->modelo->get_detalle_promocion($id_promocion);
 					
@@ -140,7 +148,7 @@ class Json_Creator {
 				echo "</pre>";
 				*/
 			}
-    	} else if (file_exists($this->archivo_categorias)) {	//Si ya está en el archivo, lo toma de ahí
+    	} else if (file_exists($this->archivo_publicaciones)) {	//Si ya está en el archivo, lo toma de ahí
     		//echo "desde el archivo";
     		//$jp = json_decode(file_get_contents("./json/publicaciones/publicaciones.json"));
     		$jp = json_decode(file_get_contents($this->archivo_publicaciones));
@@ -153,85 +161,60 @@ class Json_Creator {
 				$promos_por_publicacion[$id] = json_encode(array('promociones' => $ppp));
 				
 				$filename = $this->base_promos_por_publicacion.$id.".json";
-				
-				self::Write_To_Json_File($filename, $publicaciones_por_categoria[$id]);
 				
 				//registrar las promos por publicación
 				self::Write_To_Json_File($filename, $promos_por_publicacion[$id]);
 				
 				//obtener el detalle de las promociones
 				foreach ($ppp as $promocion) {
-					$file_detalle = $this->base_detalle_promo.$promocion['id_promocion'].".json";
+					$id_promocion = $promocion['id_promocion'];
+					
+					$file_detalle = $this->base_detalle_promo.$id_promocion.".json";
+					
+					//recuperar el detalle
+					$detalle_promo = $this->modelo->get_detalle_promocion($id_promocion);
+					
 					//echo "'".$file_detalle."'<br/>";
-					self::Write_To_Json_File($file_detalle, json_encode(array("promocion" => $promocion)));
+					self::Write_To_Json_File($file_detalle, json_encode($detalle_promo));
 				}
 			}
     	}
-		
+
 		return $promos_por_publicacion;
     }
 	
-	
-	##### TO DO : Tal vez este ya no se utilice por el momento
 	/**
-	 * Generar los archivos con el detalle de las promociones disponibles por publicación.
-	 * Devuelve el arreglo con los detalles de cada promociones por publicacion.
-	 * Home->Cat->Publicación
+	 * Generar los archivos con las promociones disponibles para el "Carrusel"(canal 20)
+	 * Devuelve el arreglo con las promociones para el carrusel
+	 * home->carrusel
 	 */
-    public function generar_json_detalle_promo_publicacion() {
-    	$detalle_promocion = array();
-		
-    	if (isset($this->publicaciones)) {		//Ya se tienen las publicaciones
-	    	$jp = json_decode($this->publicaciones);
-			//echo "desde la propiedad";
-			foreach ($jp->publicaciones as $publicacion) {
-				$id = $publicacion->id_publicacionSi;
-				
-				$ppp = $this->modelo->get_promos_por_publicacion($id);
-				//para cada publicación
-				$promos_por_publicacion[$id] = json_encode(array('promociones' => $ppp));
-				
-				$filename = $this->base_promos_por_publicacion.$id.".json";
-				
-				self::Write_To_Json_File($filename, $promos_por_publicacion[$id]);
-				/*
-				echo "<pre>";
-				print_r(json_decode($publicaciones_por_categoria[$id]));
-				echo "</pre>";
-				*/
-			}
-			
-    	} else if (file_exists($this->archivo_categorias)) {	//Si ya está en el archivo, lo toma de ahí
-    		//echo "desde el archivo";
-    		//$jp = json_decode(file_get_contents("./json/publicaciones/publicaciones.json"));
-    		$jp = json_decode(file_get_contents($this->archivo_publicaciones));
-			
-			foreach ($jp->publicaciones as $publicacion) {
-				$id = $publicacion->id_publicacionSi;
-				
-				$ppp = $this->modelo->get_promos_por_publicacion($id);
-				//para cada publicación
-				$promos_por_publicacion[$id] = json_encode(array('promociones' => $ppp));
-				
-				$filename = $this->base_promos_por_publicacion.$id.".json";
-				
-				self::Write_To_Json_File($filename, $publicaciones_por_categoria[$id]);
-			}
-    	}/*
-    		echo "<pre>File";
-			echo print_r($promos_por_publicacion);
-			echo "</pre>";
-			exit;
-		 * */
-		
-		/*
-		 *$json = file_get_contents("./json/categorias/categorias.json");
-		$categorias = json_decode($json);
-		*/
-		
-		return $promos_por_publicacion;
-    }
+	public function generar_json_carrusel_promos() {
+		$this->promos_carrusel = json_encode(array("promos_carrusel" => $this->modelo->get_promos_carrusel()));
+		//escribir las promociones en un archivo json
+		self::Write_To_Json_File($this->archivo_carrusel_home, $this->promos_carrusel);
+		/*echo "<pre>";
+		echo json_encode($this->promos_carrusel);
+		echo "</pre>";*/
+		return $this->promos_carrusel;
+	}
 	
+	/**
+	 * Generar los archivos con las promociones disponibles para el canal "Home"
+	 * Devuelve el arreglo con las promociones por publicacion
+	 * Cat->publicacion->detalle
+	 */
+    public function generar_json_home_promos() {
+    	$this->promos_home = json_encode(array("promos_home" => $this->modelo->get_promos_home()));
+		
+		self::Write_To_Json_File($this->archivo_promos_home, $this->promos_home);
+		/*echo "<pre>";
+		echo json_encode($this->promos_home);
+		echo "</pre>";*/
+		
+		#### TO DO: generar detalle de promociones
+		
+		return $this->promos_home;
+    }	
 
 	/**
 	 * Obteger las categorías y guardarlas en un archivo Json

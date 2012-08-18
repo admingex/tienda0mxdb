@@ -82,6 +82,40 @@ class Json_Model extends DBAbstractModel {
 	}
 	
 	/**
+	 * Regresa las promociones para el carrusel del home
+	 */
+	public function get_promos_carrusel() {
+		$this->query = "CALL SP_Obtener_Promociones_Carrusel()";
+		
+		$this->get_results_from_query();
+		
+		$promos_carrusel = $this->rows;
+		
+		/*echo "<pre>";
+		echo json_encode($promos_carrusel);
+		echo "</pre>";*/
+		
+		return $promos_carrusel;
+	}
+	
+	/**
+	 * Regresa las promociones para la página de home
+	 */
+	public function get_promos_home() {
+		$this->query = "CALL SP_Obtener_Promociones_Home()";
+		
+		$this->get_results_from_query();
+		
+		$promos_home = $this->rows;
+		
+		/*echo "<pre>";
+		echo json_encode($promos_carrusel);
+		echo "</pre>";*/
+		
+		return $promos_home;
+	}
+	
+	/**
 	 * Devuelve la información de las publicaciones asociadas con una categoría.
 	 */
 	public function get_publicaciones_por_categoria($id_categoria) {

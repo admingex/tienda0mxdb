@@ -23,7 +23,14 @@
 	$promos_por_pub = $jc->generar_json_publicacion_promos();
 	echo "Promociones por publicación..................</br><br/>";
 	
+	$promos_carrusel = $jc->generar_json_carrusel_promos();
+	echo "Promociones para el carrusel..................</br><br/>";
+	
+	$promos_home = $jc->generar_json_home_promos();
+	echo "Promociones para el home..................</br><br/>";
+	
 	echo "Generación finalizada.";
+	
 	//echo "<pre>";
 	//echo json_decode($publicaciones);
 	/*
