@@ -116,6 +116,23 @@ class Json_Model extends DBAbstractModel {
 	}
 	
 	/**
+	 * Regresa las promociones para la página de home
+	 */
+	public function get_promos_especiales() {
+		$this->query = "CALL SP_Obtener_Promociones_Especiales()";
+		
+		$this->get_results_from_query();
+		
+		$promos_especiales = $this->rows;
+		
+		/*echo "<pre>";
+		echo json_encode($promos_especiales);
+		echo "</pre>";*/
+		
+		return $promos_especiales;
+	}
+	
+	/**
 	 * Devuelve la información de las publicaciones asociadas con una categoría.
 	 */
 	public function get_publicaciones_por_categoria($id_categoria) {
