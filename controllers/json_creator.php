@@ -8,22 +8,28 @@ class Json_Creator {
     ############################### PROPIEDADES ################################
     private $categorias;
 	private $publicaciones;
-    private $promocion;
-	private $modelo;
 	private $promos_carrusel;
 	private $promos_home;
-				//modelo a utilizar
+	private $promos_especiales;
+	
 	#### Rutas de los archivos
-	private $archivo_carrusel_home 	= "./json/carrusel_home.json";
-	private $archivo_promos_home	= "./json/promociones_home.json";
+	private $archido_id_sitio		= "./json/id_tsitio_tienda.json";
 	private $archivo_categorias 	= "./json/categorias/categorias.json";
 	private $archivo_publicaciones 	= "./json/publicaciones/publicaciones.json";
-	private $archido_id_sitio		= "./json/id_tsitio_tienda.json";
+	private $archivo_carrusel_home 	= "./json/carrusel_home.json";
+	private $archivo_promos_home	= "./json/promociones_home.json";
+	private $archivo_promos_especiales	= "./json/promos_especiales.json";
 	
 	private $base_publicacion_por_categoria	= "./json/categorias/publicaciones_categoria_";
 	private $base_promos_por_publicacion	= "./json/publicaciones/promos_publicacion_";
 	private $base_detalle_promo				= "./json/promociones_publicacion/detalle_promo_";
+	
+	//modelo a utilizar
+	private $modelo;	//modelo de datos
+	
 	############################ CONSTRUCTOR Y DESTRUCTOR #######################
+	
+	
     # Método constructor
     function __construct() {
 		$this->db_name = 'cms0mxdb';
@@ -214,8 +220,25 @@ class Json_Creator {
 		#### TO DO: generar detalle de promociones
 		
 		return $this->promos_home;
-    }	
-
+    }
+	
+	/**
+	 * Generar los archivos con las "promociones especiales""
+	 * Devuelve el arreglo con las promociones especiales
+	 * Home->Promociones Especiales
+	 */
+    public function generar_json_promos_especiales() {
+    	$this->promos_especiales = json_encode(array("promos_especiales" => $this->modelo->get_promos_especiales()));
+		
+		self::Write_To_Json_File($this->archivo_promos_especiales, $this->promos_especiales);
+		/*echo "<pre>";
+		echo json_encode($this->promos_especiales);
+		echo "</pre>";*/
+		
+		#### TO DO: generar detalle de promociones
+		return $this->promos_home;
+    }
+	
 	/**
 	 * Obteger las categorías y guardarlas en un archivo Json
 	 * Regresa objeto json encoded
@@ -251,11 +274,13 @@ class Json_Creator {
 	 */
 	public static function Write_To_Json_File($file_name, $str = "") {
 		$mensaje = '';
+		$ruta_server = $_SERVER['DOCUMENT_ROOT']."/tienda";
+		  
 		//echo $_SERVER['DOCUMENT_ROOT']."<br/>";
 		//echo TIENDA;
 		 
 		//$file_name = realpath($file_name);
-		//el archivo existe y es escribible
+		//is_writablle:el archivo existe y es escribible
 		if (!file_exists($file_name) || is_writable($file_name)) {
 			if (!$file = fopen($file_name, 'wb')) {
 				$mensaje = "No se puede abrir el archivo ($file_name).";
@@ -276,7 +301,6 @@ class Json_Creator {
 			echo "Error: " . $mensaje;
 			exit;
 		}
-		
 	}
     ######################### Funciones Auxiliares ##################################
     /**
