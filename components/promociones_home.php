@@ -1,4 +1,4 @@
-<div class="contenedor-promo">	
+<div class="contenedor-promo">
 <?php				    
 	
 	//Sacar la información de la categoría
@@ -8,8 +8,38 @@
 		$json = file_get_contents($path_promos_home);
 		$promos_home = json_decode($json);
 		
+		$total=count($promos_home->promos_home);	
+				
+		if(isset($_GET['page'])){
+			$pg = $_GET['page'];	
+		}
+		else{
+			$pg=0;
+		}
+		$cantidad = 6; //Cantidad de registros que se desea mostrar por pagina
+		//Para probar solo le coloque 3
+	
+		$paginacion = new paginacion($cantidad, $pg);
+		$desde = $paginacion->getFrom();		
+			
+		$recorrer = $promos_home->promos_home;
+		
+		$limite = ($desde+$cantidad);
+		if($limite>$total){
+			$limite = $total;
+		}
+		
+		for($i=$desde; $i<($limite); $i++){
+			//echo "<br />->".$i."<-";
+				/*
+				echo "<pre>";
+					print_r($recorrer[$i]);
+				echo "</pre>";
+				*/
+				$p = $recorrer[$i];
+				
 		//obtener la información de la categoría que se consulta
-		foreach ($promos_home->promos_home as $p) {
+		//foreach ($promos_home->promos_home as $p) {
 			$url_detalle_promo = TIENDA ."promocion/" . $p->id_promocion;
 			
 			echo "
@@ -31,4 +61,28 @@
 		}
 	}
 ?>
+</div>
+<div class="paginacion" style="clear: both; margin-left: auto; margin-right: auto; width: 250px ">
+		<?php
+			### obtener la url mapeada por el htacces y poder envoar el numero de pagina por GET
+			//echo site_url();				
+			if(stristr(basename($_SERVER['REQUEST_URI']), '?')){
+				$mp=explode('?',basename($_SERVER['REQUEST_URI']));				
+				$url=TIENDA.$mp[0]."?";				
+			}
+			else{
+				$url = TIENDA."?";
+			}
+			#####			 																	
+			
+			$classCss = "numPages";
+			#$classCss = "actualPage";
+			
+			//Clase CSS que queremos asignarle a los links 
+			
+			$back = "Atras";
+			$next = "Siguiente";
+			
+			$paginacion->generaPaginacion($total, $back, $next, $url, $classCss);
+		?>
 </div>
