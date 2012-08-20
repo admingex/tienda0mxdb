@@ -15,10 +15,11 @@
 		<?php
 			$action_pagos = ECOMMERCE."api/". $detalle_promocion->id_sitio . "/" . $detalle_promocion->id_canal . "/" . $detalle_promocion->id_promocion . "/pago";
 			//para agregar la promoción al carrito:
-			$action_carrito = TIENDA . "carrito.php?id_sitio=" . $detalle_promocion->id_sitio . "&id_canal=" . $detalle_promocion->id_canal . "&id_promocion=" . $detalle_promocion->id_promocion;
-			$onclick_action_carrito = "document.comprar_promocion" . $detalle_promocion->id_promocion . ".action='" . $action_carrito . "'; ";
+			$carrito = "'comprar_promocion',".$detalle_promocion->id_sitio.", ".$detalle_promocion->id_canal.", ".$detalle_promocion->id_promocion;
+			//TIENDA . "carrito.php?id_sitio=" . $detalle_promocion->id_sitio . "&id_canal=" . $detalle_promocion->id_canal . "&id_promocion=" . $detalle_promocion->id_promocion;
+			//$onclick_action_carrito = "document.comprar_promocion" . $detalle_promocion->id_promocion . ".action='" . $action_carrito . "'; ";
 			//submit
-			$onclick_submit = "document.comprar_promocion". $detalle_promocion->id_promocion . ".submit();";
+			//$onclick_submit = "document.comprar_promocion". $detalle_promocion->id_promocion . ".submit();";
 		?>
 		<form id='comprar_promocion<?php echo $detalle_promocion->id_promocion;?>' name='comprar_promocion<?php echo $detalle_promocion->id_promocion;?>' action='<?php echo $action_pagos;?>' method='post'>
 		<?php
@@ -35,7 +36,7 @@
 					<input type="submit" id="btn_comprar_ahora" name="btn_comprar_ahora" value=" " class="boton_continuar_compra" />
 				</div>
 				<div style="padding: 10px; background-color: #DDD">
-					<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value="Añadir al Carrito" onclick="<?php echo $onclick_action_carrito . $onclick_submit;?>"/>
+					<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value="Añadir al Carrito" onclick="anadir_carrito(<?php echo $carrito ;?>)"/>
 				</div>
 			</div>
 		</form>

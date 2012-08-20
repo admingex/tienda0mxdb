@@ -49,7 +49,7 @@ if(isset($_SESSION['carrito'])){
 		        	   			".$v['descripcion']."<br />";
 			echo " 	   			<a href='".site_url("carrito.php?eliminar_item=".$k)."'>Eliminar</a>";		        	   			
 		    echo " 	   		</div>
-		        	   		<div style='float: right'>".$v['precio']."</div>		        	   		
+		        	   		<div style='float: right'>".number_format($v['precio'],2,'.',',')."</div>		        	   		
 		        	   </div>
 		        	   
 		          </div>";

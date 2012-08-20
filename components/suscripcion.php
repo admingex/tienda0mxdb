@@ -6,8 +6,10 @@
 	$onclick_action_pagos_inicial = "document.comprar_promocion" . $promo_inicial->id_promocion . ".action='" . $action_pagos_inicial . "'; ";
 	
 	//para agregar la promoción al carrito:
-	$action_carrito_inicial = TIENDA . "carrito.php?id_sitio=" . $promo_inicial->id_sitio . "&id_canal=" . $promo_inicial->id_canal . "&id_promocion=" . $promo_inicial->id_promocion;
-	$onclick_action_carrito_inicial = "document.comprar_promocion" . $promo_inicial->id_promocion . ".action='" . $action_carrito_inicial . "'; ";
+	$param = "comprar_promocion, ".$promo_inicial->id_sitio.", ".$promo_inicial->id_canal.", ";	
+	$carrito = "comprar_promocion, ".$promo_inicial->id_sitio.", ".$promo_inicial->id_canal.", ".$promo_inicial->id_promocion;
+	$action_carrito_inicial = TIENDA . "carrito.php?id_sitio=" . $promo_inicial->id_sitio . "&id_canal=" . $promo_inicial->id_canal;
+	//$onclick_action_carrito_inicial = "document.comprar_promocion" . $promo_inicial->id_promocion . ".action='" . $action_carrito_inicial . "'; ";
 
 	//$onclick_submit = "document.comprar_promocion". $promo_inicial->id_promocion . ".submit()";
 	
@@ -16,7 +18,8 @@
 	var id_ant = <?php echo $promo_inicial->id_promocion; ?>;
 	var form_submit = "document.comprar_promocion" + id_ant;
 	//iniciales
-	var url_carrito = "<?php echo $action_carrito_inicial; ?>";
+	var carrito = "<?php echo $carrito; ?>";
+	//var url_carrito = "<?php //echo $action_carrito_inicial; ?>";
 	
 	function cambia_boton(id) {
 		if (document.getElementById(id_ant)) {
@@ -28,9 +31,7 @@
 		
 		//document.getElementById(id).innerHTML = '<input type="submit" id="usar_tarjeta" name="usar_tarjeta" value="&nbsp;" class="usar_tarjeta"/>';
 		document.getElementById('div_promocion' + id).className = 'radio_selected';
-		document.getElementById('radio' + id).checked = 'checked';
-		
-		url_carrito = "<?php echo TIENDA . "carrito.php?id_sitio=" . $promo_inicial->id_sitio . "&id_canal=" . $promo_inicial->id_canal . "&id_promocion="; ?>" + id;
+		document.getElementById('radio' + id).checked = 'checked';						
 		
 		//actuaclización de eventos;
 		var submit_pagos = "submit_to_pagos(" + id + ");";
@@ -51,13 +52,19 @@
 		var forma = $("form[name='comprar_promocion" + id_promo + "']");
 		forma.submit();
 	}
-	
+		
 	/*envía el formulario al carrito*/
 	function submit_to_carrito(id_promo) {
+		
 		//se cambia el action del formulario y se envía
-		var forma = $("form[name='comprar_promocion" + id_promo + "']");
-		forma.attr("action", url_carrito);
-		forma.submit();
+		carrito = '<?php echo $param; ?>'+ id_promo; 	
+		//alert(carrito);
+		forma=$("#comprar_promocion27");
+		forma.attr("action", carrito);
+		alert('ir a:'+forma.attr("action"));
+		//forma.submit();
+		alert('antes de ir al carrito'+carrito + $("#comprar_promocion27 input[name=guidx]").val());
+		anadir_carrito(carrito);
 		
 	}
 </script>

@@ -27,13 +27,16 @@
 		$action_pagos = ECOMMERCE."api/". $p->detalle->id_sitio . "/" . $p->detalle->id_canal . "/" . $p->detalle->id_promocion . "/pago";
 		
 		//para agregar la promoción al carrito:
-		$action_carrito = TIENDA . "carrito.php?id_sitio=" . $p->detalle->id_sitio . "&id_canal=" . $p->detalle->id_canal . "&id_promocion=" . $p->detalle->id_promocion;
-		$onclick_action = "document.comprar_promocion" . $p->detalle->id_promocion . ".action='" . $action_carrito . "'; ";
-		$onclick_event = "document.comprar_promocion".$p->detalle->id_promocion.".submit()";
+		$carrito='';
+		$carrito = "'comprar_promocion', ".$p->detalle->id_sitio.", ".$p->detalle->id_canal.", ".$p->detalle->id_promocion;
+		
+		//$action_carrito = TIENDA . "carrito.php?id_sitio=" . $p->detalle->id_sitio . "&id_canal=" . $p->detalle->id_canal . "&id_promocion=" . $p->detalle->id_promocion;
+		//$onclick_action = "document.comprar_promocion" . $p->detalle->id_promocion . ".action='" . $action_carrito . "'; ";
+		//$onclick_event = "document.comprar_promocion".$p->detalle->id_promocion.".submit()";
 		
 		//formulario para la promoción
 		echo "
-		<form name='comprar_promocion".$p->detalle->id_promocion."' action='". $action_pagos ."' method='post'>
+		<form id='comprar_promocion".$p->detalle->id_promocion."' name='comprar_promocion".$p->detalle->id_promocion."' action='". $action_pagos ."' method='post'>
 			<div class='promo-left'>
 				<input type='hidden' name='guidx' value='".API::GUIDX."' />
 			    <input type='hidden' name='guidz' value='".API::guid()."' />
@@ -49,8 +52,11 @@
 		      	<div class='descripcion'>
 	          		<input type='submit' name='btn_comprar_ahora' value=' ' class='boton_continuar_compra' />
 		      	</div>
-		      	<div class='descripcion'>
-	          		<input type='button' name='btn_agregar_carrito' value='Añadir al Carrito' onclick=\"$onclick_action $onclick_event \"/>
+		      	<div class='descripcion'>";
+		 ?>		      	
+		      	<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value="Añadir al Carrito" onclick="anadir_carrito(<?php echo $carrito ;?>)"/>
+		 <?php     	
+	      echo "
 		      	</div>
 	  		</div>
 	  	</form>";
