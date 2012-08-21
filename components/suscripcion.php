@@ -6,19 +6,21 @@
 	$onclick_action_pagos_inicial = "document.comprar_promocion" . $promo_inicial->id_promocion . ".action='" . $action_pagos_inicial . "'; ";
 	
 	//para agregar la promoción al carrito:
-	$param = "comprar_promocion, ".$promo_inicial->id_sitio.", ".$promo_inicial->id_canal.", ";	
-	$carrito = "comprar_promocion, ".$promo_inicial->id_sitio.", ".$promo_inicial->id_canal.", ".$promo_inicial->id_promocion;
-	$action_carrito_inicial = TIENDA . "carrito.php?id_sitio=" . $promo_inicial->id_sitio . "&id_canal=" . $promo_inicial->id_canal;
+	//$param = "comprar_promocion, ".$promo_inicial->id_sitio.", ".$promo_inicial->id_canal.", ";	
+	//$carrito = "comprar_promocion, ".$promo_inicial->id_sitio.", ".$promo_inicial->id_canal.", ".$promo_inicial->id_promocion;
+	//$action_carrito_inicial = TIENDA . "carrito.php?id_sitio=" . $promo_inicial->id_sitio . "&id_canal=" . $promo_inicial->id_canal."&id_promocion=";
 	//$onclick_action_carrito_inicial = "document.comprar_promocion" . $promo_inicial->id_promocion . ".action='" . $action_carrito_inicial . "'; ";
 
 	//$onclick_submit = "document.comprar_promocion". $promo_inicial->id_promocion . ".submit()";
 	
 ?>
 <script type="text/javascript">
+	var id_sit = <?php echo $promo_inicial->id_sitio; ?>;
+	var id_can = <?php echo $promo_inicial->id_canal; ?>;
 	var id_ant = <?php echo $promo_inicial->id_promocion; ?>;
 	var form_submit = "document.comprar_promocion" + id_ant;
 	//iniciales
-	var carrito = "<?php echo $carrito; ?>";
+	
 	//var url_carrito = "<?php //echo $action_carrito_inicial; ?>";
 	
 	function cambia_boton(id) {
@@ -56,15 +58,9 @@
 	/*envía el formulario al carrito*/
 	function submit_to_carrito(id_promo) {
 		
-		//se cambia el action del formulario y se envía
-		carrito = '<?php echo $param; ?>'+ id_promo; 	
-		//alert(carrito);
-		forma=$("#comprar_promocion27");
-		forma.attr("action", carrito);
-		alert('ir a:'+forma.attr("action"));
-		//forma.submit();
-		alert('antes de ir al carrito'+carrito + $("#comprar_promocion27 input[name=guidx]").val());
-		anadir_carrito(carrito);
+		//se cambia el action del formulario y se envía		 			
+		//forma = $("form[id='comprar_promocion" + id_promo + "']");
+		anadir_carrito('comprar_promocion', id_sit, id_can, id_promo)												
 		
 	}
 </script>
@@ -137,13 +133,13 @@
 					
 					//datos para que se procese el pago en la plataforma 
 					echo "
-					<form id='comprar_promocion" . $detalle->id_promocion ."' name='comprar_promocion" . $detalle->id_promocion . "' action='" . $action_pagos . "' method='post'>".
-						"<input type='hidden' name='guidx' value='".API::GUIDX."'/>\n" . 
-						"<input type='hidden' name='guidz' value='".API::guid()."'/>\n". 
+					<form id='comprar_promocion".$detalle->id_promocion."' name='comprar_promocion" . $detalle->id_promocion . "' action='" . $action_pagos . "' method='post'>".
+						"<input type='hidden' name='guidx' value='".API::GUIDX."' />\n" . 
+						"<input type='hidden' name='guidz' value='".API::guid()."' />\n". 
 					    "<input type='hidden' name='imagen' value='".TIENDA."images/img3.jpg' />\n" .
 					    "<input type='hidden' name='descripcion' value='". $detalle->descripcion_promocion."' />\n" .
 					    "<input type='hidden' name='precio' value='".$detalle->costo."' />\n" .
-					    "<input type='hidden' name='cantidad' value='1' />\n
+					    "<input type='hidden' name='cantidad' value='1' />\n					     
 					</form>";
 					
 					//promoción seleccionada inicialmente:

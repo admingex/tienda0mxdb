@@ -1,15 +1,17 @@
-function anadir_carrito(nameform, sitio, canal, promocion){	
+function anadir_carrito(nameform, sitio, canal, promocion){
+		 					
+		var tienda = 'http://localhost/tienda/';		
 		
-		var tienda = 'http://localhost/tienda/';											
+		var formid = document.getElementById(nameform+promocion);											
 		var parametros = {
-			"guidx" 	  : $("#"+ nameform + promocion +" input[name=guidx]").val(),
-			'guidz'   	  : $("#"+ nameform + promocion +" input[name=guidz]").val(),
-			'imagen'  	  : $("#"+ nameform + promocion +" input[name=imagen]").val(),
-			'descripcion' : $("#"+ nameform + promocion +" input[name=descripcion]").val(),
-			'precio'	  : $("#"+ nameform + promocion +" input[name=precio]").val(),
-			'cantidad'    : $("#"+ nameform + promocion +" input[name=cantidad]").val(), 
+			"guidx" 	  : formid.guidx.value,
+			'guidz'   	  : formid.guidz.value,
+			'imagen'  	  : formid.imagen.value,
+			'descripcion' : formid.descripcion.value,
+			'precio'	  : formid.precio.value,
+			'cantidad'    : formid.cantidad.value 
 		}		
-		alert($("#"+ nameform + promocion +" input[name=guidx]").val());		
+				
 		//document.comprar_promocion_especial".$v->id_promocionIn.".action ='".TIENDA."carrito.php?id_sitio=". $v->id_sitioSi."&id_canal=". $v->id_canalSi."&id_promocion=". $v->id_promocionIn."'; document.comprar_promocion_especial".$v->id_promocionIn.".submit()
 		var url_carrito = tienda+'carrito.php?id_sitio='+sitio+'&id_canal='+canal+'&id_promocion='+promocion+'&ajax=1';
 		//$("#comprar_promocion_especial"+ id).attr('action', url_carrito);

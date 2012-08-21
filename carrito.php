@@ -21,12 +21,12 @@
 	$data["scripts"] = $scripts;
 	$data["title"] = $title;
 	$data["subtitle"] = $subtitle;		
-	
+	/*
 	echo "<pre>";
 		print_r($_GET);
 		print_r($_POST);
 	echo "<pre>";
-	
+	*/
 	
 	if(($_GET)){
 			
