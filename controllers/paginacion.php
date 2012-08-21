@@ -39,7 +39,8 @@ class paginacion
 		
 		if ($this->page > 0) {
 			$this->puri = $this->page - 1;
-			echo "<a href='".$this->url."page=".$this->puri."'>".$back."</a>";
+			//echo "<a href='".$this->url."page=".$this->puri."'>".$back."</a>";
+			echo "<a href='".$this->url.$this->puri."'> ".$back."</a>";
 		}
 		
 		if ($this->numPages > 1) {
@@ -53,7 +54,7 @@ class paginacion
 					//$page + 1, $page +2 son los numeros que se desea ver por delante del actual
 					//$page -1, $page -2 son los numeros (Links) a ver por detras del actual
 					//Esto se puede modificar como se desee
-					echo " <a class='".$class."' href='".$this->url."page=".$i."'>".($i+1)."</a>";
+					echo " <a class='".$class."' href='".$this->url.$i."'>".($i+1)."</a>";
 				}
 				elseif ($i == $this->page - 3) {
 					echo "<span>...</span>";
@@ -66,7 +67,7 @@ class paginacion
 		
 		if ($this->page < $this->numPages - 1) {
 			$this->puri = $this->page + 1;
-			echo "<a href='".$this->url."page=".$this->puri."'>".$next."</a>";
+			echo "<a href='".$this->url.$this->puri."'>".$next."</a>";
 		}
 	}
 	

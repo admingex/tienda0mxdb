@@ -236,7 +236,7 @@ class Json_Creator {
 		echo "</pre>";*/
 		
 		#### TO DO: generar detalle de promociones
-		return $this->promos_home;
+		return $this->promos_especiales;
     }
 	
 	/**

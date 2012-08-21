@@ -16,6 +16,7 @@
 			$pg = 0;
 		}
 		
+		//echo "get pag: " . $_GET['page'];
 		$cantidad = 6; //Cantidad de registros que se desea mostrar por pagina
 		
 		//Para probar solo le coloqué 3
@@ -68,7 +69,8 @@
 </div>
 <div class="paginacion" style="clear: both; margin-left: auto; margin-right: auto; width: 250px ">
 <?php
-echo $_SERVER['DOCUMENT_ROOT']."/tienda/<br/>";
+	//echo $_SERVER['DOCUMENT_ROOT']."/tienda/<br/>";
+	/*
 	### obtener la url mapeada por el htacces y poder envoar el numero de pagina por GET
 	//echo site_url();				
 	if (stristr(basename($_SERVER['REQUEST_URI']), '?')) {
@@ -77,7 +79,9 @@ echo $_SERVER['DOCUMENT_ROOT']."/tienda/<br/>";
 	} else {
 		$url = TIENDA . '?';
 	}
-	#####			 																	
+	#####
+	*/		 																	
+	$url = TIENDA;
 	
 	$classCss = "numPages";
 	#$classCss = "actualPage";

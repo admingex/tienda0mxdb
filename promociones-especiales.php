@@ -3,7 +3,7 @@
 
 	//requiredincludes
     require('./config/settings.php');
-	require("controllers/paginacion.php");
+	require("./controllers/paginacion.php");
 			
     //header (y/o menús)
     $menues = TRUE;

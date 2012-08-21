@@ -5,7 +5,7 @@
 		$url_breadcum = site_url("categoria/".$info_categoria->id_categoriaSi);
 		
 		//breadcrum
-		echo "<div><h3><a href='".site_url("home")."'> Home </a> > <a href='#'> ".ucwords(strtolower($info_categoria->nombreVc))." </a></h3></div>";
+		echo "<div><a href='".site_url("home")."'> Home </a> > <b>".ucwords(strtolower($info_categoria->nombreVc))."<b> </div>";
 	}
 ?>
 <div class="contenedor-promo">

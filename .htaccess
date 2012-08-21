@@ -24,6 +24,11 @@
     #RewriteCond %{REQUEST_FILENAME} !-d
     #RewriteRule ^(.*)$ index.php?/$1 [L]
     
+    #### tienda paginada
+    ##RewriteRule ^(0+)/?$			http://%{HTTP_HOST}/tienda/
+    RewriteRule ^([0-9]+)/?$		index.php?page=$1
+    
+    
     #Test Redirect
     #RewriteRule ^(*.php)$ /$1 [L]
     RewriteRule ^login/?$ 		login.php
@@ -31,11 +36,15 @@
     RewriteRule ^registro/?$ 	registro.php
     RewriteRule ^password/?$ 	password.php
     RewriteRule ^categoria/?$ 	categorias.php
-    RewriteRule ^categoria/6/?$	promociones-especiales.php
+    
+    RewriteRule ^categoria/6/?$ promociones_especiales.php?id_categoria=6&page=0
+    RewriteRule ^categoria/6/([0-9]+)/?$	promociones_especiales.php?id_categoria=6&page=$1
     
     #### Home
-    RewriteRule ^home/?$	http://%{HTTP_HOST}/tienda/
-    RewriteRule ^([A-Za-z\+]*)/home/?$	http://%{HTTP_HOST}/tienda/
+    RewriteRule ^home/?$			http://%{HTTP_HOST}/tienda/
+    
+    
+    #RewriteRule ^([A-Za-z\+]*)/home/?$	http://%{HTTP_HOST}/tienda/
     
     
     #### Promociones

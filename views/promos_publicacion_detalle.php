@@ -39,7 +39,7 @@
 		}
 		
 		//breadcum final para el detalle de promoción
-		echo "<div><h3><a href='".site_url("home")."'> Home </a> > ". $bread_cat . $bread_pub . $desc_producto;
+		echo "<div><a href='".site_url("home")."'> Home </a> > ". $bread_cat . $bread_pub . $desc_producto . "</div>";
 		//echo "<div><h3><a href='".site_url("home")."'> Home </a> > ". $bread_cat ." <a href=''>".ucwords(strtolower($info_publicacion->nombreVc))."</a></h3></div>";
 		
 		//echo $info_publicacion->formatos;

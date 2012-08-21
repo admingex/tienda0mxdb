@@ -13,10 +13,10 @@
 		
 		//la ruta de la publicación va siempre en este caso
 		//$bread_pub		= " <a href=''>".ucwords(strtolower($info_publicacion->nombreVc))."</a></h3></div>";
-		$bread_pub		= " <a href=''>" . $info_publicacion->nombreVc . "</a></h3></div>";
+		$bread_pub		= "<b>" . $info_publicacion->nombreVc . "</b>";
 		
 		//breadcum final
-		echo "<div><h3><a href='".site_url("home")."'> Home </a> > ". $bread_cat . $bread_pub;
+		echo "<div><a href='".site_url("home")."'> Home </a> > ". $bread_cat . $bread_pub . "</div>";
 	}
 	
 	##### Promos destacadas por publicación

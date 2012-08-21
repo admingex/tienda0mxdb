@@ -29,6 +29,9 @@
 	$promos_home = $jc->generar_json_home_promos();
 	echo "Promociones para el home..................</br><br/>";
 	
+	$promos_home = $jc->generar_json_promos_especiales();
+	echo "Promociones Especiales..................</br><br/>";
+	
 	echo "Generación finalizada.";
 	
 	//echo "<pre>";
