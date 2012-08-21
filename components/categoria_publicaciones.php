@@ -1,5 +1,12 @@
+<div id="contenedor-promo">
 <?php
 	/*Despliega las publicaciones de una categoría*/
+	/*
+	echo "<pre>";
+		print_r($categoria->publicaciones);
+	echo "</pre>";
+	*/
+	$j=0;
 	foreach ($categoria->publicaciones as $p) {
 		//url de la puclicación
 		$url_p = '';
@@ -12,11 +19,26 @@
 		}
 		
 		echo "
-			<div class='promo-left'>
-		    	<a href='". $url_p . "'><img src='".TIENDA."images/img1.jpg' /></a>
-		      	<div class='descripcion'>".$p->nombre_publicacion."</div>
-		      	<div class='descripcion'>".$p->desc_publicacion."</div>
-		      	<div class='descripcion'>".$p->formatos./*."-".strlen($p->desc_publicacion).*/"</div>
+			<div class='catego-left'>
+				<div class='contenedor-imagen'>
+					<a href='". $url_p . "'>
+						<img src='" . TIENDA . "images/css_sprite_PortadaCaja.jpg' />
+					</a>
+				</div>
+				<div class='titulo-categoria-back titulo-categoria'>
+					".$p->nombre_publicacion."	
+				</div>
+				<div class='descripcion-categoria-back descripcion-promocion'>
+					".$p->desc_publicacion."	
+				</div>						    			      			      
+		      	<!--<div>".$p->formatos./*."-".strlen($p->desc_publicacion).*/"</div>-->
       		</div>
 	      ";
+		//pinta un espacio en blanco que sirve de margen						
+		if (($j == 0) || ($j == 1) || ($j == 3) || ($j == 4) ){
+			echo "<div class='catego-space'></div>";				
+		}
+		$j++; 
 	}
+?>
+</div>

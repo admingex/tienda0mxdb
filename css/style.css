@@ -129,13 +129,13 @@ header, footer, article, section, hgroup, nav, figure div {
 }
 
 /* home de la tienda*/
-.contenedor-promo {
+/*.contenedor-promo {
 		margin-left: auto; 
 		margin-right: auto;
 		
 		width: 600px;
 		/*padding-left: 170px;*/
-		/*padding-right: 170px;*/	
+		/*padding-right: 170px;	
 		margin-top: 30px;
 	}
 	
@@ -163,7 +163,7 @@ header, footer, article, section, hgroup, nav, figure div {
 		font-size: 12px;
 		font-weight: bold;
 	}
-	
+	/*
 	.promo-left{
 		float: left;
 		width: 190px;			
@@ -172,7 +172,7 @@ header, footer, article, section, hgroup, nav, figure div {
 		margin-bottom: 5px;
 		text-align: center;		
 		height: 230px;		
-	}
+	}*/
 
 
 

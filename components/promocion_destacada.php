@@ -2,7 +2,7 @@
 //iterar sobre las promociones destacadadas y sólo scar una
 foreach ($pd->promocion_especial_destacada as $j) {
 ?>
-<div class="container">
+<div id="contenedor-promo-especial">
 	<div id="images">
     <?php
 	    echo "

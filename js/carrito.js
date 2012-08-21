@@ -42,11 +42,16 @@ function anadir_carrito(nameform, sitio, canal, promocion){
 			autoOpen: false,
 			draggable: false,
 			//esta parte hace que se cierre el popup al dar click en cualquier parte fuera del mismo
-			open: function(){
-            	$('.ui-widget-overlay').bind('click',function(){
+			open: function(event, ui){
+				$('body').css('overflow','hidden');
+				$('.ui-widget-overlay').css('width','100%');
+				$('.ui-widget-overlay').bind('click',function(){
                 	$('#dialog-modal').dialog('close');
-            	})
-        	}	
+            	}) 
+			}, 
+    		close: function(event, ui){
+    			$('body').css('overflow','auto');
+    		} 				
 																
 		});																								
 	});

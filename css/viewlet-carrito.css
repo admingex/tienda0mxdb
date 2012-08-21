@@ -1,0 +1,154 @@
+﻿/* viewlet-carrito */
+.viewlet-carrito{
+	width:590px;
+	padding-right:10px;
+	height: auto;
+	font-family:Arial;
+}
+.viewlet-carrito .title{
+	border: none;
+	background-color: #F1F1F1;
+	background: transparent url('../images/scc_sprite_econsvarios.png') no-repeat;
+	background-position: 0px 0px;	
+	float: left;	
+	font-weight:bold ;	
+	size: 13px;
+	color: #4f4f4f;
+	
+}
+.viewlet-carrito .publicacion-compra {
+	float: left;
+	width: 25%;
+	height: 100%;
+	text-align:justify;
+	size: 13px;
+}
+.viewlet-carrito .publicacion-compra span{
+	color: #262626;
+}
+.viewlet-carrito .detalle-compra{
+	background-color: #E2E2E2;
+	padding: 10px 0px;	
+	size: 13px;
+	color:#262626;
+}
+.viewlet-carrito .detalle-compra span{
+	font-weight:bold ;	
+	size: 13px;
+	color:#262626;
+}
+.viewlet-carrito .detalle-compra .pagar-carrito{
+	border: none;
+	height: 36px;
+	width: 47px;
+	background: url('../images/scc_sprite_pagar.png') no-repeat;	
+	background-position: 0px 0px;
+}
+
+.viewlet-carrito .detalle-compra .pagar-carrito:hover{
+	border: none;
+	height: 36px;
+	width: 473px;
+	background: url('../images/scc_sprite_pagar.png') no-repeat;	
+	background-position: 0px -18px;
+}
+.viewlet-carrito .nproductos{
+	padding: 10px 0px;
+	font-weight:bold ;	
+	background-color:#F1F1F1;
+	size: 13px;
+	color:#262626;
+}
+.viewlet-carrito .elementos-carrito-all{
+	clear: both; 
+	padding: 5px 0px;
+	size:13px;
+	color:#B0B0B0;
+}
+.viewlet-carrito .elementos-carrito-all .elementos-carrito-imagen{
+	float:left;	
+}
+.viewlet-carrito .elementos-carrito-all .elementos-carrito-imagen img{
+	height:72px; 
+	width: 54px;
+}
+.viewlet-carrito .elementos-carrito-all .head-articulo{
+	float: left; 
+	padding-left: 10px; 
+	width: 290px;
+	font-weight:bold ;
+	size: 14px;	
+	color:#262626;
+	
+}
+.viewlet-carrito .elementos-carrito-all .head-articulo span{
+	float: right;
+}	
+.viewlet-carrito .elementos-carrito-all .pleca-carrito{
+	display: block;			
+	height: 4px;
+	margin-left: 40px;
+	background: url('../images/css_sprite_PlecaCorta04.jpg') no-repeat;	
+	clear: both;
+			
+}
+.viewlet-carrito .elementos-carrito-all a{
+	color:#39639b;
+	size:12px;	
+}
+.viewlet-carrito .elementos-carrito-all a:hover{
+	color:#39639b;
+	size:12px;	
+}
+.viewlet-carrito .elementos-carrito-all a:visited{
+	color:#39639b;
+	size:12px;	
+}
+.viewlet-carrito .elementos-carrito-all a:focus{
+	color:#39639b;
+	size:12px;	
+}
+.viewlet-carrito .pleca-carrito{
+	display: block;			
+	height: 4px;
+	margin-left: 40px;
+	background: url('../images/css_sprite_PlecaCorta04.jpg') no-repeat;	
+	clear: both;			
+}
+.viewlet-carrito .carrito-final{
+	clear: both;
+	float: right;
+	color: #262626;
+	size: 13px;
+}
+.viewlet-carrito .carrito-final .datos span{
+	font-weight:bold ;
+	size: 14px;
+}
+
+.viewlet-carrito .final-pago-boton {
+	float: right;
+}
+
+.viewlet-carrito .final-continuar-boton {
+	float: left;
+}
+.viewlet-carrito .carrito-final{
+	clear: both;
+	background-color:#E2E2E2;
+}
+.viewlet-carrito .carrito-final .continuar-compra{
+	border: none;
+	height: 38px;
+	width: 137px;
+	background: url('../images/scc_sprite_pagar.png') no-repeat;	
+	background-position: 0px 0px;
+}
+
+.viewlet-carrito .carrito-final .continuar-compra:hover{
+	border: none;
+	height: 38px;
+	width: 137px;
+	background: url('../images/scc_sprite_pagar.png') no-repeat;	
+	background-position: 0px -18px;
+}

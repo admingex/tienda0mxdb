@@ -9,9 +9,8 @@
     $menues = TRUE;
 	
 	//incluir archivos js
-	$scripts = array();	
-	$scripts [] = TIENDA."js/login.js";
-	$scripts [] = TIENDA."js/registro.js";
+	$scripts = array();		
+	$scripts [] = TIENDA."js/carrito.js";
 	
 	//información para la vista
 	$title = "Publicaciones por Catgoría";

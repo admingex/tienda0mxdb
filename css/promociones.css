@@ -1,0 +1,181 @@
+#contenedor-promo {								
+	margin-top: 45px;		
+	width: 529px;	
+	font-family: Arial;										
+}
+
+#contenedor-promo-especial {								
+	margin-top: 15px;		
+	width: 529px;	
+	font-family: Arial;	
+	margin-bottom: -25px;									
+}
+
+#contenedor-promo .promo-space{				
+	float: left;
+	width: 33px;	
+	height: 360px;																			
+}
+
+#contenedor-promo .promo-left{				
+	width: 154px;					
+	float: left;
+	height: 360px ;																				
+}
+
+
+#contenedor-promo .catego-space{				
+	float: left;
+	width: 33px;	
+	height: 330px;																			
+}
+
+#contenedor-promo .catego-left{				
+	width: 154px;					
+	float: left;
+	height: 330px ;																				
+}
+
+#contenedor-promo .contenedor-imagen{
+	height: 189px;
+	background: url('../images/css_sprite_RevistaCuadro.png') no-repeat;
+	background-position: -13px -18px;	
+	text-align: center;		
+	display: block;																
+}
+
+#contenedor-promo .contenedor-imagen img{
+	margin-top: 10px;																					
+}
+
+#contenedor-promo .titulo-promocion-back{		
+	height: 50px;
+	padding: 6px 2px 2px 2px; 	
+	background: #E2E2E2 ;	
+	text-align: center;		
+	display: block;
+																			
+}
+
+#contenedor-promo .titulo-promocion{
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;		
+	color: #671300;																
+}
+
+#contenedor-promo .titulo-promocion a{
+	font-size: 15px;	
+	text-align: center;		
+	color: #671300;																
+}
+
+
+#contenedor-promo .descripcion-promocion-back{		
+	height: 40px; 			
+	background: #EAEAEA ;			
+	display: block;																			
+}
+
+#contenedor-promo .descripcion-promocion{
+	font-size: 13px;			
+	color: #222;
+	padding: 5px 7px 2px 7px; 
+	text-align: center;																	
+}
+
+#contenedor-promo .precio-promocion-back{
+	height: 25px; 			
+	background: #E2E2E2 ;			
+	display: block;		
+	text-align: center;	
+	padding-top: 5px;															
+}
+
+#contenedor-promo .precio-promocion{
+	font-size: 14px;			
+	color: #CA0002;	
+	font-weight: bold; 	
+}
+
+#contenedor-promo .boton{
+	text-align: center;
+	padding: 5px;	
+	background-color: #FFF;
+}
+
+#contenedor-promo .boton-comprar-ahora{
+	height: 18px;
+	width: 102px;
+	background: url('../images/css_sprite_BtnComprarAhora.png') no-repeat;
+	background-position: -6px -3px;			
+	border: none;
+	
+}
+
+#contenedor-promo .boton-comprar-ahora:hover{		
+	background: url('../images/css_sprite_BtnComprarAhora.png') no-repeat;
+	background-position: -6px -20px;				
+	
+}
+
+#contenedor-promo .boton-anadir-carrito{
+	margin-top: 5px;
+	height: 18px;
+	width: 111px;
+	background: url('../images/css_sprite_btnCuadroDato01.png') no-repeat;
+	background-position: -7px -7px;			
+	border: none;	
+}
+
+#contenedor-promo .boton-anadir-carrito:hover{	
+	background: url('../images/css_sprite_btnCuadroDato01.png') no-repeat;
+	background-position: -7px -25px;			
+	border: none;	
+}
+
+#contenedor-promo .titulo-categoria-back{		
+	height: 25px;
+	padding: 10px 2px 2px 2px; 	
+	background: #E2E2E2 ;	
+	text-align: center;		
+	display: block;
+																			
+}
+
+#contenedor-promo .titulo-categoria{
+	font-size: 15px;	
+	text-align: center;		
+	color: #CA0002;																
+}
+
+#contenedor-promo .descripcion-categoria-back{		
+	height: 80px; 			
+	background: #EAEAEA ;			
+	display: block;		
+	vertical-align: middle;																	
+}
+
+#contenedor-promo .descripcion-categoria{
+	font-size: 13px;			
+	color: #2C2C2C;
+	padding: 5px 3px 2px 3px; 
+	text-align: center;																	
+}
+
+#contenedor-promo .titulo-publicacion-back{		
+	height: 45px;
+	padding: 10px 2px 2px 2px; 	
+	background: #E2E2E2 ;	
+	text-align: center;		
+	display: block;
+																			
+}
+
+#contenedor-promo .descripcion-publicacion-back{
+	padding-top: 5px;		
+	height: 25px; 			
+	background: #F1F1F1 ;			
+	display: block;		
+	text-align: center;																
+}

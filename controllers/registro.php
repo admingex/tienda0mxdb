@@ -52,16 +52,16 @@ class Registro_Controller {
 		
 		if (empty($this->registro_errores)) {
 			//si está registrado regresa un arreglo de tres elementos con la información, si no, viene vacío
-			$email_registrado = $this->modelo->verifica_registro_email($this->cliente_info['email']);
-			
+			$email_registrado = $this->modelo->verifica_registro_email($this->cliente_info['email']);			
 			if (count($email_registrado) == 0) {
 				$res = $this->modelo->registrar_cliente($this->cliente_info);
 				
 				if ($res) {
 					//echo "Cliente registrado, creando sesión";
-					//exit;
-					
-					$this->crear_sesion($this->cliente_info['id_clienteIn'], $this->cliente_info['salutation'], $this->cliente_info['email']);	//crear sesion,
+					// obtenemos la informacion del cliente regitrado para recuperar el id del cliente
+					$clie = $this->modelo->verifica_cliente($this->cliente_info['email'], $this->cliente_info['password']);
+															
+					$this->crear_sesion($clie['id_cliente'], $this->cliente_info['salutation'], $this->cliente_info['email']);	//crear sesion,
 					//se va a revisar el inicio de sesión
 					$url = ''; 
 					echo 'registrado';

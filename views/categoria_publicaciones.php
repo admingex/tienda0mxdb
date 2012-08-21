@@ -8,7 +8,8 @@
 		echo "<div><a href='".site_url("home")."'> Home </a> > <b>".ucwords(strtolower($info_categoria->nombreVc))."<b> </div>";
 	}
 ?>
-<div class="contenedor-promo">
+<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
+
 <?php
 	//viene en el data del controlador
 	$id = isset($id_categoria) ? $id_categoria : 0;
@@ -38,4 +39,3 @@
 		}
 	}
 ?>
-</div>

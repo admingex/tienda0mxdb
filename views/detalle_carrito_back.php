@@ -1,15 +1,14 @@
-<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-carrito.css" rel="stylesheet" />
 <?php
-echo "<div class='viewlet-carrito' >";
+echo "<div style='width: 590px; padding-right: 10px; height: auto'>";
 if(isset($_SESSION['carrito'])){
 	$in='width: inherit';
 	if(isset($_SESSION['ult_elem']) ){
 		$ind=$_SESSION['ult_elem'];
-		echo "<div class='title'>Producto agregado al carrito:</div>";
-		echo "<div class='publicacion-compra'>";
+		echo "<div>Producto agregado al carrito:</div>";
+		echo "<div style='float: left; width: 25%; height: 100%; text-align: center'>";
 		echo "    <img src='".$_SESSION['carrito'][$ind]['imagenVc']."' />";
 		echo "		<br />".$_SESSION['carrito'][$ind]['descripcion'];
-		echo "		<br /><span>Precio: ".$_SESSION['carrito'][$ind]['precio'] ."</span>";
+		echo "		<br />Precio: ".$_SESSION['carrito'][$ind]['precio'];
 		echo "</div>";
 		$in='width: 400px';	
 		
@@ -38,44 +37,33 @@ if(isset($_SESSION['carrito'])){
 		
 		echo "
 		<form name='' action='".ECOMMERCE."api/carrito/".$datos_encrypt_url."' method='post'>
-			<div class='detalle-compra'><p>Total del carrito: <span>".number_format($total,2,'.',',')."</span><input type='submit' name='tienda_carrito' value='pagar' class='pagar-carrito'/></p></div>";
-		echo "<p class='nproductos'>".$na." productos en el carrito</p>";
+			<div style='background-color: #CCC; padding: 10px 0px'><p>Total del carrito: ".number_format($total,2,'.',',')."<input type='submit' name='tienda_carrito' value='pagar' /></p></div>";
+		echo "<p style='padding: 10px 0px'>Numero de articulos en el carrito: ".$na."</p>";
 		foreach($_SESSION['carrito'] as $k => $v){
-			echo "<div class='elementos-carrito-all' >
-					   <div class='elementos-carrito-imagen'>
-					   		<img src='".$v['imagenVc']."' /></div>								    	     
+			echo "<div style='clear: both; padding: 5px 0px;'>
+					   <div style='float: left'>
+					   		<img src='".$v['imagenVc']."' style='height:50px; width: 35px;' /></div>								    	     
 		        	   <div>
-		        	   		<div class='head-articulo' >
-		        	   			".$v['cantidad']."
-							<span>".number_format($v['precio'],2,'.',',')."</span>
-							</div>
-								<div class='pleca-carrito'></div>
-								".$v['descripcion']."<br />";
+		        	   		<div style='float: left; padding-left: 10px; width: 290px;'>
+		        	   			".$v['cantidad']."		        	   			
+		        	   			".$v['descripcion']."<br />";
 			echo " 	   			<a href='".site_url("carrito.php?eliminar_item=".$k)."'>Eliminar</a>";		        	   			
-		    echo " 	   		
-		        	   				        	   		
+		    echo " 	   		</div>
+		        	   		<div style='float: right'>".number_format($v['precio'],2,'.',',')."</div>		        	   		
 		        	   </div>
 		        	   
 		          </div>";
 		}										
 		echo "			  			  	
-			  	  <input type='hidden' name='guidx' value='".API::GUIDX."' style='display: none' />
-			  	  <input type='hidden' name='guidz' value='".API::guid()."' style='display: none' />";
+			  	  <input type='text' name='guidx' value='".API::GUIDX."' style='display: none' />
+			  	  <input type='text' name='guidz' value='".API::guid()."' style='display: none' />";
 				  	if(isset($_SESSION['datos_login'])){
 						$datos_login=$_SESSION['datos_login'];
 					  	echo "<textarea name='datos_login' style='display: none'>".$datos_login."</textarea>";	
 					}
-		echo "
-		<div class='carrito-final'>
-		<div class='datos'>"."Sub- total <span>".number_format($total,2,'.',',')."</span><br />IVA "."<span>variable</span>"."<br /> Total "."<span>valor</span>"."</div>
-		</div>";	
-
-		
-		echo "
-		<div class='carrito-final'>
-				<div class='final-continuar-boton'><input type='button' class='continuar-compra' OnClick=''/>
-				<div class='final-pago-boton'> <input type='submit' name='tienda_carrito' value='pagar' class='pagar-carrito' /></div>	
-		</div>		 
+		echo "<div style='clear: both;'><div style='float: right'>".number_format($total,2,'.',',')."</div></div>";							  				  			  	  
+		echo "<div style='background-color: #CCC; clear: both;'><a href='".site_url('promociones-especiales.php')."'>Seguir comprando</a>
+				  <input type='submit' name='tienda_carrito' value='pagar' /></div>	
 		</form>
 		</div>";	  
 	}	

@@ -1,4 +1,5 @@
-<div class="contenedor-promo">
+<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
+<div id="contenedor-promo">
 <?php	
 	/**
 	 * Despliega las promociones de una publicación cuando se tienen más de un formato para dicha publicación
@@ -7,7 +8,7 @@
 	 * y posibles descuentos de la promoción -esta información se trae del primer artículo de la promoción-,
 	 * de aqu[i se mostrará el detalle final del contenido de la promoción. 
 	 */
-	
+	$j=0;
 	foreach ($ofertas_publicacion->promociones as $p) {
 	/*
 	 * //también se pueden ver los detalles por separado, es posible que esto cambie de acuerdo al funcionamiento final...
@@ -35,31 +36,42 @@
 		//$onclick_event = "document.comprar_promocion".$p->detalle->id_promocion.".submit()";
 		
 		//formulario para la promoción
-		echo "
-		<form id='comprar_promocion".$p->detalle->id_promocion."' name='comprar_promocion".$p->detalle->id_promocion."' action='". $action_pagos ."' method='post'>
+		echo "		
 			<div class='promo-left'>
+			<form id='comprar_promocion".$p->detalle->id_promocion."' name='comprar_promocion".$p->detalle->id_promocion."' action='". $action_pagos ."' method='post'>
 				<input type='hidden' name='guidx' value='".API::GUIDX."' />
 			    <input type='hidden' name='guidz' value='".API::guid()."' />
 			    <input type='hidden' name='imagen' value='".TIENDA."images/img3.jpg' />
 			    <input type='hidden' name='descripcion' value='".$p->descripcion_promocion."' />
 			    <input type='hidden' name='precio' value='".$p->detalle->costo."' />
 			    <input type='hidden' name='cantidad' value='1' />
-			    
-		    	<a href='". $url_detalle_promo . "'><img src='".TIENDA."images/img3.jpg' /></a>
-		      	<div class='descripcion'>".$p->descripcion_promocion."</div>
-		      	<div class='descripcion'>".$p->detalle->costo."</div>
-		      	
-		      	<div class='descripcion'>
-	          		<input type='submit' name='btn_comprar_ahora' value=' ' class='boton_continuar_compra' />
+			    <div class='contenedor-imagen'>			    
+		    		<a href='". $url_detalle_promo . "'>
+		    			<img src='" . TIENDA . "images/css_sprite_PortadaCaja.jpg' />
+		    		</a>
+		    	</div>	
+		      	<div class='titulo-publicacion-back descripcion-promocion'>
+		      		".$p->descripcion_promocion."
 		      	</div>
-		      	<div class='descripcion'>";
+		      	<div class='descripcion-publicacion-back'>
+					<span class='precio-promocion'> $ " . number_format($p->detalle->costo, 2, ".", "," )."</span>
+				</div>		      	
+		      	
+		      	<div class='boton'>
+	          		<input type='submit' name='btn_comprar_ahora' value=' ' class='boton-comprar-ahora' />";
 		 ?>		      	
-		      	<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value="Añadir al Carrito" onclick="anadir_carrito(<?php echo $carrito ;?>)"/>
+		      		<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value=" " onclick="anadir_carrito(<?php echo $carrito ;?>)" class='boton-anadir-carrito'/>
 		 <?php     	
 	      echo "
 		      	</div>
+		    </form>  	
 	  		</div>
-	  	</form>";
+	  	";
+		//pinta un espacio en blanco que sirve de margen						
+		if (($j == 0) || ($j == 1) || ($j == 3) || ($j == 4) ){
+			echo "<div class='catego-space'></div>";				
+		}
+		$j++;
 	}
 ?>
 </div>

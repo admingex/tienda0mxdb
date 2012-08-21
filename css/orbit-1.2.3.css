@@ -26,14 +26,16 @@
 div.orbit-wrapper {
     width: 1px;
     height: 1px;
-    position: relative;      
+    position: relative;  
+    /*aqui se edita el contenedor de las imagenes*/       
 }
 
 div.orbit {
     width: 1px;
     height: 1px;
     position: relative;
-    overflow: hidden }
+    overflow: hidden;    
+}
 
 div.orbit>img {
     position: absolute;
@@ -41,8 +43,8 @@ div.orbit>img {
     left: 0;
     display: none;
     /* para cambiar el tamaño de las imagenes*/
-    width: 550px; 
-    height: 250px;
+    width: 529px; 
+    height: 246px;
 }
 
 div.orbit>a {
@@ -53,8 +55,8 @@ div.orbit>a {
     line-height: 0; 
     display: none;
    /* para cambiar el tamaño de las imagenes*/
-    width: 550px;
-    height: 250px;
+    width: 529px;
+    height: 246px;
 }
 
 .orbit>div {
@@ -62,7 +64,9 @@ div.orbit>a {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; }
+    height: 100%; 
+    
+ }
 
 /* Note: If your slider only uses content or anchors, you're going to want to put the width and height declarations on the ".orbit>div" and "div.orbit>a" tags in addition to just the .orbit-wrapper */
 
@@ -133,7 +137,8 @@ span.pause.active {
 
 .orbit-caption {
     display: none;
-    font-family: "HelveticaNeue", "Helvetica-Neue", Helvetica, Arial, sans-serif; }
+    font-family: "HelveticaNeue", "Helvetica-Neue", Helvetica, Arial, sans-serif; 
+}
 
 .orbit-wrapper .orbit-caption {
     background: #000;
@@ -146,7 +151,8 @@ span.pause.active {
     position: absolute;
     right: 0;
     bottom: 0;
-    width: 100%; }
+    width: 100%;    
+}
 
 
 /* DIRECTIONAL NAV
@@ -180,25 +186,30 @@ div.slider-nav span.left {
     position: absolute;
     z-index: 1000;
     list-style: none;
-    bottom: -20px;
-    left: 50%;
-	margin-left: -50px;
-    padding: 0; }
+    bottom: -27px;    	
+    padding: 0;    
+    border: solid 2px;  
+    border-color: #CCC;  
+    width: 287px; 
+    padding-left: 45%;        
+}
 
 .orbit-bullets li {
-    float: left;
+    float: left;    
     margin-left: 5px;
     cursor: pointer;
     color: #999;
     text-indent: -9999px;
-    background: url('../images/bullets.jpg') no-repeat 4px 0;
+    background: url('../images/css_sprite_HeaderRadialBotton.png') no-repeat -4px 0;
     width: 13px;
-    height: 12px;
-    overflow: hidden; }
+    height: 24px;
+    overflow: hidden;        
+}
 
 .orbit-bullets li.active {
     color: #222;
-    background-position: -8px 0; }
+    background-position: -16px 0;  
+}
     
 .orbit-bullets li.has-thumb {
     background: none;

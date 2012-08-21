@@ -1,4 +1,5 @@
-<div class="contenedor-promo">
+<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
+<div id="contenedor-promo">
 <?php
 	//paginador
 	$total = count($promociones_especiales);	
@@ -22,7 +23,7 @@
 	if ($limite > $total) {
 		$limite = $total;
 	}
-
+	$j=0;
 	for ($i = $desde; $i < $limite ; $i++) {
 		//echo "<br />->".$i."<-";
 		
@@ -41,9 +42,12 @@
 		     	<input type='hidden' name='descripcion' value='".$pe->descripcion_promocion."' />
 		     	<input type='hidden' name='precio' value='".$pe->costo."' />
 		     	<input type='hidden' name='cantidad' value='1' />
-		     	
-		     	<img src='".TIENDA.$pe->imagen_tumb."' />
-		      	<div class='descripcion' style='height: 40px'>".$pe->id_promocion."-".$pe->descripcion_promocion."<br />".$pe->costo."</div>";
+		     	<div class='contenedor-imagen'>
+		     		<!--<img src='" . TIENDA . $pe->imagen_tumb."' />-->
+		     		<img src='" . TIENDA . "images/css_sprite_PortadaCaja.jpg' />
+		     	</div>	
+		      	<div class='titulo-promocion-back titulo-promocion'>".$pe->id_promocion."-".$pe->descripcion_promocion."<br />".$pe->costo.
+		      	"</div>";
 		      	
 		if (isset($_SESSION['datos_login'])) {
 			if (isset($_SESSION['datos_login'])) {
@@ -60,6 +64,12 @@
 		      	</div>
 	  		</form>
 	  	</div>";
+		
+		//pinta un espacio en blanco que sirve de margen						
+		if (($j == 0) || ($j == 1) || ($j == 3) || ($j == 4) ){
+			echo "<div class='promo_space'></div>";				
+		}
+		$j++;
 	}
 ?>
 </div>

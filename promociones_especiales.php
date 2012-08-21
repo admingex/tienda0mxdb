@@ -6,7 +6,8 @@
     require('./config/settings.php');
 	
 	//paginador
-	require('./controllers/paginacion.php');			
+	require('./controllers/paginacion.php');
+	echo "<div id='dialog-modal'></div>";			
     
     //header (y/o menús)
     $menues = TRUE;
@@ -14,7 +15,7 @@
 	//incluir archivos js
 	$scripts = array();	
 	$scripts [] = TIENDA."js/login.js";
-	$scripts [] = TIENDA."js/registro.js";
+	$scripts [] = TIENDA."js/carrito.js";
 	
 	//información para la vista
 	$title = "Promociones Especiales";

@@ -11,12 +11,12 @@
 	//incluir archivos js
 	$scripts = array();	
 	$scripts [] = TIENDA."js/login.js";
-	$scripts [] = TIENDA."js/registro.js";
+	$scripts [] = TIENDA."js/carrito.js";
 	
 	//header
     require('./templates/header.php');
     
-    //contenido        
+    //contenido            
     include('./components/promociones-especiales.php');
         
     //footer

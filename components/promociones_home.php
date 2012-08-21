@@ -1,4 +1,5 @@
-<div class="contenedor-promo">
+<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
+<div id="contenedor-promo">
 <?php				    
 	
 	//Sacar la información de la categoría
@@ -33,36 +34,46 @@
 		if ($limite > $total) {
 			$limite = $total;
 		}
-		
-		for ($i = $desde; $i < $limite; $i++){
-			//echo "<br />->".$i."<-";
-				/*
-				echo "<pre>";
-					print_r($recorrer[$i]);
-				echo "</pre>";
-				*/
+		$j=0;
+		for ($i = $desde; $i < $limite; $i++){			
 			$p = $recorrer[$i];
 				
-		//obtener la información de la categoría que se consulta
-		//foreach ($promos_home->promos_home as $p) {
+			//obtener la información de la categoría que se consulta
 			$url_detalle_promo = TIENDA ."promocion/" . $p->id_promocion;
-			
-			echo "
-				<form name='comprar_home' action='". ECOMMERCE . "api/". $p->id_sitio . "/" . $p->id_canal . "/" . $p->id_promocion ."/pago' method='post'>
-					<div class='promo-left'>
+						
+			//
+			echo "				
+				<div class='promo-left'>					
+					<form name='comprar_home' action='". ECOMMERCE . "api/". $p->id_sitio . "/" . $p->id_canal . "/" . $p->id_promocion ."/pago' method='post'>	
 		    	  		<input type='hidden' name='guidx' value='".API::GUIDX."' />
 				      	<input type='hidden' name='guidz' value='".API::guid()."' />
-				      	<a href='". $url_detalle_promo ."'>
-				      		<img src='" . TIENDA . "images/promociones/" . $p->imagen_tumb . "' />
-				      	</a>
-				      	<a href='". $url_detalle_promo . "'>" . $p->descripcion_promocion  . "</a>
-				      	<div class='descripcion'>" . $p->descripcion_corta_publicacion . "</div>
-				      	<div class='descripcion'>" . $p->costo . " " . $p->descuento_promocion ."</div>
-				      	<div class='descripcion'>
-				          	<input type='submit' name='comprar_ahora' value=' ' class='boton_continuar_compra' />
+				      	<div class='contenedor-imagen'>
+				      		<a href='". $url_detalle_promo ."'>
+				      			<!--<img src='" . TIENDA . $p->imagen_tumb."' />-->
+				      			<img src='" . TIENDA . "images/css_sprite_PortadaCaja.jpg' />
+				      		</a>
+				      	</div>	
+				      	<div class='titulo-promocion-back titulo-promocion'>
+							" . $p->descripcion_promocion  . "
+				      	</div>			      	
+				      	
+				      	<div class='descripcion-promocion-back descripcion-promocion'>
+				      		" . $p->descripcion_corta_publicacion . "
 				      	</div>
-			      	</div>
-		      	</form>";
+				      	<div class='precio-promocion-back'>
+				      	    <span class='precio-promocion'> $ " . number_format($p->costo, 2, ".", "," ). " " . $p->descuento_promocion ."</span>
+				      	</div>	
+				      	<div class='boton'>			      
+				        	<input type='submit' name='comprar_ahora' value=' ' class='boton-comprar-ahora' />
+				        </div>					      	
+				    </form>	
+			    </div>";
+			    
+			//pinta un espacio en blanco que sirve de margen						
+			if (($j == 0) || ($j == 1) || ($j == 3) || ($j == 4) ){
+				echo "<div class='promo-space'></div>";				
+			}
+			$j++;   
 		}
 	}
 ?>
