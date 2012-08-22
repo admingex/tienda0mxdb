@@ -23,7 +23,7 @@
 	if ($limite > $total) {
 		$limite = $total;
 	}
-	$j=0;
+	$j = 0;
 	for ($i = $desde; $i < $limite ; $i++) {
 		//echo "<br />->".$i."<-";
 		
@@ -38,12 +38,12 @@
 			<form id='comprar_promocion_especial".$pe->id_promocion."' name='comprar_promocion_especial".$pe->id_promocion."' action='".ECOMMERCE."api/". $pe->id_sitio."/".$pe->id_canal."/".$pe->id_promocion."/pago' method='post'>
 			    <input type='hidden' name='guidx' value='".API::GUIDX."' />
 		     	<input type='hidden' name='guidz' value='".API::guid()."' />
-		     	<input type='hidden' name='imagen' value='".TIENDA.$pe->imagen_tumb."' />
+		     	<input type='hidden' name='imagen' value='".TIENDA.$pe->url_imagen."' />
 		     	<input type='hidden' name='descripcion' value='".$pe->descripcion_promocion."' />
 		     	<input type='hidden' name='precio' value='".$pe->costo."' />
 		     	<input type='hidden' name='cantidad' value='1' />
 		     	<div class='contenedor-imagen'>
-		     		<!--<img src='" . TIENDA . $pe->imagen_tumb."' />-->
+		     		<!--<img src='" . TIENDA . $pe->url_imagen."' />-->
 		     		<img src='" . TIENDA . "images/css_sprite_PortadaCaja.jpg' />
 		     	</div>	
 		      	<div class='titulo-promocion-back titulo-promocion'>".$pe->id_promocion."-".$pe->descripcion_promocion."<br />".$pe->costo.

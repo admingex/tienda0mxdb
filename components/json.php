@@ -15,7 +15,7 @@
 	//obtener publicaciones y generar el json que las contenga
 	$pubs = $jc->get_publicaciones();
 	echo "Publicaciones..................</br><br/>";
-	#####
+	
 	//generar el json que las contenga las publicaciones por categoría
 	$pubs_por_cat = $jc->generar_json_categoria_publicaciones();
 	echo "Publicaciones por Categoría..................</br><br/>";
@@ -32,7 +32,7 @@
 	$promos_home = $jc->generar_json_promos_especiales();
 	echo "Promociones Especiales..................</br><br/>";
 	
-	echo "Generación finalizada.";
+	echo "Generación finalizada exitosamente.";
 	
 	//echo "<pre>";
 	//echo json_decode($publicaciones);

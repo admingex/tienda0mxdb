@@ -71,7 +71,7 @@
 		</div>
 		<div style="float: left; margin-left: 20px; width: 70%;">
 			<div class="titulo-promo-rojo-deposito">
-				<?php echo $info_publicacion->nombreVc;?>
+				<?php echo $promo_inicial->nombre_publicacion;?>
 			</div>
 			<div id="pleca-gris">		
 			</div>
@@ -79,7 +79,7 @@
 			<div class="titulo-proceso-img">&nbsp;
 			</div>			
 			<div class="titulo-proceso">
-				<?php echo $info_publicacion->descripcionVc; ?>
+				<?php echo $promo_inicial->descripcion_publicacion; ?>
 			</div>
 			<div class="blank_section"></div>
 			<div class="titulo-proceso-img">&nbsp;
@@ -167,12 +167,12 @@
 <div class="contenedor-promo">
 	<div style="background-color: #CCC; color: #000; height: 20px">
 		<div class="titulo-proceso-img">&nbsp;</div>			
-		<div class="titulo-proceso"><?php echo $info_publicacion->nombreVc;?>: <?php echo $info_publicacion->descripcionVc; ?></div>
+		<div class="titulo-proceso"><?php echo $promo_inicial->nombre_publicacion;?>: <?php echo $promo_inicial->descripcion_publicacion; ?></div>
 	</div>	
 	<div>
 		<br/>
 		<p>
-		<?php echo $info_publicacion->descripcion_largaVc; ?>
+		<?php echo $promo_inicial->descripcion_publicacion_larga; ?>
 		</p>
 		<br/>
 	</div>
@@ -184,7 +184,7 @@
 		</div>
 	</div>
 	<div>
-		<br/>En <?php echo $info_publicacion->nombreVc; ?> encontrar&aacute;s:
+		<br/>En <?php echo $promo_inicial->nombre_publicacion; ?> encontrar&aacute;s:
 		<br/><br/>
 		<div class="titulo-proceso-img">&nbsp;</div>			
 		<div class="titulo-proceso">Seccion1</div>

@@ -8,7 +8,10 @@
 	 * y posibles descuentos de la promoción -esta información se trae del primer artículo de la promoción-,
 	 * de aqu[i se mostrará el detalle final del contenido de la promoción. 
 	 */
-	$j=0;
+	 /*echo "<pre>";
+	 print_r($ofertas_publicacion->promociones);
+	 echo "<pre>";*/
+	$j = 0;
 	foreach ($ofertas_publicacion->promociones as $p) {
 	/*
 	 * //también se pueden ver los detalles por separado, es posible que esto cambie de acuerdo al funcionamiento final...

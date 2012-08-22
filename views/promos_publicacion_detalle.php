@@ -45,46 +45,46 @@
 		//echo $info_publicacion->formatos;
 		//echo "<br/>detalle_promocion_publicacion<br/>";
 		
-		#### NOTA:
+		
+		//si hay promoción, incluir el componente para desplegar el detalle de la promoción en base al order code type de la primera promoción
+	}
+	#### NOTA:
 		/**
 		 * La información de "$ofertas_publicacion" sólo viene cuando se hace una consulta directa a una publicación que no tiene más de un formato,
 		 * de otro modo, sólo se trae el detalle de uns promoción en particular. Esto cambiará conforme se detallen las distintas consultas en la tienda.
 		 * 
 		 * La información en "$detalles_promociones" viene siempre, ya sea por consultas desde PUBLICACIONES o directas en PROMOCIONES.
 		 */ 
-		
-		echo "<pre>";
+		//echo "<pre>";
 		//print_r($info_publicacion);
 		//print_r($ofertas_publicacion);
 		//print_r($detalles_promociones);	//siempre viene
-		echo "</pre>";
+		//echo "</pre>";
 		
-		//si hay promoción, incluir el componente para desplegar el detalle de la promoción en base al order code type de la primera promoción
-		if (!empty($detalles_promociones)) {
-			switch ($detalles_promociones[0]->order_code_type) {
-				case 0:
-					//suscripciones
-					include_once('./components/suscripcion.php');
-					break;
-				case 1:
-					//material web, PDFs...
-					$detalle_promocion = $detalles_promociones[0];
-					include_once('./components/pdf.php');
-					break;
-				case 2:
-					//seminarios / carpetas / etc. / productos
-					include_once('./components/producto.php');
-					break;
-				case 3:
-					//pdfs?
-					include_once('./components/pdf.php');
-					break;
-				default:
-					//nada, tal vez ir al home...
-					break;
-			}
+	### //despliegue del detalle de la promoción si es que hay alguno
+	if (!empty($detalles_promociones)) {
+		switch ($detalles_promociones[0]->order_code_type) {
+			case 0:
+				//suscripciones
+				include_once('./components/suscripcion.php');
+				break;
+			case 1:
+				//material web, PDFs...
+				$detalle_promocion = $detalles_promociones[0];
+				include_once('./components/pdf.php');
+				break;
+			case 2:
+				//seminarios / carpetas / etc. / productos
+				include_once('./components/producto.php');
+				break;
+			case 3:
+				//pdfs?
+				include_once('./components/pdf.php');
+				break;
+			default:
+				//nada, tal vez ir al home...
+				break;
 		}
-
 	}
 
 // fin del archivo de la vista que despliega el detalle de las promociones de una publicación: "promos_publicacion_detalle.php"

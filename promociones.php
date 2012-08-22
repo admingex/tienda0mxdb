@@ -30,8 +30,8 @@
 			$id_promocion = $_GET['id_promocion'];
 			$data['id_promocion'] = $id_promocion;
 			
-			//Sacar la información de la promoción para mostrarla
-			$path_promocion = "./json/promociones_publicacion/detalle_promo_".$id_promocion.".json";
+			//Sacar la información detallada de la promoción para mostrarla
+			$path_promocion = "./json/detalle_promociones/detalle_promo_".$id_promocion.".json";
 			
 			//recuperar la promoción
 			if (file_exists($path_promocion)) {

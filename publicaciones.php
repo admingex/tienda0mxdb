@@ -83,7 +83,7 @@
 				//Obtener los detalles de las promociones:
 				foreach ($promos->promociones as $promo) {
 					//sacar las promociones del archivo
-					$path_detalle_promo = "./json/promociones_publicacion/detalle_promo_".$promo->id_promocion.".json";
+					$path_detalle_promo = "./json/detalle_promociones/detalle_promo_".$promo->id_promocion.".json";
 					
 					//echo $path_detalle_promo;
 					if (file_exists($path_detalle_promo)) {

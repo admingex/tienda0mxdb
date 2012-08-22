@@ -34,7 +34,7 @@
 		if ($limite > $total) {
 			$limite = $total;
 		}
-		$j=0;
+		$j = 0;
 		for ($i = $desde; $i < $limite; $i++){			
 			$p = $recorrer[$i];
 				
@@ -49,7 +49,7 @@
 				      	<input type='hidden' name='guidz' value='".API::guid()."' />
 				      	<div class='contenedor-imagen'>
 				      		<a href='". $url_detalle_promo ."'>
-				      			<!--<img src='" . TIENDA . $p->imagen_tumb."' />-->
+				      			<!--<img src='" . TIENDA . $p->url_imagen."' />-->
 				      			<img src='" . TIENDA . "images/css_sprite_PortadaCaja.jpg' />
 				      		</a>
 				      	</div>	
@@ -79,19 +79,7 @@
 ?>
 </div>
 <div class="paginacion" style="clear: both; margin-left: auto; margin-right: auto; width: 250px ">
-<?php
-	//echo $_SERVER['DOCUMENT_ROOT']."/tienda/<br/>";
-	/*
-	### obtener la url mapeada por el htacces y poder envoar el numero de pagina por GET
-	//echo site_url();				
-	if (stristr(basename($_SERVER['REQUEST_URI']), '?')) {
-		$mp = explode('?', basename($_SERVER['REQUEST_URI']));				
-		$url = TIENDA . $mp[0] . "?";				
-	} else {
-		$url = TIENDA . '?';
-	}
-	#####
-	*/		 																	
+<?php	 																	
 	$url = TIENDA;
 	
 	$classCss = "numPages";
