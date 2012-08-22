@@ -1,2 +1,19 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
+=======
+encoding//components/promociones_especiales.php=UTF-8
+encoding//components/promociones_home.php=UTF-8
+encoding//components/slider_home.php=UTF-8
+encoding//json/carrusel_home.json=UTF-8
+encoding//json/categorias/publicaciones_categoria_1.json=UTF-8
+encoding//json/categorias/publicaciones_categoria_2.json=UTF-8
+encoding//json/categorias/publicaciones_categoria_4.json=UTF-8
+encoding//json/promociones_home.json=UTF-8
+encoding//json/promociones_publicacion/detalle_promo_100.json=UTF-8
+encoding//json/promociones_publicacion/detalle_promo_115.json=UTF-8
+encoding//json/promociones_publicacion/detalle_promo_116.json=UTF-8
+encoding//json/promociones_publicacion/detalle_promo_269.json=UTF-8
+encoding//json/promociones_publicacion/detalle_promo_99.json=UTF-8
+encoding//json/promos_especiales.json=UTF-8
+>>>>>>> 815e7d2bb3c13044d46cc1e0f2744fdcc5a6611e
 encoding//json/publicaciones/publicaciones.json=UTF-8
