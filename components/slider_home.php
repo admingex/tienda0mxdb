@@ -1,5 +1,5 @@
-<div class="container">		
-	<div id="images"> 				
+<div class="container">			
+	<div id="featured"> 				
 	    <?php				    
 			$json = file_get_contents('./json/slider_home.json');
 			$data = json_decode($json);				

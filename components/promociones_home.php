@@ -1,4 +1,6 @@
+<link type="text/css" href="<?php echo TIENDA;?>css/orbit-1.2.3.css" rel="stylesheet" />
 <link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
+
 <div id="contenedor-promo">
 <?php				    
 	

@@ -1,154 +1,149 @@
 ﻿/* viewlet-carrito */
-.viewlet-carrito{
+#viewlet-carrito{
 	width:590px;
-	padding-right:10px;
+	/*padding-right:0px;*/
 	height: auto;
 	font-family:Arial;
 }
-.viewlet-carrito .title{
-	border: none;
-	background-color: #F1F1F1;
-	background: transparent url('../images/scc_sprite_econsvarios.png') no-repeat;
-	background-position: 0px 0px;	
-	float: left;	
-	font-weight:bold ;	
-	size: 13px;
-	color: #4f4f4f;
-	
-}
-.viewlet-carrito .publicacion-compra {
-	float: left;
-	width: 25%;
-	height: 100%;
-	text-align:justify;
-	size: 13px;
-}
-.viewlet-carrito .publicacion-compra span{
-	color: #262626;
-}
-.viewlet-carrito .detalle-compra{
-	background-color: #E2E2E2;
-	padding: 10px 0px;	
-	size: 13px;
-	color:#262626;
-}
-.viewlet-carrito .detalle-compra span{
-	font-weight:bold ;	
-	size: 13px;
-	color:#262626;
-}
-.viewlet-carrito .detalle-compra .pagar-carrito{
-	border: none;
-	height: 36px;
-	width: 47px;
-	background: url('../images/scc_sprite_pagar.png') no-repeat;	
-	background-position: 0px 0px;
+
+#viewlet-carrito  .pleca{
+	display: block;			
+	height: 4px;
+	width:auto;
+	margin-left: 40px;
+	background: url('../images/css_sprite_PlecaCorta04.jpg') no-repeat;	
+	background-position: 10px 0px;	
+	clear: both;
 }
 
-.viewlet-carrito .detalle-compra .pagar-carrito:hover{
+#viewlet-carrito  .titulo-pag{
+	/*padding-top:20px;
+	padding-bottom:27px;*/	
+}
+#viewlet-carrito  .titulo-pag .img{
 	border: none;
-	height: 36px;
-	width: 473px;
-	background: url('../images/scc_sprite_pagar.png') no-repeat;	
-	background-position: 0px -18px;
+	height:25px;
+	width:31px;
+	background: url('../images/scc_sprite_econsvarios.png') no-repeat;
+	background-position: -25px -3px;
+	
+	float:left;
 }
-.viewlet-carrito .nproductos{
-	padding: 10px 0px;
+
+#viewlet-carrito  .titulo-pag span{
+	padding-left:3px;
+	padding-top:3px;
+	color: #4f4f4f;
 	font-weight:bold ;	
-	background-color:#F1F1F1;
-	size: 13px;
-	color:#262626;
+	font-size:17px;
 }
-.viewlet-carrito .elementos-carrito-all{
+
+#viewlet-carrito .all-cont{
+	/*background-color: #CCC;*/
+	
+}
+
+
+#viewlet-carrito .all-cont .carrito-pag{
+	background-color: #FAFAFA; 
+	width:528px;
+	padding: 10px 0px;
+	text-align:right;
+	font-size:13px;
+	color:#262626;
+	
+}
+
+#viewlet-carrito .all-cont .carrito-pag span{
+	font-weight:bold ;	
+}
+#viewlet-carrito .pagar-carrito{
+	border: none;
+	height: 19px;
+	width: 60px;
+	background: url('../images/scc_sprite_pagar.png') no-repeat;	
+	background-position: 0px -7px;
+}
+
+#viewlet-carrito  .pagar-carrito:hover{
+	border: none;
+	height: 19px;
+	width: 60px;
+	background: url('../images/scc_sprite_pagar.png') no-repeat;	
+	background-position: 0px -25px;
+}
+#viewlet-carrito .all-cont .lista-articulos{
 	clear: both; 
 	padding: 5px 0px;
-	size:13px;
-	color:#B0B0B0;
-}
-.viewlet-carrito .elementos-carrito-all .elementos-carrito-imagen{
-	float:left;	
-}
-.viewlet-carrito .elementos-carrito-all .elementos-carrito-imagen img{
-	height:72px; 
-	width: 54px;
-}
-.viewlet-carrito .elementos-carrito-all .head-articulo{
-	float: left; 
-	padding-left: 10px; 
-	width: 290px;
-	font-weight:bold ;
-	size: 14px;	
-	color:#262626;
+	padding-right: 70px;
+	padding-left:15px;
 	
-}
-.viewlet-carrito .elementos-carrito-all .head-articulo span{
-	float: right;
-}	
-.viewlet-carrito .elementos-carrito-all .pleca-carrito{
-	display: block;			
-	height: 4px;
-	margin-left: 40px;
-	background: url('../images/css_sprite_PlecaCorta04.jpg') no-repeat;	
-	clear: both;
-			
-}
-.viewlet-carrito .elementos-carrito-all a{
-	color:#39639b;
-	size:12px;	
-}
-.viewlet-carrito .elementos-carrito-all a:hover{
-	color:#39639b;
-	size:12px;	
-}
-.viewlet-carrito .elementos-carrito-all a:visited{
-	color:#39639b;
-	size:12px;	
-}
-.viewlet-carrito .elementos-carrito-all a:focus{
-	color:#39639b;
-	size:12px;	
-}
-.viewlet-carrito .pleca-carrito{
-	display: block;			
-	height: 4px;
-	margin-left: 40px;
-	background: url('../images/css_sprite_PlecaCorta04.jpg') no-repeat;	
-	clear: both;			
-}
-.viewlet-carrito .carrito-final{
-	clear: both;
-	float: right;
-	color: #262626;
-	size: 13px;
-}
-.viewlet-carrito .carrito-final .datos span{
-	font-weight:bold ;
-	size: 14px;
-}
 
-.viewlet-carrito .final-pago-boton {
-	float: right;
 }
-
-.viewlet-carrito .final-continuar-boton {
+#viewlet-carrito .all-cont .lista-articulos .imgp{
 	float: left;
 }
-.viewlet-carrito .carrito-final{
-	clear: both;
-	background-color:#E2E2E2;
+#viewlet-carrito .all-cont .lista-articulos .imgp img{
+	height:72px;
+	width:54px;
 }
-.viewlet-carrito .carrito-final .continuar-compra{
+#viewlet-carrito .all-cont .lista-articulos .datos{
+	float: left; padding-left: 10px; width: 290px;		
+}
+#viewlet-carrito .all-cont .lista-articulos .datos .titulo{ 
+	font-size: 14px;
+	color:#262626;
+	font-weight:bold ;		
+}
+#viewlet-carrito .all-cont .lista-articulos .datos .precio{ 
+	font-size: 15px;
+	color:#262626;
+	font-weight:bold ;	
+}
+#viewlet-carrito .all-cont .lista-articulos .datos .descripcion{ 
+		font-size: 13px;
+	color:#808080;	
+}
+#viewlet-carrito .all-cont .lista-articulos .datos a{ 
+	font-size: 12px;
+	color:#39639b;
+}
+#viewlet-carrito .all-cont .lista-articulos .datos a:hover{ 
+	font-size: 12px;
+	color:#39639b;
+}#viewlet-carrito .all-cont .lista-articulos .datos a:visited{ 
+	font-size: 12px;
+	color:#39639b;
+}
+#viewlet-carrito .all-cont .lista-articulos .datos a:active{ 
+	font-size: 12px;
+	color:#39639b;
+}
+#viewlet-carrito .all-cont .lista-articulos .datos a:focus{ 
+	font-size: 12px;
+	color:#39639b;
+}
+#viewlet-carrito .calculo{
+	padding-right:120px;
+	text-align:right;
+	font-size:13px
+}
+#viewlet-carrito .fin-pagar{
+	padding-right:60px;
+	text-align:right;
+}
+#viewlet-carrito .continuar-carrito{
 	border: none;
-	height: 38px;
-	width: 137px;
-	background: url('../images/scc_sprite_pagar.png') no-repeat;	
-	background-position: 0px 0px;
+	height: 19px;
+	width: 150px;
+	background: url('../images/scc_sprite_ContinuarComprando.png') no-repeat;	
+	background-position: 5px -3px;
 }
 
-.viewlet-carrito .carrito-final .continuar-compra:hover{
+#viewlet-carrito  .continuar-carrito:hover{
 	border: none;
-	height: 38px;
-	width: 137px;
-	background: url('../images/scc_sprite_pagar.png') no-repeat;	
-	background-position: 0px -18px;
+	height: 19px;
+	width: 150px;
+	background: url('../images/scc_sprite_ContinuarComprando.png') no-repeat;	
+	background-position: 0px -22px;
 }

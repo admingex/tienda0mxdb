@@ -1,5 +1,5 @@
 $(window).load(function(){			
-	$('#images').orbit({			
+	$('#featured').orbit({			
 		timer: true,
 		directionalNav: false, 						 
 		startClockOnMouseOut: true, 
