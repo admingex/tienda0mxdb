@@ -14,8 +14,8 @@ class Json_Model extends DBAbstractModel {
 	############################ CONSTRUCTOR Y DESTRUCTOR #######################
     # Método constructor
     function __construct() {
-		//$this->db_name = 'cms0mxdb';
-		$this->db_name = 'cms_ecommerce';
+		$this->db_name = 'cms0mxdb';
+		//$this->db_name = 'cms_ecommerce';
     }
 
     # Método destructor del objeto

@@ -45,7 +45,10 @@
 }
 
 #contenedor-promo .contenedor-imagen img{
-	margin-top: 10px;																					
+	margin-top: 10px;	
+	border: none;	
+	width:	127px;
+	height: 169px;																		
 }
 
 #contenedor-promo .titulo-promocion-back{		

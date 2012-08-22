@@ -63,7 +63,7 @@
 				$v = $recorrer[$i];
 				//**
 				
-				echo "
+				echo "->
 					<div class='promo-left'>
 					<form id='comprar_promocion_especial".$v->id_promocionIn."' name='comprar_promocion_especial".$v->id_promocionIn."' action='".ECOMMERCE."api/". $v->id_sitioSi."/".$v->id_canalSi."/".$v->id_promocionIn."/pago' method='post'>
 					

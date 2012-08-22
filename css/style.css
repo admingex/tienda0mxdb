@@ -46,8 +46,9 @@ a
             {
                 display:none;
             }
-            div.header_section div h1
+            div.header_section div.titulo_logo
             {
+                float:left;
                 line-height:30px;
                 margin:0 0 0 36px;
                 padding:0;
@@ -55,6 +56,7 @@ a
             div.necesita-ayuda 
             {
                 background: url(../images/css-sprite_btnAyuda2.png) no-repeat 0 -4px;
+                float:right;
                 height:21px;
                 width:288px;
             }
@@ -72,38 +74,95 @@ a
             clear:both;
             color: #545454;
             font-size: 13px;
-            padding: 5px 0;
+            padding: 5px 36px 5px 36px;
             overflow: hidden;
             text-align:left;
         }
-            #header_tienda section.header_section div a:first-child, 
-            #header_tienda section.header_section div a:last-child
+            section.header_section form 
+            {
+                float:left;
+                line-height:13px;
+                height:24px;
+                margin:0;
+                padding:0;
+                overflow:hidden;
+            }
+                section.header_section form select#filtro_busqueda 
+                {
+                   color:#343434;
+                   font-size:11px;
+                   line-height:13px;
+                   height:18px;
+                   width:143px;
+                }
+                section.header_section form input#s 
+                {
+                    background:#FFFFFF url(../images/css_sprite_LupaBuscar.png) no-repeat -3px -3px;
+                    border:1px solid #D0D0D0;
+                    border-radius:2px;
+                    font-size:11px;
+                    line-height:13px;
+                    height:18px;
+                    margin:0;
+                    padding-left:20px;
+                    width:250px;
+                }
+                section.header_section form input[type=submit] 
+                {
+                    background: url(../images/css_sprite_btnIR.png) no-repeat -7px -5px;
+                    border:none;
+                    line-height:22px;
+                    height:22px;
+                    margin:0 0 0 5px;
+                    padding:1px 0 20px;
+                    text-indent:-1000px;
+                    width:31px;
+                }
+                section.header_section form input[type=submit]:hover 
+                {
+                    background-position:-7px -27px;
+                } 
+            #header_tienda a.carrito, 
+            #header_tienda a.login,
+            #header_tienda a.mi_cuenta
             {
                 background: url(../images/css_sprite_btn01.png) no-repeat -7px -5px;
-                float: left;
-                margin:0;
+                float:left;
+                margin:0 0 0 8px;
                 padding:0;
                 text-indent:-1000px;
             }
-            #header_tienda section.header_section div a:first-child 
+            #header_tienda a.login 
             {
                 background-position:-88px -5px;
                 height:22px;
                 width:81px;
-                margin-left:10px;
-                }
-            #header_tienda section.header_section div a:first-child:hover
+            }
+            #header_tienda a.login:hover
             {
                 background-position:-88px -27px;
             }
-            #header_tienda section.header_section div a:last-child
+            #header_tienda a.mi_cuenta
+            {
+                background-position:-7px -5px;
+                height:22px;
+                width:81px;
+            }
+            #header_tienda a.mi_cuenta:hover
+            {
+                background-position:-7px -27px;
+            }
+            #header_tienda a.logout
+            {
+                display:none;
+            }
+            #header_tienda a.carrito
             {
                 background-position:-169px -5px;
                 height:22px;
                 width:72px;
-                margin-left:10px;
             }
-            #header_tienda section.header_section div a:last-child:hover
+            #header_tienda a.carrito:hover
             {
                 background-position:-169px -27px;
             }
@@ -250,3 +309,29 @@ a
     {
         margin: 65px 10px 0;
     }
+
+
+input[type="radio"]{
+	display: none;
+}
+
+.radio_no_selected{
+    border: none;
+	height: 16px;
+	width: 16px;
+	background: transparent url('../images/css-sprite_icons.png') no-repeat;	
+	background-position: -153px -49px;	
+	float: left;	
+}
+.radio_selected{
+	border: none;
+	height: 16px;
+	width: 16px;	
+	background: transparent url('../images/css-sprite_icons.png') no-repeat;	
+	background-position: -153px -65px;	
+	float: left;
+}
+.label_radio{
+	float: left;
+	margin-left: 5px;
+}

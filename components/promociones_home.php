@@ -42,6 +42,14 @@
 				
 			//obtener la información de la categoría que se consulta
 			$url_detalle_promo = TIENDA ."promocion/" . $p->id_promocion;
+			
+			//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
+			if(@GetImageSize(TIENDA."p_".$p->url_imagen)){
+				$src = TIENDA ."p_".$p->url_imagen;
+			}
+			else{
+				$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+			}
 						
 			//
 			echo "				
@@ -50,9 +58,8 @@
 		    	  		<input type='hidden' name='guidx' value='".API::GUIDX."' />
 				      	<input type='hidden' name='guidz' value='".API::guid()."' />
 				      	<div class='contenedor-imagen'>
-				      		<a href='". $url_detalle_promo ."'>
-				      			<!--<img src='" . TIENDA . $p->imagen_tumb."' />-->
-				      			<img src='" . TIENDA . "images/css_sprite_PortadaCaja.jpg' />
+				      		<a href='". $url_detalle_promo ."'>							
+				      			<img src='" .$src."'/>
 				      		</a>
 				      	</div>	
 				      	<div class='titulo-promocion-back titulo-promocion'>

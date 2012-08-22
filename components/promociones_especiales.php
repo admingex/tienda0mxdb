@@ -1,7 +1,7 @@
 <link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
 <div id="contenedor-promo">
-<?php
-	//paginador
+<?php		
+	//paginador	
 	$total = count($promociones_especiales);	
 			
 	if (isset($_GET['page'])) {
@@ -34,7 +34,7 @@
 		$pe = $recorrer[$i];
 		
 		echo "
-		<div class='promo-left'>
+		<div class='catego-left'>
 			<form id='comprar_promocion_especial".$pe->id_promocion."' name='comprar_promocion_especial".$pe->id_promocion."' action='".ECOMMERCE."api/". $pe->id_sitio."/".$pe->id_canal."/".$pe->id_promocion."/pago' method='post'>
 			    <input type='hidden' name='guidx' value='".API::GUIDX."' />
 		     	<input type='hidden' name='guidz' value='".API::guid()."' />
@@ -43,31 +43,28 @@
 		     	<input type='hidden' name='precio' value='".$pe->costo."' />
 		     	<input type='hidden' name='cantidad' value='1' />
 		     	<div class='contenedor-imagen'>
-		     		<!--<img src='" . TIENDA . $pe->imagen_tumb."' />-->
-		     		<img src='" . TIENDA . "images/css_sprite_PortadaCaja.jpg' />
+		     		<img src='" . TIENDA . "p_".$pe->imagen_tumb."' />		     		
 		     	</div>	
 		      	<div class='titulo-promocion-back titulo-promocion'>".$pe->id_promocion."-".$pe->descripcion_promocion."<br />".$pe->costo.
 		      	"</div>";
 		      	
-		if (isset($_SESSION['datos_login'])) {
-			if (isset($_SESSION['datos_login'])) {
-				$datos_login = $_SESSION['datos_login'];
-				echo "<textarea name='datos_login' style='display: none'>".$datos_login."</textarea>";	
-			}
-		}			      	
+				if (isset($_SESSION['datos_login'])) {
+					if (isset($_SESSION['datos_login'])) {
+						$datos_login = $_SESSION['datos_login'];
+						echo "<textarea name='datos_login' style='display: none'>".$datos_login."</textarea>";	
+					}
+				}			      	
 		echo "
-				<div>
-	          		<input type='submit' name='comprar_ahora' value=' ' class='boton_continuar_compra' />
-		      	</div>
-		      	<div>
-	          		<input type='button' name='carrito' id='carrito".$pe->id_promocion."' value='Añadir al Carrito' onclick='anadir_carrito(\"comprar_promocion_especial\", ".$pe->id_sitio.", ".$pe->id_canal. " ," .$pe->id_promocion . ")'/>
+				<div class='boton'>
+	          		<input type='submit' name='comprar_ahora' value=' ' class='boton-comprar-ahora' />		      	
+	          		<input type='button' name='carrito' id='carrito".$pe->id_promocion."' value='' onclick='anadir_carrito(\"comprar_promocion_especial\", ".$pe->id_sitio.", ".$pe->id_canal. " ," .$pe->id_promocion . ")' class='boton-anadir-carrito'/>
 		      	</div>
 	  		</form>
 	  	</div>";
 		
 		//pinta un espacio en blanco que sirve de margen						
 		if (($j == 0) || ($j == 1) || ($j == 3) || ($j == 4) ){
-			echo "<div class='promo_space'></div>";				
+			echo "<div class='catego-space'></div>";				
 		}
 		$j++;
 	}
