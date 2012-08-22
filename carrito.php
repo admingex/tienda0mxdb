@@ -39,7 +39,7 @@
 						if($j['id_sitio']==$_GET['id_sitio'] && $j['id_canal']==$_GET['id_canal'] && $j['id_promocion']==$_GET['id_promocion']){
 							$agregar=FALSE;
 							//echo "agragar cantidad al item: ".$i;						
-							$_SESSION['carrito'][$i]['cantidad']=$_SESSION['carrito'][$i]['cantidad']+1;
+							//$_SESSION['carrito'][$i]['cantidad']=$_SESSION['carrito'][$i]['cantidad']+1;
 						
 							// Guarda el id del ultimo elemento al que se le agrego cantidad
 							$_SESSION['ult_elem']=$i;						

@@ -1,4 +1,6 @@
+<link type="text/css" href="<?php echo TIENDA;?>css/orbit-1.2.3.css" rel="stylesheet" />
 <link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
+
 <div id="contenedor-promo">
 <?php				    
 	
@@ -34,12 +36,20 @@
 		if ($limite > $total) {
 			$limite = $total;
 		}
-		$j = 0;
+		$j=0;
 		for ($i = $desde; $i < $limite; $i++){			
 			$p = $recorrer[$i];
 				
 			//obtener la información de la categoría que se consulta
 			$url_detalle_promo = TIENDA ."promocion/" . $p->id_promocion;
+			
+			//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
+			if(@GetImageSize(TIENDA."p_".$p->url_imagen)){
+				$src = TIENDA ."p_".$p->url_imagen;
+			}
+			else{
+				$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+			}
 						
 			//
 			echo "				
@@ -48,9 +58,8 @@
 		    	  		<input type='hidden' name='guidx' value='".API::GUIDX."' />
 				      	<input type='hidden' name='guidz' value='".API::guid()."' />
 				      	<div class='contenedor-imagen'>
-				      		<a href='". $url_detalle_promo ."'>
-				      			<!--<img src='" . TIENDA . $p->url_imagen."' />-->
-				      			<img src='" . TIENDA . "images/css_sprite_PortadaCaja.jpg' />
+				      		<a href='". $url_detalle_promo ."'>							
+				      			<img src='" .$src."'/>
 				      		</a>
 				      	</div>	
 				      	<div class='titulo-promocion-back titulo-promocion'>
@@ -79,7 +88,19 @@
 ?>
 </div>
 <div class="paginacion" style="clear: both; margin-left: auto; margin-right: auto; width: 250px ">
-<?php	 																	
+<?php
+	//echo $_SERVER['DOCUMENT_ROOT']."/tienda/<br/>";
+	/*
+	### obtener la url mapeada por el htacces y poder envoar el numero de pagina por GET
+	//echo site_url();				
+	if (stristr(basename($_SERVER['REQUEST_URI']), '?')) {
+		$mp = explode('?', basename($_SERVER['REQUEST_URI']));				
+		$url = TIENDA . $mp[0] . "?";				
+	} else {
+		$url = TIENDA . '?';
+	}
+	#####
+	*/		 																	
 	$url = TIENDA;
 	
 	$classCss = "numPages";

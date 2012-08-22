@@ -1,9 +1,10 @@
+<link type="text/css" href="<?php echo TIENDA;?>css/orbit-1.2.3.css" rel="stylesheet" />
+<div id="contenedor-promo-especial">
 <?php
 //iterar sobre las promociones destacadadas y sólo scar una
 foreach ($pd->promocion_especial_destacada as $j) {
 ?>
-<div id="contenedor-promo-especial">
-	<div id="images">
+	<div id="featured">
     <?php
 	    echo "
 			<form name='comprar_promocion_destacada' action='".API::API_URL. $j->id_sitioSi."/".$j->id_canalSi."/".$j->id_promocionIn."/pago' method='post'>
@@ -18,12 +19,11 @@ foreach ($pd->promocion_especial_destacada as $j) {
 			      	</div>
 	    		</div>
 	      	</form>";
-      	echo "<img src='".TIENDA.$j->url_imagenVc."' onclick='document.comprar_promocion_destacada.submit();'/>";
-	      		
+      	echo "<img src='".TIENDA.$j->url_imagenVc."' onclick='document.comprar_promocion_destacada.submit();'/>";	      		
 	?>
 	</div>
-</div>
 
 <?php
 }
 ?>
+</div>

@@ -220,3 +220,8 @@ div.slider-nav span.left {
     background-position: 0 0;
     border-top: 2px solid #000; }
     
+li, ul,  section { 
+ 	margin: 0; 
+ 	padding: 0; 
+ 	border: 0;
+ }	
