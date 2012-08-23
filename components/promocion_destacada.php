@@ -2,23 +2,26 @@
 <div id="contenedor-promo-especial">
 <?php
 //iterar sobre las promociones destacadadas y sólo scar una
-foreach ($pd->promo_destacada as $promo_destacada) {
+foreach ($pd as $p_destacada) {
+	
+//	echo "img" . $p_destacada->url_imagen;
 ?>
 	<div id="featured">
     <?php
 	    echo "
-			<form name='comprar_promocion_destacada' action='".API::API_URL. $promo_destacada->id_sitio."/".$promo_destacada->id_canal."/".$promo_destacada->id_promocion."/pago' method='post'>
+			<form name='comprar_promocion_destacada' action='".API::API_URL. $p_destacada->id_sitio."/".$p_destacada->id_canal."/".$p_destacada->id_promocion."/pago' method='post'>
 			  	<div class='promo-left'>
 			      	<input type='hidden' name='guidx' value='".API::GUIDX."'/>
 			      	<input type='hidden' name='guidz' value='".API::guid()."'/>
-			      	<a href=''><img src='".TIENDA."p_images/".$promo_destacada->url_imagen."'/></a>
-			      	
-			      	<div class='descripcion'>
+			      	<a href=''><img src='".TIENDA."images/".$p_destacada->url_imagen."'/></a>
+			      	";
+			      	/*<!--div class='descripcion'>
 			          	<input type='submit' name='comprar_ahora' value=''/>
-			      	</div>
-	    		</div>
+			      	</div-->*/
+	    		echo"</div>
 	      	</form>";
-      	echo "<img src='".TIENDA.$j->url_imagenVc."' onclick='document.comprar_promocion_destacada.submit();'/>";	      		
+      	echo "<img src='".TIENDA.$p_destacada->url_imagen."' onclick='document.comprar_promocion_destacada.submit();'/>";
+			      		
 	?>
 	</div>
 

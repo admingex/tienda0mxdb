@@ -68,6 +68,17 @@
 					}
 				}
 			}
+			// revisar si hay promoción destacada por publicación
+			$path_promo_destacada = "./json/promociones_destacadas/promo_destacada_publicacion_".$id_publicacion.".json";
+			if (file_exists($path_promo_destacada)) {
+				$json = file_get_contents($path_promo_destacada);
+				$pd = json_decode($json);
+				
+				if (count($pd->promo_destacada) > 0) {
+					$data["pd"] = $pd;	//pasar la promoción destacada a la vista
+					//include_once('./components/promocion_destacada.php');
+				}
+			}
 			
 			//sacar las promociones de la publicación y sus detalles correspondientes, sin importar cuántos formatos tenga
 			$path_promociones = "./json/publicaciones/promos_publicacion_".$id_publicacion.".json";

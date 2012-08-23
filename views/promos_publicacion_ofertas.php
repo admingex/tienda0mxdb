@@ -20,6 +20,9 @@
 	}
 	
 	##### Promos destacadas por publicación
+	if (isset ($pd) && count($pd) == 1) {
+		include_once('./components/promocion_destacada.php');
+	}
 	
 	##### Filtro por formatos y precio
 
