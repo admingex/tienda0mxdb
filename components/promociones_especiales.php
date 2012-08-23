@@ -70,9 +70,11 @@
 	}
 ?>
 </div>
+<?php 
+	if($total>6){
+?>		
 <div id="paginacion">
-<?php
-								
+<?php						
 	$url = TIENDA."categoria/6/";
 	
 	$classCss = "numPages";
@@ -86,3 +88,7 @@
 	$paginacion->generaPaginacion($total, $back, $next, $url, $classCss);
 ?>
 </div>
+<?php
+	} 
+?>
+<div class="space-pleca"></div>

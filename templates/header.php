@@ -6,6 +6,7 @@
             
     <!--[if IE]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->	
     <link rel="stylesheet" href="<?php echo TIENDA;?>css/style.css" />
+    <link rel="stylesheet" href="<?php echo TIENDA;?>css/viewlet-breadcrumbs.css" />
        
     <link type="text/css" href="<?php echo TIENDA;?>css/blitzer/jquery-ui-1.8.18.custom.css" rel="stylesheet" />             
     <script type="text/javascript" src="<?php echo TIENDA;?>js/jquery-1.7.1.min.js"></script>

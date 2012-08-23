@@ -1,0 +1,28 @@
+#breadcrumbs{
+	border-bottom: solid 1px #CCC;	
+	padding-bottom: 5px;		
+}
+
+#breadcrumbs a{
+	color: #8E8E8E;	
+	font-size: 13px;
+	text-decoration: none;
+	float: left;
+}
+
+#breadcrumbs .triangulo-negro-der{	
+	border:none;
+	width: 3px;			
+	height: 8px;
+	background: url('../images/css_sprite_Triangulos.png') no-repeat;	
+	background-position: -11px -2px;		
+	padding-left:2px;
+	margin: 5px 3px;	
+	float: left;	
+}
+
+#breadcrumbs .noref{
+	color: #000;	
+	font-size: 13px;
+	text-decoration: none;	
+}

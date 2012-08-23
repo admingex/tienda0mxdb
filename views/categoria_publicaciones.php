@@ -5,7 +5,7 @@
 		$url_breadcum = site_url("categoria/".$info_categoria->id_categoriaSi);
 		
 		//breadcrum
-		echo "<div><a href='".site_url("home")."'> Home </a> > <b>".ucwords(strtolower($info_categoria->nombreVc))."<b> </div>";
+		echo "<div id='breadcrumbs'><a href='".site_url("home")."'>Home</a><div class='triangulo-negro-der'></div><div class='noref'>".ucwords(strtolower($info_categoria->nombreVc))."</div> </div>";
 	}
 ?>
 <link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
