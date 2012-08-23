@@ -36,7 +36,7 @@
 		if ($limite > $total) {
 			$limite = $total;
 		}
-		$j=0;
+		$j = 0;
 		for ($i = $desde; $i < $limite; $i++){			
 			$p = $recorrer[$i];
 				

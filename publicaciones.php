@@ -102,41 +102,19 @@
 				echo "</pre>";
 				*/
 				$data['detalles_promociones'] = $detalles;
-				/*
-				echo "Temp<pre>";
-				print_r((object)($detalles));
-				echo "</pre>";
-				 * 
-				 */
 			}
 			
-			
-			//definir la vista que se cargará
+			//definir la vista que se cargará con la oferta/el detalle de la promción
 			if (strtolower($mostrar) === "detalle" ) {			//la publicación sólo tiene un formato
 				$view .= $mostrar;
-				
-				/*
-				//recuperar la promoción
-				if (array_key_exists('id_promocion', $_GET) && filter_var($_GET['id_promocion'], FILTER_VALIDATE_INT, array('min_range' => 1))) {	### TO DO seguridad!
-					$id_promocion =$_GET['id_promocion'];
-					$url_promo = site_url((isset($id_categoria) ? 'categoria/' . $id_categoria.'/' : '') . (isset($id_publicacion) ? 'publicacion/' . $id_publicacion. '/' : '') .'promocion/' . $id_promocion);
-					echo $url_promo;
-					exit;
-					header("Location: $url_promo");
-				}
-				*/
 			} else if (strtolower($mostrar) === "ofertas" ) {	//la publicación tiene varios formatos
-				//definir la vista
 				$view .= $mostrar;
 			}
-			
-			### BORRAR
-			$data['mostrar'] = $mostrar;
 		}
 	} else {	//si no trae parámetros de la publicación manda al home
 		##### TO DO: definir este flujo
 		$view = "$mostrar";		
-		$data['pubs_m'] = "Promos de la publicación, no trae get";
+		$data['pubs_m'] = "Promos de la publicación, no trae inforación en la petición.";
 		$url = site_url("home");
 		header("Location: $url");
 	}

@@ -170,4 +170,30 @@ class Json_Model extends DBAbstractModel {
 		
 		return $detalle_promocion;		
 	}
+	
+	/**
+	 * Devuelve la promoción destacada para una categoría
+	 */
+	public function get_promocion_destacada_por_categoria($id_categoria = 0) {
+		$this->query = "CALL SP_Obtener_Promocion_Destacada_Por_Categoria(".$id_categoria.")";
+		
+		$this->get_results_from_query();
+		
+		$promocion_destacada = $this->rows;
+		
+		return $promocion_destacada;
+	}
+
+	/**
+	 * Devuelve la promoción destacada para una publicación
+	 */
+	public function get_promocion_destacada_por_publicacion($id_publicacion = 0) {
+		$this->query = "CALL SP_Obtener_Promocion_Destacada_Por_Publicacion(".$id_publicacion.")";
+		
+		$this->get_results_from_query();
+		
+		$promocion_destacada = $this->rows;
+		
+		return $promocion_destacada;
+	}
 }

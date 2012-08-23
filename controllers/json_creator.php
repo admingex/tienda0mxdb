@@ -11,6 +11,7 @@ class Json_Creator {
 	private $promos_carrusel;
 	private $promos_home;
 	private $promos_especiales;
+	private $promos_destacadas_por_cartegoria;
 	
 	#### Rutas de los archivos
 	private $archido_id_sitio		= "./json/id_tsitio_tienda.json";
@@ -19,10 +20,12 @@ class Json_Creator {
 	private $archivo_carrusel_home 	= "./json/carrusel_home.json";
 	private $archivo_promos_home	= "./json/promociones_home.json";
 	private $archivo_promos_especiales	= "./json/promos_especiales.json";
-	
+	### bases
 	private $base_publicacion_por_categoria	= "./json/categorias/publicaciones_categoria_";
 	private $base_promos_por_publicacion	= "./json/publicaciones/promos_publicacion_";
 	private $base_detalle_promo				= "./json/detalle_promociones/detalle_promo_";
+	private $base_promocion_destacada_por_cartegoria	= "./json/promociones_destacadas/promo_destacada_categoria_";
+	private $base_promocion_destacada_por_publicacion	= "./json/promociones_destacadas/promo_destacada_publicacion_";
 	
 	//modelo a utilizar
 	private $modelo;	//modelo de datos
@@ -32,7 +35,7 @@ class Json_Creator {
     # Método constructor
     function __construct() {
 		$this->db_name = 'cms0mxdb';
-		$this->modelo = new Json_Model(); 
+		$this->modelo = new Json_Model();
     }
 
     # Método destructor del objeto
@@ -227,7 +230,7 @@ class Json_Creator {
 		//recuperar las promociones de la base de datos
 		$pc = $this->modelo->get_promos_carrusel();
 		
-		$this->promos_carrusel = json_encode(array("promos_carrusel" => $this->modelo->get_promos_carrusel()));
+		$this->promos_carrusel = json_encode(array("promos_carrusel" => $pc));
 		//escribir las promociones en un archivo json
 		self::Write_To_Json_File($this->archivo_carrusel_home, $this->promos_carrusel);
 		
@@ -246,27 +249,41 @@ class Json_Creator {
 	 * Cat->publicacion->detalle
 	 */
     public function generar_json_home_promos() {
-    	$this->promos_home = json_encode(array("promos_home" => $this->modelo->get_promos_home()));
+    	//recuperar las promociones de la base de datos
+    	$hp = $this->modelo->get_promos_home();
+    	
+    	$this->promos_home = json_encode(array("promos_home" => $hp));
 		
+		//escribir las promociones en un archivo json
 		self::Write_To_Json_File($this->archivo_promos_home, $this->promos_home);
+		
+		//echo "     Detalle de Promociones para el home..................</br><br/>";
+		$this->generar_json_promos_detalle($hp);
+		
 		/*echo "<pre>";
 		echo json_encode($this->promos_home);
 		echo "</pre>";*/
-		
-		#### TO DO: generar detalle de promociones
 		
 		return $this->promos_home;
     }
 	
 	/**
 	 * Generar los archivos con las "promociones especiales""
-	 * Devuelve el arreglo con las promociones especiales
+	 * Devuelve el arreglo con las promociones destacadas
 	 * Home->Promociones Especiales
 	 */
     public function generar_json_promos_especiales() {
-    	$this->promos_especiales = json_encode(array("promos_especiales" => $this->modelo->get_promos_especiales()));
+    	//recuperar las promociones de la base de datos
+    	$pe = $this->modelo->get_promos_especiales();
 		
+    	$this->promos_especiales = json_encode(array("promos_especiales" => $pe));
+		
+		//escribir las promociones en un archivo json
 		self::Write_To_Json_File($this->archivo_promos_especiales, $this->promos_especiales);
+		
+		//echo "     Detalle de Promociones Especiales..................</br><br/>";
+		$this->generar_json_promos_detalle($pe);
+		
 		/*echo "<pre>";
 		echo json_encode($this->promos_especiales);
 		echo "</pre>";*/
@@ -276,7 +293,100 @@ class Json_Creator {
     }
 	
 	/**
-	 * obtener el detalle de las promociones y generar los correspondientes archivos json
+	 * Generar los archivos con las "promociones dstacadas" de las categorías
+	 * Devuelve el arreglo con las promociones y genera los detalles
+	 * Categoria->Promoción Destacada
+	 */
+    public function generar_json_promos_destacadas_por_categorias() {
+    	$promos_destacadas_por_categorias = array();
+		
+		//if (isset($this->publicaciones)) {		//Ya se crearon las publicaciones
+		if (empty($this->categorias)) {
+			//recuperar las categorías de la propiedad de la clase
+	    	$cats = json_decode($this->categorias);
+		
+		} else {	//generarlas
+			$temp = $this->get_categorias();		//json_encode(array("categorias" => $this->modelo->get_categorias()));
+			$cats = json_decode($temp);
+		}
+		/*
+		echo "<pre>";
+		print_r($cats);
+		echo "</pre>";
+		exit;*/
+		
+		//para cada categoría recuperar su promoción destacada si es que tiene
+		foreach ($cats->categorias as $cat) {
+			$id_c = $cat->id_categoriaSi;
+			
+			$pdc = $this->modelo->get_promocion_destacada_por_categoria($id_c);
+							
+			if (!empty($pdc) && count($pdc) == 1) {
+				//rutra del archivo
+				$path_pdc = $this->base_promocion_destacada_por_cartegoria.$id_c.".json";
+				//agregar al array
+				$promos_destacadas_por_categorias[$id_c] = json_encode(array("promo_destacada" => $pdc[0]));
+				//escribir en el arhivo
+				self::Write_To_Json_File($path_pdc, $promos_destacadas_por_categorias[$id_c]);
+			} 
+		}
+		/*
+		echo "Promo destacada por categoría<pre>";
+		print_r($promos_destacadas_por_categorias);
+		echo "</pre>";*/
+		
+		return $promos_destacadas_por_categorias;
+    }
+	
+	/**
+	 * Generar los archivos con las "promociones dstacadas" de las publicaciones
+	 * Devuelve el arreglo con las promociones destacadas
+	 * Publicación->Promoción Destacada
+	 */
+    public function generar_json_promos_destacadas_por_publicaciones() {
+    	$promos_destacadas_por_publicacion = array();
+		
+		//if (isset($this->publicaciones)) {		//Ya se crearon las publicaciones
+		if (empty($this->publicaciones)) {
+			//recuperar las publicaciones de la propiedad de la clase
+	    	$pubs = json_decode($this->categorias);
+		
+		} else {	//generarlas
+			$temp = $this->get_publicaciones();
+			$pubs = json_decode($temp);
+		}	
+		
+		/*echo "<pre>";
+		print_r($pubs);
+		echo "</pre>";
+		exit;*/
+		
+		//para cada publicación recuperar su promoción destacada si tiene
+		foreach ($pubs->publicaciones as $pub) {
+			$id_p = $pub->id_publicacionSi;
+			
+			$pdp = $this->modelo->get_promocion_destacada_por_publicacion($id_p);
+							
+			if (!empty($pdp) && count($pdp) == 1) {
+				//rutra del archivo
+				$path_pdp = $this->base_promocion_destacada_por_publicacion.$id_p.".json";
+				//agregar al array
+				$promos_destacadas_por_publicacion[$id_p] = json_encode(array("promo_destacada" => $pdp[0]));
+				//escribir en el arhivo
+				self::Write_To_Json_File($path_pdp, $promos_destacadas_por_publicacion[$id_p]);
+			} 
+		}
+		
+		/*echo "Promo destacada por publicación<pre>";
+		print_r($promos_destacadas_por_publicacion);
+		echo "</pre>";*/
+		
+		return $promos_destacadas_por_publicacion;
+    }
+	
+	################## Recuperación y Generación del de talle de las promociones ############## 
+	/**
+	 * Obtener el detalle de las promociones y generar los correspondientes archivos json
 	 */
 	 public function generar_json_promos_detalle($promociones) {
 	 	/*echo "<pre>";
@@ -295,8 +405,7 @@ class Json_Creator {
 		}
 
 	 }
-	
-	############### END Generación de archivos de Categorías ###################
+	################## END Recuperación y Generación del de talle de las promociones ##############
 	
 	####################### Escritura a archivo
 	/**

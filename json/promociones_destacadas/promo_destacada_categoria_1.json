@@ -1,6 +1,1 @@
-{"promocion_especial_destacada" :
-	[
-	    {"id_promocionIn":"54", "id_sitioSi":"3", "id_canalSi":"24", "publicadoBi":"1", "fijoBi":"NULL", "viableBi":"NULL", "url_imagenVc":"images/promocion-especial-destacada.png",
-		 "descripcionVc":"CAMPAÑA VERANO ", "texto_ofertaTx":"descripcin corta", "terminoVc":"", "tarifaDc":"", "descuentoIn":"" }
-	]
-}
+{"promo_destacada":{"id_categoria":"1","id_promocion":"541","is_sitio":"3","id_canal":"22","descripcion_promocion":"EXPANSION CONTENIDO DIGITAL","url_imagen":"5002012.jpg"}}

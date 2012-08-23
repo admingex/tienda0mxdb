@@ -44,16 +44,6 @@
 				print_r($detalle_promocion);
 				echo "</pre>";
 				*/
-				
-				//obtener la información del detalle de la promoción que se consulta, artículos y demás ...
-				/*
-				foreach ($promocion as $pr) {
-					if ($pr->id_categoriaSi == $id_categoria) {
-						$data["detalle_promocion"] = $pr;
-						break;
-					}
-				}
-				*/ 
 			} else {
 				//si no existe el archivo con la información ¿¿ir a BD??
 			}
@@ -113,18 +103,13 @@
 					echo "Info_categoria<pre>";
 					print_r($data["info_categoria"]);
 					echo "</pre>";
-				}
-				*/
+				}*/
 			} else {
 				//si no existe el archivo con la información ¿¿ir a BD??
 			}
 		}
 	}
-	/*
-	echo "<pre>";
-	print_r($data);
-	echo "</pre>";
-	*/
+
 	cargar_vista('promos_publicacion_detalle', $data);
 	exit;
 

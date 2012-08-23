@@ -19,6 +19,7 @@
 	//generar el json que las contenga las publicaciones por categoría
 	$pubs_por_cat = $jc->generar_json_categoria_publicaciones();
 	echo "Publicaciones por Categoría..................</br><br/>";
+	
 	//generar el json que las contenga las promociones por publicación incluídos los json con el detalle de las mismas
 	$promos_por_pub = $jc->generar_json_publicacion_promos();
 	echo "Promociones por publicación..................</br><br/>";
@@ -31,6 +32,12 @@
 	
 	$promos_home = $jc->generar_json_promos_especiales();
 	echo "Promociones Especiales..................</br><br/>";
+	
+	$promos_destacadas_por_categorias = $jc->generar_json_promos_destacadas_por_categorias();
+	echo "Promociones Destacadas Por Categorías ..................</br><br/>";
+
+	$promos_destacadas_por_publicaciones = $jc->generar_json_promos_destacadas_por_publicaciones();
+	echo "Promociones Destacadas Por Publicaciones ..................</br><br/>";
 	
 	echo "Generación finalizada exitosamente.";
 	
