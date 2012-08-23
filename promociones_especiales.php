@@ -31,7 +31,7 @@
 			##### TODO 	validar que corresponda con la de promos especiales
 			if ($id_categoria == 6 ) {
 				//Sacar la información de las promociones especiales
-				$path_promos_especiales = "./json/promos_especiales.json";
+				$path_promos_especiales = "./json/promociones_especiales.json";
 				
 				if (file_exists($path_promos_especiales)) {
 					$json = file_get_contents($path_promos_especiales);

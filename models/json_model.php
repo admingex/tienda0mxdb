@@ -82,6 +82,18 @@ class Json_Model extends DBAbstractModel {
 	}
 	
 	/**
+	 * Devurlce el catálogo de formatos existentes para las publicaciones ue tienen productos en
+	 * difeentes presentaciones.
+	 */
+	public function get_catalogo_formatos() {
+		$this->query = "CALL SP_Catalogo_Formatos()";
+		$this->get_results_from_query();
+		
+		$catalogo_formatos = $this->rows;
+		
+		return $catalogo_formatos;
+	}
+	/**
 	 * Regresa las promociones para el carrusel del home
 	 */
 	public function get_promos_carrusel() {

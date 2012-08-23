@@ -13,6 +13,9 @@
 	 echo "<pre>";*/
 	$j = 0;
 	foreach ($ofertas_publicacion->promociones as $p) {
+		// $p trae la información general de la promoción,
+		// $p->detalle trae información más granuar 
+		
 	/*
 	 * //también se pueden ver los detalles por separado, es posible que esto cambie de acuerdo al funcionamiento final...
 	 * foreach ($detalles_promociones as $detalle) {
