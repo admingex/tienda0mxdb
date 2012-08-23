@@ -10,8 +10,8 @@
 			$cp = json_decode($json);
 			
 			foreach ($cp->promos_carrusel as $p) {
-				$url_p = TIENDA."promocion/". $p->id_promocion;
-				echo "<a href='".$url_p."'><img src='".TIENDA.$p->url_imagen."' /></a>";
+				$url_p = TIENDA ."promocion/" .$p->id_promocion;
+				echo "<a href='".$url_p."'><img src='".TIENDA. "p_images/" .$p->url_imagen."' width='529px' height='246px' /></a>";
 			}
 		}	
 		?>					  						 											
