@@ -68,7 +68,8 @@
 					}
 				}
 			}
-			// revisar si hay promoción destacada por publicación
+			
+			// revisar si hay "promoción destacada" para la publicación
 			$path_promo_destacada = "./json/promociones_destacadas/promo_destacada_publicacion_".$id_publicacion.".json";
 			if (file_exists($path_promo_destacada)) {
 				$json = file_get_contents($path_promo_destacada);
