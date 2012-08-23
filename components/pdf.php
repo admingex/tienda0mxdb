@@ -1,81 +1,76 @@
-<div class="contenedor-promo" style="background-color: #800">
-	<div style="float: left; width: 20%;">
-		<img src="<?php echo site_url('images/img1.jpg')?>" />
+<link href='<?php echo TIENDA ?>css/viewlet-detalle-pdf.css' rel='stylesheet' type="text/css" />
+<?php	
+	//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
+	if(@GetImageSize(TIENDA."p_images/".$detalle_promocion->url_imagen)){
+		$src = TIENDA ."p_images/".$detalle_promocion->url_imagen;
+	}
+	else{
+		$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+		//$src = TIENDA ."p_images/".$p->url_imagen;
+	}
+?>
+<div id="viewlet-detalle-pdf">
+	<div>
+		<img src="<?php echo $src; ?>" />
 	</div>
-	<div style="float: left; margin-left: 20px; width: 70%;">
-		<div class="titulo-proceso">
-			<?php echo $detalle_promocion->descripcion_promocion; ?>
+	<div class="detalle">
+		<div class="bloque-descripcion">
+			<div class="titulo-detalle">
+				<?php echo $detalle_promocion->descripcion_promocion; ?>	
+			</div>
+			<div class="bloque-texto">
+				<span class="texto-detalle">Precio:</span>	
+				<span class="precio-detalle"><?php echo number_format($detalle_promocion->costo,2,'.', ',');?></span>
+			</div>				
 		</div>
-		<div class="blank_section"></div>
-		
-		<div class="titulo-proceso">
-		 	Precio: <?php echo $detalle_promocion->costo;?>
-		</div>
-		<div class="blank_section"></div>
-		<?php
+		<div class="botones">
+			<?php
 			$action_pagos = ECOMMERCE."api/". $detalle_promocion->id_sitio . "/" . $detalle_promocion->id_canal . "/" . $detalle_promocion->id_promocion . "/pago";
 			//para agregar la promoción al carrito:
-			$carrito = "'comprar_promocion',".$detalle_promocion->id_sitio.", ".$detalle_promocion->id_canal.", ".$detalle_promocion->id_promocion;
-			//TIENDA . "carrito.php?id_sitio=" . $detalle_promocion->id_sitio . "&id_canal=" . $detalle_promocion->id_canal . "&id_promocion=" . $detalle_promocion->id_promocion;
-			//$onclick_action_carrito = "document.comprar_promocion" . $detalle_promocion->id_promocion . ".action='" . $action_carrito . "'; ";
-			//submit
-			//$onclick_submit = "document.comprar_promocion". $detalle_promocion->id_promocion . ".submit();";
-		?>
-		<form id='comprar_promocion<?php echo $detalle_promocion->id_promocion;?>' name='comprar_promocion<?php echo $detalle_promocion->id_promocion;?>' action='<?php echo $action_pagos;?>' method='post'>
-		<?php
-		echo		
-			"<input type='hidden' name='guidx' value='".API::GUIDX."'/>\n" . 
-			"<input type='hidden' name='guidz' value='".API::guid()."'/>\n". 
-		    "<input type='hidden' name='imagen' value='".TIENDA."images/img3.jpg' />\n" .
-		    "<input type='hidden' name='descripcion' value='". $detalle_promocion->descripcion_promocion."' />\n" .
-		    "<input type='hidden' name='precio' value='".$detalle_promocion->costo."' />\n" .
-		    "<input type='hidden' name='cantidad' value='1' />\n";
-		?>
-			<div style="float: right; background-color: #CCCCCC">
-				<div style="padding: 10px">
-					<input type="submit" id="btn_comprar_ahora" name="btn_comprar_ahora" value=" " class="boton_continuar_compra" />
-				</div>
-				<div style="padding: 10px; background-color: #DDD">
-					<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value="Añadir al Carrito" onclick="anadir_carrito(<?php echo $carrito ;?>)"/>
-				</div>
-			</div>
-		</form>
-	</div>
-</div>
-<div class="blank_section"></div>
-<div class="contenedor-promo">
-	<div class="blank_section"></div>
-</div>
-
-<div class="contenedor-promo">
-	<div style="background-color: #CCC; color: #000; height: 20px">
-		<div class="titulo-proceso-img">&nbsp;</div>			
-		<div class="titulo-proceso">Sobre este reporte</div>
-	</div>	
-	<div>
-		<br/>
-		<p>
-		Descripción del material web.
-		
-		</p>
-		<br/>
-	</div>
-	<div style="background-color: #CCC; color: #000; height: 20px">
-		<div class="titulo-proceso-img">&nbsp;
-		</div>			
-		<div class="titulo-proceso">
-			Lista de contenido
+			$carrito = "'comprar_promocion',".$detalle_promocion->id_sitio.", ".$detalle_promocion->id_canal.", ".$detalle_promocion->id_promocion;			
+			?>
+			<form id='comprar_promocion<?php echo $detalle_promocion->id_promocion;?>' name='comprar_promocion<?php echo $detalle_promocion->id_promocion;?>' action='<?php echo $action_pagos;?>' method='post'>
+			<?php
+			echo		
+				"<input type='hidden' name='guidx' value='".API::GUIDX."'/>\n" . 
+				"<input type='hidden' name='guidz' value='".API::guid()."'/>\n". 
+			    "<input type='hidden' name='imagen' value='".$src."' />\n" .
+			    "<input type='hidden' name='descripcion' value='". $detalle_promocion->descripcion_promocion."' />\n" .
+			    "<input type='hidden' name='precio' value='".$detalle_promocion->costo."' />\n" .
+			    "<input type='hidden' name='cantidad' value='1' />\n";
+			?>
+				<input type="submit" id="btn_comprar_ahora" name="btn_comprar_ahora" value=" " class="boton-pago-express"  />
+				<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value="" onclick="anadir_carrito(<?php echo $carrito ;?>)" class="boton-anadir-carrito"/>				
+			</form>									
 		</div>
 	</div>
-	<div>
-		<br/>
-		<ol>
-			<li>Introducción</li>
-			<li>
-				<ol><li>Sobre IDC</li></ol>
-			</li>
-		</ol>		
+	<div class="space-pleca"></div>
+		<div class="pleca-separacion"></div>
+	<div class="space-pleca"></div>	
+	<div class="banner-descripcion">
+		<div class="triangulo-negro-der"></div>Sobre este reporte
 	</div>
+	<div class="descripcion">				
+		Descripción del material web.				
+	</div>
+	<div class="space-pleca"></div>	
+	<div class="banner-descripcion">
+		<div class="triangulo-negro-der"></div>Lista de Contenido
+	</div>
+	<div class="descripcion">						
+		<div class="lista">
+			<ol>
+				<li><span>Introducción</span></li>
+				<ol class="foo">
+					<li><span>Sobre Grupo Expansión</span></li>
+				</ol>
+				<li><span>Resumen</span></li>
+				<li><span>Ahorro</span></li>						
+			</ol>
+		</div>				
+	</div>
+	
 </div>
+
 
 	

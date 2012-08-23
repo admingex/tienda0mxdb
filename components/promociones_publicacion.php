@@ -39,18 +39,26 @@
 		//$onclick_event = "document.comprar_promocion".$p->detalle->id_promocion.".submit()";
 		
 		//formulario para la promoción
+		//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
+		if(@GetImageSize(TIENDA."p_images/".$p->url_imagen)){
+			$src = TIENDA ."p_images/".$p->url_imagen;
+		}
+		else{
+			//$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+			$src = TIENDA ."p_images/".$p->url_imagen;
+		}
 		echo "		
 			<div class='promo-left'>
 			<form id='comprar_promocion".$p->detalle->id_promocion."' name='comprar_promocion".$p->detalle->id_promocion."' action='". $action_pagos ."' method='post'>
 				<input type='hidden' name='guidx' value='".API::GUIDX."' />
 			    <input type='hidden' name='guidz' value='".API::guid()."' />
-			    <input type='hidden' name='imagen' value='".TIENDA."images/img3.jpg' />
+			    <input type='hidden' name='imagen' value='".$src."' />
 			    <input type='hidden' name='descripcion' value='".$p->descripcion_promocion."' />
 			    <input type='hidden' name='precio' value='".$p->detalle->costo."' />
 			    <input type='hidden' name='cantidad' value='1' />
 			    <div class='contenedor-imagen'>			    
 		    		<a href='". $url_detalle_promo . "'>
-		    			<img src='" . TIENDA . "images/css_sprite_PortadaCaja.jpg' />
+		    			<img src='" . $src . "' />
 		    		</a>
 		    	</div>	
 		      	<div class='titulo-publicacion-back descripcion-promocion'>

@@ -1,0 +1,150 @@
+#viewlet-detalle-suscripcion{						
+	margin-top: 22px;		
+	width: 528px;	
+	font-family: Arial;										
+}
+
+#viewlet-detalle-suscripcion img{
+	width: 127px;
+	height: 173px;
+	float: left;		
+}	
+
+#viewlet-detalle-suscripcion .detalle{
+	float: left;
+	margin-left: 26px;		
+	width: 371px;
+	height: 173px;				
+}
+
+#viewlet-detalle-suscripcion .bloque-descripcion{
+	padding: 8px 0px 5px 0px;	
+	height: 80px;		
+}
+
+#viewlet-detalle-suscripcion .titulo-detalle{				
+	color: #CA0002;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+
+#viewlet-detalle-suscripcion .bloque-texto{					
+	padding: 5px 0px 0px 0px;	
+}
+
+#viewlet-detalle-suscripcion .texto-detalle{				
+	color: #939393;
+	font-size: 13px;
+	padding-top: 5px;	
+}
+
+#viewlet-detalle-suscripcion .precio-detalle{				
+	color: #2E2E2E;
+	font-size: 15px;
+	font-weight: bold;	
+}
+
+#viewlet-detalle-suscripcion .botones{
+	float: left;
+	margin-left: 178px;		
+	width: 196px;
+	height: 80px;		
+	background: url('../images/css_sprite_formaAnadir01.png') no-repeat;	
+	background-position: -37px -24px;			
+}
+
+#viewlet-detalle-suscripcion .boton-anadir-carrito{
+	border: none;
+	height: 18px;
+	width: 111px;
+	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
+	background-position: -11px -8px;
+	position: absolute;
+	margin: 12px 0px 0px 10px;
+}
+
+#viewlet-detalle-suscripcion .boton-anadir-carrito:hover{	
+	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
+	background-position: -11px -26px;	
+}
+
+#viewlet-detalle-suscripcion .boton-pago-express{
+	border: none;
+	height: 18px;
+	width: 163px;
+	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
+	background-position: -122px -8px;
+	position: absolute;
+	margin: 50px 0px 0px 10px;
+}
+
+#viewlet-detalle-suscripcion .boton-pago-express:hover{	
+	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
+	background-position: -122px -26px;	
+}
+
+#viewlet-detalle-suscripcion .space-pleca{
+	clear: both;		
+	height: 22px;	
+}
+
+#viewlet-detalle-suscripcion .pleca-separacion{	
+	background-color: #ECECEC;	
+	height: 1px;			
+}
+
+#viewlet-detalle-suscripcion .banner-descripcion{	
+	background-color: #ECECEC;			
+	padding: 5px 0px;
+	color: #3D3D3D;
+	font-size: 13px;
+	font-weight: bold;		
+}
+
+#viewlet-detalle-suscripcion .triangulo-negro-der{	
+	border:none;
+	width: 3px;			
+	height: 8px;
+	background: url('../images/css_sprite_Triangulos.png') no-repeat;	
+	background-position: -11px -2px;	
+	float:left;
+	padding-left:2px;
+	margin: 5px 0px 0px 3px;		
+}
+
+#viewlet-detalle-suscripcion .triangulo-rojo-der{	
+	border:none;
+	width: 3px;			
+	height: 8px;
+	background: url('../images/css_sprite_Triangulos.png') no-repeat;	
+	background-position: -16px -2px;	
+	float:left;
+	padding-left:2px;
+	margin: 5px 3px 0px 3px;		
+}
+
+#viewlet-detalle-suscripcion .descripcion{					
+	padding: 10px 0px 5px 0px;
+	color: #939393;
+	font-size: 13px;			
+}
+
+
+th{
+	background-color: #D0D0D0;	
+	height: 18px;			
+	padding: 5px 3px;
+	color: #3D3D3D;
+	font-size: 13px;
+	font-weight: bold;		
+}
+td{
+	background-color: #F1F1F1;				
+	padding: 5px 3px;
+	color: #525252;
+	font-size: 13px;
+	font-weight: bold;	
+}
+
+

@@ -83,8 +83,7 @@ if(isset($_SESSION['carrito'])){
 					<p>".$na." productos en el carrito:</p>
 				</div>";
 		}
-			foreach($_SESSION['carrito'] as $k => $v){
-			
+			foreach($_SESSION['carrito'] as $k => $v){				
 				echo "<div class='lista-articulos'>
 						   <div class='imgp'>
 								<img src='".$v['imagenVc']."' alt='".$v['imagenVc']."'  />

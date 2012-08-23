@@ -1,0 +1,148 @@
+#viewlet-detalle-pdf{						
+	margin-top: 22px;		
+	width: 528px;	
+	font-family: Arial;										
+}
+
+#viewlet-detalle-pdf img{
+	width: 127px;
+	height: 173px;
+	float: left;		
+}	
+
+#viewlet-detalle-pdf .detalle{
+	float: left;
+	margin-left: 26px;		
+	width: 371px;
+	height: 173px;		
+	background: url('../images/css_sprite_CuadroDato01.png') no-repeat;	
+	background-position: -16px -15px;
+	
+}
+
+#viewlet-detalle-pdf .bloque-descripcion{
+	padding: 10px;	
+	height: 82px;
+}
+
+#viewlet-detalle-pdf .titulo-detalle{				
+	color: #2E2E2E;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+
+#viewlet-detalle-pdf .bloque-texto{					
+	padding: 10px 0px;	
+}
+
+#viewlet-detalle-pdf .texto-detalle{				
+	color: #464646;
+	font-size: 15px;	
+}
+
+#viewlet-detalle-pdf .precio-detalle{				
+	color: #2E2E2E;
+	font-size: 15px;
+	font-weight: bold;	
+}
+
+#viewlet-detalle-pdf .botones{	
+	height: 69px;	
+}
+
+#viewlet-detalle-pdf .boton-anadir-carrito{
+	border: none;
+	height: 18px;
+	width: 111px;
+	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
+	background-position: -11px -8px;
+	position: absolute;
+	margin: 7px 0px 0px 10px;
+}
+
+#viewlet-detalle-pdf .boton-anadir-carrito:hover{	
+	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
+	background-position: -11px -26px;	
+}
+
+#viewlet-detalle-pdf .boton-pago-express{
+	border: none;
+	height: 18px;
+	width: 163px;
+	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
+	background-position: -122px -8px;
+	position: absolute;
+	margin: 43px 0px 0px 10px;
+}
+
+#viewlet-detalle-pdf .boton-pago-express:hover{	
+	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
+	background-position: -122px -26px;	
+}
+
+#viewlet-detalle-pdf .space-pleca{
+	clear: both;		
+	height: 22px;	
+}
+
+#viewlet-detalle-pdf .pleca-separacion{	
+	background-color: #ECECEC;	
+	height: 1px;			
+}
+
+#viewlet-detalle-pdf .banner-descripcion{	
+	background-color: #ECECEC;	
+	height: 18px;			
+	padding: 5px 0px;
+	color: #3D3D3D;
+	font-size: 13px;
+	font-weight: bold;		
+}
+
+#viewlet-detalle-pdf .triangulo-negro-der{	
+	border:none;
+	width: 3px;			
+	height: 8px;
+	background: url('../images/css_sprite_Triangulos.png') no-repeat;	
+	background-position: -11px -2px;	
+	float:left;
+	padding-left:2px;
+	margin: 5px 0px 0px 3px;		
+}
+
+#viewlet-detalle-pdf .descripcion{					
+	padding: 10px 0px 5px 0px;
+	color: #939393;
+	font-size: 13px;			
+}
+
+#viewlet-detalle-pdf .lista{	
+	font-size:13px;
+	color:#939393;
+}
+
+#viewlet-detalle-pdf .lista ol{
+	font-size:13px;
+	color:#CA0002;
+	font-weight:bold;	
+}
+
+#viewlet-detalle-pdf .lista ol span{
+	font-size:13px;
+	color:#939393;	
+}
+
+#viewlet-detalle-pdf  .foo {
+    counter-reset: foo;
+}
+
+#viewlet-detalle-pdf  .foo li {
+    list-style-type: none;
+}
+
+#viewlet-detalle-pdf .foo li::before {
+    counter-increment: foo;
+    content: "1." counter(foo) " ";
+}
+

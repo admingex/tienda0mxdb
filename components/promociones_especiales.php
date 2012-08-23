@@ -43,7 +43,7 @@
 		     	<input type='hidden' name='precio' value='".$pe->costo."' />
 		     	<input type='hidden' name='cantidad' value='1' />
 		     	<div class='contenedor-imagen'>
-		     		<img src='" . TIENDA . "p_".$pe->url_imagen."' />		     		
+		     		<img src='" . TIENDA . "p_images/".$pe->url_imagen."' />		     		
 		     	</div>	
 		      	<div class='titulo-promocion-back titulo-promocion'>".$pe->id_promocion."-".$pe->descripcion_promocion."<br />".$pe->costo.
 		      	"</div>";

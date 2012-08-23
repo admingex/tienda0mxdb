@@ -3,15 +3,7 @@
 	$promo_inicial = $detalles_promociones[0];	//siempre viene
 	//para pasar a pagar en la plataforma de pagos, es la acción por defecto:
 	$action_pagos_inicial = ECOMMERCE."api/". $promo_inicial->id_sitio . "/" . $promo_inicial->id_canal . "/" . $promo_inicial->id_promocion . "/pago";
-	$onclick_action_pagos_inicial = "document.comprar_promocion" . $promo_inicial->id_promocion . ".action='" . $action_pagos_inicial . "'; ";
-	
-	//para agregar la promoción al carrito:
-	//$param = "comprar_promocion, ".$promo_inicial->id_sitio.", ".$promo_inicial->id_canal.", ";	
-	//$carrito = "comprar_promocion, ".$promo_inicial->id_sitio.", ".$promo_inicial->id_canal.", ".$promo_inicial->id_promocion;
-	//$action_carrito_inicial = TIENDA . "carrito.php?id_sitio=" . $promo_inicial->id_sitio . "&id_canal=" . $promo_inicial->id_canal."&id_promocion=";
-	//$onclick_action_carrito_inicial = "document.comprar_promocion" . $promo_inicial->id_promocion . ".action='" . $action_carrito_inicial . "'; ";
-
-	//$onclick_submit = "document.comprar_promocion". $promo_inicial->id_promocion . ".submit()";
+	$onclick_action_pagos_inicial = "document.comprar_promocion" . $promo_inicial->id_promocion . ".action='" . $action_pagos_inicial . "'; ";	
 	
 ?>
 <script type="text/javascript">
@@ -65,53 +57,52 @@
 	}
 </script>
 
-	<div class="contenedor-promo" style="background-color: #800">
-		<div style="float: left; width: 20%;">
-			<img src="<?php echo site_url('images/img1.jpg')?>" />
-		</div>
-		<div style="float: left; margin-left: 20px; width: 70%;">
-			<div class="titulo-promo-rojo-deposito">
-				<?php echo $promo_inicial->nombre_publicacion;?>
-			</div>
-			<div id="pleca-gris">		
-			</div>
-		
-			<div class="titulo-proceso-img">&nbsp;
-			</div>			
-			<div class="titulo-proceso">
-				<?php echo $promo_inicial->descripcion_publicacion; ?>
-			</div>
-			<div class="blank_section"></div>
-			<div class="titulo-proceso-img">&nbsp;
-			</div>			
-			<div class="titulo-proceso">
-				Fecha de portada del primer ejemplar/ Inicio de la promoci&oacute;n:
-			 	<?php echo $promo_inicial->fecha_inicio_promo;?>
-			</div>
-			<div class="blank_section"></div>
-			
-			<div style="float: right; background-color: #CCCCCC">
-				<div style="padding: 10px">
-					<input type="button" id="btn_comprar_ahora" name="btn_comprar_ahora" value=" " class="boton_continuar_compra" onclick="submit_to_pagos(<?php echo $promo_inicial->id_promocion;?>)"/>	
-				</div>
-				<div style="padding: 10px; background-color: #DDD">
-					<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value="Añadir al Carrito" onclick="submit_to_carrito(<?php echo $promo_inicial->id_promocion;?>)"/>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="blank_section"></div>
-	<div class="contenedor-promo">
-		<div class="titulo-proceso-img">&nbsp;
-		</div>			
-		<div class="titulo-proceso">
-			Selecciona el pa&iacute;s de env&iacute;o para ver los precios y promociones aplicables.
+<link href='<?php echo TIENDA ?>css/viewlet-detalle-suscripcion.css' rel='stylesheet' type="text/css" />
+<?php	
+	//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
+	if(@GetImageSize(TIENDA."p_images/".$promo_inicial->url_imagen)){
+		$src = TIENDA ."p_images/".$promo_inicial->url_imagen;
+	}
+	else{
+		$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+		//$src = TIENDA ."p_images/".$p->url_imagen;
+	}
+?>
+<div id="viewlet-detalle-suscripcion">
+		<div>
+			<img src="<?php echo $src;?>" />
 		</div>	
-		<select name="pais">
+		<div class="detalle">
+			<div class="bloque-descripcion">
+				<div class="titulo-detalle">
+					<?php echo $promo_inicial->nombre_publicacion;?>
+				</div>	
+				<div class="pleca-separacion"></div>
+				<div class="bloque-texto">
+					<div class="texto-detalle">
+						<div class="triangulo-rojo-der"></div><?php echo $promo_inicial->descripcion_publicacion; ?>
+					</div>
+					<div class="texto-detalle">
+						<div class="triangulo-rojo-der"></div>Fecha de portada del primer ejemplar: <?php echo $promo_inicial->fecha_inicio_promo;?>
+					</div>																								
+				</div>																
+			</div>
+			<div class="botones">
+				<input type="button" id="btn_comprar_ahora" name="btn_comprar_ahora" value=" " class="boton-pago-express" onclick="submit_to_pagos(<?php echo $promo_inicial->id_promocion;?>)"/>	
+				<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value="" class="boton-anadir-carrito" onclick="submit_to_carrito(<?php echo $promo_inicial->id_promocion;?>)"/>			
+			</div>	
+		</div>
+		<div class="space-pleca"></div>		
+		<div class="banner-descripcion">
+			<div class="triangulo-negro-der"></div>Selecciona el pa&iacute;s de env&iacute;o para ver los precios y promociones aplicables.
+		</div>
+		<div class="descripcion">
+			<select name="pais">
 				<option value="mexico">México</option>
-		</select>
-		<div class="blank_section"></div>
-		<table width="95%">
+			</select>	
+		</div>
+		<div class="space-pleca"></div>	
+		<table width="100%" cellspacing="1">
 			<thead>
 				<tr>
 					<th>&nbsp;</th>
@@ -161,36 +152,30 @@
 			?>
 			</tbody>
 		</table>
-	</div>
-
-<div id="pleca-gris"></div>
-<div class="contenedor-promo">
-	<div style="background-color: #CCC; color: #000; height: 20px">
-		<div class="titulo-proceso-img">&nbsp;</div>			
-		<div class="titulo-proceso"><?php echo $promo_inicial->nombre_publicacion;?>: <?php echo $promo_inicial->descripcion_publicacion; ?></div>
-	</div>	
-	<div>
-		<br/>
-		<p>
-		<?php echo $promo_inicial->descripcion_publicacion_larga; ?>
-		</p>
-		<br/>
-	</div>
-	<div style="background-color: #CCC; color: #000; height: 20px">
-		<div class="titulo-proceso-img">&nbsp;
-		</div>			
-		<div class="titulo-proceso">
-			Secciones de la revista
+		<div class="space-pleca"></div>
+		<div class="banner-descripcion">
+			<div class="triangulo-negro-der"></div><?php echo $promo_inicial->nombre_publicacion;?>: <?php echo $promo_inicial->descripcion_publicacion; ?>
 		</div>
-	</div>
-	<div>
-		<br/>En <?php echo $promo_inicial->nombre_publicacion; ?> encontrar&aacute;s:
-		<br/><br/>
-		<div class="titulo-proceso-img">&nbsp;</div>			
-		<div class="titulo-proceso">Seccion1</div>
-		<br/>
-		<div class="titulo-proceso-img">&nbsp;</div>			
-		<div class="titulo-proceso">Seccion2</div>
-		<br/>
-	</div>
-</div>
+		<div class="descripcion">
+			<?php echo $promo_inicial->descripcion_publicacion_larga; ?>	
+		</div>
+		<div class="space-pleca"></div>
+		<div class="banner-descripcion">
+			<div class="triangulo-negro-der"></div>Secciones de la revista
+		</div>
+		<div class="descripcion">
+			En <?php echo $promo_inicial->nombre_publicacion; ?> encontrar&aacute;s:
+			<div class="texto-detalle">
+				<div class="triangulo-rojo-der"></div> Seccion 1
+			</div>
+			<div class="texto-detalle">
+				<div class="triangulo-rojo-der"></div> Seccion 2
+			</div>		
+			<div class="texto-detalle">
+				<div class="triangulo-rojo-der"></div> Seccion 3
+			</div>													
+		</div>
+		<div class="space-pleca"></div>
+	</div>						
+				
+
