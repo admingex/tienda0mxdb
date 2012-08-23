@@ -45,10 +45,11 @@
 			
 			//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
 			if(@GetImageSize(TIENDA."p_".$p->url_imagen)){
-				$src = TIENDA ."p_".$p->url_imagen;
+				$src = TIENDA ."p_images/".$p->url_imagen;
 			}
 			else{
-				$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+				$src = TIENDA ."p_images/".$p->url_imagen;
+				//$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
 			}
 						
 			//
@@ -87,29 +88,19 @@
 	}
 ?>
 </div>
-<div class="paginacion" style="clear: both; margin-left: auto; margin-right: auto; width: 250px ">
-<?php
-	//echo $_SERVER['DOCUMENT_ROOT']."/tienda/<br/>";
-	/*
-	### obtener la url mapeada por el htacces y poder envoar el numero de pagina por GET
-	//echo site_url();				
-	if (stristr(basename($_SERVER['REQUEST_URI']), '?')) {
-		$mp = explode('?', basename($_SERVER['REQUEST_URI']));				
-		$url = TIENDA . $mp[0] . "?";				
-	} else {
-		$url = TIENDA . '?';
-	}
-	#####
-	*/		 																	
+<div id="separacion"></div>
+<div id="paginacion">
+<?php		 																	
 	$url = TIENDA;
 	
 	$classCss = "numPages";
 	#$classCss = "actualPage";
 	
 	//Clase CSS que queremos asignarle a los links 
-	$back = "Atrás       ";
-	$next = "       Siguiente";
+	$back = "Atrás";
+	$next = "Siguiente";
 	
 	$paginacion->generaPaginacion($total, $back, $next, $url, $classCss);
 ?>
 </div>
+<div id="separacion"></div>

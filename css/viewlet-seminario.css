@@ -1,0 +1,165 @@
+﻿#viewlet-seminario{
+	padding-top:18px;
+	font-family:Arial;
+}
+#viewlet-seminario .video{
+	float: left; 
+	width: 320px; height:240px;
+	margin-right:28px;
+	
+}
+#viewlet-seminario  .pleca{
+	clear: both;
+	border:none;
+	width:529px;			
+	height: 3px;
+	/*margin-left: 40px;*/
+	background: url('../images/css_sprite_Lineseparacion.jpg') repeat;	
+	background-position: 0px 0px;	
+	
+	
+}
+#viewlet-seminario  .img-flecha{
+	border:none;
+	width: 8px;			
+	height: 10px;
+	background: url('../images/css_sprite_Triangulos.png') no-repeat;	
+	background-position: 0px 0px;	
+	float:left;
+	padding-left:2px;
+}
+#viewlet-seminario  .img-flecha-negra{
+	border:none;
+	width: 5px;			
+	height: 12px;
+	background: url('../images/css_sprite_Triangulos.png') no-repeat;	
+	background-position: -9px 2px;	
+	float:left;
+	padding-left:2px;
+}
+#viewlet-seminario  .img-flecha-roja{
+	border:none;
+	width: 3px;			
+	height: 12px;
+	background: url('../images/css_sprite_Triangulos.png') no-repeat;	
+	background-position: -16px 2px;	
+	float:left;
+	padding-left:2px;
+}
+#viewlet-seminario .basic{
+
+	border:none;
+	float:right;
+	width:180px;	
+}
+#viewlet-seminario .basic .titulo{
+	font-weight: bold;
+	font-size: 17px;
+	color:#2e2e2e;
+}
+#viewlet-seminario .basic .descripcion-corta{
+	font-size: 13px;
+	color:#939393;	
+}
+#viewlet-seminario .basic .botones{
+	margin-top: 35px;
+	width:200px;
+	float:left;
+	border:none;
+}
+#viewlet-seminario .basic .botones .boton-ac{
+	background-color:#e2e2e2;
+	padding: 5px;
+}
+#viewlet-seminario .basic .botones .boton-cce{
+	background-color:#F1F1F1;
+	padding: 5px;
+}
+
+#viewlet-seminario .boton_continuar_compra{
+	border: none;
+	height: 20px;
+	width: 115px;
+	background: url('../images/css_sprite_BtnformaAñadir01.png') no-repeat;	
+	background-position: -7px -7px;	
+}
+#viewlet-seminario .boton_continuar_compra:hover{
+	border: none;
+	height: 20px;
+	width: 115px;
+	background: url('../images/css_sprite_BtnformaAñadir01.png') no-repeat;	
+	background-position: -7px -26px;	
+}
+
+#viewlet-seminario .boton_login{
+	border: none;
+	height: 20px;
+	width: 180px;
+	background: url('../images/css_sprite_BtnformaAñadir01.png') no-repeat;	
+	background-position: -122px -7px;	
+}
+#viewlet-seminario .boton_login:hover{
+	border: none;
+	height: 20px;
+	width: 180px;
+	background: url('../images/css_sprite_BtnformaAñadir01.png') no-repeat;	
+	background-position: -122px -26px;	
+}
+
+/**/
+	#viewlet-seminario .contenido{
+	clear: both;
+	padding-top:23px;
+}
+#viewlet-seminario .contenido .datos-importantes{
+	padding:1px;
+	background-color:#e2e2e2;
+	font-size:14px;
+	font-weight:bold;
+}
+#viewlet-seminario .contenido .texto{
+	padding-top:15px;
+	font-size:13px;
+	color:#939393;
+	text-align:justify; 
+}
+#viewlet-seminario .contenido .texto-final{
+	font-size:13px;
+	color:#939393;
+	text-align:justify; 
+}
+#viewlet-seminario .contenido .lista{
+	padding-top:10px;
+	font-size:13px;
+	color:#939393;
+}
+#viewlet-seminario .contenido .lista ol{
+	font-size:13px;
+	color:#CA0002;
+	font-weight:bold;
+	
+}
+#viewlet-seminario .contenido .lista ol span{
+	font-size:13px;
+	color:#939393;
+	
+}
+#viewlet-seminario .nexpositor{
+	padding:5px;
+	padding-left:15px;
+	color:#CA0002;
+	font-size:13px;
+	font-weight:bold;
+}
+
+
+#viewlet-seminario  .foo {
+    counter-reset: foo;
+  }
+ #viewlet-seminario  .foo li {
+    list-style-type: none;
+  }
+#viewlet-seminario .foo li::before {
+    counter-increment: foo;
+    content: "1." counter(foo) " ";
+  }

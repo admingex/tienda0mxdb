@@ -38,37 +38,41 @@ class paginacion
 		$this->numPages = ceil($totalRows/$this->quantity);
 		
 		if ($this->page > 0) {
-			$this->puri = $this->page - 1;
+			$this->puri = $this->page - 1;		
 			//echo "<a href='".$this->url."page=".$this->puri."'>".$back."</a>";
-			echo "<a href='".$this->url.$this->puri."'> ".$back."</a>";
+			echo "<a href='".$this->url.$this->puri."' class='avance'>
+					  <div class='triangulo-azul-izq'></div>Anterior
+			      </a>";			      
 		}
+			echo "<div class='pleca-vertical'></div>
+			      <div class='texto-pagina'>Página:</div>";
 		
 		if ($this->numPages > 1) {
 			for ($i = 0; $i < $this->numPages; $i++) {
 				if ($i == $this->page) {
-					echo "<span class='actualPage'>".($i+1)."</span>";
+					echo "<span class='actual'>".($i+1)."</span>";
 				}
 				elseif ($i == $this->page + 1 || $i == $this->page + 2 || $i == $this->page - 1
-				|| $i == $this->page - 2 || $i == 0 || $i == ($this->numPages - 1)) {
+				|| $i == $this->page - 2) {
 										
 					//$page + 1, $page +2 son los numeros que se desea ver por delante del actual
 					//$page -1, $page -2 son los numeros (Links) a ver por detras del actual
 					//Esto se puede modificar como se desee
-					echo " <a class='".$class."' href='".$this->url.$i."'>".($i+1)."</a>";
+					echo " <a class='avance padding-texto' href='".$this->url.$i."'>".($i+1)."</a>";
 				}
 				elseif ($i == $this->page - 3) {
-					echo "<span>...</span>";
+					//echo "<div style='float: left'>..</div>";
 				}
 				elseif ($i == $this->page + 3) {
-					echo "<span>...</span>";
+					//echo "<div style='float: left'>..</div>";
 				}
 			}
 		}
-		
+			echo "<div class='pleca-vertical'></div>";
 		if ($this->page < $this->numPages - 1) {
 			$this->puri = $this->page + 1;
-			echo "<a href='".$this->url.$this->puri."'>".$next."</a>";
-		}
+			echo "<a href='".$this->url.$this->puri."'><div class='avance'>Siguiente</div><div class='triangulo-azul-der'></div></a>";			
+		}		
 	}
 	
 }

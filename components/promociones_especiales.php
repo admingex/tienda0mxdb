@@ -70,7 +70,7 @@
 	}
 ?>
 </div>
-<div class="paginacion" style="clear: both; margin-left: auto; margin-right: auto; width: 250px ">
+<div id="paginacion">
 <?php
 								
 	$url = TIENDA."categoria/6/";
