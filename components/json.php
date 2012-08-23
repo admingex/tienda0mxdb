@@ -15,7 +15,9 @@
 	//obtener publicaciones y generar el json que las contenga
 	$pubs = $jc->get_publicaciones();
 	echo "Publicaciones..................</br><br/>";
-	
+	//obtener publicaciones y generar el json que las contenga
+	$pubs = $jc->get_catalogo_formatos();
+	echo "Formatos..................</br><br/>";
 	//generar el json que las contenga las publicaciones por categoría
 	$pubs_por_cat = $jc->generar_json_categoria_publicaciones();
 	echo "Publicaciones por Categoría..................</br><br/>";

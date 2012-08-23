@@ -13,6 +13,9 @@
 	 echo "<pre>";*/
 	$j = 0;
 	foreach ($ofertas_publicacion->promociones as $p) {
+		// $p trae la información general de la promoción,
+		// $p->detalle trae información más granuar 
+		
 	/*
 	 * //también se pueden ver los detalles por separado, es posible que esto cambie de acuerdo al funcionamiento final...
 	 * foreach ($detalles_promociones as $detalle) {
@@ -44,13 +47,13 @@
 			<form id='comprar_promocion".$p->detalle->id_promocion."' name='comprar_promocion".$p->detalle->id_promocion."' action='". $action_pagos ."' method='post'>
 				<input type='hidden' name='guidx' value='".API::GUIDX."' />
 			    <input type='hidden' name='guidz' value='".API::guid()."' />
-			    <input type='hidden' name='imagen' value='".TIENDA."images/img3.jpg' />
+			    <input type='hidden' name='imagen' value='".TIENDA."p_images/".$p->detalle->url_imagen."' />
 			    <input type='hidden' name='descripcion' value='".$p->descripcion_promocion."' />
 			    <input type='hidden' name='precio' value='".$p->detalle->costo."' />
 			    <input type='hidden' name='cantidad' value='1' />
 			    <div class='contenedor-imagen'>			    
 		    		<a href='". $url_detalle_promo . "'>
-		    			<img src='" . TIENDA . "images/css_sprite_PortadaCaja.jpg' />
+		    			<img src='" . TIENDA . "p_images/".$p->detalle->url_imagen."' />
 		    		</a>
 		    	</div>	
 		      	<div class='titulo-publicacion-back descripcion-promocion'>

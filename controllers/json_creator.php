@@ -9,17 +9,19 @@ class Json_Creator {
     private $categorias;
 	private $publicaciones;
 	private $promos_carrusel;
+	private $formatos;
 	private $promos_home;
 	private $promos_especiales;
 	private $promos_destacadas_por_cartegoria;
 	
 	#### Rutas de los archivos
-	private $archido_id_sitio		= "./json/id_tsitio_tienda.json";
+	private $archido_id_sitio		= "./json/id_sitio_tienda.json";
 	private $archivo_categorias 	= "./json/categorias/categorias.json";
 	private $archivo_publicaciones 	= "./json/publicaciones/publicaciones.json";
+	private $archivo_formatos 		= "./json/formatos.json";
 	private $archivo_carrusel_home 	= "./json/carrusel_home.json";
 	private $archivo_promos_home	= "./json/promociones_home.json";
-	private $archivo_promos_especiales	= "./json/promos_especiales.json";
+	private $archivo_promos_especiales	= "./json/promociones_especiales.json";
 	### bases
 	private $base_publicacion_por_categoria	= "./json/categorias/publicaciones_categoria_";
 	private $base_promos_por_publicacion	= "./json/publicaciones/promos_publicacion_";
@@ -50,14 +52,26 @@ class Json_Creator {
     public function get_id_tienda() {
     	$id_tienda = $this->modelo->get_sitio_tienda();
 		$json_text = json_encode(array('id_sitio_tienda' => $id_tienda));
-	
-		//echo "encode<br/>" . $json_text;
-	
-		Json_Creator::Write_To_Json_File($this->archido_id_sitio, $json_text);
-	
+		//escribir al archivo
+		//Json_Creator::Write_To_Json_File($this->archido_id_sitio, $json_text);
+		self::Write_To_Json_File($this->archido_id_sitio, $json_text);
+		
 		//echo "<br/>file id tienda: " . file_get_contents($this->archido_id_sitio);
 		
     	return $id_tienda; 
+    }
+    
+    /**
+	 * Obtiene el catálogo de los formatos para el filtro y 
+	 * regresa objeto json encoded
+	 */
+    public function get_catalogo_formatos() {
+    	$this->formatos = json_encode(array('formatos' => $this->modelo->get_catalogo_formatos()));
+		
+		//escribir al archivo
+		self::Write_To_Json_File($this->archivo_formatos, $this->formatos);
+		
+    	return $this->formatos; 
     }
     
 	################### Generación de archivos de Categorías ###################
@@ -67,11 +81,13 @@ class Json_Creator {
 	 */
 	public function get_categorias() {
 		$this->categorias = json_encode(array("categorias" => $this->modelo->get_categorias()));
-		//escribirlas a archivo
+
+		//escribir al archivo
 		self::Write_To_Json_File($this->archivo_categorias, $this->categorias);
 		
 		return $this->categorias;
 	}
+	
 	
 	/**
 	 * Obteger las publicaciones y guardarlas en un archivo Json
@@ -328,8 +344,12 @@ class Json_Creator {
 				$promos_destacadas_por_categorias[$id_c] = json_encode(array("promo_destacada" => $pdc[0]));
 				//escribir en el arhivo
 				self::Write_To_Json_File($path_pdc, $promos_destacadas_por_categorias[$id_c]);
+				
+				//echo "Generar Detalle de Promociones Destacada Categoría..................</br><br/>";
+				$this->generar_json_promos_detalle($pdc);
 			} 
 		}
+		
 		/*
 		echo "Promo destacada por categoría<pre>";
 		print_r($promos_destacadas_por_categorias);
@@ -374,6 +394,9 @@ class Json_Creator {
 				$promos_destacadas_por_publicacion[$id_p] = json_encode(array("promo_destacada" => $pdp[0]));
 				//escribir en el arhivo
 				self::Write_To_Json_File($path_pdp, $promos_destacadas_por_publicacion[$id_p]);
+				
+				//echo "Generar Detalle de Promociones Destacada Categoría..................</br><br/>";
+				$this->generar_json_promos_detalle($pdp);
 			} 
 		}
 		

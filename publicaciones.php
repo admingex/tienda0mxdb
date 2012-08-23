@@ -121,6 +121,18 @@
 				$view .= $mostrar;
 			} else if (strtolower($mostrar) === "ofertas" ) {	//la publicación tiene varios formatos
 				$view .= $mostrar;
+				//agregar información para el filtro por formatos
+				// revisar si hay "promoción destacada" para la publicación
+				$path_formatos = "./json/formatos.json";
+				if (file_exists($path_formatos)) {
+					$json = file_get_contents($path_formatos);
+					$cat_formatos = json_decode($json);
+					
+					if (count($cat_formatos->formatos) > 0) {
+						$data["formatos"] = $cat_formatos;	//pasar la promoción destacada a la vista
+						//include_once('./components/filtro_formatos.php');
+					}
+				}
 			}
 		}
 	} else {	//si no trae parámetros de la publicación manda al home

@@ -4,7 +4,7 @@
 	 * además de permitir filtrarlas por formato y precio
 	 * 
 	 */
-
+	//print_r($ofertas_publicacion);
 	// formación del breadcum correspondiente
 	if (isset($info_publicacion)) {
 		//si el flujo proviene de un listado de categoría...se incluye esta parte para la navegación
@@ -20,12 +20,15 @@
 	}
 	
 	##### Promos destacadas por publicación
-	if (isset ($pd) && count($pd) == 1) {
+	if (isset($pd) && count($pd) == 1) {
 		include_once('./components/promocion_destacada.php');
 	}
 	
 	##### Filtro por formatos y precio
-
+	if (isset($formatos)) {
+		include_once('./components/filtro_formatos.php');
+	}
+	
 	if (isset($ofertas_publicacion)) {
 		//último nivel de detalle
 		include_once('./components/promociones_publicacion.php');
