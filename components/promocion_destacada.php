@@ -7,21 +7,10 @@ foreach ($pd as $p_destacada) {
 //	echo "img" . $p_destacada->url_imagen;
 ?>
 	<div id="featured">
-    <?php
-	    echo "
-			<form name='comprar_promocion_destacada' action='".API::API_URL. $p_destacada->id_sitio."/".$p_destacada->id_canal."/".$p_destacada->id_promocion."/pago' method='post'>
-			  	<div class='promo-left'>
-			      	<input type='hidden' name='guidx' value='".API::GUIDX."'/>
-			      	<input type='hidden' name='guidz' value='".API::guid()."'/>
-			      	<a href=''><img src='".TIENDA."images/".$p_destacada->url_imagen."'/></a>
-			      	";
-			      	/*<!--div class='descripcion'>
-			          	<input type='submit' name='comprar_ahora' value=''/>
-			      	</div-->*/
-	    		echo"</div>
-	      	</form>";
-      	echo "<img src='".TIENDA.$p_destacada->url_imagen."' onclick='document.comprar_promocion_destacada.submit();'/>";
-			      		
+    <?php	    			
+      	echo "<a href='" . TIENDA . "/promocion/" . $p_destacada->id_promocion ."'>
+      		      <img src='".TIENDA."p_images/".$p_destacada->url_imagen."' width='529px' height='246px' />
+      		  </a>";			      		
 	?>
 	</div>
 
