@@ -3,8 +3,12 @@
 	 * Mostrará el listado de promocionesde una publicación que tiene promociones en diferentes formatos,
 	 * además de permitir filtrarlas por formato y precio
 	 * 
-	 */
-	//print_r($ofertas_publicacion);
+	 * 
+	/*	 
+	echo "<pre>"; 
+	print_r($ofertas_publicacion);
+	echo "</pre>";
+	*/
 	// formación del breadcum correspondiente
 	if (isset($info_publicacion)) {
 		//si el flujo proviene de un listado de categoría...se incluye esta parte para la navegación
@@ -32,7 +36,7 @@
 	if (isset($ofertas_publicacion)) {
 		//último nivel de detalle
 		include_once('./components/promociones_publicacion.php');
-		exit;
+		//exit;
 	}
 	
 // fin del archivo de la vista que despliega las promociones de una publicación con más de un formato asociado: "promos_publicacion_ofertas.php"

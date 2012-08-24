@@ -73,12 +73,12 @@
 		
 		//formulario para la promoción
 		//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
-		if(@GetImageSize(TIENDA."p_images/".$p->url_imagen)){
-			$src = TIENDA ."p_images/".$p->url_imagen;
+		if(@GetImageSize(TIENDA."p_images/".$p->detalle->url_imagen)){
+			$src = TIENDA ."p_images/".$p->detalle->url_imagen;
 		}
 		else{
 			//$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
-			$src = TIENDA ."p_images/".$p->url_imagen;
+			$src = TIENDA ."p_images/".$p->detalle->url_imagen;
 		}
 		echo "		
 			<div class='promo-left'>
@@ -91,7 +91,7 @@
 			    <input type='hidden' name='cantidad' value='1' />
 			    <div class='contenedor-imagen'>			    
 		    		<a href='". $url_detalle_promo . "'>
-		    			<img src='" . $src . "' />
+		    			<img src='" . $src . "' alt='".$src."' />
 		    		</a>
 		    	</div>	
 		      	<div class='titulo-publicacion-back descripcion-promocion'>
@@ -141,4 +141,5 @@
 <?php
 	} 
 ?>
-<div class="space-pleca"></div>
+
+<div id="space-pleca"></div>

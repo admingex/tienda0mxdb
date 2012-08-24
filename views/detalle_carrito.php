@@ -14,7 +14,7 @@ if(isset($_SESSION['carrito'])){
 		Producto agregado al carrito:
 		</div>";
 		echo "<div class='img-big'>";
-		echo "    <img src='".$_SESSION['carrito'][$ind]['imagenVc']."' alt='".$_SESSION['carrito'][$ind]['imagenVc']."' />";
+		echo "    <img src='".$_SESSION['carrito'][$ind]['imagenVc']."' alt='".$_SESSION['carrito'][$ind]['imagenVc']."' width='127px' height='169px' />";
 		echo "		<br />
 		<span class='titulo'>
 		".$_SESSION['carrito'][$ind]['descripcion'];
@@ -133,7 +133,7 @@ if(isset($_SESSION['carrito'])){
 				</div>";
 		
 			echo "<div class='boton-final'>
-				<a href='".site_url('promociones-especiales.php')."'><input type='button'  class='continuar-carrito'/></a>";
+				<a href='".site_url('home')."'><input type='button'  class='continuar-carrito'/></a>";
 					
 		if($var==0){
 					echo"<div style='margin-left:465px;' >";

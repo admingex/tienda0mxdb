@@ -4,6 +4,10 @@
 	font-family: Arial;										
 }
 
+#contenedor-promo img{								
+	border: none;										
+}
+
 #contenedor-promo-especial {								
 	margin-top: 15px;		
 	width: 528px;	
@@ -181,4 +185,9 @@
 	background: #F1F1F1 ;			
 	display: block;		
 	text-align: center;																
+}
+
+#space-pleca{
+	clear: both;		
+	height: 22px;		
 }

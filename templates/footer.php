@@ -6,11 +6,10 @@
 		
 		<div id="pleca-punteada">&nbsp;</div>
 	 	<div class="footer_main">
-	   		<div><a href="">Pol&iacute;tica de Privacidad</a></div>            
-	   		<div><a href="">Condiciones de uso</a></div>
-	   		<div><a href="">P&aacute;gina de ayuda</a></div>
-	   		<div><a href="">Cont&aacute;ctanos</a></div>
-	   	</div>
+	   		<div><a href="<?php echo ECOMMERCE .'pagina/mostrar/privacidad';?>" target='new'>Pol&iacute;tica de Privacidad</a></div>            	   		
+	   		<div><a href="<?php echo ECOMMERCE .'pagina/mostrar/ayuda';?>" target='new'>P&aacute;gina de ayuda</a></div>
+	   		<div><a href="<?php echo ECOMMERCE .'pagina/mostrar/contacto';?>" target='new'>Cont&aacute;ctanos</a></div>
+	   	</div>	   	
 	</div><!--div main-->
 	
     <div id="footer-container">
@@ -20,3 +19,6 @@
     </div>
 </body>
 </html>
+
+	 	
+	

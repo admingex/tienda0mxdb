@@ -289,9 +289,9 @@ a
     div.footer_main
     {
         margin: 10px;
-        width: 500px;
+        width: 350px;
         margin: 0 auto;
-        overflow:hidden;
+        overflow:hidden;        
     }
         div.footer_main div
         {

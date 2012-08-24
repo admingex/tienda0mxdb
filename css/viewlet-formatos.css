@@ -1,8 +1,7 @@
 #viewlet-formatos {
-	margin: 28px 0 15px 0;
-	clear: both;
-	float:left;
-	/*width: 529px;*/
+	margin: 30px 0 -25px 0;
+	clear: both;	
+	width: 527px;
 }
 
 #viewlet-formatos .cuenta_promociones {
@@ -36,4 +35,9 @@
 	background-position: 0px 0px;	
 	
 	
+}
+
+#viewlet-formatos .label-right{
+	float: right;
+	color: #464646;
 }
