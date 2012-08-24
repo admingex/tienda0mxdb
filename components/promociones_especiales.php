@@ -45,7 +45,7 @@
 		     	<div class='contenedor-imagen'>
 		     		<img src='" . TIENDA . "p_images/".$pe->url_imagen."' />		     		
 		     	</div>	
-		      	<div class='titulo-promocion-back titulo-promocion'>".$pe->id_promocion."-".$pe->descripcion_promocion."<br />".$pe->costo.
+		      	<div class='titulo-promocion-back titulo-promocion'>".$pe->descripcion_promocion."<br /> $ ".number_format($pe->costo, 2, ".", ","). 
 		      	"</div>";
 		      	
 				if (isset($_SESSION['datos_login'])) {

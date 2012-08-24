@@ -1,7 +1,7 @@
 #contenedor-promo {								
 	margin-top: 45px;		
 	width: 528px;	
-	font-family: Arial;										
+	font-family: Arial;											
 }
 
 #contenedor-promo img{								
@@ -56,12 +56,12 @@
 }
 
 #contenedor-promo .titulo-promocion-back{		
-	height: 50px;
+	height: 52px;
 	padding: 6px 2px 2px 2px; 	
 	background: #E2E2E2 ;	
 	text-align: center;		
 	display: block;
-																			
+	overflow: hidden;																		
 }
 
 #contenedor-promo .titulo-promocion{
@@ -79,9 +79,10 @@
 
 
 #contenedor-promo .descripcion-promocion-back{		
-	height: 40px; 			
+	height: 33px; 			
 	background: #EAEAEA ;			
-	display: block;																			
+	display: block;		
+	overflow: hidden;																	
 }
 
 #contenedor-promo .descripcion-promocion{
@@ -160,7 +161,8 @@
 	height: 80px; 			
 	background: #EAEAEA ;			
 	display: block;		
-	vertical-align: middle;																	
+	vertical-align: middle;	
+	overflow: hidden;																
 }
 
 #contenedor-promo .descripcion-categoria{
