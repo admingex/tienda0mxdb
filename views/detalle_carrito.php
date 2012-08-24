@@ -77,12 +77,11 @@ if(isset($_SESSION['carrito'])){
 					<p>Total del carrito: <span>$".number_format($total,2,'.',',')."</span><input type='submit' name='tienda_carrito' value='' class='pagar-carrito' /></p>
 				</div>";
 				
-			if($var==1){
+			
 		echo"
 		<div class='nproductos'>
 					<p>".$na." productos en el carrito:</p>
-				</div>";
-		}
+				</div>";		
 			foreach($_SESSION['carrito'] as $k => $v){				
 				echo "<div class='lista-articulos'>
 						   <div class='imgp'>

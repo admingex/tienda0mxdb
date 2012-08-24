@@ -55,6 +55,8 @@
     #### Publicaciones
     RewriteRule ^publicacion/?$						publicaciones.php
     RewriteRule ^publicacion/ofertas/([0-9]+)/?$	publicaciones.php?mostrar=ofertas&id_publicacion=$1
+	RewriteRule ^publicacion/ofertas/([0-9]+)/?$	publicaciones.php?mostrar=ofertas&id_publicacion=$1&page=0
+	RewriteRule ^publicacion/ofertas/([0-9]+)/([0-9]+)/?$	publicaciones.php?mostrar=ofertas&id_publicacion=$1&page=$2
     RewriteRule ^publicacion/detalle/([0-9]+)/?$ 	publicaciones.php?mostrar=detalle&id_publicacion=$1
     
     #### Categorías

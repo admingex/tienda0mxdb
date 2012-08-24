@@ -127,7 +127,7 @@
 					<form id='comprar_promocion".$detalle->id_promocion."' name='comprar_promocion" . $detalle->id_promocion . "' action='" . $action_pagos . "' method='post'>".
 						"<input type='hidden' name='guidx' value='".API::GUIDX."' />\n" . 
 						"<input type='hidden' name='guidz' value='".API::guid()."' />\n". 
-					    "<input type='hidden' name='imagen' value='".TIENDA."images/img3.jpg' />\n" .
+					    "<input type='hidden' name='imagen' value='".$src."' />\n" .
 					    "<input type='hidden' name='descripcion' value='". $detalle->descripcion_promocion."' />\n" .
 					    "<input type='hidden' name='precio' value='".$detalle->costo."' />\n" .
 					    "<input type='hidden' name='cantidad' value='1' />\n					     
@@ -145,7 +145,7 @@
 					</td>
 					<td><?php echo $detalle->descripcion_promocion; ?></td>
 					<td><?php echo $detalle->texto_oferta; //Contenido de la promocion(ejemplares, suplementos, regalos, etc.)?></td>
-					<td>Precio: <?php echo $detalle->costo; //Precio y descuento aplicado sobre precio de portada?></td>
+					<td>Precio: <?php echo number_format($detalle->costo,2, ".", ",")."&nbsp;".$detalle->moneda; //Precio y descuento aplicado sobre precio de portada?></td>
 				</tr>
 			<?php
 				}

@@ -89,6 +89,9 @@
 ?>
 </div>
 <div id="separacion"></div>
+<?php
+	if($total>6){ 
+?>
 <div id="paginacion">
 <?php		 																	
 	$url = TIENDA;
@@ -103,4 +106,7 @@
 	$paginacion->generaPaginacion($total, $back, $next, $url, $classCss);
 ?>
 </div>
+<?php
+	} 
+?>
 <div id="separacion"></div>

@@ -35,11 +35,11 @@
 		//ya que se mostrará el detalle de una promoción, se pregunta por dicho arreglo de información
 		if (isset($detalles_promociones) && count($detalles_promociones) > 0) {
 			$oc = $detalles_promociones[0]->order_code_type;
-			$desc_producto 	= " > <b>". $order_code_cat[$oc] . "</b>";
+			$desc_producto 	= " <div class='triangulo-negro-der'></div><div class='noref'>". $order_code_cat[$oc] . "</div>";
 		}
 		
 		//breadcum final para el detalle de promoción
-		echo "<div><a href='".site_url("home")."'> Home </a> > ". $bread_cat . $bread_pub . $desc_producto . "</div>";
+		echo "<div id='breadcrumbs'><a href='".site_url("home")."'>Home</a><div class='triangulo-negro-der'></div>". $bread_cat . $bread_pub . $desc_producto ."</div>";
 		//echo "<div><h3><a href='".site_url("home")."'> Home </a> > ". $bread_cat ." <a href=''>".ucwords(strtolower($info_publicacion->nombreVc))."</a></h3></div>";
 		
 		//echo $info_publicacion->formatos;
