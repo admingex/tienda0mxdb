@@ -2,6 +2,7 @@
 	#root path
 	const 	TIENDA 	=	'http://localhost/tienda/';	//http://tienda.grupoexpansion.mx
 	const	ECOMMERCE = 'http://localhost/ecommerce/';	//http://pagos.grupoexpansion.mx
+	const	MAX_PROMOS_PAGINA	=	6;
 	/**
 	 * Clase genérica para la funcionalidad del API
 	 */

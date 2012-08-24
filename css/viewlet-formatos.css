@@ -1,16 +1,30 @@
 #viewlet-formatos {
-	margin-top: 18px;
+	margin: 28px 0 15px 0;
 	clear: both;
-
+	width: 529px;
 }
 
 #viewlet-formatos .cuenta_promociones {
 	font-family: Arial;
 	font-size: 13px;
-	width: 320px; height:240px;
-	margin-right:28px;
-	
+	color:	#464646;
+	font-weight: bold;
+
 }
+
+#viewlet-formatos .leyenda_formato {
+	margin: 8px 0 8px 0;
+	font-family: Arial;
+	font-size: 13px;
+	color:	#939393;
+	font-weight: bold;
+}
+
+#viewlet-formatos .leyenda_formato label {
+	color:	#e09f1a;
+	font-weight: normal;
+}
+
 #viewlet-formatos  .pleca{
 	clear: both;
 	border:none;

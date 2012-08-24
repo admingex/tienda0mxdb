@@ -25,6 +25,7 @@ class Json_Creator {
 	### bases
 	private $base_publicacion_por_categoria	= "./json/categorias/publicaciones_categoria_";
 	private $base_promos_por_publicacion	= "./json/publicaciones/promos_publicacion_";
+	private $base_formatos_por_publicacion	= "./json/publicaciones/formatos_publicacion";
 	private $base_detalle_promo				= "./json/detalle_promociones/detalle_promo_";
 	private $base_promocion_destacada_por_cartegoria	= "./json/promociones_destacadas/promo_destacada_categoria_";
 	private $base_promocion_destacada_por_publicacion	= "./json/promociones_destacadas/promo_destacada_publicacion_";
@@ -159,7 +160,7 @@ class Json_Creator {
 	 */
     public function generar_json_publicacion_promos() {
     	$promos_por_publicacion = array();
-		
+    	
     	if (isset($this->publicaciones)) {		//Ya se crearon las publicaciones
 	    	$jp = json_decode($this->publicaciones);
 			//echo "desde la propiedad";
@@ -175,28 +176,32 @@ class Json_Creator {
 				
 				//registrar las promos por publicación
 				self::Write_To_Json_File($filename, $promos_por_publicacion[$id]);
-				
-				//obtener el detalle de las promociones
-				$this->generar_json_promos_detalle($ppp);
-				/*foreach ($ppp as $promocion) {
-					$id_promocion = $promocion['id_promocion'];
-					
-					$file_detalle = $this->base_detalle_promo.$id_promocion.".json";
-					
-					//recuperar el detalle
-					$detalle_promo = $this->modelo->get_detalle_promocion($id_promocion);
-					
-					//echo "'".$file_detalle."'<br/>";
-					self::Write_To_Json_File($file_detalle, json_encode($detalle_promo));
-				}*/
-				
-				//self::Write_To_Json_File($file_detalle, json_encode(array('detalle_promo' => $detalle_promo)));
-				//echo realpath($_SERVER["DOCUMENT_ROOT"])."<br/>";
 				/*
 				echo "ppp1<pre>";
 				print_r($ppp);
 				echo "</pre>";
 				*/
+				
+				//obtener el detalle de las promociones
+				$this->generar_json_promos_detalle($ppp);
+				
+				### formatos
+				//para saber qué formatos mostrar para la publicación
+				$formatos = array();
+				//considerar los formatos por publicación par el posible filtro
+				foreach ($ppp as $promocion) {					
+					$id_formato	=	$promocion['id_formato'];
+					$formatos["$id_formato"] = $id_formato;
+				}
+				
+				/*echo "<pre>";
+				print_r($formatos);
+				echo "</pre>";*/
+				//ruta del archivo de formatos por publicacion
+				$file_formatos_pp = $this->base_formatos_por_publicacion.$id.".json";
+				//echo "'".$file_detalle."'<br/>";
+				self::Write_To_Json_File($file_formatos_pp, json_encode(array("formatos_pp" => $formatos)));
+				
 			}
     	} else if (file_exists($this->archivo_publicaciones)) {	//Si ya está en el archivo, lo toma de ahí
     		//echo "desde el archivo";
@@ -415,9 +420,11 @@ class Json_Creator {
 	 	/*echo "<pre>";
 		print_r($promociones);
 		echo "</pre>";*/
+		
 		foreach ($promociones as $promocion) {
 			$id_promocion = $promocion['id_promocion'];
 			
+			//ruta del archivo del detalle
 			$file_detalle = $this->base_detalle_promo.$id_promocion.".json";
 			
 			//recuperar el detalle
@@ -426,7 +433,6 @@ class Json_Creator {
 			//echo "'".$file_detalle."'<br/>";
 			self::Write_To_Json_File($file_detalle, json_encode($detalle_promo));
 		}
-
 	 }
 	################## END Recuperación y Generación del de talle de las promociones ##############
 	

@@ -133,6 +133,19 @@
 						//include_once('./components/filtro_formatos.php');
 					}
 				}
+				//cargar los formatos que se ocupan realmente par ala publicación
+				$path_formatos_pp = "./json/publicaciones/formatos_publicacion" . $id_publicacion . ".json";
+				if (file_exists($path_formatos_pp)) {
+					$json = file_get_contents($path_formatos_pp);
+					$formatos_pp = json_decode($json);
+					/*echo "formatos_pp<pre>";
+					print_r($formatos_pp);
+					echo "</pre>";*/
+					if (count($formatos_pp->formatos_pp) > 0) {
+						$data["formatos_pp"] = $formatos_pp->formatos_pp;	//pasar la promoción destacada a la vista
+						//include_once('./components/filtro_formatos.php');
+					}
+				}
 			}
 		}
 	} else {	//si no trae parámetros de la publicación manda al home
