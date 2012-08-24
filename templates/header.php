@@ -45,9 +45,9 @@
     <div id="main"><!--div main-->
         <section id="encabezado_tienda">
             <header id="header_tienda">
-                <div class="header_section">
-                	<div><img src="<?php echo TIENDA;?>images/logo_expansion2.gif" alt="logo gex" width="150" height="52"/></div>
-                    <div class="titulo_logo">GEX-Store</div>
+                <div class="header_section">                	                    
+                    <div><img src="<?php echo TIENDA;?>images/nuevo_logo.png" alt="logo gex"  class='nuevo-logo'/></div>
+                    <div class="titulo_logo">Tienda GEx</div>
                     <div class="necesita-ayuda">&nbsp;</div>
                 </div>                
                 <section class="header_section">

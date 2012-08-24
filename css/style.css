@@ -47,15 +47,18 @@ a
         }
             div.header_section div:first-child 
             {
-                display:none;
+                /*display:none;*/
             }
             div.header_section div.titulo_logo
             {
                 float:left;
                 line-height:30px;
-                margin:0 0 0 36px;
+                margin: 5px 0 0 100px;
                 padding:0;
-            }
+                font-weight: bold;
+                font-size: 23px;
+                font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+            }           
             div.necesita-ayuda 
             {
                 background: url(../images/css-sprite_btnAyuda2.png) no-repeat 0 -4px;
@@ -408,4 +411,11 @@ input[type="radio"]{
 	color:#800;	
 	font-weight: bold;	
 	float: left;
+}
+ .nuevo-logo{
+ 	position: absolute;
+	float: left;
+	z-index: 50;
+    width: 75px; 
+    margin: -30px 0px 0px 25px;
 }
