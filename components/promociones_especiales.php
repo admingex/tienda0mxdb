@@ -38,7 +38,7 @@
 			<form id='comprar_promocion_especial".$pe->id_promocion."' name='comprar_promocion_especial".$pe->id_promocion."' action='".ECOMMERCE."api/". $pe->id_sitio."/".$pe->id_canal."/".$pe->id_promocion."/pago' method='post'>
 			    <input type='hidden' name='guidx' value='".API::GUIDX."' />
 		     	<input type='hidden' name='guidz' value='".API::guid()."' />
-		     	<input type='hidden' name='imagen' value='".TIENDA.$pe->url_imagen."' />
+		     	<input type='hidden' name='imagen' value='".TIENDA."p_images/".$pe->url_imagen."' />
 		     	<input type='hidden' name='descripcion' value='".$pe->descripcion_promocion."' />
 		     	<input type='hidden' name='precio' value='".$pe->costo."' />
 		     	<input type='hidden' name='cantidad' value='1' />

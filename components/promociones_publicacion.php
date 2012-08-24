@@ -11,8 +11,38 @@
 	 /*echo "<pre>";
 	 print_r($ofertas_publicacion->promociones);
 	 echo "<pre>";*/
-	$j = 0;
-	foreach ($ofertas_publicacion->promociones as $p) {
+	 
+	$total = count($ofertas_publicacion->promociones);	
+			
+	if (isset($_GET['page'])) {
+		$pg = $_GET['page'];
+	} else {
+		$pg = 0;
+	}
+	
+	$cantidad = 6; //Cantidad de registros que se desea mostrar por pagina
+	
+	//echo "get: " . $_GET['page'];
+	//Para probar solo le coloque 3
+	
+	$paginacion = new paginacion($cantidad, $pg);
+	$desde = $paginacion->getFrom();		
+		
+	$recorrer = $ofertas_publicacion->promociones;
+	
+	$limite = ($desde + $cantidad);
+	if ($limite > $total) {
+		$limite = $total;
+	}
+	$j=0;
+	for ($i = $desde; $i < $limite ; $i++) {
+		//echo "<br />->".$i."<-";
+		
+		/*echo "<pre>";
+			print_r($recorrer[$i]);
+		echo "</pre>";*/
+		
+		$p = $recorrer[$i];	 		
 		// $p trae la información general de la promoción,
 		// $p->detalle trae información más granuar 
 		
@@ -89,3 +119,26 @@
 	}
 ?>
 </div>
+
+<?php 
+	if($total>6){
+?>		
+<div id="paginacion">
+<?php						
+	$url = TIENDA."publicacion/ofertas/".$id_publicacion."/";
+	
+	$classCss = "numPages";
+	#$classCss = "actualPage";
+	
+	//Clase CSS que queremos asignarle a los links 
+	
+	$back = "Atras";
+	$next = "Siguiente";
+	
+	$paginacion->generaPaginacion($total, $back, $next, $url, $classCss);
+?>
+</div>
+<?php
+	} 
+?>
+<div class="space-pleca"></div>
