@@ -11,31 +11,34 @@
 			$formatos_publicacion = $formatos_pp;
 		}
 		/*echo "formatos_pp<pre>";
-		print_r($formatos);
+		print_r((array)$formatos_publicacion);
 		echo "</pre>";*/
 		
 		echo 
 		"<div class='cuenta_promociones'>M&aacute;s de " . MAX_PROMOS_PAGINA . " promociones para " . $nombre_pub ."</div>\n".
-		 	"<div class='leyenda_formato'>Formato ";
+		 	"<div class='leyenda_formato'>\n".
+		 		"<form id='form_filtro_formatos' method='post' action=''>Formato ";
 	
 		//mostrar el filtro de los formatoa
 		$i = 0;
-		foreach ($formatos_publicacion as $f => $value) {
-			if ($formatos->formatos[$value]->id_formato == $value) {
+		foreach ($formatos->formatos as $f) {
+			$id_f = $f->id_formato;	//$f->id_formato;
+			$nombre_f = $f->nombre_formato;
 			
-			$id_f = $formatos->formatos[$value]->id_formato;	//$f->id_formato;
-			$nombre_f = $formatos->formatos[$value]->nombre_formato;
+			//formato de la publicación
+			$id_fp = property_exists($formatos_publicacion, $id_f) ? $formatos_publicacion->$id_f : -1;
 			
-			//if (array_key_exists($id_f, $formatos_publicacion)) {
 			
+			
+			if ($id_f == $id_fp) {
 				$url_f = TIENDA . "filtro/" . $f->id_formato;
-		      	echo "<input type='checkbox' id='chk_formato" . $id_f . "' name='chk_formato" . $id_f . "'><label for='chk_formato" . $id_f . "'>" . $nombre_f. "</label> ";
+		      	echo "<input type='checkbox' id='chk_formato" . $id_f . "' name='chk_formato" . $id_f . "' value='". $id_f . "'><label for='chk_formato" . $id_f . "'>" . $nombre_f. "</label> ";
 			}
 		}
 		echo 
-			"</div>
+				"</form>	
+			</div>
 		</div>";
 	}
 ?>
-
 </div>
