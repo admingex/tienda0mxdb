@@ -66,17 +66,17 @@
                     	<?php                    	
                     		if(isset($_SESSION['logged_in'])){
 								if($_SESSION['logged_in']==1){
-                    				echo "<a class='mi_cuenta' href='".site_url('promociones-especiales')."'>Mi cuenta</a>";
-									echo "<a class='logout' href='".site_url('logout/')."'>Cerrar Sesion</a>";                    								
+                    				echo "<a class='mi_cuenta' href='".site_url('promociones-especiales')."'>&nbsp;</a>";
+									echo "<a class='logout' href='".site_url('logout/')."'>&nbsp;</a>";                    								
                     			}
                     		}
 							else{
-								echo "<a class='login' href=".site_url('login/').">Iniciar sesión</a>";								
+								echo "<a class='login' href=".site_url('login/').">&nbsp;</a>";								
 							}
                     	?>
                     
                     	
-                    	<a class="carrito" href="<?php echo site_url('carrito.php');?>">Carrito</a>
+                    	<a id='cuenta-carrito' class="carrito" href="<?php echo site_url('carrito.php');?>"><?php if(isset($_SESSION['carrito'])) echo count($_SESSION['carrito']); else echo "0"; ?></a>
                     </div>
                 </section>
             </header>

@@ -26,7 +26,8 @@ function anadir_carrito(nameform, sitio, canal, promocion){
                 },
           		success:  function (response) {
           				$( "#dialog-modal" ).dialog( "open" );
-                        $("#dialog-modal").html(response);
+                        $("#dialog-modal").html(response);                        
+                        $("#cuenta-carrito").text($('#cuenta-detalle-carrito').text());
                 }
         });
         

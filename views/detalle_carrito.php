@@ -80,7 +80,8 @@ if(isset($_SESSION['carrito'])){
 			
 		echo"
 		<div class='nproductos'>
-					<p>".$na." productos en el carrito:</p>
+												
+					<p><label id='cuenta-detalle-carrito'>".$na."</label> productos en el carrito:</p>
 				</div>";		
 			foreach($_SESSION['carrito'] as $k => $v){				
 				echo "<div class='lista-articulos'>
@@ -109,7 +110,7 @@ if(isset($_SESSION['carrito'])){
 									".$v['descripcion']."</span><br />";
 				echo " 	   			<a href='".site_url("carrito.php?eliminar_item=".$k)."'>Eliminar</a>";		        	   			
 				echo " 	   		</div>
-								<div style='float: right; font-weight:bold ;'><span class='precio'>$".$v['precio']."</span></div>		        	   		
+								<div style='float: right; font-weight:bold ;'><span class='precio'>$".number_format($v['precio'],2,".",",")."</span></div>		        	   		
 						  
 						   
 					  </div>";

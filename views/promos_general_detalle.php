@@ -5,14 +5,14 @@
 	if (isset($info_publicacion)) {
 		//si el flujo proviene de un istado de categoría...
 		$url_breadcum 	= (isset($info_categoria)) 	? site_url("categoria/".$info_categoria->id_categoriaSi) : NULL;
-		$bread_cat 		= (!empty($url_breadcum))	? " <a href='$url_breadcum'> ".ucwords(strtolower($info_categoria->nombreVc))."</a> > " : '';
+		$bread_cat 		= (!empty($url_breadcum))	? " <a href='$url_breadcum'> ".ucwords(strtolower($info_categoria->nombreVc))."</a><div class='triangulo-negro-der'></div> " : '';
 		$bread_pub 		= '';
 		
 		//Para cuando se regresa del datalle
 		if ($info_publicacion->formatos > 1) {
 			//$bread_pub 	= " <a href='".site_url("publicacion/ofertas/$info_publicacion->id_publicacionSi"). "'> ".ucwords(strtolower($info_publicacion->nombreVc))."</a> ";
 			$bread_pub 	= (!empty($url_breadcum))	? " <a href='$url_breadcum/publicacion/ofertas/$info_publicacion->id_publicacionSi'> ".ucwords(strtolower($info_publicacion->nombreVc))."</a> " 
-			: " <a href='".site_url("publicacion/ofertas/$info_publicacion->id_publicacionSi"). "'> ".ucwords(strtolower($info_publicacion->nombreVc))."</a> ";
+			: " <a href='".site_url("publicacion/ofertas/$info_publicacion->id_publicacionSi"). "'<div class='triangulo-negro-der'></div> ".ucwords(strtolower($info_publicacion->nombreVc))."</a> ";
 		} else {
 			//$bread_pub 	= " <a href='".site_url("publicacion/detalle/$info_publicacion->id_publicacionSi"). "'> ".ucwords(strtolower($info_publicacion->nombreVc))."</a> ";
 			$bread_pub 	= (!empty($url_breadcum))	? " <a href='$url_breadcum/publicacion/detalle/$info_publicacion->id_publicacionSi'> ".ucwords(strtolower($info_publicacion->nombreVc))."</a> " 
@@ -20,7 +20,7 @@
 		}
 		
 		//breadcum
-		echo "<div><h3><a href='".site_url("home")."'> Home </a> > ". $bread_cat . $bread_pub ;//" <a href='$bread_pub'>".ucwords(strtolower($info_publicacion->nombreVc))."</a></h3></div>";
+		echo "<div><h3><a href='".site_url("home")."'>Home</a><div class='triangulo-negro-der'></div> ". $bread_cat . $bread_pub ;//" <a href='$bread_pub'>".ucwords(strtolower($info_publicacion->nombreVc))."</a></h3></div>";
 		echo "<br/>detalle_promocion_general<br/>";
 		
 		echo $info_publicacion->formatos;

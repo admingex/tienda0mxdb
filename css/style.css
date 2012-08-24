@@ -135,13 +135,16 @@ a
                 background: url(../images/css_sprite_btn01.png) no-repeat -7px -5px;
                 float:left;
                 margin:0 0 0 8px;
-                padding:0;
-                text-indent:-1000px;
+                padding:0; 
+                padding-top: 3px;               
+                text-indent:35px;
+                color: #FFF;
+                font-weight: bold;
             }
             #header_tienda a.login 
             {
                 background-position:-88px -5px;
-                height:22px;
+                height:19px;
                 width:81px;
             }
             #header_tienda a.login:hover
@@ -151,7 +154,7 @@ a
             #header_tienda a.mi_cuenta
             {
                 background-position:-7px -5px;
-                height:22px;
+                height:19px;
                 width:81px;
             }
             #header_tienda a.mi_cuenta:hover
@@ -165,7 +168,7 @@ a
             #header_tienda a.carrito
             {
                 background-position:-169px -5px;
-                height:22px;
+                height:19px;
                 width:72px;
             }
             #header_tienda a.carrito:hover

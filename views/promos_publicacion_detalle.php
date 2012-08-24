@@ -11,7 +11,7 @@
 	if (isset($info_publicacion)) {
 		//si el flujo proviene de un listado de categoría...se incluye esta parte para la navegación
 		$url_breadcum 	= (isset($info_categoria)) 	? site_url("categoria/".$info_categoria->id_categoriaSi) : NULL;
-		$bread_cat 		= (!empty($url_breadcum))	? " <a href='$url_breadcum'> ".ucwords(strtolower($info_categoria->nombreVc))."</a> > " : '';
+		$bread_cat 		= (!empty($url_breadcum))	? " <a href='$url_breadcum'> ".ucwords(strtolower($info_categoria->nombreVc))."</a><div class='triangulo-negro-der'></div>" : '';
 		$bread_pub 		= '';
 		$desc_producto	= '';	//descripción mostrada del tipo de artículo en la promoción
 		

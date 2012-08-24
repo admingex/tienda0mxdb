@@ -13,13 +13,13 @@
 #viewlet-detalle-suscripcion .detalle{
 	float: left;
 	margin-left: 26px;		
-	width: 371px;
-	height: 173px;				
+	width: 371px;	 			
 }
 
 #viewlet-detalle-suscripcion .bloque-descripcion{
-	padding: 8px 0px 5px 0px;	
-	height: 80px;		
+	padding: 8px 0px 5px 0px;				
+	min-height: 80px;	
+	margin-bottom:10px
 }
 
 #viewlet-detalle-suscripcion .titulo-detalle{				
@@ -134,14 +134,14 @@
 th{
 	background-color: #D0D0D0;	
 	height: 18px;			
-	padding: 5px 3px;
+	padding: 3px 5px;
 	color: #3D3D3D;
 	font-size: 13px;
 	font-weight: bold;		
 }
 td{
 	background-color: #F1F1F1;				
-	padding: 5px 3px;
+	padding: 3px 5px;	
 	color: #525252;
 	font-size: 13px;
 	font-weight: bold;	
