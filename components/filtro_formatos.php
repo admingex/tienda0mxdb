@@ -16,8 +16,8 @@
 		
 		echo 
 		"<div class='cuenta_promociones'>M&aacute;s de " . MAX_PROMOS_PAGINA . " promociones para " . $nombre_pub ."</div>".
-		 	"<div class='leyenda_formato'>".
-		 		"<form id='form_filtro_formatos' method='post' action=''>Formato ";
+		"<div class='leyenda_formato'>".
+			"<form id='form_filtro_formatos' method='post' action=''>Formato ";
 	
 		//mostrar el filtro de los formatoa
 		$i = 0;
@@ -42,8 +42,8 @@
 					     <option value='soldest'>Más vendido</option>
 					 </select>
 				 </span>
-				 </form>	
-			</div>";
+			</form>
+		</div>";
 	}
 ?>
 </div>
