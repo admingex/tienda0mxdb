@@ -67,6 +67,7 @@
 		$carrito='';
 		$carrito = "'comprar_promocion', ".$p->detalle->id_sitio.", ".$p->detalle->id_canal.", ".$p->detalle->id_promocion;
 		
+		$descripcion_promocion = !empty($p->detalle->descripcion_issue) ? $p->detalle->descripcion_issue : $p->descripcion_promocion; 
 		//$action_carrito = TIENDA . "carrito.php?id_sitio=" . $p->detalle->id_sitio . "&id_canal=" . $p->detalle->id_canal . "&id_promocion=" . $p->detalle->id_promocion;
 		//$onclick_action = "document.comprar_promocion" . $p->detalle->id_promocion . ".action='" . $action_carrito . "'; ";
 		//$onclick_event = "document.comprar_promocion".$p->detalle->id_promocion.".submit()";
@@ -86,7 +87,7 @@
 				<input type='hidden' name='guidx' value='".API::GUIDX."' />
 			    <input type='hidden' name='guidz' value='".API::guid()."' />
 			    <input type='hidden' name='imagen' value='".$src."' />
-			    <input type='hidden' name='descripcion' value='".$p->descripcion_promocion."' />
+			    <input type='hidden' name='descripcion' value='".$descripcion_promocion."' />
 			    <input type='hidden' name='precio' value='".$p->detalle->costo."' />
 			    <input type='hidden' name='cantidad' value='1' />
 			    <div class='contenedor-imagen'>			    
@@ -95,7 +96,7 @@
 		    		</a>
 		    	</div>	
 		      	<div class='titulo-publicacion-back descripcion-promocion'>
-		      		".$p->descripcion_promocion."
+		      		".$descripcion_promocion."
 		      	</div>
 		      	<div class='descripcion-publicacion-back'>
 					<span class='precio-promocion'> $ " . number_format($p->detalle->costo, 2, ".", "," )."</span>

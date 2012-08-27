@@ -30,6 +30,7 @@
 	
 	##### Filtro por formatos y precio
 	if (isset($formatos)) {
+		echo "<script type='text/javascript' src='".TIENDA."js/filtro_formato.js'></script>";
 		include_once('./components/filtro_formatos.php');
 	}
 	

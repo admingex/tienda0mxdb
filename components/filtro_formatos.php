@@ -32,7 +32,8 @@
 			
 			if ($id_f == $id_fp) {
 				$url_f = TIENDA . "filtro/" . $f->id_formato;
-		      	echo "<input type='checkbox' id='chk_formato" . $id_f . "' name='chk_formato" . $id_f . "' value='". $id_f . "'><label for='chk_formato" . $id_f . "'>" . $nombre_f. "</label> ";
+				$checked = (isset($_POST['chk_formato'.$id_f])) ? "cheched='checked'" : "";
+		      	echo "<input type='checkbox' id='chk_formato" . $id_f . "' name='chk_formato" . $id_f . "' value='". $id_f . "'><label for='chk_formato" . $id_f . "' ". $checked . ">" . $nombre_f. "</label> ";
 			}
 		}
 		echo 

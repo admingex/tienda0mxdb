@@ -16,12 +16,12 @@
 	<div class="detalle">
 		<div class="bloque-descripcion">
 			<div class="titulo-detalle">
-				<?php echo $detalle_promocion->descripcion_promocion; ?>	
+				<?php echo $detalle_promocion->descripcion_issue; ?>	
 			</div>
 			<div class="bloque-texto">
-				<span class="texto-detalle">Precio:</span>	
-				<span class="precio-detalle"><?php echo number_format($detalle_promocion->costo,2,'.', ',');?></span>
-			</div>				
+				<span class="texto-detalle">Precio:</span>
+				<span class="precio-detalle"><?php echo "$". number_format($detalle_promocion->costo,2,'.', ',')."&nbsp;".$detalle_promocion->moneda;?></span>
+			</div>
 		</div>
 		<div class="botones">
 			<?php

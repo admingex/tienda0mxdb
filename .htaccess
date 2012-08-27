@@ -41,10 +41,8 @@
     RewriteRule ^categoria/6/([0-9]+)/?$	promociones_especiales.php?id_categoria=6&page=$1
     
     #### Home
-    RewriteRule ^home/?$			http://%{HTTP_HOST}/tienda/
-    
-    
-    #RewriteRule ^([A-Za-z\+]*)/home/?$	http://%{HTTP_HOST}/tienda/
+    RewriteRule ^home/?$					http://%{HTTP_HOST}/tienda/
+    #RewriteRule ^([A-Za-z\+]*)/home/?$		http://%{HTTP_HOST}/tienda/
     
     
     #### Promociones
@@ -53,11 +51,15 @@
     RewriteRule ^categoria/([0-9]+)/publicacion/([0-9]+)/promocion/([0-9]+)/?$	promociones.php?id_categoria=$1&id_publicacion=$2&id_promocion=$3
     
     #### Publicaciones
-    RewriteRule ^publicacion/?$						publicaciones.php
-    RewriteRule ^publicacion/ofertas/([0-9]+)/?$	publicaciones.php?mostrar=ofertas&id_publicacion=$1
-	RewriteRule ^publicacion/ofertas/([0-9]+)/?$	publicaciones.php?mostrar=ofertas&id_publicacion=$1&page=0
+    RewriteRule ^publicacion/?$								publicaciones.php
+    RewriteRule ^publicacion/ofertas/([0-9]+)/?$			publicaciones.php?mostrar=ofertas&id_publicacion=$1
+	RewriteRule ^publicacion/ofertas/([0-9]+)/?$			publicaciones.php?mostrar=ofertas&id_publicacion=$1&page=0
+	
+	###### paginado simple de las ofertas de la publicación
 	RewriteRule ^publicacion/ofertas/([0-9]+)/([0-9]+)/?$	publicaciones.php?mostrar=ofertas&id_publicacion=$1&page=$2
-    RewriteRule ^publicacion/detalle/([0-9]+)/?$ 	publicaciones.php?mostrar=detalle&id_publicacion=$1
+	
+	###### detalle de la promoción de una publicación que no trae más de un formato
+    RewriteRule ^publicacion/detalle/([0-9]+)/?$ 			publicaciones.php?mostrar=detalle&id_publicacion=$1
     
     #### Categorías
     RewriteRule ^categoria/([0-9]+)/?$ categorias.php?id_categoria=$1
