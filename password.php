@@ -52,9 +52,7 @@
 			$data['password_temporal'] = $_GET['passtemp'];
 	}
 	//lógica de la recuperación de contraseña
-	if ($_POST) {
-		//inicio de la sesión
-		session_start();
+	if ($_POST) {				
 		
 		//no caché
 		no_cache();

@@ -1,30 +1,32 @@
-<table>
-<form id="form_cambiar_password" action="<?php echo site_url('password/cambiar/'); ?>" method="POST">	
-		<tr>
-			<td class="label">
-				Nueva contrase&ntilde;a	
-			</td>
-			<td>
-				<input type="password" id="password" name="password" value="<?php if(isset($_POST['password'])) echo htmlspecialchars($_POST['password']);?>" />
-				<span class="validation_message">
-					<?php if(isset($password_errores['password'])) echo($password_errores['password']);?>
-				</span>
-			</td>
-		</tr>
-		<tr>
-			<td class="label">
-				Confirmar contrase&ntilde;a	
-			</td>
-			<td>
-				<input type="password" id="password_2" name="password_2" value="<?php if(isset($_POST['password_2'])) echo htmlspecialchars($_POST['password_2']); ?>" />
-				<span class="validation_message">
-					<?php if(isset($password_errores['password_2'])) echo($password_errores['password_2']);?>
-				</span>
-			</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td><input type="submit" id="cambiar_password" name="cambiar_password" value="&nbsp;" class="boton_continuar_compra"/></td>
-		</tr>	
-</form>		
-</table>								
+<div class='formulario'>
+	<form id="form_cambiar_password" action="<?php echo site_url('password/cambiar/'); ?>" method="POST">	
+		<table width="100%">
+			<tr>
+				<td class="label" width="135px">
+					Nueva contrase&ntilde;a	
+				</td>
+				<td>
+					<input type="password" id="password" name="password" value="<?php if(isset($_POST['password'])) echo htmlspecialchars($_POST['password']);?>" />
+					<span class="validation_message">
+						<?php if(isset($password_errores['password'])) echo($password_errores['password']);?>
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">
+					Confirmar contrase&ntilde;a	
+				</td>
+				<td>
+					<input type="password" id="password_2" name="password_2" value="<?php if(isset($_POST['password_2'])) echo htmlspecialchars($_POST['password_2']); ?>" />
+					<span class="validation_message">
+						<?php if(isset($password_errores['password_2'])) echo($password_errores['password_2']);?>
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><input type="submit" id="cambiar_password" name="cambiar_password" value="&nbsp;" class="cambiar-password"/></td>
+			</tr>		
+		</table>		
+	</form>
+</div>								

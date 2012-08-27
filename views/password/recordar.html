@@ -1,17 +1,18 @@
-<form id="form_recordar_password" action="<?php echo site_url('password/enviar/'); ?>" method="POST">
-<table width="100%">
-	<tr>
-		<td class="label">
-			Correo electr&oacute;nico
-		</td>
-		<td>
-			<input type="text" name="email" id="email" size="40" value="<?php if(isset($_POST['email'])) echo htmlspecialchars($_POST['email']);?>"/><?php if(isset($mensaje)) echo ($mensaje);?>
-		</td>
-	</tr>	
-	<tr>
-		<td>&nbsp;</td>
-		<td><input type="submit" id="recordar_password" value="&nbsp;" class="boton_enviar_instrucciones"/></td>
-	</tr>
-</table>
-</form>					
-	
+<div class='formulario'>
+	<form id="form_recordar_password" action="<?php echo site_url('password/enviar/'); ?>" method="POST">
+	<table width="100%">
+		<tr>
+			<td class="label" width="110px">
+				Correo electr&oacute;nico
+			</td>
+			<td>
+				<input type="text" name="email" id="email" size="40" value="<?php if(isset($_POST['email'])) echo htmlspecialchars($_POST['email']);?>"/><?php if(isset($mensaje)) echo ($mensaje);?>
+			</td>
+		</tr>	
+		<tr>
+			<td>&nbsp;</td>
+			<td><input type="submit" id="recordar_password" value="&nbsp;" class="enviar-instrucciones"/></td>
+		</tr>
+	</table>
+	</form>					
+</div>	

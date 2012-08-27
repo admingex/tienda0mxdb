@@ -134,7 +134,7 @@ if(isset($_SESSION['carrito'])){
 				</div>";
 		
 			echo "<div class='boton-final'>
-				<a href='".site_url('home')."'><input type='button'  class='continuar-carrito'/></a>";
+				<a href='".site_url('home')."' class='continuar-carrito'></a>";
 					
 		if($var==0){
 					echo"<div style='margin-left:465px;' >";
