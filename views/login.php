@@ -1,4 +1,4 @@
-<link type="text/css" href="<?php echo TIENDA;?>css/validacion.css" rel="stylesheet" />
+<!--<link type="text/css" href="<?php echo TIENDA;?>css/validacion.css" rel="stylesheet" />-->
 <section class="contenedor-tienda">	
 	<div class="contenedor-gris">
 		<?php		

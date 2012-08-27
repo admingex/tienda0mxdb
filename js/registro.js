@@ -19,7 +19,7 @@ $(document).ready(function() {
 	    	}  
 	    	else{
 	    		if($("#email").val()=="" || !email.test($("#email").val())){
-	    			$("#email").focus().after("<span class='error2'>Por favor ingresa un correo electrónico <br />válido. Ejemplo: nombre@dominio.mx</span>");            
+	    			$("#email").focus().after("<span class='error2'>Por favor ingresa un correo electrónico válido. Ejemplo: nombre@dominio.mx</span>");            
 	        		return false;
 	    		}
 	    		else{        			
@@ -44,7 +44,7 @@ $(document).ready(function() {
 		$(".error").remove();
 		$(".error2").remove();
 	    if($("#email").val()=="" || !email.test($("#email").val())){        	
-	        $("#email").focus().after("<span class='error2'>Por favor ingresa un correo electrónico <br />válido. Ejemplo: nombre@dominio.mx</span>");            
+	        $("#email").focus().after("<span class='error2'>Por favor ingresa un correo electrónico válido. Ejemplo: nombre@dominio.mx</span>");            
 	        return false;            
 	    }   
 	    else{  
