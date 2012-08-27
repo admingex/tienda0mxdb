@@ -23,7 +23,7 @@ if(isset($_SESSION['carrito'])){
 		<br /><span class='descripcion'>".$_SESSION['carrito'][$ind]['descripcion'];
 		echo "		</span>
 		
-		<br /><span class='precio' style='color: #a70002;	'>$ ".$_SESSION['carrito'][$ind]['precio'];
+		<br /><span class='precio' style='color: #a70002;	'>$ ".number_format($_SESSION['carrito'][$ind]['precio'], 2  ,".", ",");
 		echo "</span></div>";
 		$in='width: 400px';	
 		
