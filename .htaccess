@@ -7,8 +7,8 @@
     ##Additionally this will allow you to create a System.php controller,
     ##previously this would not have been possible.
     ##'system' can be replaced if you have renamed your system folder.
-    #RewriteCond %{REQUEST_URI} ^system.*
-    #RewriteRule ^(.*)$ /tienda/index.php?/$1 [L]
+    RewriteCond %{REQUEST_URI} ^system.*
+    RewriteRule ^(.*)$ /tienda/index.php?/$1 [L]
     
     ##When your application folder isn't in the system folder
     ##This snippet prevents user access to the application folder
@@ -36,9 +36,9 @@
     RewriteRule ^registro/?$ 	registro.php
     RewriteRule ^password/?$ 	password.php
     RewriteRule ^categoria/?$ 	categorias.php
-    
-    RewriteRule ^categoria/6/?$ promociones_especiales.php?id_categoria=6&page=0
+        
     RewriteRule ^categoria/6/([0-9]+)/?$	promociones_especiales.php?id_categoria=6&page=$1
+    RewriteRule ^categoria/6/?$ 			promociones_especiales.php?id_categoria=6&page=0
     
     #### Home
     RewriteRule ^home/?$					http://%{HTTP_HOST}/tienda/
@@ -52,8 +52,8 @@
     
     #### Publicaciones
     RewriteRule ^publicacion/?$								publicaciones.php
-    RewriteRule ^publicacion/ofertas/([0-9]+)/?$			publicaciones.php?mostrar=ofertas&id_publicacion=$1
-	RewriteRule ^publicacion/ofertas/([0-9]+)/?$			publicaciones.php?mostrar=ofertas&id_publicacion=$1&page=0
+    RewriteRule ^publicacion/ofertas/([0-9]+)/?$		publicaciones.php?mostrar=ofertas&id_publicacion=$1
+	##RewriteRule ^publicacion/ofertas/([0-9]+)/?$			publicaciones.php?mostrar=ofertas&id_publicacion=$1&page=0
 	
 	###### paginado simple de las ofertas de la publicación
 	RewriteRule ^publicacion/ofertas/([0-9]+)/([0-9]+)/?$	publicaciones.php?mostrar=ofertas&id_publicacion=$1&page=$2
@@ -68,20 +68,11 @@
     RewriteRule ^categoria/([0-9]+)/publicacion/ofertas/([0-9]+)/?$		publicaciones.php?id_categoria=$1&mostrar=ofertas&id_publicacion=$2
     RewriteRule ^categoria/([0-9]+)/publicacion/detalle/([0-9]+)/?$ 	publicaciones.php?id_categoria=$1&mostrar=detalle&id_publicacion=$2
     
-    ##Por lo mientras para las promoniones especiales
-    RewriteRule ^categoria/promociones-especiales/?$ promociones-especiales.php
-	RewriteRule ^promociones-especiales/?$	promociones-especiales.php
-	RewriteRule ^detalle-suscripcion/?$		detalle-suscripcion.php
+	#### Login y Password
     RewriteRule ^password/([A-Za-z\+]+)/?$	password.php?accion=$1
-    
-    #### Login y Password
     ##La siguiente debe ser: RewriteRule ^password/([A-Za-z\+]+)/([A-Za-z0-9\+]+)/([A-Za-z0-9\+]+)/?$  password.php?accion=$1&passtemp=$2&datcont=$3
     RewriteRule ^password/([A-Za-z\+]+)/([A-Za-z0-9\+]+)/?$ 	password.php?accion=$1&passtemp=$2
     
-    #RewriteRule ^publicaciones controllers/publicaciones.php
-	#RewriteRule ^categorias controllers/categorias.php
-	#RewriteRule ^home controllers/home.php	
-	
 </IfModule>
 
 <IfModule !mod_rewrite.c>

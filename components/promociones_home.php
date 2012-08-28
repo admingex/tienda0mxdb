@@ -44,7 +44,7 @@
 			$url_detalle_promo = TIENDA ."promocion/" . $p->id_promocion;
 			
 			//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
-			if(@GetImageSize(TIENDA."p_".$p->url_imagen)){
+			if(file_exists("./p_images/".$p->url_imagen)){
 				$src = TIENDA ."p_images/".$p->url_imagen;
 			}
 			else{

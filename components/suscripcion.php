@@ -60,7 +60,7 @@
 <link href='<?php echo TIENDA ?>css/viewlet-detalle-suscripcion.css' rel='stylesheet' type="text/css" />
 <?php	
 	//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
-	if(@GetImageSize(TIENDA."p_images/".$promo_inicial->url_imagen)){
+	if(file_exists("./p_images/".$promo_inicial->url_imagen)){
 		$src = TIENDA ."p_images/".$promo_inicial->url_imagen;
 	}
 	else{

@@ -152,7 +152,7 @@
 	} else if ($_POST) {
 		echo "Post<pre>";
 		print_r($_POST);
-		echo "<pre>"; 
+		echo "<pre>";
 	
 	} else {	//si no trae parámetros de la publicación manda al home
 		##### TO DO: definir este flujo

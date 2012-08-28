@@ -5,6 +5,7 @@ $(document).ready(function() {
 	var fs = $("#form_filtro_formatos > input[type='checkbox']");
 	fs.click(function(){
 		alert($(this).attr("id"));
+		forma.submit();
 	});	
 });
 

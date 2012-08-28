@@ -18,7 +18,7 @@
 			$url_p = site_url('categoria/'.$p->id_categoria.'/publicacion/detalle/') . $p->id_publicacion;
 		}
 		//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
-		if(@GetImageSize(TIENDA."p_images/".$p->url_imagen)){
+		if(file_exists("./p_images/".$p->url_imagen)){
 			$src = TIENDA ."p_images/".$p->url_imagen;
 		}
 		else{

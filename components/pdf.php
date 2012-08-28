@@ -1,10 +1,9 @@
 <link href='<?php echo TIENDA ?>css/viewlet-detalle-pdf.css' rel='stylesheet' type="text/css" />
 <?php	
 	//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
-	if(@GetImageSize(TIENDA."p_images/".$detalle_promocion->url_imagen)){
+	if (file_exists("./p_images/".$detalle_promocion->url_imagen)){
 		$src = TIENDA ."p_images/".$detalle_promocion->url_imagen;
-	}
-	else{
+	} else{
 		$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
 		//$src = TIENDA ."p_images/".$p->url_imagen;
 	}

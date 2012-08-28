@@ -34,7 +34,9 @@
 	if ($limite > $total) {
 		$limite = $total;
 	}
-	$j=0;
+	
+	$j = 0;
+	
 	for ($i = $desde; $i < $limite ; $i++) {
 		//echo "<br />->".$i."<-";
 		
@@ -74,7 +76,7 @@
 		
 		//formulario para la promoción
 		//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
-		if(@GetImageSize(TIENDA."p_images/".$p->detalle->url_imagen)){
+		if(file_exists("./p_images/".$p->detalle->url_imagen)){
 			$src = TIENDA ."p_images/".$p->detalle->url_imagen;
 		}
 		else{
@@ -122,7 +124,7 @@
 </div>
 
 <?php 
-	if($total>6){
+	if($total > 6) {
 ?>		
 <div id="paginacion">
 <?php						
@@ -133,7 +135,7 @@
 	
 	//Clase CSS que queremos asignarle a los links 
 	
-	$back = "Atras";
+	$back = "Atrás";
 	$next = "Siguiente";
 	
 	$paginacion->generaPaginacion($total, $back, $next, $url, $classCss);
@@ -142,5 +144,4 @@
 <?php
 	} 
 ?>
-
 <div id="space-pleca"></div>

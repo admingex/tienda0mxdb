@@ -17,7 +17,7 @@
 		echo 
 		"<div class='cuenta_promociones'>M&aacute;s de " . MAX_PROMOS_PAGINA . " promociones para " . $nombre_pub ."</div>".
 		"<div class='leyenda_formato'>".
-			"<form id='form_filtro_formatos' method='post' action=''>Formato ";
+			"<form id='form_filtro_formatos' method='post' action='/tienda/publicacion/ofertas/".$id_publicacion."'>Formato ";
 	
 		//mostrar el filtro de los formatoa
 		$i = 0;
