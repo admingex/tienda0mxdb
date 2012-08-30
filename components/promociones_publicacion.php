@@ -20,7 +20,7 @@
 		$pg = 0;
 	}
 	
-	$cantidad = 6; //Cantidad de registros que se desea mostrar por pagina
+	$cantidad = MAX_PROMOS_PAGINA;//6; //Cantidad de registros que se desea mostrar por pagina
 	
 	//echo "get: " . $_GET['page'];
 	//Para probar solo le coloque 3
@@ -36,7 +36,9 @@
 	}
 	
 	$j = 0;
-	
+	/*echo "<pre>";	######ordenamientos
+			print_r($recorrer[0]);
+		echo "</pre>";*/
 	for ($i = $desde; $i < $limite ; $i++) {
 		//echo "<br />->".$i."<-";
 		
@@ -46,7 +48,7 @@
 		
 		$p = $recorrer[$i];	 		
 		// $p trae la información general de la promoción,
-		// $p->detalle trae información más granuar 
+		// $p->detalle trae información más granular 
 		
 	/*
 	 * //también se pueden ver los detalles por separado, es posible que esto cambie de acuerdo al funcionamiento final...

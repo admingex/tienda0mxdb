@@ -1,0 +1,11 @@
+function checkFields(forma)
+	{ 
+	    if(forma.titulo.value=="") { alert('Especifique su título'); return false; }
+		if(forma.cargo[7].status && forma.cargootro.value=="" )	 {  alert('Especifique su cargo ');	 return false;	 }
+		//if(forma.actividad[4].status  && forma.actividadotra.value=="") {alert('Especifique actividad de la empresa '); return false; }
+		//if(forma.ramo.value=="58." && forma.ramootra.value=="") {alert('Especifique su ramo '); return false; }
+		if (forma.construye.value=="-1") {	alert("Seleccione el tipo de obra en el que construye");return false; 	}
+		if (forma.mes.value=="") { alert('Ingrese una respuesta en la pregunta de validación'); return false; }
+
+	 return true;
+	}

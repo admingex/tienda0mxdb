@@ -6,9 +6,9 @@
 		print_r($categoria->publicaciones);
 	echo "</pre>";
 	*/
-	$j=0;
+	$j = 0;
 	foreach ($categoria->publicaciones as $p) {
-		//url de la puclicación
+		//url de la publicación
 		$url_p = '';
 		if($p->formatos > 1) {
 			//URL para que se vaya a la lista de promociones y se pueda filtrar por formatos y precios

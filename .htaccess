@@ -52,7 +52,7 @@
     
     #### Publicaciones
     RewriteRule ^publicacion/?$								publicaciones.php
-    RewriteRule ^publicacion/ofertas/([0-9]+)/?$		publicaciones.php?mostrar=ofertas&id_publicacion=$1
+    RewriteRule ^publicacion/ofertas/([0-9]+)/?$			publicaciones.php?mostrar=ofertas&id_publicacion=$1
 	##RewriteRule ^publicacion/ofertas/([0-9]+)/?$			publicaciones.php?mostrar=ofertas&id_publicacion=$1&page=0
 	
 	###### paginado simple de las ofertas de la publicación

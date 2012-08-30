@@ -1,7 +1,7 @@
 <link type="text/css" href="<?php echo TIENDA;?>css/viewlet-formatos.css" rel="stylesheet" />
 <div id="viewlet-formatos">
 <?php 
-	if (isset($ofertas_publicacion) && count ($ofertas_publicacion->promociones) > MAX_PROMOS_PAGINA) {
+	if (isset($ofertas_publicacion) && isset($total_promociones) && $total_promociones > MAX_PROMOS_PAGINA) {
 		$nombre_pub = isset($info_publicacion) ? $info_publicacion->nombreVc : "";
 		
 		$formatos_publicacion = array();
@@ -19,8 +19,7 @@
 		"<div class='leyenda_formato'>".
 			"<form id='form_filtro_formatos' method='post' action='/tienda/publicacion/ofertas/".$id_publicacion."'>Formato ";
 	
-		//mostrar el filtro de los formatoa
-		$i = 0;
+		//mostrar el filtro de los formatos
 		foreach ($formatos->formatos as $f) {
 			$id_f = $f->id_formato;	//$f->id_formato;
 			$nombre_f = $f->nombre_formato;
@@ -28,22 +27,30 @@
 			//formato de la publicación
 			$id_fp = property_exists($formatos_publicacion, $id_f) ? $formatos_publicacion->$id_f : -1;
 			
-			
-			
 			if ($id_f == $id_fp) {
 				$url_f = TIENDA . "filtro/" . $f->id_formato;
-				$checked = (isset($_POST['chk_formato'.$id_f])) ? "cheched='checked'" : "";
-		      	echo "<input type='checkbox' id='chk_formato" . $id_f . "' name='chk_formato" . $id_f . "' value='". $id_f . "'><label for='chk_formato" . $id_f . "' ". $checked . ">" . $nombre_f. "</label> ";
+				$checked = (isset($_POST['chk_formato'.$id_f])) ? "checked='checked'" : "";
+		      	echo "<input type='checkbox' id='chk_formato" . $id_f . "' name='chk_formato" . $id_f . "' value='". $id_f . "' " . $checked . "><label for='chk_formato" . $id_f . "'>" . $nombre_f. "</label> ";
 			}
 		}
-		echo 
-				"<span class='label-right'>Ordenar por: 
-					 <select name='filtro'>
-					     <option value='precio'>Precio</option>
-					     <option value='soldest'>Más vendido</option>
-					 </select>
-				 </span>
-			</form>
+		
+		//select de ordenación		
+		if (isset($criterios) && !empty($criterios)) {
+			echo 
+				"<span class='label-right'>Ordenar por:<select name='sel_ordenar' id='sel_ordenar'>
+					<option>Seleccionar</option>";
+			foreach($criterios as $c) {
+				//si viene el select:
+				$sel_opcion = (array_key_exists('sel_ordenar', $_POST) && $_POST['sel_ordenar'] == $c->id_criterio) ? "selected='true'" : "";
+				echo "	<option value='" . $c->id_criterio ."' ". $sel_opcion .">" . $c->nombre_criterio . "</option>\n";
+			}
+			
+			echo "
+					</select>\n
+				</span>\n";
+		}
+		echo 	
+			"</form>
 		</div>";
 	}
 ?>

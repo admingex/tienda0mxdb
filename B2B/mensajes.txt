@@ -1,0 +1,31 @@
+--MENSAJE DE NO CALIFICA--
+"Agradecemos su interés por la revista  Energia 360, 
+para poder recibir de forma gratuita la revista, es 
+importante que cubra el perfil que nos requiere nuestra agencia auditora. 
+
+Lamentablemente no podemos incluirlo como suscriptor gratuito.<br><br>
+No obstante, nos interesa que usted forma parte de la comunidad de lectores de 
+Energia 360, por ello, podrá suscribirse a través de un precio preferencial."
+          
+--MENSAJE SI APLICA		  
+		  
+ "Hemos recibido su orden de suscripción gratuita para <b>".Energia 360."</b>.<br><br>"
+ "Nuestro objetivo es brindar el mejor servicio a nuestros lectores por lo que, nos permitimos "
+ "informarle que para ser <i>suscriptor calificado</i>, deberá encontrarse dentro del perfil "
+"predeterminado y la única forma de saberlo es a través del cuestionario que amablemente contestó.<br><br>"
+"Debido a la gran demanda que tenemos, el proceso de calificación de cuestionarios puede tomar "
+
+"hasta 3 ediciones a partir de la fecha en que usted nos envía su cuestionario. "		
+"De no calificar le enviaremos una notificación.<br><br>"
+
+
+ "Agradecemos su paciencia para la realización de este proceso. "
+ "Para cualquier duda o aclaración estamos a sus ordenes en el mail "
+"<a href='mailto:mercadotecnia@expansion.com.mx'>mercadotecnia@expansion.com.mx</a> "
+ "o al teléfono (55) 5093-2615.<br><br>"
+"Nota: Los editores se reservan el derecho de incluir sólo a lectores calificados.<br><br>"
+
+
+
+shadowbox ----- investigar 
+fpdi

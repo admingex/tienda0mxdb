@@ -108,12 +108,14 @@
 				
 				//toda la información de la promoción
 				$data['ofertas_publicacion'] = $promos;
-				
+				//total de promociones de la publicación, se usa para mostrar el filtro siempre en caso de que las promociones mostradas sean menos de las mínimas para mostrar el filtro
+				$data['total_promociones'] = count($data['ofertas_publicacion']->promociones);
 				/*
 				echo "Temp<pre>";
 				print_r($detalles);
 				echo "</pre>";
 				*/
+				//los detalles sólo se usan en las suscripciones, pdfs, seminarios...
 				$data['detalles_promociones'] = $detalles;
 			}
 			
@@ -147,13 +149,46 @@
 						//include_once('./components/filtro_formatos.php');
 					}
 				}
+				
+				//cargar los criterios de ordenación para el listado
+				$path_criterios = "./json/criterios_ordenacion.json";
+				if (file_exists($path_criterios)) {
+					$json = file_get_contents($path_criterios);
+					$criterios = json_decode($json);
+					/*echo "formatos_pp<pre>";
+					print_r($criterios);
+					echo "</pre>";*/
+					
+					$data["criterios"] = $criterios->criterios;	//pasar la promoción destacada a la vista
+				}
+				
+				//filtro por formato:
+				if ($_POST) {
+					// $ofertas_publicacion: trae un array de objects 
+					$promos_filtradas = array();
+					//total de las promociones
+					$op = $data['ofertas_publicacion'];
+					
+					$filtro_values = array();		//almacena los valores enviados 
+					//recuperación de los valores para el filtro 
+					$filtro_values = recuperar_filtros();
+					//realizar el filtrado:
+					$op->promociones = filtrar_promociones_por_formatos($op->promociones, $filtro_values);
+					
+					//ordenamiento
+					$orden = (array_key_exists('sel_ordenar', $_POST) ? $_POST['sel_ordenar'] : NULL);
+					
+					//$op->promociones = ordenar_promociones($op->promociones, $criterio);
+					
+					
+					//re seasignan las promociones que se van a desplegar...
+					$data['ofertas_publicacion'] = $op;
+					
+					###Ordenamiento de promociones
+					
+				}
 			}
 		}
-	} else if ($_POST) {
-		echo "Post<pre>";
-		print_r($_POST);
-		echo "<pre>";
-	
 	} else {	//si no trae parámetros de la publicación manda al home
 		##### TO DO: definir este flujo
 		$view = "$mostrar";		
@@ -161,8 +196,58 @@
 		$url = site_url("home");
 		header("Location: $url");
 	}
-	
 	cargar_vista($view, $data);
 	exit;
+	
+	/**
+	 * Recupera los valores del POST para filtrar las promociones por formato
+	 */
+	function recuperar_filtros() {
+		$valores = array();
+		$prefijo = "chk_formato";		//para ubicar los valores de los formatos que se usarán para el filtro
+		//$str_filtros = "filtros: ";
+		foreach ($_POST as $filtro => $value) {
+			//si existen las variables de filtro se guardan sus valores
+			//$str_filtros .= (is_integer((strpos($filtro, $prefijo))) ? $filtro . " - " : "");
+			if (is_integer(strpos($filtro, $prefijo))) {
+				$valores[] =  $value;
+			}
+		}
+		//echo $str_filtros;
+		return $valores;
+	}
+	
+	/**
+	 * Realiza el filtro de las promociones en base a los formatos
+	 * @param $promociones Listado de promociones
+	 * @param $filtros Lista con los filtros de formatos
+	 */
+	function filtrar_promociones_por_formatos($promos, $formatos) {
+		if (!empty($formatos) && !empty($promos)){
+			$promos_filtradas = array();
+			foreach ($promos as $p) {
+				for($i = 0; $i < count($formatos); $i++) {
+					if ($p->id_formato == $formatos[$i]) {
+						$promos_filtradas[] = $p;
+					}
+				}
+			}
+			return $promos_filtradas;
+		} else {
+			//si no trae formatos para filtrar, regresa las promociones tal cual
+			return $promos;
+		}
+	}
+	
+	/**
+	 * ordenar el arreglo de promociones de acuerdo al criterio solicitado:
+	 * @param criterio: precio ascendente, precio descendente, nombre de la promoción 
+	 */
+	function ordenar_promociones($promos, $criterio) {
+		
+		//for ($i = 1; )
+	}
+	
+	
 ?>
 
