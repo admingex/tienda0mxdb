@@ -72,7 +72,7 @@
 		<div>
 			<img src="<?php echo $src;?>" />
 		</div>	
-		<div class="detalle">
+		<div class="detalle" style="margin-bottom: 10px">
 			<div class="bloque-descripcion">
 				<div class="titulo-detalle">
 					<?php echo $promo_inicial->nombre_publicacion;?>
@@ -87,6 +87,25 @@
 					</div>																								
 				</div>																
 			</div>
+			<?php
+				if($info_publicacion->auditableBi){
+			?>
+			<div style='position: absolute; width: 177px'>
+				<div class="texto-detalle" style='padding-bottom: 5px'>
+					Si deseas recibir esta revista de fomra gratuita, selecciona la opción de suscripción
+				</div>				
+					<form name="enviar_tipo_suscripcion" action="<?php echo site_url('B2B/ptienda.php') ?>" method="POST">
+						<select name='tipo_suscripcion' onchange="document.enviar_tipo_suscripcion.submit()">
+							<option value=''>Selecciona opción</option>
+							<option value='nva_<?php echo $info_publicacion->id_publicacionSi;?>'<!-- id_Suscripción -->Suscripción nueva</option>
+							<option value='ren_<?php echo $info_publicacion->id_publicacionSi;?>'>Renovación</option>
+							<option value='can_<?php echo $info_publicacion->id_publicacionSi;?>'>Cancelar</option>
+						</select>
+					</form>				
+			</div>
+			<?php
+				}
+			?>
 			<div class="botones">
 				<input type="button" id="btn_comprar_ahora" name="btn_comprar_ahora" value=" " class="boton-pago-express" onclick="submit_to_pagos(<?php echo $promo_inicial->id_promocion;?>)"/>	
 				<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value="" class="boton-anadir-carrito" onclick="submit_to_carrito(<?php echo $promo_inicial->id_promocion;?>)"/>			
