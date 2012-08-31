@@ -88,7 +88,7 @@
 				</div>																
 			</div>
 			<?php
-				if($info_publicacion->auditableBi){
+				if(isset($info_publicacion) && $info_publicacion->auditableBi){
 			?>
 			<div style='position: absolute; width: 177px'>
 				<div class="texto-detalle" style='padding-bottom: 5px'>
