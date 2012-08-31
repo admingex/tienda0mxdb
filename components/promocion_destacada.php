@@ -3,16 +3,10 @@
 <?php
 //iterar sobre las promociones destacadadas y sólo scar una
 	foreach ($pd as $p_destacada) {
-//	echo "img" . $p_destacada->url_imagen;
-?>
-	<div id="featured">
-    <?php	    			
+	//	echo "img" . $p_destacada->url_imagen;
       	echo "<a href='" . TIENDA . "promocion/" . $p_destacada->id_promocion ."'>
       		      <img src='".TIENDA."p_images/".$p_destacada->url_imagen."' width='529px' height='246px' />
-      		  </a>";			      		
-	?>
-	</div>
-<?php
+      		  </a>";			      			
 	}
 ?>
 </div>
