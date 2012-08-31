@@ -124,43 +124,17 @@
 				$view .= $mostrar;
 			} else if (strtolower($mostrar) === "ofertas" ) {	//la publicación tiene varios formatos
 				$view .= $mostrar;
-				//agregar información para el filtro por formatos
-				// revisar si hay "promoción destacada" para la publicación
-				$path_formatos = "./json/formatos.json";
-				if (file_exists($path_formatos)) {
-					$json = file_get_contents($path_formatos);
-					$cat_formatos = json_decode($json);
-					
-					if (count($cat_formatos->formatos) > 0) {
-						$data["formatos"] = $cat_formatos;	//pasar la promoción destacada a la vista
-						//include_once('./components/filtro_formatos.php');
-					}
-				}
-				//cargar los formatos que se ocupan realmente par ala publicación
-				$path_formatos_pp = "./json/publicaciones/formatos_publicacion" . $id_publicacion . ".json";
-				if (file_exists($path_formatos_pp)) {
-					$json = file_get_contents($path_formatos_pp);
-					$formatos_pp = json_decode($json);
-					/*echo "formatos_pp<pre>";
-					print_r($formatos_pp);
-					echo "</pre>";*/
-					if (count($formatos_pp->formatos_pp) > 0) {
-						$data["formatos_pp"] = $formatos_pp->formatos_pp;	//pasar la promoción destacada a la vista
-						//include_once('./components/filtro_formatos.php');
-					}
-				}
 				
-				//cargar los criterios de ordenación para el listado
-				$path_criterios = "./json/criterios_ordenacion.json";
-				if (file_exists($path_criterios)) {
-					$json = file_get_contents($path_criterios);
-					$criterios = json_decode($json);
-					/*echo "formatos_pp<pre>";
-					print_r($criterios);
-					echo "</pre>";*/
-					
-					$data["criterios"] = $criterios->criterios;	//pasar la promoción destacada a la vista
-				}
+				//agregar información para el filtro por formatos
+				$data["formatos"] = catalogo_formatos_publicacion(); //pasar el catálogo a la vista
+				
+				//cargar los formatos que se ocupan realmente para la publicación
+				$data["formatos_pp"] = obtener_formatos_por_publicacion($id_publicacion);	//pasar los formatos de la publicación a la vista
+				//criterios de ordenación
+				$data["criterios_ordenacion"] = catalogo_criterios_ordenacion();	//pasar el catálogo de criterios de ordenación a la vista
+				//criterios de búsqueda
+				//$data["criterios_busqueda"] = catalogo_criterios_busqueda();	//pasar el catálogo de criterios de búsqueda a la vista
+				
 				
 				//filtro por formato:
 				if ($_POST) {
@@ -170,14 +144,18 @@
 					$op = $data['ofertas_publicacion'];
 					
 					$filtro_values = array();		//almacena los valores enviados 
+					
 					//recuperación de los valores para el filtro 
 					$filtro_values = recuperar_filtros();
+					
 					//realizar el filtrado:
 					$op->promociones = filtrar_promociones_por_formatos($op->promociones, $filtro_values);
 					
 					//ordenamiento
 					$orden = (array_key_exists('sel_ordenar', $_POST) ? $_POST['sel_ordenar'] : NULL);
-					
+					if ($orden) {
+						$op->promociones = ordenar_promociones($op->promociones, $orden);
+					}
 					//$op->promociones = ordenar_promociones($op->promociones, $criterio);
 					
 					
@@ -185,7 +163,6 @@
 					$data['ofertas_publicacion'] = $op;
 					
 					###Ordenamiento de promociones
-					
 				}
 			}
 		}
@@ -196,9 +173,65 @@
 		$url = site_url("home");
 		header("Location: $url");
 	}
+	
 	cargar_vista($view, $data);
 	exit;
 	
+	/**
+	 * Recupera el catálogo de criterios para el ordenamiento de las promociones
+	 * 
+	 */
+	function catalogo_criterios_ordenacion() {
+		//cargar los criterios de ordenación para el listado
+		$path_criterios = "./json/criterios_ordenacion.json";
+		if (file_exists($path_criterios)) {
+			$json = file_get_contents($path_criterios);
+			$criterios = json_decode($json);
+			/*echo "formatos_pp<pre>";
+			print_r($criterios);
+			echo "</pre>";*/
+			return $criterios->criterios;
+			//$data["criterios"] = $criterios->criterios;	//pasar la promoción destacada a la vista
+		}
+	}
+	
+	/**
+	 * Recuperar el catálogo de formatos para las publicaciones que aplique
+	 */
+	function catalogo_formatos_publicacion() {
+		// revisar si hay "promoción destacada" para la publicación
+		$path_formatos = "./json/formatos.json";
+		if (file_exists($path_formatos)) {
+			$json = file_get_contents($path_formatos);
+			$cat_formatos = json_decode($json);
+			
+			if (count($cat_formatos->formatos) > 0) {
+				//$data["formatos"] = $cat_formatos;	//pasar el catálogo a la vista
+				//include_once('./components/filtro_formatos.php');
+			
+				return $cat_formatos;
+			}
+		}
+	}
+	
+	/**
+	 * cargar los formatos que se ocupan realmente para la publicación
+	 */
+	function obtener_formatos_por_publicacion($id_publicacion) {
+		$path_formatos_pp = "./json/publicaciones/formatos_publicacion" . $id_publicacion . ".json";
+		if (file_exists($path_formatos_pp)) {
+			$json = file_get_contents($path_formatos_pp);
+			$formatos_pp = json_decode($json);
+			/*echo "formatos_pp<pre>";
+			print_r($formatos_pp);
+			echo "</pre>";*/
+			if (count($formatos_pp->formatos_pp) > 0) {
+				//$data["formatos_pp"] = $formatos_pp->formatos_pp;	//pasar la promoción destacada a la vista
+				//include_once('./components/filtro_formatos.php');
+				return $formatos_pp->formatos_pp;
+			}
+		}
+	}
 	/**
 	 * Recupera los valores del POST para filtrar las promociones por formato
 	 */
@@ -241,11 +274,83 @@
 	
 	/**
 	 * ordenar el arreglo de promociones de acuerdo al criterio solicitado:
-	 * @param criterio: precio ascendente, precio descendente, nombre de la promoción 
+	 * @param criterio: precio ascendente, precio descendente, nombre ascendente y descendente de la promoción 
 	 */
 	function ordenar_promociones($promos, $criterio) {
-		
-		//for ($i = 1; )
+		//echo $criterio;		
+		switch ($criterio) {
+			case 'nombre_desc':
+				if (count($promos) > 1) {
+					for ($i = 1; $i < count($promos); $i++) {
+						$temp = $promos[$i];
+						$descripcion_temp = !empty($temp->detalle->descripcion_issue) ? $temp->detalle->descripcion_issue : $temp->descripcion_promocion;
+						
+						//$promocion = $promos[0];
+						//$descripcion_promocion = !empty($promocion->detalle->descripcion_issue) ? $promocion->detalle->descripcion_issue : $promocion->descripcion_promocion;
+						for ($j = $i - 1; $j >= 0; $j--) {
+							$promocion = $promos[$j];
+							$descripcion_promocion = !empty($promocion->detalle->descripcion_issue) ? $promocion->detalle->descripcion_issue : $promocion->descripcion_promocion;
+							
+							if (strcmp($descripcion_promocion, $descripcion_temp) < 0) {
+								$promos[$j + 1] = $promos[$j]; //intercambia
+							} else {
+								break;
+							}
+						}
+						$promos[$j + 1] = $temp;
+					}
+				}
+				break;
+			case 'nombre_asc':
+				if (count($promos) > 1) {
+					for ($i = 1; $i < count($promos); $i++) {
+						$temp = $promos[$i];
+						$descripcion_temp = !empty($temp->detalle->descripcion_issue) ? $temp->detalle->descripcion_issue : $temp->descripcion_promocion;
+						
+						for ($j = $i - 1; $j >= 0; $j--) {
+							$promocion = $promos[$j];
+							$descripcion_promocion = !empty($promocion->detalle->descripcion_issue) ? $promocion->detalle->descripcion_issue : $promocion->descripcion_promocion;
+							
+							if (strcmp($descripcion_promocion, $descripcion_temp) > 0) {
+								$promos[$j + 1] = $promos[$j]; //intercambia
+							} else {
+								break;
+							}
+						}
+						$promos[$j + 1] = $temp;
+					}
+				}
+				break;
+			case 'precio_desc':
+				if (count($promos) > 1) {
+					for ($i = 1; $i < count($promos); $i++) {
+						$temp = $promos[$i];
+						
+						for ($j = $i - 1; ($j >= 0) && ($promos[$j]->detalle->costo < $temp->detalle->costo); $j--) {
+							$promos[$j + 1] = $promos[$j]; //intercambia
+						}
+						$promos[$j + 1] = $temp;
+					}
+				}
+				break;
+			case 'precio_asc':
+				if (count($promos) > 1) {
+					for ($i = 1; $i < count($promos); $i++) {
+						$temp = $promos[$i];
+						
+						for ($j = $i - 1; ($j >= 0) && ($promos[$j]->detalle->costo > $temp->detalle->costo); $j--) {
+							$promos[$j + 1] = $promos[$j]; //intercambia
+						}
+						$promos[$j + 1] = $temp;
+					}
+				}
+				break;
+					
+			default:
+				//$promos = $promos;
+				break;
+		}
+		return $promos;
 	}
 	
 	
