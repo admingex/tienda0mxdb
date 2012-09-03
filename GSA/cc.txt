@@ -1,0 +1,84 @@
+<?php
+require_once dirname(__FILE__) ."/include/database.php";
+$db=getDb();
+
+$id_cat=$_POST['idcategoria'];
+$nom_cat=$_POST['nombre'];
+$descrip_cat=$_POST['descripcion'];
+$pala_clave_cat=$_POST['pclave'];
+
+/**********************************************************************************************/
+/*PRIMERO SE HACE LA ACTUALIZACION DE NOMBRE DE CATEGORIA, LA DESCRIPCION Y LAS PALABRAS CLAVE*/
+/*
+$sql="UPDATE TND_CatCategoria SET nombreVc='$nom_cat', descripcionVc='$descrip_cat', palabras_claveVc='$pala_clave_cat' WHERE id_categoriaSi=$id_cat";
+$db -> Execute($sql);
+*/
+/***********************************************************************************************/
+/*SEGUNDO EL ORDENAMIENTO*/
+$x=0;
+$y=1;
+foreach ($_POST['pubid'] as $value){
+	 $x+=1;
+    //echo $value."<br />";
+}
+//echo "<br><br>".$x."<br><br>";
+
+
+//echo "***************";
+
+echo "<br><br>".$x;
+$sql2="SELECT count(*) AS t FROM TND_RelCategoriaPublicacion WHERE id_categoriaSi=$id_cat";
+$res = $db -> GetOne($sql2);
+if($x<$res){
+	//delet de la tabla el que falta
+	$sql6="SELECT id_publicacionSi FROM TND_RelCategoriaPublicacion WHERE id_categoriaSi=$id_cat";
+	$res3 = $db -> GetAll($sql6);
+	echo "<pre>";
+	print_r($res3);
+	echo "</pre>";
+	echo "<br><br>";
+	$flag=2;
+	foreach($res3 as $vas){
+		foreach($_POST['pubid'] as $value){
+			$flag=0;
+			if($vas['0']==$value){
+				//el valor de la tabla esta en la matriz que estoy mandando
+				$flag=1; 
+				break;
+			}
+		}
+		if($flag==0){
+			$reg=$vas['0'];
+			$sql7="DELETE FROM TND_RelCategoriaPublicacion WHERE id_categoriaSi=$id_cat AND id_publicacionSi=$reg";
+			db -> Execute($sql7);
+		}
+		//echo "<br>".$vas['0'];
+	} 
+}
+if($x>$res){
+	//insert agregar a la tabla el nuevo registro
+	foreach ($_POST['pubid'] as $value){
+		$sql4="SELECT COUNT(*) AS f FROM TND_RelCategoriaPublicacion WHERE id_categoriaSi=$id_cat AND id_publicacionSi=$value";
+		$res2 = $db -> GetOne($sql4);
+		if($res2==0){
+			$sql5="INSERT INTO TND_RelCategoriaPublicacion (id_categoriaSi,id_publicacionSi) VALUES ($id_cat,$value) ";
+			$db -> Execute($sql5);
+		}	
+	}
+}
+//comienza ordenamiento
+foreach ($_POST['pubid'] as $value){
+	$sql3="UPDATE TND_RelCategoriaPublicacion SET posicionSi=$y WHERE id_categoriaSi=$id_cat AND id_publicacionSi=$value";
+	$db -> Execute($sql3);
+	$y+=1;
+}
+
+/****************************************************************************************************/
+/*MENSAJE FINAL*/
+/*
+echo"<script language='javascript' type='text/javascript'>
+alert('Actualizaci'+'\u00F3'+'n Lista');
+window.location.href='categorias.php';
+</script>
+";*/
+?>
