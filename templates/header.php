@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?php echo TIENDA;?>css/viewlet-breadcrumbs.css" />
        
     <link type="text/css" href="<?php echo TIENDA;?>css/blitzer/jquery-ui-1.8.18.custom.css" rel="stylesheet" />             
+    <link type="text/css" href="<?php echo TIENDA;?>css/demos.css" rel="stylesheet" />
     <script type="text/javascript" src="<?php echo TIENDA;?>js/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="<?php echo TIENDA;?>js/jquery-ui-1.8.18.custom.min.js"></script>	    
     <script type="text/javascript" src="<?php echo TIENDA;?>js/jquery.orbit-1.2.3.min.js"></script>
@@ -66,7 +67,7 @@
                     	<?php                    	
                     		if(isset($_SESSION['logged_in'])){
 								if($_SESSION['logged_in']==1){
-                    				echo "<a class='mi_cuenta' href='".site_url('promociones-especiales')."'>&nbsp;</a>";
+                    				echo "<a class='mi_cuenta' href='".site_url('cuenta.php')."'>&nbsp;</a>";
 									echo "<a class='logout' href='".site_url('logout/')."'>&nbsp;</a>";                    								
                     			}
                     		}

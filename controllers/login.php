@@ -292,7 +292,7 @@ class Registro_Controller {
 	{
 		//En la invocación del login se cargará la información necesaria.
 		//Por el momento pasará a una página temporal
-		return 'promociones-especiales.php';		
+		return 'cuenta.php';		
 	}
 	
 	/**
