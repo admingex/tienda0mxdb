@@ -1,0 +1,90 @@
+#historial-compras{
+	font-family: Arial, Helvetica, sans-serif;		
+}
+
+#historial-compras .boton-historial{
+	border:none;			
+	height: 20px;
+	width: 122px;	
+	background: url('../images/css_sprite_MenuHistorialCompras.png') no-repeat;	
+	background-position: -6px -5px;		
+}
+
+#historial-compras .boton-historial:hover{
+	border:none;				
+	background: url('../images/css_sprite_MenuHistorialCompras.png') no-repeat;	
+	background-position: -6px -25px;	
+}
+
+#historial-compras .boton-medios{
+	border:none;			
+	height: 20px;
+	width: 116px;	
+	background: url('../images/css_sprite_MenuHistorialCompras.png') no-repeat;	
+	background-position: -128px -5px;		
+}
+
+#historial-compras .boton-medios:hover{
+	border:none;				
+	background: url('../images/css_sprite_MenuHistorialCompras.png') no-repeat;	
+	background-position: -128px -25px;	
+}
+
+#historial-compras .boton-datos{
+	border:none;			
+	height: 20px;
+	width: 170px;	
+	background: url('../images/css_sprite_MenuHistorialCompras.png') no-repeat;	
+	background-position: -244px -5px;		
+}
+
+#historial-compras .boton-datos:hover{
+	border:none;					
+	background: url('../images/css_sprite_MenuHistorialCompras.png') no-repeat;	
+	background-position: -244px -25px;	
+}
+
+#historial-compras .boton-configuracion{
+	border:none;			
+	height: 20px;
+	width: 110px;	
+	background: url('../images/css_sprite_MenuHistorialCompras.png') no-repeat;	
+	background-position: -421px -5px;		
+}
+
+#historial-compras .boton-configuracion:hover{
+	border:none;					
+	background: url('../images/css_sprite_MenuHistorialCompras.png') no-repeat;	
+	background-position: -421px -25px;	
+}
+
+#historial-compras th{
+	color: #000;
+	background-color: #D0D0D0;
+	text-align: left;
+	padding: 3px 5px; 
+	font-size: 13px;
+	border: none;
+	border-right: solid #FFF 2px; 
+	
+}
+
+#historial-compras td{
+	color: #525252;	
+	text-align: left;
+	padding: 3px 5px; 
+	font-size: 13px;
+	border: none;
+	border-right: solid #FFF 2px;
+}
+
+#historial-compras td a{
+	color: #3B6991;			
+	font-size: 12px;
+	text-decoration: underline;	
+}
+
+
+#result_informacion{	
+	margin-top: 5px;
+}
