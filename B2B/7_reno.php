@@ -2,56 +2,79 @@
     require('./templates/header.php');
 ?>
 		<div class="titulo-proceso">
-		Suscripcion gratuita para lectores calificados en M&eacute;xico.	
+		Renovación gratuita para lectores calificados en M&eacute;xico.	
 		</div>
 		<br>
-		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que proporcione correctamente sus datos. S
-			uscribeteHoy le garantiza absoluta confidencialidad en la información proporcionada.</p>
+		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que proporcione correctamente sus datos. "Tienda GEx" le garantiza absoluta confidencialidad en la información proporcionada.</p>
 		</section>
 		<div id="pleca-punteada"></div>
 		<section class="contenedor">	
 		<div class="contenedor-gris">
 		
-<form ACTION="seguridad360_nuevo_paso.php" name=frmcaja METHOD="post" onSubmit="return checkFields(this)">
-	
+<form ACTION="energia360_reno_paso.php" name="frmcaja" id="frmcaja" METHOD="post" onSubmit="return checkFieldsTres(this)">
 <table width="100%">
 
+      
+<tr>
+<td colspan="2" CLASS="instrucciones">
+			Instrucciones para renovar su suscripci&oacute;n:<br />
+        	<b>A.</b> Si usted ya recibe ENERGÍA 360 gratuitamente por favor
+        	vea la etiqueta de correo de su &uacute;ltimo ejemplar y 
+        	proporcione los 7 d&iacute;gitos de su n&uacute;mero de cliente.<br>
+        	<b>B.</b> El n&uacute;mero de cliente aparece en la parte superior izquierda de su etiqueta de correo como a<br>
+        	continuaci&oacute;n se indica.<br>
+        	<img border="0" src="images/etiqueta.gif" align="center"><br>
+        	<b>C.</b> En este ejemplo el n&uacute;mero de cliente es:<b><br>
+        	8081838</b>.
+        </td>
+</tr>
+        
+      
   <tr>
-      <td colspan="2">
-          <input type="radio"  name="autorizar" id="autorizar" value='S' checked="" />
-		  <div id="divtipo_inicio2" class="radio_selected">&nbsp;					
-		  </div>		
-          <b>Acepto suscribirme gratuitamente a Seguridad 360</b>
+      <td colspan="2" >
+        
+          <input type="radio"  name="autorizar" value='S' checked >
+		  		  <div id="divtipo_inicio2" class="radio_selected">&nbsp;					
+		  </div>
+          <b>S&iacute;, deseo renovar mi suscripci&oacute;n a la revista Energía 360</b>
       </td>
  </tr>
  
     <tr>
-      <td colspan="2" class="label_izq"> 
-          <input type="radio" name="bulk" id="bulk" value="S" checked="checked" />
-		  <div id="divtipo_e360_inicio3" class="checkbox_selected ">&nbsp;					
+      <td colspan="2" >
+        <div id="divtipo_e360_inicio3" class="checkbox_selected">&nbsp;					
 		  </div>
-          Si me interesa recibir informacion por e-mail sobre nuevos productos y servicios de la industria.
+          <input type="checkbox" name="bulk" id="bulk" value="S" checked="checked" />
+          <b>Si me interesa recibir información por e-mail sobre nuevos</b><br>
       </td>
     </tr>
     
     
     <tr>
       <td colspan="2" class="instrucciones">
-       Paso 1 de 2 <br>Datos Personales:
-	  </td>
+        Paso 1 de 2 <br>Datos Personales:</td>
     </tr>
 	
+	<tr>
+      <td class="label">
+        <sup class="tilde">*</sup>N&uacute;mero
+        de Cliente:</td>
+      <td >
+        <input type="text" name="cliente" size="5" maxlength="8" 
+             class="text" onkeypress="return ValidaNum(event)"></td>
+    </tr>
+    
 <tr>
 <td class="label">
-<sup class="tilde">*</sup>
-Nombre:
+        <sup class="tilde">*</sup>Nombre:
 </td>
-<td>
-   <input type="text" class="text" name="nombre" size="30" maxlength="15" value="" />
-</td>
+
+      <td>
+        <input type="text" name="nombre" size="30" maxlength="15" 
+              class="text" /></td>
 </tr>
 
-    <tr>
+<tr>
       <td class="label"><sup class="tilde">*</sup>
 	  A. Paterno:
 	  </td>
@@ -108,6 +131,7 @@ Nombre:
         <input type="text" class="text" name="entre" size="30" maxlength="64" value="" /></td>
     </tr>
 	
+	
 	<tr>
 	<td colspan="2" class="label">
 	En México: con base al c&oacute;digo postal proporcionado, se recuperar&aacute; 
@@ -116,7 +140,7 @@ Nombre:
 	</td>
 	</tr>
 	
-	  <tr>
+	 <tr>
       <td class="label">
         <sup class="tilde">*</sup>C.P.:
 		</td>
@@ -188,7 +212,6 @@ Nombre:
       	</select>
         <input class="text" type="hidden" name="colonia" id="colonia" size="30" maxlength="38" value="" /></td>
     </tr>
-  
     <tr>
       <td class="label"> 
         <sup class="tilde">*</sup>Lada y Teléfono:</td>
@@ -217,26 +240,27 @@ Nombre:
 <!--agregado de promo-->
 <tr>
       <td class="label">
-        Clave de Promocion Seguridad 360:
+        Clave de Promocion Energia 360:
         </td>
     <td>
         <input class="text" type="text" name="b2bSourcecode" size="30" maxlength="255" value=""/>
 	</td>
 </tr>
 <!--fin agregado de promo-->
- 
 
- <!--FIN DE PASO 1-->
- <!--controla en paso actual-->
-<input type="hidden" name="paso" id="paso" value="1" />
-<!-- Botones envuar, limpiar y linea de campos requeridos  --->
-<tr>
-    <td colspan="2" align="center">
-		<input type="submit" value="" id="submit1" name="submit1" class="crear_cuenta" />
-        <input type="reset" value="Limpiar" id="reset1" name="reset1" class="limpiar" />
-	</td>
-</tr>
+<tr><td colspan=2>
+<!--hidden-->
+</td></tr>
 
+   
+
+    <tr>
+      <td align="center" colspan="2" >
+		<input type="hidden" name="paso" id="paso" value="1" />
+        <input TYPE="submit" VALUE="" id=submit1 name=submit1 class="crear_cuenta">
+        <input type="reset" value="Limpiar" id=reset1 name=reset1></td>
+    </tr>
+    
 <tr>
     <td class="label" colspan="2">
      	<sup class="tilde">*</sup>Campos

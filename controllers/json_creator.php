@@ -379,7 +379,7 @@ class Json_Creator {
 		} else {	//generarlas
 			$temp = $this->get_publicaciones();
 			$pubs = json_decode($temp);
-		}	
+		}
 		
 		/*echo "<pre>";
 		print_r($pubs);

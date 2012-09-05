@@ -6,7 +6,7 @@
 		</div>
 		<br>
 		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que proporcione correctamente sus datos. 
-			SuscribeteHoy le garantiza absoluta confidencialidad en la información proporcionada.</p>
+			"Tienda GEx" le garantiza absoluta confidencialidad en la información proporcionada.</p>
 		</section>
 		<div id="pleca-punteada"></div>
 		<section class="contenedor">	
@@ -120,13 +120,13 @@
           <option value="35. Inmobiliaria">Inmobiliaria</option>
           <option value="36. Arquitectura">Arquitectura</option>
           <option value="39. Urbanismo">Urbanismo</option>
-          <option value="44. Consultor�a">Consultor�a</option>
-          <option value="45. Educaci�n">Educaci�n</option>
+          <option value="44. Consultoría">Consultoría</option>
+          <option value="45. Educación">Educación</option>
           <option value="46. Financiamiento">Financiamiento</option>
           <option value="47. Gobierno">Gobierno</option>
-          <option value="48. Obra P�blica">Obra P�blica</option>
-          <option value="49. Construcci�n">Construcci�n</option>
-          <option value="50. Ingenier�a">Ingenier�a</option>          
+          <option value="48. Obra Pública">Obra Pública</option>
+          <option value="49. Construcción">Construcción</option>
+          <option value="50. Ingeniería">Ingeniería</option>          
           <option value="51. Infraestructura">Infraestructura</option>
 </select>
 </td>

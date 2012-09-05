@@ -12,9 +12,7 @@
 	var id_ant = <?php echo $promo_inicial->id_promocion; ?>;
 	var form_submit = "document.comprar_promocion" + id_ant;
 	//iniciales
-	
-	//var url_carrito = "<?php //echo $action_carrito_inicial; ?>";
-	
+		
 	function cambia_boton(id) {
 		if (document.getElementById(id_ant)) {
 			//limpia la selección anterior
@@ -33,10 +31,7 @@
 		
 		$("#btn_comprar_ahora").attr("onclick", submit_pagos);
 		$("#btn_agregar_carrito").attr("onclick", submit_carrito);
-		
-		//alert($("#btn_comprar_ahora").attr("onclick"));
-		//alert($("#btn_agregar_carrito").attr("onclick"));
-		
+			
 		//indica cuál es el que está selceccionado
 		id_ant = id;
 	}
@@ -88,7 +83,7 @@
 				</div>																
 			</div>
 			<?php
-				if(isset($info_publicacion) && $info_publicacion->auditableBi){
+				if (isset($info_publicacion) && $info_publicacion->auditableBi) {
 			?>
 			<div style='position: absolute; width: 177px'>
 				<div class="texto-detalle" style='padding-bottom: 5px'>
@@ -115,13 +110,17 @@
 		<div class="banner-descripcion">
 			<div class="triangulo-negro-der"></div>Selecciona el pa&iacute;s de env&iacute;o para ver los precios y promociones aplicables.
 		</div>
+		
+		<script type='text/javascript' src='<?php echo site_url("js/filtro_pais.js");?>'></script>
 		<div class="descripcion">
-			<select name="pais">
+			<select name="sel_pais" id="sel_pais">
+				<option value="">Seleccionar</option>
 				<option value="mexico">México</option>
+				<option value="internacional">Internacional</option>
 			</select>	
 		</div>
 		<div class="space-pleca"></div>	
-		<table width="100%" cellspacing="1">
+		<table id="table_promociones" name="table_promociones" width="100%" cellspacing="1">
 			<thead>
 				<tr>
 					<th>&nbsp;</th>

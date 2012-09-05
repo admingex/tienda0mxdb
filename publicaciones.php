@@ -352,7 +352,5 @@
 		}
 		return $promos;
 	}
-	
-	
 ?>
 

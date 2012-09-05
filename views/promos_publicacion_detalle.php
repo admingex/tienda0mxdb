@@ -73,7 +73,7 @@
 				break;
 			case 2:
 				//seminarios / carpetas / etc. / productos
-				include_once('./components/producto.php');
+				include_once('./components/seminario.php');
 				break;
 			case 3:
 				//pdfs?
