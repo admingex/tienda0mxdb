@@ -2,10 +2,11 @@
     require('./templates/header.php');
 ?>
 		<div class="titulo-proceso">
-		Renovacion gratuita para lectores calificados en M&eacute;xico.	
+		Renovaci√≥n gratuita para lectores calificados en M&eacute;xico.	
 		</div>
 		<br>
-		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rapido y seguro, es muy importante que proporcione correctamente sus datos. SuscribeteHoy le garantiza absoluta confidencialidad en la informacion proporcionada.</p>
+		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, r√°pido y seguro, es muy importante que proporcione correctamente sus datos.
+			 "Tienda GEx" le garantiza absoluta confidencialidad en la informaci√≥n proporcionada.</p>
 		</section>
 		<div id="pleca-punteada"></div>
 		<section class="contenedor">	
@@ -28,10 +29,10 @@
     <tr>
 <td colspan="2" >
         <select name="actividad" id="actividad" onChange="validaOtro(this)">
-           <option value="1. DirecciÛn general">Direccion general</option>          
+           <option value="1. DirecciÔøΩn general">Direccion general</option>          
           <option value="2. Gerencia de planta/operaciones">Gerencia de planta/operaciones</option>          
-          <option value="3. ProducciÛn/mantenimiento/control de calidad">Produccion/mantenimiento/control de calidad</option>          
-          <option value="4. IngenierÌa">Ingenieria</option>          
+          <option value="3. ProducciÔøΩn/mantenimiento/control de calidad">Produccion/mantenimiento/control de calidad</option>          
+          <option value="4. IngenierÔøΩa">Ingenieria</option>          
           <option value="5. Compras">Compras</option>           
           <option value="J">Otro (describa)</option>
         </select>

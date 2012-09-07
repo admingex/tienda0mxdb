@@ -2,18 +2,18 @@
     require('./templates/header.php');
 ?>
 		<div class="titulo-proceso">
-		Suscripcion gratuita para lectores calificados en M&eacute;xico.	
+		Suscripción gratuita para lectores calificados en M&eacute;xico.	
 		</div>
 		<br>
-		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que proporcione correctamente sus datos. S
-			uscribeteHoy le garantiza absoluta confidencialidad en la información proporcionada.</p>
+		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que proporcione correctamente sus datos. 
+			"Tienda GEx" le garantiza absoluta confidencialidad en la información proporcionada.</p>
 		</section>
 		<div id="pleca-punteada"></div>
 		<section class="contenedor">	
 		<div class="contenedor-gris">
 		
-<form ACTION="seguridad360_nuevo_paso.php" name=frmcaja METHOD="post" onSubmit="return checkFields(this)">
-	
+
+<form ACTION="manuf_nuevo_paso.php" name=frmcaja METHOD="post" onSubmit="return checkFields(this)">
 <table width="100%">
 
   <tr>
@@ -21,7 +21,7 @@
           <input type="radio"  name="autorizar" id="autorizar" value='S' checked="" />
 		  <div id="divtipo_inicio2" class="radio_selected">&nbsp;					
 		  </div>		
-          <b>Acepto suscribirme gratuitamente a Seguridad 360</b>
+          <b>Acepto suscribirme gratuitamente a Manufactura</b>
       </td>
  </tr>
  
@@ -116,7 +116,7 @@ Nombre:
 	</td>
 	</tr>
 	
-	  <tr>
+	 <tr>
       <td class="label">
         <sup class="tilde">*</sup>C.P.:
 		</td>
@@ -217,7 +217,7 @@ Nombre:
 <!--agregado de promo-->
 <tr>
       <td class="label">
-        Clave de Promocion Seguridad 360:
+        Clave de Promocion Manufactura:
         </td>
     <td>
         <input class="text" type="text" name="b2bSourcecode" size="30" maxlength="255" value=""/>

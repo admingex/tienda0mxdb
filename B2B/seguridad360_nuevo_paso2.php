@@ -2,10 +2,11 @@
     require('./templates/header.php');
 ?>
 		<div class="titulo-proceso">
-		Suscripcion gratuita para lectores calificados en M&eacute;xico.	
+		Suscripción gratuita para lectores calificados en M&eacute;xico.	
 		</div>
 		<br>
-		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rapido y seguro, es muy importante que proporcione correctamente sus datos. SuscribeteHoy le garantiza absoluta confidencialidad en la informacion proporcionada.</p>
+		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante q
+			ue proporcione correctamente sus datos. "Tienda GEx" le garantiza absoluta confidencialidad en la información proporcionada.</p>
 		</section>
 		<div id="pleca-punteada"></div>
 		<section class="contenedor">	

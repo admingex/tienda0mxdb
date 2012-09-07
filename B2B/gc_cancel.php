@@ -5,7 +5,8 @@
 		Cancelaci&oacute;n de suscripci&oacute;n gratuita
 		</div>
 		<br>
-		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rapido y seguro, es muy importante que proporcione correctamente sus datos. SuscribeteHoy le garantiza absoluta confidencialidad en la informacion proporcionada.</p>
+		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que proporcione correctamente sus datos.
+			 "Tienda GEx" le garantiza absoluta confidencialidad en la información proporcionada.</p>
 		</section>
 		<div id="pleca-punteada"></div>
 		<section class="contenedor">	
@@ -109,7 +110,7 @@
 	
 	  <tr>
       <td class="label"> 
-        <sup class="tilde">*</sup>Numero:</td>
+        <sup class="tilde">*</sup>Número:</td>
       <td>
         <input type="text" class="text" name="numero" size="5" maxlength="10" value="" /></td>
     </tr>
@@ -124,45 +125,30 @@
 	
 	<tr>
 	<td colspan="2" class="label">
-	En Mexico: con base al c&oacute;digo postal proporcionado, se recuperar&aacute; 
+	En México: con base al c&oacute;digo postal proporcionado, se recuperar&aacute; 
         su Estado, Ciudad y posibles Colonias.
 		 
 	</td>
 	</tr>
 	
-	  <tr>
+	 <tr>
       <td class="label">
         <sup class="tilde">*</sup>C.P.:
 		</td>
       <td>
       
-        <input type="text" class="text" name="cp" id="cp" size="5" maxlength="5" value="" onkeypress="return ValidaNum(event)" />
+        <input type="text" class="text" name="cp" id="cp" size="5" maxlength="5" value="" onblur="limpiar(this.id),getproductos4()" onkeypress="return ValidaNum(event)"  />
     <a href="#" title="" onClick="javascript:zip('zip.php','POP')" >Ingresar 
         C&oacute;digo Postal
 		</a></td>
-		</tr>
-	
-<tr>
-      <td class="label">
-        <sup class="tilde">*</sup>Colonia:</td>
-      <td>
-        <input class="text" type="text" name="colonia" id="colonia" size="30" maxlength="38" value="" /></td>
-    </tr>
-	
-    <tr>
-      <td class="label">
-        <sup class="tilde">*</sup>Ciudad:</td>
-      <td>
-        <input class="text" type="text" name="ciudad" id="ciudad" size="30" maxlength="36" value="" /></td>
-    </tr>
-	
+		</tr>	
     <tr>
       <td class="label">
         <sup class="tilde">*</sup>Estado:</td>
       <td>
         <select size="1" name="estado" id="estado">
           <!--pongo un selected por default-->
-		  <option selected="selected">Seleccione uno</option>
+		  <option selected="selected" value="">Seleccione uno</option>
           <option  value="AGS">Aguascalientes</option>
           <option  value="BCN">Baja California Norte</option>
           <option  value="BCS">Baja California Sur</option>
@@ -201,10 +187,25 @@
         </select>
 		</td>
     </tr>
-  
+        <tr>
+      <td class="label">
+        <sup class="tilde">*</sup>Ciudad:</td>
+      <td>
+        <input class="text" type="text" name="ciudad" id="ciudad" size="30" maxlength="36" value="" /></td>
+    </tr>
+  <tr>
+      <td class="label">
+        <sup class="tilde">*</sup>Colonia:</td>
+      <td>
+      	<select size="1" name="colonias" id="colonias">
+      		<option value="0">Seleccione uno</option>
+      		
+      	</select>
+        <input class="text" type="hidden" name="colonia" id="colonia" size="30" maxlength="38" value="" /></td>
+    </tr>
     <tr>
       <td class="label"> 
-        <sup class="tilde">*</sup>Lada y Telefono:</td>
+        <sup class="tilde">*</sup>Lada y Teléfono:</td>
       <td>
         <input class="text" type="text" size="4" maxlength="5" id="lada" name="lada" value="" onkeypress="return ValidaNum(event)" /> 
 		<input class="text" type="text" name="telefono" size="16" maxlength="16" value="" onkeypress="return ValidaNum(event)" />

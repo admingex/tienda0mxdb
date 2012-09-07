@@ -2,18 +2,17 @@
     require('./templates/header.php');
 ?>
 		<div class="titulo-proceso">
-		Suscripcion gratuita para lectores calificados en M&eacute;xico.	
+		Suscripción gratuita para lectores calificados en M&eacute;xico.	
 		</div>
 		<br>
-		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que proporcione correctamente sus datos. S
-			uscribeteHoy le garantiza absoluta confidencialidad en la información proporcionada.</p>
+		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que proporcione correctamente sus datos. 
+			"Tienda GEx" le garantiza absoluta confidencialidad en la información proporcionada.</p>
 		</section>
 		<div id="pleca-punteada"></div>
 		<section class="contenedor">	
 		<div class="contenedor-gris">
-		
-<form ACTION="seguridad360_nuevo_paso.php" name=frmcaja METHOD="post" onSubmit="return checkFields(this)">
-	
+<!-- INICIO -->
+<form ACTION="obras_nuevo_paso.php" name=frmcaja METHOD="post" onSubmit="return checkFields(this)">
 <table width="100%">
 
   <tr>
@@ -21,7 +20,7 @@
           <input type="radio"  name="autorizar" id="autorizar" value='S' checked="" />
 		  <div id="divtipo_inicio2" class="radio_selected">&nbsp;					
 		  </div>		
-          <b>Acepto suscribirme gratuitamente a Seguridad 360</b>
+          <b>Acepto suscribirme gratuitamente a Obras</b>
       </td>
  </tr>
  
@@ -30,7 +29,7 @@
           <input type="radio" name="bulk" id="bulk" value="S" checked="checked" />
 		  <div id="divtipo_e360_inicio3" class="checkbox_selected ">&nbsp;					
 		  </div>
-          Si me interesa recibir informacion por e-mail sobre nuevos productos y servicios de la industria.
+          Deseo suscribirme al Newsletter de Obras
       </td>
     </tr>
     
@@ -66,8 +65,70 @@ Nombre:
         <input type="text" class="text" name="materno" size="30" maxlength="32" value="" /></td>
     </tr>
 
-      
+<tr>
+	
+      <td  class="label" >
+        Escolaridad:</td><td class="label_izq" colspan="2">
+        <input type="radio" value="1. Ingeniero(a)" name="cargo1" id="cargo1" checked="checked" />
+		<div id="radio1" class="radio_selected">&nbsp;					
+		</div>		
+        Ingeníero(a)</td>
+    </tr>
+	
+   
     <tr>
+     <td>&nbsp;</td>
+      <td class="label_izq" colspan="2">
+	  <div id="radio2" class="radio_no_selected">&nbsp;					
+		  </div>		
+        <input type="radio" value="2.  Licenciado(a)" name="cargo2" id="cargo2" />
+         Licenciado(a)</td>
+    </tr>
+	
+	
+    <tr>
+      <td>&nbsp;</td>
+      <td class="label_izq" colspan="2">
+        <input type="radio" value="3. Arquitecto(a)" name="cargo3" id="cargo3" />
+		<div id="radio3" class="radio_no_selected">&nbsp;					
+		  </div>		
+      Arquitecto(a)</td>
+    </tr>
+	
+	
+    <tr>
+      <td>&nbsp;</td>
+      <td class="label_izq" colspan="2">
+        <input type="radio" value="4. Maestro(a)" name="cargo4" id="cargo4" />
+		<div id="radio4" class="radio_no_selected">&nbsp;					
+		  </div>		
+Maestro(a)</td>
+    </tr>
+
+	
+	
+    <tr>
+    <td>&nbsp;</td>
+      <td class="label_izq" colspan="2">
+        <input type="radio" value="5.  Posgrado/Diplomado" name="cargo5" id="cargo5"  />
+		<div id="radio5" class="radio_no_selected">&nbsp;					
+		  </div>		
+         Posgrado/Diplomado</td>
+    </tr>
+	
+	
+    <tr>
+      <td>&nbsp;</td>
+      <td class="label_izq">
+        <input type="radio" value="20." name="cargo6" id="cargo6" />
+		<div id="radio6" class="radio_no_selected">&nbsp;					
+		  </div>	
+        Otro (especifique):  <input  class="text" type="text" name="cargootro" id="cargootro" size="15" maxlength="64" disabled="disabled" /></td>
+		
+    </tr>
+
+
+   <tr>
       <td class="label">
         <sup class="tilde">*</sup>Empresa:</td>
       <td>
@@ -80,14 +141,8 @@ Nombre:
       <td>
         <input type="text" class="text" name="puesto" size="30" maxlength="40" value="" /></td>
     </tr>
+	
 	<tr>
-      <td class="label">
-       <sup class="tilde">*</sup>
-	   Departamento:</td>
-      <td >
-        <input type="text" class="text" name="departamento" size="30" maxlength="40" value="" /></td>
-    </tr>
-    <tr>
       <td class="label"> 
         <sup class="tilde">*</sup>Calle:</td>
       <td>
@@ -116,7 +171,7 @@ Nombre:
 	</td>
 	</tr>
 	
-	  <tr>
+	 <tr>
       <td class="label">
         <sup class="tilde">*</sup>C.P.:
 		</td>
@@ -198,6 +253,15 @@ Nombre:
         </td>
     </tr>
 	
+	 <tr>
+      <td class="label">
+	   <sup class="tilde">*</sup>Asociaciones o c&aacute;maras a las que pertenece:</td>
+	  </td>
+	  <td>
+	  <input class="text" type="text" name="asoc" size="30" maxlength="16" value="" />
+	  </td>
+	  </tr>
+	
     <tr>
       <td class="label">
         Fax:</td>
@@ -217,7 +281,7 @@ Nombre:
 <!--agregado de promo-->
 <tr>
       <td class="label">
-        Clave de Promocion Seguridad 360:
+        Clave de Promoción Obras
         </td>
     <td>
         <input class="text" type="text" name="b2bSourcecode" size="30" maxlength="255" value=""/>

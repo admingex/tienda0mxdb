@@ -3,10 +3,11 @@
 ?>
 
 		<div class="titulo-proceso">
-		Suscripcion gratuita para lectores calificados en M&eacute;xico.	
+		Suscripci√≥n gratuita para lectores calificados en M&eacute;xico.	
 		</div>
 		<br>
-		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rapido y seguro, es muy importante que proporcione correctamente sus datos. SuscribeteHoy le garantiza absoluta confidencialidad en la informacion proporcionada.</p>
+		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, r√°pido y seguro, es muy importante que 
+			proporcione correctamente sus datos. "Tienda GEx" le garantiza absoluta confidencialidad en la informaci√≥n proporcionada.</p>
 		</section>
 		<div id="pleca-punteada"></div>
 		<section class="contenedor">	
@@ -32,7 +33,7 @@
     <tr>
       
       <td class="label_izq" colspan="2">
-        <input type="radio" value="1. DirecciÛn General" name="cargo1" id="cargo1" checked="checked" />
+        <input type="radio" value="1. DirecciÔøΩn General" name="cargo1" id="cargo1" checked="checked" />
 		<div id="radio1" class="radio_selected">&nbsp;					
 		</div>		
         Direcci&oacute;n General</td>
@@ -72,7 +73,7 @@ Compras</td>
     <tr>
     
       <td class="label_izq" colspan="2">
-        <input type="radio" value="5. IngenierÌa" name="cargo5" id="cargo5"  />
+        <input type="radio" value="5. IngenierÔøΩa" name="cargo5" id="cargo5"  />
 		<div id="radio5" class="radio_no_selected">&nbsp;					
 		  </div>		
         Ingenier&iacute;a</td>
@@ -110,7 +111,7 @@ Compras</td>
     <tr>
       
       <td colspan="2" class="label_izq">
-        <input type="radio" value="22. DiseÒa" name="actividad2"  ID="actividad2" />
+        <input type="radio" value="22. DiseÔøΩa" name="actividad2"  ID="actividad2" />
 		<div id="radio2_2" class="radio_no_selected">&nbsp;					
 		  </div>
         Dise&ntilde;a</td>
@@ -193,7 +194,7 @@ Compras</td>
     <tr>
       
       <td  class="label_izq" colspan="2">
-        <input type="radio" value="4. De 100 a m·s" name="proyecto4"  ID="proyecto4">
+        <input type="radio" value="4. De 100 a mÔøΩs" name="proyecto4"  ID="proyecto4">
 		<div id="radio3_4" class="radio_no_selected">&nbsp;					
 		  </div>
         De 100 a m&aacute;s</td>
@@ -242,7 +243,7 @@ Compras</td>
     </tr>
      <tr> 
             <td COLSPAN="2" class="label_izq">
-        <input type="checkbox" value="D. RecomendaciÛn" name="med4" ID="med4">
+        <input type="checkbox" value="D. RecomendaciÔøΩn" name="med4" ID="med4">
 		<div id="radio5_4" class="checkbox_no_selected">&nbsp;					
 		  </div>
 		D. Recomendaci&oacute;n</td>
@@ -373,13 +374,13 @@ Compras</td>
 					<option value="3 Escuelas">|---   1.3 Escuelas</option>
 		            <option value="4 Edificios para oficinas y similares">|---   1.4 Edificios para oficinas y similares</option>
 					<option value="5 Edificaciones comerciales y de servicios">|---   1.5 Edificaciones comerciales y de servicios</option>
-		            <option value="6 Hospitales y clÌnicas">|---   1.6 Hospitales y clÌnicas</option>
-					<option value="7 Edificaciones para recreaciÛn y esparcimiento">|---   1.7 Edificaciones para recreaciÛn y esparcimiento</option>
+		            <option value="6 Hospitales y clinicas">|---   1.6 Hospitales y cl√≠nicas</option>
+					<option value="7 Edificaciones para recreaciÔøΩn y esparcimiento">|---   1.7 Edificaciones para recreaci√≥n y esparcimiento</option>
 					<option value="8 Obras auxiliares">|---   1.8 Obras auxiliares</option>
           <option value="2. Agua, Riego y saneamiento">2. Agua, Riego y saneamiento</option>
           <option value="3. Electricidad y comunicaciones">3. Electricidad y comunicaciones</option>
           <option value="4. Transporte">4. Transporte</option>							
-          <option value="5. PetrÛleo y petroquÌmica">5. PetrÛleo y petroquÌmica</option>							
+          <option value="5. Petroleo y petroquimica">5. Petr√≥leo y petroqu√≠mica</option>							
           <option value="6. Otras construcciones">6. Otras construcciones (especifique)</option>							  
         </select>
 </td>

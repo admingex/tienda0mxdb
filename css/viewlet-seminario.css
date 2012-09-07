@@ -80,14 +80,14 @@
 	border: none;
 	height: 20px;
 	width: 115px;
-	background: url('../images/css_sprite_BtnformaAñadir01.png') no-repeat;	
+	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
 	background-position: -7px -7px;	
 }
 #viewlet-seminario .boton_continuar_compra:hover{
 	border: none;
 	height: 20px;
 	width: 115px;
-	background: url('../images/css_sprite_BtnformaAñadir01.png') no-repeat;	
+	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
 	background-position: -7px -26px;	
 }
 
@@ -95,14 +95,14 @@
 	border: none;
 	height: 20px;
 	width: 180px;
-	background: url('../images/css_sprite_BtnformaAñadir01.png') no-repeat;	
+	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
 	background-position: -122px -7px;	
 }
 #viewlet-seminario .boton_login:hover{
 	border: none;
 	height: 20px;
 	width: 180px;
-	background: url('../images/css_sprite_BtnformaAñadir01.png') no-repeat;	
+	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
 	background-position: -122px -26px;	
 }
 

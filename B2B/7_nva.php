@@ -1,18 +1,17 @@
-<?php
+﻿<?php
     require('./templates/header.php');
 ?>
 		<div class="titulo-proceso">
-		Suscripcion gratuita para lectores calificados en M&eacute;xico.	
+		Suscripción gratuita para lectores calificados en M&eacute;xico.	
 		</div>
 		<br>
-		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que proporcione correctamente sus datos. S
-			uscribeteHoy le garantiza absoluta confidencialidad en la información proporcionada.</p>
+		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que proporcione correctamente sus datos. "Tienda GEx" le garantiza absoluta confidencialidad en la información proporcionada.</p>
 		</section>
 		<div id="pleca-punteada"></div>
 		<section class="contenedor">	
 		<div class="contenedor-gris">
 		
-<form ACTION="seguridad360_nuevo_paso.php" name=frmcaja METHOD="post" onSubmit="return checkFields(this)">
+<form ACTION="energia360_nuevo_ip1.php" name="frmcaja" id="frmcaja" METHOD="post" onSubmit="return checkFields(this)">
 	
 <table width="100%">
 
@@ -21,7 +20,7 @@
           <input type="radio"  name="autorizar" id="autorizar" value='S' checked="" />
 		  <div id="divtipo_inicio2" class="radio_selected">&nbsp;					
 		  </div>		
-          <b>Acepto suscribirme gratuitamente a Seguridad 360</b>
+          <b>Acepto suscribirme gratuitamente a Energía 360</b>
       </td>
  </tr>
  
@@ -96,7 +95,7 @@ Nombre:
 	
 	  <tr>
       <td class="label"> 
-        <sup class="tilde">*</sup>Número:</td>
+        <sup class="tilde">*</sup>Numero:</td>
       <td>
         <input type="text" class="text" name="numero" size="5" maxlength="10" value="" /></td>
     </tr>
@@ -188,7 +187,6 @@ Nombre:
       	</select>
         <input class="text" type="hidden" name="colonia" id="colonia" size="30" maxlength="38" value="" /></td>
     </tr>
-  
     <tr>
       <td class="label"> 
         <sup class="tilde">*</sup>Lada y Teléfono:</td>
@@ -208,7 +206,7 @@ Nombre:
     <tr>
       <td class="label">
         <sup class="tilde">*</sup>Correo
-        Electronico:</td>
+        Electrónico:</td>
       <td>
         <input class="text" type="text" name="email" size="30" maxlength="80" value="" onblur="vemail(this.value,1,'frmcaja.email')"  /></td>
     </tr>
@@ -217,7 +215,7 @@ Nombre:
 <!--agregado de promo-->
 <tr>
       <td class="label">
-        Clave de Promocion Seguridad 360:
+        Clave de Promoción Energía 360:
         </td>
     <td>
         <input class="text" type="text" name="b2bSourcecode" size="30" maxlength="255" value=""/>

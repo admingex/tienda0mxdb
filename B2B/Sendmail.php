@@ -1,5 +1,10 @@
 <?php
+	session_start();
     require('./templates/header.php');
+	$ip="http://10.177.78.54/subir_tienda/publicacion/detalle/";	
+	$revista=$_SESSION['lugarTienda'];
+	//session_unset(); 
+	//session_destroy();
 ?>
 		<div class="titulo-proceso">
 			Estimado cliente:
@@ -10,9 +15,10 @@
 		<div id="pleca-punteada"></div>
 		<section class="contenedor">	
 		<div class="contenedor-gris">
-			<p class="label_izq">Su solicitud ha sido procesada con éxito.</p>
-			<p class="label_izq">Muchas gracias por solicitar productos a través de SuscríbeteHoy.</p>
-			<span><a href="#" class="">Regresar</a></span>
+			<p class="label_izq">Estimado cliente su solicitud esta siendo procesada, en breve lo contactaremos.</p>
+			<!--<p class="label_izq">Su solicitud ha sido procesada con éxito.</p>-->
+			<p class="label_izq">Muchas gracias por solicitar productos a través de "Tienda GEx".</p>
+			<span><a href="<?php echo $ip; echo $revista; ?>" class="">Regresar</a></span>
 <?php
     require('templates/footer.php');
 ?>
