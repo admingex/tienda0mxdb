@@ -1,0 +1,17 @@
+"<div class='titulo-descripcion'>"+
+	"<div class='img-reloj'></div>Configuración de cuenta"+
+	"<div class='pleca-titulo'></div>"+
+"</div>"+
+"<form name='actualizar_cliente' action='lejos.php' method='GET'>"+      							
+	"<div class='label'>Nombre</div><input type='text' name='nombre' value='"+data.cliente.nombre+"' />"+
+	"<br />"+    
+	"<div class='label'>Apellido paterno</div><input type='text' name='apellido_paterno' value='"+data.cliente.apellido_paterno+"' />"+
+	"<br />"+
+    "<div class='label'>Apellido Materno</div><input type='text' name='apellido_materno' value='"+data.cliente.apellido_materno+"' />"+
+    "<br />"+
+    "<div class='label'>Correo electrónico</div><input type='text' name='email' value='"+data.cliente.email+"' />"+
+    "<br />"+    
+    "<div class='label'>Contraseña</div><input type='text' name='email' value='<?php echo $user_data[1];?>' />"+
+    "<br />"+
+    "<input type='submit' name='actualizar' value='Actualizar' />"+
+    "</form>"

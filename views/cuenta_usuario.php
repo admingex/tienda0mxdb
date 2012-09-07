@@ -1,6 +1,6 @@
 <link type="text/css" href="<?php echo TIENDA;?>css/viewlet-historial-compras.css" rel="stylesheet" />
 <script type="text/javascript">
-var ecommerce = 'http://localhost/ecommerce/reporte/';
+var ecommerce = 'http://localhost/ecommerce/';
 var parametros = {
 			"id_cliente"  : "<?php echo $_SESSION['id_cliente']; ?>",
 			"user"        : "aespinosa",
@@ -13,7 +13,7 @@ $(document).ready(function() {
         
         $.ajax({
                 data:  parametros,
-                url:   ecommerce + "compras_cliente",
+                url:   ecommerce + "reporte/compras_cliente",
                 type:  'post',
                 beforeSend: function () {
 					$("#result_informacion").html("Procesando, espere por favor...");
@@ -45,7 +45,24 @@ $(document).ready(function() {
 	});	
 	
 	$("#boton_configuracion").click(function(e) {
-		$("#result_informacion").html("configuracion");
+		 
+		 $.ajax({   		 		           
+                url:   ecommerce + "login/cliente_id/" + <?php echo $_SESSION['id_cliente']; ?>,
+                type:  'GET',
+                dataType: "json",                
+                beforeSend: function () {
+					$("#result_informacion").html("Procesando, espere por favor...");
+                },
+          		success:  function (data) {     
+          			<?php     	
+    					$datos_encrypt = API::decrypt($_SESSION['datos_login'], API::API_KEY);
+    					$user_data=explode('|',$datos_encrypt); 												   	
+    				?>      				
+      				var form = <?php include ('cuenta_usuario/formulario_usuario.html'); ?>   				
+      				$("#result_informacion").html(form);          																		             
+                }
+        });	
+		
 		$('#boton_configuracion').removeClass('boton-configuracion').addClass('boton-configuracion-sel');
 		$('#boton_historial').removeClass('boton-historial-sel').addClass('boton-historial');               		
 		$('#boton_medios').removeClass('boton-medios-sel').addClass('boton-medios');
@@ -55,6 +72,7 @@ $(document).ready(function() {
 	$("#boton_historial").click();	
 				
 });	
+
 
 function detalle_compra(compra, cliente){
 	$.ajax({
