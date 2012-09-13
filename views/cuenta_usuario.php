@@ -29,7 +29,25 @@ $(document).ready(function() {
 	});
 	
 	$("#boton_medios").click(function(e) {
-		$("#result_informacion").html("medios");		               		
+		$.ajax({   		 		           
+                url:   ecommerce + "administrador_usuario/listar_tarjetas/" + "<?php echo $_SESSION['id_cliente']; ?>",
+                type:  'POST', 
+                dataType: "json",                               
+                beforeSend: function () {                    	     	
+					$("#result_informacion").html("Procesando, espere por favor..." );
+                },
+          		success:  function (data) {          			
+          			$("#result_informacion").html("<div class='titulo-descripcion'>" +
+												  "<div class='img-hoja'></div>Medios de pagos" +
+												  "<div class='pleca-titulo'></div>" +
+												  "</div><table id='tarjetas' cellspacing='0' cellpadding='0'><thead><tr><th>Tarjetas guardadas</th><th>Nombre</th><th>Expira</th></tr></thead></table> ");
+          			$.each(data.tarjetas, function(k,v){
+          				$("#tarjetas").append('<tr><td style="background-color: #F1F1F1">' + v.descripcionVc + ' terminación' + v.terminacion_tarjetaVc  + '</td>' +
+          										  '<td style="background-color: #F1F1F1">' + v.nombre_titularVc + ' ' + v.apellidoP_titularVc + ' ' + v.apellidoM_titularVc + '</td>' +
+          										  '<td style="background-color: #F1F1F1">' + v.mes_expiracionVc + '/' + v.anio_expiracionVc + '</td></tr>');          				          				          				          				 
+          			});                   			          			    			             			     				      				   			      				          																		             
+                }
+        }); 	               		
 		$('#boton_medios').removeClass('boton-medios').addClass('boton-medios-sel');
 		$('#boton_historial').removeClass('boton-historial-sel').addClass('boton-historial');
 		$('#boton_datos').removeClass('boton-datos-sel').addClass('boton-datos');
@@ -41,12 +59,13 @@ $(document).ready(function() {
 		$.ajax({   		 		           
                 url:   ecommerce + "administrador_usuario/listar_razon_social/" + "<?php echo $_SESSION['id_cliente']; ?>",
                 type:  'POST', 
-                dataType: "json",                               
-                beforeSend: function () {                    	     	
-					$("#result_informacion").html("Procesando, espere por favor..." );
-                },
+                dataType: "json",                                               
           		success:  function (data) {          			
-          			$("#result_informacion").html("<table id='rfcs'><tr><td>R.F.C.</td><td>Razón Social</td><td>Email</td></tr></table> ");
+          			$("#result_informacion").html("<div class='titulo-descripcion'>" +
+												  "<div class='img-hoja'></div>Datos de envío y facturación" +
+												  "<div class='pleca-titulo'></div></div>" +
+												  "<div class='encabezado-descripcion'>Datos de facturación</div>" +
+												  "<table id='rfcs' cellspacing='0' cellpadding='0'><thead><tr><th>R.F.C.</th><th>Razón Social</th><th>Email</th></tr></thead></table> ");
           			$.each(data.rs, function(k,v){
           				$("#rfcs").append('<tr><td>'+ v.tax_id_number + '</td><td>' + v.company  + '</td><td>' +  v.email + '</td></tr>');          				          				          				          				 
           			});                   			          			    			             			     				      				   			      				          																		             
@@ -62,7 +81,8 @@ $(document).ready(function() {
                 },
           		success:  function (data) {            
           			  			      			
-          			$("#result_informacion").append("<br /><br /><table id='direcciones'><tr><td>Dirección</td><td>Colonia</td><td>Codigo Postal</td><td>Ciudad</td><td>Estado</td></tr></table> ");
+          			$("#result_informacion").append("<div style='margin-top:18px'></div><div class='encabezado-descripcion'>Datos de envío</div>" +
+          											"<table id='direcciones' cellspacing='0'><thead><tr><th>Dirección</th><th>Colonia</th><th>Codigo Postal</th><th>Ciudad</th><th>Estado</th></tr></thead></table>");
           			$.each(data.direccion_envio, function(k,v){          				
           				$("#direcciones").append('<tr><td>'+ v.calle + ' ' + v.num_ext + ' ' + v.num_int + '</td><td>' + v.colonia  + '</td><td>' + v.cp  + '</td><td>' +  v.ciudad + '</td><td>' + v.estado  + '</td></tr>');          				          				          				          				 
           			});                   			          			    			             			     				      				   			      				          																		             
@@ -78,7 +98,7 @@ $(document).ready(function() {
 	$("#boton_configuracion").click(function(e) {
 		 
 		 $.ajax({   		 		           
-                url:   ecommerce + "login/cliente_id/" + <?php echo $_SESSION['id_cliente']; ?>,
+                url:   ecommerce + "administrador_usuario/cliente_id/" + <?php echo $_SESSION['id_cliente']; ?>,
                 type:  'GET',
                 dataType: "json",                
                 beforeSend: function () {                	
