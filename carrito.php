@@ -37,6 +37,7 @@
 					foreach ($_SESSION['carrito'] as $i => $j) {
 						if ($j['id_sitio'] == $_GET['id_sitio'] && $j['id_canal'] == $_GET['id_canal'] && $j['id_promocion'] == $_GET['id_promocion']) {
 							$agregar = FALSE;
+							/*se quita la parte de agregar cantidad a los artículos*/
 							//echo "agragar cantidad al item: ".$i;						
 							//$_SESSION['carrito'][$i]['cantidad']=$_SESSION['carrito'][$i]['cantidad']+1;
 						
@@ -63,7 +64,8 @@
 													'descripcion'=>$_POST['descripcion'],
 													'precio'=>$_POST['precio']
 													);	
-			}																		   
+			}
+			
 		} else {
 			$_SESSION['ult_elem'] = NULL;
 		}

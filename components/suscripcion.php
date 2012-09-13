@@ -115,8 +115,8 @@
 		<div class="descripcion">
 			<select name="sel_pais" id="sel_pais">
 				<option value="">Seleccionar</option>
-				<option value="mexico">México</option>
-				<option value="internacional">Internacional</option>
+				<option value="MX">México</option>
+				<option value="UDS">Internacional</option>
 			</select>	
 		</div>
 		<div class="space-pleca"></div>	
@@ -156,7 +156,7 @@
 					if ($promo_inicial->id_promocion == $detalle->id_promocion)
 						$class_radio = "class='radio_selected'";
 			?>
-				<tr>
+				<tr id="<?php echo $detalle->moneda ?>">
 					<td id="<?php echo $detalle->id_promocion;?>">
 						<input type="radio" id="radio<?php echo $detalle->id_promocion; ?>" name="promocion" value="<?php echo $detalle->id_promocion; ?>"/>
 						<div id="div_promocion<?php echo $detalle->id_promocion; ?>" <?php echo $class_radio;?>  onclick="cambia_boton(<?php echo $detalle->id_promocion; ?>);" >&nbsp;</div>					

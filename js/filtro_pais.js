@@ -16,10 +16,10 @@ $(document).ready(function() {
 	*/
 	$("#sel_pais").change(function(){
 		//alert("valor para el filtro: " + $(this).val());
-		$("#table_promociones > tbody").empty();
+		$("#table_promociones > tbody").toggle();
 		$("#dialog-modal").html("Filtrando promoción, por favor espera ...");
 		//forma.submit();
-		
+		alert("id_promo" + id_ant);
 		//
 		var url_filtro = "";
 		var new_info = "";
