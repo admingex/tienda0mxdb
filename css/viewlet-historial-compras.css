@@ -183,3 +183,31 @@
 	font-size: 13px;
 	font-weight: bolder;			
 }
+
+#result_informacion .form-label{
+	font-size: 12px;
+	color: #000;
+	font-weight: bold;	
+	text-align: right;
+	width: 130px;
+	float: left;
+	padding: 5px 0px 0px 0px;
+	margin-right: 5px;	
+}
+#result_informacion .space-label{	
+	margin-top: 5px;
+}
+
+#result_informacion a{
+	color: #063F84;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#result_informacion .boton-guardar{
+	margin-left: 245px
+}
+
+#result_informacion .input-tex{
+	width: 220px;
+}

@@ -1,17 +1,27 @@
 "<div class='titulo-descripcion'>"+
-	"<div class='img-reloj'></div>Configuración de cuenta"+
+	"<div class='img-hoja'></div>Configuración de cuenta"+
 	"<div class='pleca-titulo'></div>"+
 "</div>"+
-"<form name='actualizar_cliente' action='lejos.php' method='GET'>"+      							
-	"<div class='label'>Nombre</div><input type='text' name='nombre' value='"+data.cliente.nombre+"' />"+
-	"<br />"+    
-	"<div class='label'>Apellido paterno</div><input type='text' name='apellido_paterno' value='"+data.cliente.apellido_paterno+"' />"+
-	"<br />"+
-    "<div class='label'>Apellido Materno</div><input type='text' name='apellido_materno' value='"+data.cliente.apellido_materno+"' />"+
-    "<br />"+
-    "<div class='label'>Correo electrónico</div><input type='text' name='email' value='"+data.cliente.email+"' />"+
-    "<br />"+    
-    "<div class='label'>Contraseña</div><input type='text' name='email' value='<?php echo $user_data[1];?>' />"+
-    "<br />"+
-    "<input type='submit' name='actualizar' value='Actualizar' />"+
-    "</form>"
+"<form name='actualizar_cliente' action='<?php echo ECOMMERCE."login/actualizar_cliente/".$_SESSION['id_cliente'] ?>' method='POST'>"+
+	"<input type='hidden' name='log_data' value='<?php echo $_SESSION['datos_login']; ?>' />"+      							
+	"<div class='form-label'>Nombre</div><input type='text' name='nombre' value='"+data.cliente.nombre+"' class='input-tex' />"+
+	"<div class='space-label'>"+    
+	"<div class='form-label'>Apellido paterno</div><input type='text' name='apellido_paterno' value='"+data.cliente.apellido_paterno+"' class='input-tex' />"+
+	"<div class='space-label'>"+  
+    "<div class='form-label'>Apellido Materno</div><input type='text' name='apellido_materno' value='"+data.cliente.apellido_materno+"' class='input-tex' />"+
+    "<div class='space-label'>"+  
+    "<div class='form-label'>Correo electrónico</div><input type='text' name='email' value='"+data.cliente.email+"' class='input-tex' />"+
+    "<div class='space-label'>"+
+    "<a id='view_pass_link' href='#' onclick=\"view_pass()\">Cambiar contraseña</a>"+		
+    "<div class='space-label'></div>"+
+    "<div class='space-label'></div>"+
+    "<div id='cambiar_password' style='display: none'>"+	  
+    	"<div class='form-label'>Contraseña actual</div><input type='text' name='password_actual' value='' class='input-tex' />"+
+    	"<div class='space-label'></div>"+
+    	"<div class='form-label'>Nueva contraseña</div><input type='text' name='nuevo_password' value='' class='input-tex' />"+
+    	"<div class='space-label'></div>"+	
+    	"<div class='form-label'>Confirmar contraseña</div><input type='text' name='nuevo_password2' value='' class='input-tex' />"+	
+    "</div>"+		  
+    "<div class='space-label'></div>"+
+    "<input type='submit' name='actualizar' value='Guardar cambios' class='boton-guardar'/>"+
+"</form>"

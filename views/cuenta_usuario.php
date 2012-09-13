@@ -37,7 +37,38 @@ $(document).ready(function() {
 	});	
 	
 	$("#boton_datos").click(function(e) {
-		$("#result_informacion").html("datos");
+		
+		$.ajax({   		 		           
+                url:   ecommerce + "administrador_usuario/listar_razon_social/" + "<?php echo $_SESSION['id_cliente']; ?>",
+                type:  'POST', 
+                dataType: "json",                               
+                beforeSend: function () {                    	     	
+					$("#result_informacion").html("Procesando, espere por favor..." );
+                },
+          		success:  function (data) {          			
+          			$("#result_informacion").html("<table id='rfcs'><tr><td>R.F.C.</td><td>Razón Social</td><td>Email</td></tr></table> ");
+          			$.each(data.rs, function(k,v){
+          				$("#rfcs").append('<tr><td>'+ v.tax_id_number + '</td><td>' + v.company  + '</td><td>' +  v.email + '</td></tr>');          				          				          				          				 
+          			});                   			          			    			             			     				      				   			      				          																		             
+                }
+        });        
+        		
+		$.ajax({   		 		           
+                url:   ecommerce + "administrador_usuario/listar_direccion_envio/" + "<?php echo $_SESSION['id_cliente']; ?>",
+                type:  'POST', 
+                dataType: "json",                               
+                beforeSend: function () {                    	     	
+					$("#result_informacion").html("Procesando, espere por favor..." );
+                },
+          		success:  function (data) {            
+          			  			      			
+          			$("#result_informacion").append("<br /><br /><table id='direcciones'><tr><td>Dirección</td><td>Colonia</td><td>Codigo Postal</td><td>Ciudad</td><td>Estado</td></tr></table> ");
+          			$.each(data.direccion_envio, function(k,v){          				
+          				$("#direcciones").append('<tr><td>'+ v.calle + ' ' + v.num_ext + ' ' + v.num_int + '</td><td>' + v.colonia  + '</td><td>' + v.cp  + '</td><td>' +  v.ciudad + '</td><td>' + v.estado  + '</td></tr>');          				          				          				          				 
+          			});                   			          			    			             			     				      				   			      				          																		             
+                }
+        });  
+		
 		$('#boton_datos').removeClass('boton-datos').addClass('boton-datos-sel');
 		$('#boton_historial').removeClass('boton-historial-sel').addClass('boton-historial');               		
 		$('#boton_medios').removeClass('boton-medios-sel').addClass('boton-medios');		
@@ -50,14 +81,10 @@ $(document).ready(function() {
                 url:   ecommerce + "login/cliente_id/" + <?php echo $_SESSION['id_cliente']; ?>,
                 type:  'GET',
                 dataType: "json",                
-                beforeSend: function () {
-					$("#result_informacion").html("Procesando, espere por favor...");
+                beforeSend: function () {                	
+					$("#result_informacion").html("Procesando, espere por favor..." );
                 },
-          		success:  function (data) {     
-          			<?php     	
-    					$datos_encrypt = API::decrypt($_SESSION['datos_login'], API::API_KEY);
-    					$user_data=explode('|',$datos_encrypt); 												   	
-    				?>      				
+          		success:  function (data) {             			            			     				
       				var form = <?php include ('cuenta_usuario/formulario_usuario.html'); ?>   				
       				$("#result_informacion").html(form);          																		             
                 }
@@ -73,11 +100,15 @@ $(document).ready(function() {
 				
 });	
 
+function view_pass(){
+	$('#cambiar_password').toggle();	
+	$('#view_pass_link').hide();
+}
 
-function detalle_compra(compra, cliente){
+function detalle_compra(compra, cliente){	
 	$.ajax({
                 data:  parametros,
-                url:   ecommerce + "detalle_compra/" + compra + "/" + cliente,
+                url:   ecommerce + "/reporte/detalle_compra/" + compra + "/" + cliente,
                 type:  'post',
                 beforeSend: function () {
 					$("#result_informacion").html("Procesando, espere por favor...");
