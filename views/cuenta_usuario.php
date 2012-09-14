@@ -10,8 +10,9 @@ var parametros = {
 $(document).ready(function() {	
 		
 	$("#boton_historial").click(function(e) {																						
-        
+        $("#result_errores").html("" );	
         $.ajax({
+        		cache: false,
                 data:  parametros,
                 url:   ecommerce + "reporte/compras_cliente",
                 type:  'post',
@@ -29,7 +30,9 @@ $(document).ready(function() {
 	});
 	
 	$("#boton_medios").click(function(e) {
-		$.ajax({   		 		           
+		$("#result_errores").html("" );	
+		$.ajax({  
+				cache: false, 		 		           
                 url:   ecommerce + "administrador_usuario/listar_tarjetas/" + "<?php echo $_SESSION['id_cliente']; ?>",
                 type:  'POST', 
                 dataType: "json",                               
@@ -55,8 +58,9 @@ $(document).ready(function() {
 	});	
 	
 	$("#boton_datos").click(function(e) {
-		
-		$.ajax({   		 		           
+		$("#result_errores").html("" );	
+		$.ajax({   	
+			cache: false,	 		           
                 url:   ecommerce + "administrador_usuario/listar_razon_social/" + "<?php echo $_SESSION['id_cliente']; ?>",
                 type:  'POST', 
                 dataType: "json",                                               
@@ -72,7 +76,8 @@ $(document).ready(function() {
                 }
         });        
         		
-		$.ajax({   		 		           
+		$.ajax({   
+				cache: false,		 		           
                 url:   ecommerce + "administrador_usuario/listar_direccion_envio/" + "<?php echo $_SESSION['id_cliente']; ?>",
                 type:  'POST', 
                 dataType: "json",                               
@@ -96,17 +101,71 @@ $(document).ready(function() {
 	});	
 	
 	$("#boton_configuracion").click(function(e) {
-		 
-		 $.ajax({   		 		           
+		 $("#result_errores").html("" );	
+		 $.ajax({   	
+		 		cache: false,	 		           
                 url:   ecommerce + "administrador_usuario/cliente_id/" + <?php echo $_SESSION['id_cliente']; ?>,
                 type:  'GET',
                 dataType: "json",                
                 beforeSend: function () {                	
 					$("#result_informacion").html("Procesando, espere por favor..." );
                 },
-          		success:  function (data) {             			            			     				
+          		success:  function (data) {              			       			            			     				
       				var form = <?php include ('cuenta_usuario/formulario_usuario.html'); ?>   				
-      				$("#result_informacion").html(form);          																		             
+      				$("#result_informacion").html(form);
+      				    
+      				$("#boton_actualizar").click(function(e) {
+      					var nombre = $('#nombre').val();
+      					var apellido_paterno = $('#apellido_paterno').val();
+      					var apellido_materno = $('#apellido_materno').val();
+      					var email = $('#email').val();
+      					var password_actual = $('#password_actual').val();
+      					var nuevo_password = $('#nuevo_password').val();
+      					var nuevo_password2 = $('#nuevo_password2').val();
+      					var log_data = $('#log_data').val();
+      					
+      					var parametros = {
+							"nombre"  			: nombre,
+							"apellido_paterno"  : apellido_paterno,
+							"apellido_materno"  : apellido_materno,
+							"email"  			: email,
+							"password_actual"  	: password_actual,
+							"nuevo_password"  	: nuevo_password,
+							"nuevo_password2" 	: nuevo_password2,
+							"log_data"			: log_data
+						}							
+						
+						$.ajax({  
+								cache: false,
+								data: parametros, 		 		           
+					            url:   ecommerce + "administrador_usuario/actualizar_cliente/" + "<?php echo $_SESSION['id_cliente']; ?>",
+					            type:  'POST', 
+					            dataType: "json",                               
+					            beforeSend: function () {                    	     	
+									$("#result_informacion").html("Procesando, espere por favor..." );
+					            },
+					      		success:  function (data) {   
+					      			if (data.error == 1){
+					      									      									      				 	
+					      				$("#boton_configuracion").click();
+					      				$("#result_errores").html("<br />Por favor Revise la información siguiente<br />" );	
+					      				
+					      				$.each(data.errores, function(k,v){						      										      								      										      				
+				      						$("#result_errores").append('<br />' + v);						      					         					      					          									          				          				          				          				
+          								}); 
+					      				
+					      			}         
+					      			else{		
+					      				$("#result_errores").html("" );			      				
+					      				$("#result_informacion").html('<div class="encabezado-descripcion">Tus datos se han actualizado correctamente.</div>');
+					      				setTimeout('$("#boton_configuracion").click()', 2500);
+					      				
+					      			}
+					      			  			      								      			                   			          			    			             			     				      				   			      				          																		             
+					            }
+					    });
+						
+					});      																		             
                 }
         });	
 		
@@ -114,9 +173,11 @@ $(document).ready(function() {
 		$('#boton_historial').removeClass('boton-historial-sel').addClass('boton-historial');               		
 		$('#boton_medios').removeClass('boton-medios-sel').addClass('boton-medios');
 		$('#boton_datos').removeClass('boton-datos-sel').addClass('boton-datos');		
-	});	
+	});			
 	
 	$("#boton_historial").click();	
+	
+	
 				
 });	
 
@@ -127,15 +188,15 @@ function view_pass(){
 
 function detalle_compra(compra, cliente){	
 	$.ajax({
-                data:  parametros,
-                url:   ecommerce + "/reporte/detalle_compra/" + compra + "/" + cliente,
-                type:  'post',
-                beforeSend: function () {
-					$("#result_informacion").html("Procesando, espere por favor...");
-                },
-          		success:  function (response) {          			
-					$("#result_informacion").html(response);                                                
-                }
+	    data:  parametros,
+	    url:   ecommerce + "/reporte/detalle_compra/" + compra + "/" + cliente,
+	    type:  'post',
+	    beforeSend: function () {
+			$("#result_informacion").html("Procesando, espere por favor...");
+	    },
+		success:  function (response) {          			
+			$("#result_informacion").html(response);                                                
+	    }
     });	
 }	
 </script>
@@ -145,6 +206,8 @@ function detalle_compra(compra, cliente){
 		<input type="button" id="boton_medios" value="" class="boton-medios"/>
 		<input type="button" id="boton_datos" value="" class="boton-datos"/>
 		<input type="button" id="boton_configuracion" value="" class="boton-configuracion" />
+	</div>
+	<div id="result_errores">						
 	</div>
 	<div id="result_informacion">						
 	</div>			
