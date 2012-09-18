@@ -44,6 +44,16 @@
 							// Guarda el id del ultimo elemento al que se le agrego cantidad
 							$_SESSION['ult_elem'] = $i;
 						}
+						/*VALIDACION PARA LA MISMA MONEDA*/
+						if ($j['moneda']!= $_POST['moneda']) {
+							$agregar = FALSE;
+							$_SESSION['ult_elem'] = $i;
+							echo "<script language='javascript' type='text/javascript'>
+									//alert('No cupede comprar elementos con diferentes tipo de cambio');
+									$('#dialog-modal').dialog( 'close' );
+									$('#no-moneda').dialog( 'open' );
+								</script>";
+						}
 					}
 				}
 				
@@ -62,7 +72,8 @@
 													'cantidad'=>$_POST['cantidad'],
 													'imagenVc'=>$_POST['imagen'],
 													'descripcion'=>$_POST['descripcion'],
-													'precio'=>$_POST['precio']
+													'precio'=>$_POST['precio'],
+													'moneda'=>$_POST['moneda']
 													);	
 			}
 			
