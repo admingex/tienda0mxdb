@@ -2,9 +2,7 @@
 <script type="text/javascript">
 var ecommerce = 'http://localhost/ecommerce/';
 var parametros = {
-			"id_cliente"  : "<?php echo $_SESSION['id_cliente']; ?>",
-			"user"        : "aespinosa",
-			"pass" 		  : "Aesp1n0_20120618"
+			"id_cliente"  : "<?php echo $_SESSION['id_cliente']; ?>"			
 		}
 
 $(document).ready(function() {	
@@ -14,7 +12,7 @@ $(document).ready(function() {
         $.ajax({
         		cache: false,
                 data:  parametros,
-                url:   ecommerce + "reporte/compras_cliente",
+                url:   ecommerce + "administrador_usuario/compras_cliente",
                 type:  'post',
                 beforeSend: function () {
 					$("#result_informacion").html("Procesando, espere por favor...");
@@ -189,7 +187,7 @@ function view_pass(){
 function detalle_compra(compra, cliente){	
 	$.ajax({
 	    data:  parametros,
-	    url:   ecommerce + "/reporte/detalle_compra/" + compra + "/" + cliente,
+	    url:   ecommerce + "/administrador_usuario/detalle_compra/" + compra + "/" + cliente,
 	    type:  'post',
 	    beforeSend: function () {
 			$("#result_informacion").html("Procesando, espere por favor...");
