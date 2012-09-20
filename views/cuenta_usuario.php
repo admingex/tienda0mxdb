@@ -41,11 +41,12 @@ $(document).ready(function() {
           			$("#result_informacion").html("<div class='titulo-descripcion'>" +
 												  "<div class='img-hoja'></div>Medios de pagos" +
 												  "<div class='pleca-titulo'></div>" +
-												  "</div><table id='tarjetas' cellspacing='0' cellpadding='0'><thead><tr><th>Tarjetas guardadas</th><th>Nombre</th><th>Expira</th></tr></thead></table> ");
+												  "</div><table id='tarjetas' cellspacing='0' cellpadding='0'><thead><tr><th>Tarjetas guardadas</th><th>Nombre</th><th>Expira</th><th>&nbsp;</th></tr></thead></table> ");
           			$.each(data.tarjetas, function(k,v){
           				$("#tarjetas").append('<tr><td style="background-color: #F1F1F1">' + v.descripcionVc + ' terminación' + v.terminacion_tarjetaVc  + '</td>' +
           										  '<td style="background-color: #F1F1F1">' + v.nombre_titularVc + ' ' + v.apellidoP_titularVc + ' ' + v.apellidoM_titularVc + '</td>' +
-          										  '<td style="background-color: #F1F1F1">' + v.mes_expiracionVc + '/' + v.anio_expiracionVc + '</td></tr>');          				          				          				          				 
+          										  '<td style="background-color: #F1F1F1">' + v.mes_expiracionVc + '/' + v.anio_expiracionVc + '</td>' +
+          										  '<td style="background-color: #F1F1F1"><a href="<?php echo ECOMMERCE."forma_pago/editar/tc/"?>' + v.id_TCSi + '">editar</a><a href="2">Eliminar</a></td></tr>');          				          				          				          				 
           			});                   			          			    			             			     				      				   			      				          																		             
                 }
         }); 	               		
