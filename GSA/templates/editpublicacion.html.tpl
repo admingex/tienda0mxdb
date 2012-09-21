@@ -1,8 +1,8 @@
 {section name=ipub}
 <form name="edit_pub" id="edit_pub" method="post" action="cambios_publicacion.php" onSubmit="return checkFields(this)">
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="cancelacion2()" />
-	<input type="button" name="vp" id="vp" value="Vista previa" />	
-	<input type="submit" name="enviar" id="enviar" value="{$boton}" />	
+	<input type="button" name="cancel" id="cancel" value="" onclick="cancelacion2()" class="boton-cancel-menu"/>
+	<input type="button" name="vp" id="vp" value="" class="boton-vp-menu" />	
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-editar-publicacion-menu" />	
 	<div class="contenedor-gris-blanco">
 		<p class="instrucciones_cursivas">Datos generales</p>
 		<table>
@@ -44,7 +44,7 @@
 			</tbody>
 		</table>
 		<br />
-		<button type="button" onclick="miDialog()"  >Agregar order class</button>
+		<button type="button" onclick="miDialog()" class="boton-agregar-oc" >&nbsp;</button>
 		<div id="dialogo">
    		
 		</div>
@@ -175,8 +175,8 @@
 		<p class="label_izq">Palabras clave de búsqueda (Separadas por comas): </p>
 		<textarea name="pclave" id="pclave">{$infopublic[ipub].palabras_claveVc}</textarea>
 	</div>
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="cancelacion2()" />
-	<input type="button" name="vp" id="vp" value="Vista previa" />	
-	<input type="submit" name="enviar" id="enviar" value="{$boton}" />	
+	<input type="button" name="cancel" id="cancel" value="" onclick="cancelacion2()" class="boton-cancel-menu"/>
+	<input type="button" name="vp" id="vp" value="" class="boton-vp-menu" />	
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-editar-publicacion-menu" />	
 </form>		
 {/section}

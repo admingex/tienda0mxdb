@@ -2,15 +2,15 @@
 <div class="contenedor-gris">
 
 <form name="aoc" id="aoc" method="post" action="guardarOC.php">
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="mimensaje()" style='font-size: 13px;'/>
-	<input type="submit" name="enviar" id="enviar" value="Agregar order class" style='font-size: 13px;' />		
+	<input type="button" name="cancel" id="cancel" value="" class="boton-cancel-menu-blanco" onclick="mimensaje()" style='font-size: 13px;'/>
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-agregar-oc-blanco" style='font-size: 13px;' />		
 	<div class="contenedor-gris-blanco">
 		<div id="buss">
 		<table>
 			<tr class="label_izq">
 				<td>Nombre:</td>
 				<td><input type="text" class="text" name="nombre" id="nombre" value="" /></td>
-				<td><input type="button" name="bus" id="bus" value="Buscar" onclick="buscador(form.nombre.value)" /></td>
+				<td><input type="button" name="bus" id="bus" value="" class="boton-buscar" onclick="buscador(form.nombre.value)" /></td>
 				<input type="hidden" class="text" name="idp" id="idp" value="{$id}" />
 			</tr>
 		</table>
@@ -60,7 +60,7 @@
 			</tr>
 		</table>
 	</div>
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="mimensaje()" style='font-size: 13px;' />
-	<input type="submit" name="enviar" id="enviar" value="Agregar order class"  style='font-size: 13px;'/>		
+	<input type="button" name="cancel" id="cancel" value="" class="boton-cancel-menu-blanco" onclick="mimensaje()" style='font-size: 13px;' />
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-agregar-oc-blanco" style='font-size: 13px;'/>		
 </form>
 </div>		

@@ -1,42 +1,49 @@
 $(document).ready(function() {
-	/*
-	//form del filtro
-	var forma = $("#form_filtro_formatos");
-	
-	//enlaces del paginador
-	var paginador_enlaces = $("#paginacion > a");
-	
-	//checkboxes
-	var fs = $("#form_filtro_formatos > input[type='checkbox']");
-	
-	//agregar el evento a los checks
-	fs.click(function(){
-		forma.submit();
-	});
-	*/
+/*-PARA CARGAR LOS MX AL CARGAR LA PAGINA -*/
+fmx=$('tr.MX:first').attr("id");
+$("tr.USD").hide();
+cambia_boton(fmx);
+
+
 	$("#sel_pais").change(function(){
-		//alert("valor para el filtro: " + $(this).val());
-		$("#table_promociones > tbody").toggle();
-		$("#dialog-modal").html("Filtrando promoción, por favor espera ...");
-		//forma.submit();
-		alert("id_promo" + id_ant);
-		//
-		var url_filtro = "";
-		var new_info = "";
-		
-		/*$.ajax({
-            data:  parametros,
-            url:   url_carrito,
-            type:  'post',
-	        beforeSend: function () {
-	        	$("#dialog-modal").html("Filtrando promoción, por favor espera ...");
-          	},
-      		success:  function (response) {
-  				$("#dialog-modal").dialog( "open" );
-                $("#dialog-modal").html(response);                        
-                $("#cuenta-carrito").text($('#cuenta-detalle-carrito').text());
-           	}
-             
-		});*/
+	//alert(id_ant);
+	fusd=$('tr.USD:first').attr("id");
+	fmx=$('tr.MX:first').attr("id");
+		opcion=$(this).val();
+		allfilas=$('#table_promociones >tbody >tr').length;
+		//alert(allfilas);
+		switch (opcion){
+			case 'MX':
+				$("tr.MX").show();
+				$("tr.USD").hide();
+				//alert(fmx);
+				if ($('#table_promociones >tbody >tr.MX').length == 0){
+				//alert("sin filas");
+				no_hacer_nada();
+				}
+				else{
+				cambia_boton(fmx);
+				}
+				break;
+			case 'USD':
+				$("tr.USD").show();
+				$("tr.MX").hide();
+				//alert(fusd);			
+				if ($('#table_promociones >tbody >tr.USD').length == 0){
+				//alert("sin filas");
+				no_hacer_nada();
+				}				
+				else{
+				cambia_boton(fusd);
+				}				
+				break;
+			case 'ALL':
+				$("tr.USD").show();
+				$("tr.MX").show()
+				cambia_boton(id_ant);
+				break;		
+		}
+	
 	});
+	
 });

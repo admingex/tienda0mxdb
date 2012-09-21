@@ -1,7 +1,7 @@
 <form name="new_pub" id="new_pub" method="post" action="guardar_publicacion.php" onSubmit="return checkFields(this)">
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="cancelacion2()" />
-	<input type="button" name="vp" id="vp" value="Vista previa" />	
-	<input type="submit" name="enviar" id="enviar" value="{$boton}" />	
+	<input type="button" name="cancel" id="cancel" value="" class="boton-cancel-menu" onclick="cancelacion2()" />
+	<input type="button" name="vp" id="vp" value="" class="boton-vp-menu" />	
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-agregar-publicacion-menu" />	
 	<div class="contenedor-gris-blanco">
 		<p class="instrucciones_cursivas">Datos generales</p>
 		<table>
@@ -40,7 +40,7 @@
 			</tbody>
 		</table>
 		<br />
-		<button type="button" onclick="usar_oc()" >Agregar order class</button>
+		<button type="button" onclick="usar_oc()" class="boton-agregar-oc" >&nbsp;</button>
 		<div id="dialogo">
    		
 		</div>
@@ -72,7 +72,7 @@
 			</select>
 		</div>
 		<br />
-		<button type="button" name="plusr" id="plusr" onclick="select_nuevo_ps()">Agregar publicación</button>
+		<button type="button" name="plusr" id="plusr" onclick="select_nuevo_ps()" class="boton-guardar-mas">&nbsp;</button>
 	</div>	
 	
 <!--**********************************   PUBLICACION RELACIONADAS   ********************************************************-->
@@ -101,7 +101,7 @@
 			</select>
 		</div>
 		<br />
-		<button type="button" name="pluss" id="pluss" class="pr" onclick="select_nuevo_pr()">Agregar publicación</button>
+		<button type="button" name="pluss" id="pluss" class="pr" onclick="select_nuevo_pr()">&nbsp;</button>
 	</div>
 	
 <!--***********************************************************************************************************************************-->
@@ -134,7 +134,7 @@
 		<p class="label_izq">Palabras clave de búsqueda (Separadas por comas): </p>
 		<textarea name="pclave" id="pclave"></textarea>
 	</div>
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="cancelacion2()" />
-	<input type="button" name="vp" id="vp" value="Vista previa" />	
-	<input type="submit" name="enviar" id="enviar" value="{$boton}" />	
+	<input type="button" name="cancel" id="cancel" value="" class="boton-cancel-menu" onclick="cancelacion2()" />
+	<input type="button" name="vp" id="vp" value="" class="boton-vp-menu" />	
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-agregar-publicacion-menu" />	
 </form>

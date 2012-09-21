@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2012-08-07 13:33:02
+<?php /* Smarty version 2.6.20, created on 2012-09-12 18:03:38
          compiled from admincategorias.html.tpl */ ?>
 <div class="contenedor-gris-blanco">
 	<table class="css3" cellspacing="0" id="grilla_publicaciones">
@@ -55,6 +55,6 @@ $this->_sections['adCat']['last']       = ($this->_sections['adCat']['iteration'
 	</table>
 	<?php if ($this->_tpl_vars['modo'] == 'publicaciones'): ?>
 	<br />
-	<div id="plus"><button onclick="nueva_publicacion()">Agregar publicación</button></div>
+	<div id="plus"><button onclick="nueva_publicacion()" class="boton-agregar-publicacion">&nbsp;</button></div>
 	<?php endif; ?>
 </div>

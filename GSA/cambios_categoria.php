@@ -1,4 +1,7 @@
 <?php
+session_start();
+if(isset($_SESSION['login']))
+{
 require_once dirname(__FILE__) ."/include/database.php";
 //require_once dirname(__FILE__) ."/include/databasedos.php";
 $db=getDb();
@@ -63,4 +66,8 @@ alert('Actualizaci'+'\u00F3'+'n Lista');
 window.location.href='categorias.php';
 </script>
 ";
+}
+else{
+	die("Error::no ha iniciado sesión");
+}
 ?>

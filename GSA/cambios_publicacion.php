@@ -1,4 +1,7 @@
 <?php
+session_start();
+if(isset($_SESSION['login']))
+{
 require_once dirname(__FILE__) ."/include/database.php";
 $db=getDb();
 
@@ -8,10 +11,12 @@ $descrip_pub=$_POST['descripcion'];
 $pala_clave_pub=$_POST['pclave'];
 
 $prom_destac=0;
-foreach ($_POST['r'] as $value){
-	if(!empty($_POST[$value])){
-		$prom_destac=$_POST[$value];
-		//echo $prom_destac;
+if(!empty($_POST['r'])){
+	foreach ($_POST['r'] as $value){
+		if(!empty($_POST[$value])){
+			$prom_destac=$_POST[$value];
+			//echo $prom_destac;
+		}
 	}
 }
 /**********************************************************************************************/
@@ -88,4 +93,8 @@ alert('Actualizaci'+'\u00F3'+'n Lista');
 window.location.href='publicaciones.php';
 </script>
 ";
+}
+else{
+	die("Error::no ha iniciado sesi&oacute;n");
+}
 ?>

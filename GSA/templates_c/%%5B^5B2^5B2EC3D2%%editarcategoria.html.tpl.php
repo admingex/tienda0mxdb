@@ -1,8 +1,8 @@
-<?php /* Smarty version 2.6.20, created on 2012-08-24 07:23:06
+<?php /* Smarty version 2.6.20, created on 2012-09-13 10:18:23
          compiled from editarcategoria.html.tpl */ ?>
 <form name="edit_cat" id="edit_cat" method="post" action="cambios_categoria.php" onSubmit="return checkFields(this)">	
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="cancelacion()" />
-	<input type="submit" name="enviar" id="enviar" value="Guardar categoría" />		
+	<input type="button" name="cancel" id="cancel" value="" onclick="cancelacion()" class="boton-cancel-menu" />
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-agregar-categoria-menu"/>		
 	<div class="contenedor-gris-blanco">
 		<?php unset($this->_sections['categoriaDet']);
 $this->_sections['categoriaDet']['name'] = 'categoriaDet';
@@ -244,6 +244,6 @@ $this->_sections['categoriaDet']['last']       = ($this->_sections['categoriaDet
 		<?php endfor; endif; ?>
 	</div>
 <!--***********************************************************************************************************************************-->	
-	<input type="button" name="cancel"  value="Cancelar" onclick="cancelacion()" />
-	<input type="submit" name="enviar"  value="Guardar categoría" />
+	<input type="button" name="cancel"  value="" onclick="cancelacion()" class="boton-cancel-menu"  />
+	<input type="submit" name="enviar"  value="" class="boton-agregar-categoria-menu" />
 </form>

@@ -1,6 +1,6 @@
 		<form name="aph" id="aph" method="post" action="gCarruseldePromociones.php">			
 			<div class="contenedor-gris-blanco">
-				<p class="instrucciones_cursivas">Carrusel de promociones <input type="submit" name="ok" id="ok" value="Guardar home" />	</p>
+				<p class="instrucciones_cursivas">Carrusel de promociones <input type="submit" name="ok" id="ok" value="" class="boton-guardar-home" />	</p>
 				<table class="css3" cellspacing="0" >
 					<thead>
 						<tr class="label_izq">
@@ -46,7 +46,8 @@
 			<!--***************************************--->
 		<form name="aph2" id="aph2" method="post" action="gListadoHome.php">	
 			<div class="contenedor-gris-blanco" id="LH">
-				<p class="instrucciones_cursivas">Listado Home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" name="ok1" id="ok1" value="Guardar home" /></p>
+				<p class="instrucciones_cursivas">Listado Home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					<input type="submit" name="ok1" id="ok1" value="" class="boton-guardar-home" /></p>
 				<table cellspacing="0" cellpadding="2" class="css3">
 					<thead>
 						<tr id="0" class="label_izq">
@@ -91,7 +92,7 @@
 			<!--***************************************--->
 		<form name="aph3" id="aph3" method="post" action="gPromoEspeciales.php">	
 			<div class="contenedor-gris-blanco" id="PE">
-				<p class="instrucciones_cursivas">Promociones Especiales <input type="submit" name="ok2" id="ok2" value="Guardar home" /></p>
+				<p class="instrucciones_cursivas">Promociones Especiales <input type="submit" name="ok2" id="ok2" value="" class="boton-guardar-home" /></p>
 				<table cellspacing="0" cellpadding="2" class="css3">
 					<thead>
 						<tr id="0" class="label_izq">

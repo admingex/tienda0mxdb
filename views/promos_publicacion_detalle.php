@@ -32,7 +32,7 @@
 			3	=>	"PDF"						//"Electronic Document"	//PDF
 		);
 		
-		//ya que se mostrará el detalle de una promoción, se pregunta por dicho arreglo de información
+		//ya que se mostrará el detalle de una promoción, se verifica por dicho arreglo de información
 		if (isset($detalles_promociones) && count($detalles_promociones) > 0) {
 			$oc = $detalles_promociones[0]->order_code_type;
 			$desc_producto 	= " <div class='triangulo-negro-der'></div><div class='noref'>". $order_code_cat[$oc] . "</div>";
@@ -53,11 +53,12 @@
 		 * 
 		 * La información en "$detalles_promociones" viene siempre, ya sea por consultas desde PUBLICACIONES o directas en PROMOCIONES.
 		 */ 
-		//echo "<pre>";
+		/*echo "<pre>";
 		//print_r($info_publicacion);
 		//print_r($ofertas_publicacion);
-		//print_r($detalles_promociones);	//siempre viene
-		//echo "</pre>";
+		print_r($secciones);
+		print_r($detalles_promociones);	//siempre viene
+		echo "</pre>";*/
 		
 	### //despliegue del detalle de la promoción si es que hay alguno
 	if (!empty($detalles_promociones)) {
@@ -72,11 +73,13 @@
 				include_once('./components/pdf.php');
 				break;
 			case 2:
-				//seminarios / carpetas / etc. / productos
+				//seminarios / carpetas / etc. / productos, en el componente se trata el "detalle"
+				$detalle_promocion = $detalles_promociones[0];
 				include_once('./components/seminario.php');
 				break;
 			case 3:
-				//pdfs?
+				//pdfs, por el momento se trata de la misma manera que productos.
+				$detalle_promocion = $detalles_promociones[0];
 				include_once('./components/pdf.php');
 				break;
 			default:

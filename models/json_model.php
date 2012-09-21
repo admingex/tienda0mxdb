@@ -184,6 +184,19 @@ class Json_Model extends DBAbstractModel {
 	}
 	
 	/**
+	 * Devuelve las secciones asociadas a una promoción
+	 */
+	public function get_secciones($oc_id, $issue_id = 0) {
+		$this->query = "CALL SP_Secciones_Por_Promocion(" . $oc_id . "," . $issue_id . ")";
+		
+		$this->get_results_from_query();
+		
+		$secciones = $this->rows;
+		
+		return $secciones;
+	}
+	
+	/**
 	 * Devuelve la promoción destacada para una categoría
 	 */
 	public function get_promocion_destacada_por_categoria($id_categoria = 0) {

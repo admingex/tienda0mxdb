@@ -1,4 +1,7 @@
 <?php
+session_start();
+if(isset($_SESSION['login']))
+{
 require_once dirname(__FILE__) ."/include/smarty.php";
 require_once dirname(__FILE__) ."/include/database.php";
 
@@ -17,5 +20,8 @@ $oSmarty -> assign ("lugarMenu",$lm);
 $oSmarty -> assign ("contenido","formatos.html.tpl");
 
 $oSmarty -> display ("layout.html.tpl");
-
+}
+else{
+	die("Error::no ha iniciado sesión");
+}
 ?>

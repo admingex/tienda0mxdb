@@ -1,5 +1,14 @@
 <?php
+session_start();
+if(isset($_SESSION['login']))
+{
 require_once dirname(__FILE__) ."/include/database.php";
+
+	/*JSON*/
+	include ('controllers/json_creator.php');
+	$jc = new Json_Creator();
+	/*----*/
+	
 $db=getDb();
 
 //esto me trae el ID conforme a la nueva posicion en la que se dejen las publicaciones
@@ -43,5 +52,14 @@ else{
 	$db -> Execute($sql);
 }
 
-header('location: home.php')
+header('location: home.php');
+
+	/*JSON*/
+	$promos_home = $jc->generar_json_promos_especiales();
+	//echo "Promociones Especiales..................</br><br/>";
+	
+}
+else{
+	die("Error::no ha iniciado sesi&oacute;n");
+}
 ?>

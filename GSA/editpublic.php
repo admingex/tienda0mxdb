@@ -1,4 +1,7 @@
 <?php
+session_start();
+if(isset($_SESSION['login']))
+{
 require_once dirname(__FILE__) ."/core/db_access.php";
 require_once dirname(__FILE__) ."/include/smarty.php";
 
@@ -53,7 +56,7 @@ $cPST = $ob7->sSQL($sql7);
 /*PARA EL ORDER CLASS*/
 $sql="SELECT * FROM TND_RelPublicacionOC RPOC
 INNER JOIN TND_CatOCThink COC ON RPOC.oc_id=COC.oc_id INNER JOIN TND_CatFormato CF ON CF.id_formatoSi=COC.id_formatoSi
-WHERE RPOC.id_publicacionSi=$id AND RPOC.id_tipoRelacionSi=1";
+WHERE RPOC.id_publicacionSi=$id AND RPOC.id_tipoRelacionSi=1 ORDER BY RPOC.posicionIn";
 $allocf = $ob->sSQL($sql);
 /*------------------------------------------------------*/
 
@@ -81,5 +84,8 @@ $oSmarty -> assign ("allocf",$allocf);
 
 $oSmarty -> assign ("contenido","editpublicacion.html.tpl");
 $oSmarty -> display ("layout.html.tpl");
-
+}
+else{
+	die("Error::no ha iniciado sesi&oacute;n");
+}
 ?>

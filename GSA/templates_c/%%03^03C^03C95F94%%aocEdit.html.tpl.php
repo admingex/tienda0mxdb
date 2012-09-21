@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2012-08-24 15:42:13
+<?php /* Smarty version 2.6.20, created on 2012-09-13 10:30:50
          compiled from aocEdit.html.tpl */ ?>
 <meta charset="utf-8" />
 <link href='css/style.css' rel='stylesheet' type="text/css" />
@@ -8,8 +8,8 @@
 <div class="contenedor-gris">
 
 <form name="aoc" id="aoc" method="post" action="cambiosOc.php ">
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="mimensaje()" style='font-size: 13px;'/>
-	<input type="submit" name="enviar" id="enviar" value="Guardar order class" style='font-size: 13px;' />		
+	<input type="button" name="cancel" id="cancel" value="" class="boton-cancel-menu" onclick="mimensaje()" style='font-size: 13px;'/>
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-guardar-oc" style='font-size: 13px;' />		
 	<div class="contenedor-gris-blanco">
 		<p class="instrucciones_cursivas">Datos Generales</p>
 		<div id="formato2"style="font-size: 13px;">
@@ -84,6 +84,59 @@ $this->_sections['datos']['last']       = ($this->_sections['datos']['iteration'
 </option> 
     		<?php endfor; endif; ?>
     		</select>
+    		<div id="promo" style="margin-top: 5px;">
+    		<table >
+    			<?php unset($this->_sections['pm']);
+$this->_sections['pm']['name'] = 'pm';
+$this->_sections['pm']['loop'] = is_array($_loop=$this->_tpl_vars['promo']) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
+$this->_sections['pm']['show'] = true;
+$this->_sections['pm']['max'] = $this->_sections['pm']['loop'];
+$this->_sections['pm']['step'] = 1;
+$this->_sections['pm']['start'] = $this->_sections['pm']['step'] > 0 ? 0 : $this->_sections['pm']['loop']-1;
+if ($this->_sections['pm']['show']) {
+    $this->_sections['pm']['total'] = $this->_sections['pm']['loop'];
+    if ($this->_sections['pm']['total'] == 0)
+        $this->_sections['pm']['show'] = false;
+} else
+    $this->_sections['pm']['total'] = 0;
+if ($this->_sections['pm']['show']):
+
+            for ($this->_sections['pm']['index'] = $this->_sections['pm']['start'], $this->_sections['pm']['iteration'] = 1;
+                 $this->_sections['pm']['iteration'] <= $this->_sections['pm']['total'];
+                 $this->_sections['pm']['index'] += $this->_sections['pm']['step'], $this->_sections['pm']['iteration']++):
+$this->_sections['pm']['rownum'] = $this->_sections['pm']['iteration'];
+$this->_sections['pm']['index_prev'] = $this->_sections['pm']['index'] - $this->_sections['pm']['step'];
+$this->_sections['pm']['index_next'] = $this->_sections['pm']['index'] + $this->_sections['pm']['step'];
+$this->_sections['pm']['first']      = ($this->_sections['pm']['iteration'] == 1);
+$this->_sections['pm']['last']       = ($this->_sections['pm']['iteration'] == $this->_sections['pm']['total']);
+?>
+    			<tr>
+    				<td><?php echo $this->_tpl_vars['promo'][$this->_sections['pm']['index']]['descripcionVc']; ?>
+</td>
+    		<td>
+    			<input type="checkbox" name="c<?php echo $this->_tpl_vars['promo'][$this->_sections['pm']['index']]['id_promocionIn']; ?>
+" id="c<?php echo $this->_tpl_vars['promo'][$this->_sections['pm']['index']]['id_promocionIn']; ?>
+" 
+    			<?php if ($this->_tpl_vars['promo'][$this->_sections['pm']['index']]['publicadoBi'] == '1'): ?>
+                 checked
+                 <?php else: ?>                
+                 <?php endif; ?>
+                 />
+				<div id="d<?php echo $this->_tpl_vars['promo'][$this->_sections['pm']['index']]['id_promocionIn']; ?>
+" 
+				<?php if ($this->_tpl_vars['promo'][$this->_sections['pm']['index']]['publicadoBi'] == '1'): ?>
+								 class="checkbox_selected"
+								 <?php else: ?>
+								 class="checkbox_no_selected"
+								 <?php endif; ?>
+				>&nbsp;</div>
+				<input type="hidden" name="pe[]" id="pe[]" value="<?php echo $this->_tpl_vars['promo'][$this->_sections['pm']['index']]['id_promocionIn']; ?>
+">
+			</td>
+			</tr>
+			<?php endfor; endif; ?>
+			</table>
+			</div>
 		</div>
 		
 	</div>
@@ -130,7 +183,7 @@ $this->_sections['datos']['last']       = ($this->_sections['datos']['iteration'
 			
 		</table>
 	</div>
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="mimensaje()" style='font-size: 13px;' />
-	<input type="submit" name="enviar" id="enviar" value="Guardar order class"  style='font-size: 13px;'/>		
+	<input type="button" name="cancel" id="cancel" value="" class="boton-cancel-menu" onclick="mimensaje()" style='font-size: 13px;' />
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-guardar-oc"  style='font-size: 13px;'/>		
 </form>
 </div>		

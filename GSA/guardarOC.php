@@ -1,4 +1,7 @@
 <?php
+session_start();
+if(isset($_SESSION['login']))
+{
 require_once dirname(__FILE__) ."/include/database.php";
 $db=getDb();
 
@@ -88,4 +91,8 @@ for($i=0; $i<=$y-1; $i++){
 // la consulta en donde se agrega el formato y se valida si no esta en la lista se inserta y esto se hace primero
 //SELECT * FROM TND_CatOCThink t;
 header('location: editpublic.php?id='.$idp);
+}
+else{
+	die("Error::no ha iniciado sesi&oacute;n");
+}
 ?>
