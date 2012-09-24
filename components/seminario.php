@@ -42,11 +42,27 @@
 		</div>
 
 		<div class="botones">
+			<?php
+			$action_pagos = ECOMMERCE."api/". $detalle_promocion->id_sitio . "/" . $detalle_promocion->id_canal . "/" . $detalle_promocion->id_promocion . "/pago";
+			//para agregar la promoción al carrito:
+			$carrito = "'comprar_promocion',".$detalle_promocion->id_sitio.", ".$detalle_promocion->id_canal.", ".$detalle_promocion->id_promocion;			
+			?>
+			<form id='comprar_promocion<?php echo $detalle_promocion->id_promocion;?>' name='comprar_promocion<?php echo $detalle_promocion->id_promocion;?>' action='<?php echo $action_pagos;?>' method='post'>
+			<?php
+			echo		
+				"<input type='hidden' name='guidx' value='".API::GUIDX."'/>\n" . 
+				"<input type='hidden' name='guidz' value='".API::guid()."'/>\n". 
+			    "<input type='hidden' name='imagen' value='".$src_video."' />\n" .
+			    "<input type='hidden' name='descripcion' value='". $detalle_promocion->descripcion_promocion."' />\n" .
+			    "<input type='hidden' name='precio' value='".$detalle_promocion->costo."' />\n" .
+			    "<input type='hidden' name='moneda' value='".$detalle_promocion->moneda."' />\n" .
+			    "<input type='hidden' name='cantidad' value='1' />\n";
+			?>
 			<div class="boton-ac">
-				<input type="button" name="carrito" value=" " class="boton_continuar_compra" />
+				<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value=" " onclick="anadir_carrito(<?php echo $carrito ;?>)" class="boton_continuar_compra" />
 			</div>
 			<div class="boton-cce">
-				<input type="button" name="pago_express" value=" " class="boton_login" />
+				<input type="submit" id="btn_comprar_ahora" name="btn_comprar_ahora" value=" " class="boton_login" />
 			</div>
 		</div>
 

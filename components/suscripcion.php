@@ -203,10 +203,6 @@
 			<?php
 				}
 			?>
-			
-	
-				
-			
 			</tbody>
 		</table>
 		<div class="space-pleca"></div>
@@ -221,16 +217,21 @@
 			<div class="triangulo-negro-der"></div>Secciones de la revista
 		</div>
 		<div class="descripcion">
+			<?php
+				if (isset($secciones) AND array_key_exists($detalle->id_promocion, $secciones) && count($secciones[$detalle->id_promocion]) > 0) { 
+					//se obtiene la información de la sección
+					$seccion_promocion = $secciones[$detalle->id_promocion];		
+			?>
 			En <?php echo $promo_inicial->nombre_publicacion; ?> encontrar&aacute;s:
-			<div class="texto-detalle">
-				<div class="triangulo-rojo-der"></div> Seccion 1
-			</div>
-			<div class="texto-detalle">
-				<div class="triangulo-rojo-der"></div> Seccion 2
-			</div>		
-			<div class="texto-detalle">
-				<div class="triangulo-rojo-der"></div> Seccion 3
-			</div>													
+				<?php 
+					foreach($seccion_promocion as $value) { ?>
+					<div class="texto-detalle">
+						<div class="triangulo-rojo-der"></div><?php echo $value->titulo_seccion." ".$value->descripcion_seccion ; ?>
+					</div>
+			<?php
+					}
+				}
+			?>
 		</div>
 		<div class="space-pleca"></div>
 	</div>						
