@@ -13,6 +13,9 @@ a
 {
     text-decoration: none;
 }
+#no-moneda {
+	display:none;
+}
 #header-container
 {
     float: left;

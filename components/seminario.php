@@ -1,12 +1,15 @@
-<?php
-	//promoción inicial
-	$promo_inicial = $detalles_promociones[0];	//siempre viene
-	//para pasar a pagar en la plataforma de pagos, es la acción por defecto:
-	$action_pagos_inicial = ECOMMERCE."api/". $promo_inicial->id_sitio . "/" . $promo_inicial->id_canal . "/" . $promo_inicial->id_promocion . "/pago";
-	$onclick_action_pagos_inicial = "document.comprar_promocion" . $promo_inicial->id_promocion . ".action='" . $action_pagos_inicial . "'; ";	
-	
-?>
 <link href='<?php echo TIENDA ?>css/viewlet-seminario.css' rel='stylesheet' type="text/css" />
+<?php
+	#### TODO Ajustar para video
+	//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
+	if (file_exists("./p_images/".$detalle_promocion->url_imagen)){
+		$src_video = TIENDA ."p_images/".$detalle_promocion->url_imagen;
+	} else {
+		$src_video = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+		//$src = TIENDA ."p_images/".$p->url_imagen;
+	}
+?>
+
 <meta charset="utf-8">
 <div id="viewlet-seminario">
 
@@ -17,14 +20,14 @@
 	<div class="basic" >
 
 		<div class="titulo">
-			<?php echo $promo_inicial->descripcion_promocion;?>
+			<?php echo $detalle_promocion->descripcion_promocion;?>
 		</div>
 
 		<!--<div class="pleca">&nbsp;</div>-->
 		<div class="descripcion-corta">
 			<p>
 				<div class="img-flecha">&nbsp;</div>
-				Precio <span>$ <?php echo number_format($promo_inicial->costo,2, ".", ","), " ", $promo_inicial->moneda;?></span> por persona
+				Precio <span>$ <?php echo number_format($detalle_promocion->costo, 2, ".", ","), " ", $detalle_promocion->moneda;?></span> por persona
 			</p>
 			<p>
 				<div class="img-flecha"></div>
@@ -39,11 +42,27 @@
 		</div>
 
 		<div class="botones">
+			<?php
+			$action_pagos = ECOMMERCE."api/". $detalle_promocion->id_sitio . "/" . $detalle_promocion->id_canal . "/" . $detalle_promocion->id_promocion . "/pago";
+			//para agregar la promoción al carrito:
+			$carrito = "'comprar_promocion',".$detalle_promocion->id_sitio.", ".$detalle_promocion->id_canal.", ".$detalle_promocion->id_promocion;			
+			?>
+			<form id='comprar_promocion<?php echo $detalle_promocion->id_promocion;?>' name='comprar_promocion<?php echo $detalle_promocion->id_promocion;?>' action='<?php echo $action_pagos;?>' method='post'>
+			<?php
+			echo		
+				"<input type='hidden' name='guidx' value='".API::GUIDX."'/>\n" . 
+				"<input type='hidden' name='guidz' value='".API::guid()."'/>\n". 
+			    "<input type='hidden' name='imagen' value='".$src_video."' />\n" .
+			    "<input type='hidden' name='descripcion' value='". $detalle_promocion->descripcion_promocion."' />\n" .
+			    "<input type='hidden' name='precio' value='".$detalle_promocion->costo."' />\n" .
+			    "<input type='hidden' name='moneda' value='".$detalle_promocion->moneda."' />\n" .
+			    "<input type='hidden' name='cantidad' value='1' />\n";
+			?>
 			<div class="boton-ac">
-				<input type="button" name="carrito" value=" " class="boton_continuar_compra" />
+				<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value=" " onclick="anadir_carrito(<?php echo $carrito ;?>)" class="boton_continuar_compra" />
 			</div>
 			<div class="boton-cce">
-				<input type="button" name="pago_express" value=" " class="boton_login" />
+				<input type="submit" id="btn_comprar_ahora" name="btn_comprar_ahora" value=" " class="boton_login" />
 			</div>
 		</div>
 
@@ -58,16 +77,29 @@
 		</div-->
 
 		<div class="texto">
-			<?php echo $promo_inicial->texto_oferta;?>
+			<?php echo $detalle_promocion->texto_oferta;?>
 		</div>
-
+		<?php
+			$temario_seminario = "Sobre el seminario.";
+			$cv_expositores = "Contenido del seminario";
+			
+			//si hay secciones y existe información asociada con la promoción 
+			if (isset($secciones) && array_key_exists($detalle_promocion->id_promocion, $secciones) && count($secciones[$detalle_promocion->id_promocion]) > 0) {
+				//se obtiene la información de la sección 
+				$seccion_promocion = $secciones[$detalle_promocion->id_promocion];
+				//los detalles para mostrar
+				$temario_seminario = $seccion_promocion[0]->titulo_seccion;
+				$cv_expositores = $seccion_promocion[0]->descripcion_seccion; 
+			}
+		?>
 		<div style="padding-bottom:23px;"></div>
 		<div class="datos-importantes">
 			<div class="img-flecha-negra"></div>
 			Temario
 		</div>
-
 		<div class="lista">
+			<?php echo $temario_seminario;?>
+			<!--
 			<ol>
 				<li>
 					<span>Introducci&oacute;n</span>
@@ -84,6 +116,7 @@
 					<span>Empleo</span>
 				</li>
 			</ol>
+			-->
 		</div>
 
 		<div style="padding-bottom:23px;"></div>
@@ -91,6 +124,10 @@
 			<div class="img-flecha-negra"></div>
 			CV de expositores
 		</div>
+		<div class="texto-final">
+			<?php echo $cv_expositores;?>
+		</div>
+		<!--
 		<div class="nexpositor">
 			<div class="img-flecha-roja"></div>
 			JOHN DOE
@@ -101,7 +138,7 @@
 			Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 			Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		</div>
-
+		-->
 	</div>
 
 </div>

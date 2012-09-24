@@ -1,18 +1,18 @@
-<?php /* Smarty version 2.6.20, created on 2012-08-28 18:24:43
+<?php /* Smarty version 2.6.20, created on 2012-09-13 14:33:30
          compiled from aoc.html.tpl */ ?>
 
 <div class="contenedor-gris">
 
 <form name="aoc" id="aoc" method="post" action="guardarOC.php">
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="mimensaje()" style='font-size: 13px;'/>
-	<input type="submit" name="enviar" id="enviar" value="Agregar order class" style='font-size: 13px;' />		
+	<input type="button" name="cancel" id="cancel" value="" class="boton-cancel-menu-blanco" onclick="mimensaje()" style='font-size: 13px;'/>
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-agregar-oc-blanco" style='font-size: 13px;' />		
 	<div class="contenedor-gris-blanco">
 		<div id="buss">
 		<table>
 			<tr class="label_izq">
 				<td>Nombre:</td>
 				<td><input type="text" class="text" name="nombre" id="nombre" value="" /></td>
-				<td><input type="button" name="bus" id="bus" value="Buscar" onclick="buscador(form.nombre.value)" /></td>
+				<td><input type="button" name="bus" id="bus" value="" class="boton-buscar" onclick="buscador(form.nombre.value)" /></td>
 				<input type="hidden" class="text" name="idp" id="idp" value="<?php echo $this->_tpl_vars['id']; ?>
 " />
 			</tr>
@@ -88,7 +88,7 @@ $this->_sections['catf']['last']       = ($this->_sections['catf']['iteration'] 
 			</tr>
 		</table>
 	</div>
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="mimensaje()" style='font-size: 13px;' />
-	<input type="submit" name="enviar" id="enviar" value="Agregar order class"  style='font-size: 13px;'/>		
+	<input type="button" name="cancel" id="cancel" value="" class="boton-cancel-menu-blanco" onclick="mimensaje()" style='font-size: 13px;' />
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-agregar-oc-blanco" style='font-size: 13px;'/>		
 </form>
 </div>		

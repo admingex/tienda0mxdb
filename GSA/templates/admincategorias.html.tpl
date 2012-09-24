@@ -24,6 +24,6 @@
 	</table>
 	{if $modo eq "publicaciones"}
 	<br />
-	<div id="plus"><button onclick="nueva_publicacion()">Agregar publicación</button></div>
+	<div id="plus"><button onclick="nueva_publicacion()" class="boton-agregar-publicacion">&nbsp;</button></div>
 	{/if}
 </div>

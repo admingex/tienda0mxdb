@@ -38,12 +38,31 @@
 				$json = file_get_contents($path_promocion);
 				$detalle_promocion = json_decode($json);
 				
+				/**
+				 * Si es una sola promoción, sólo será un elemento en el arreglo,
+				 * pueden ser varias promociones cuando se trata de suscripciones generalmente, esas no se atienden acá.
+				 */ 
 				$data["detalles_promociones"] = $detalle_promocion;
 				/*
 				echo "Detalle_promocion<pre>";
 				print_r($detalle_promocion);
 				echo "</pre>";
 				*/
+				
+				/**
+				 * Secciones asociadas con la promoción
+				 */
+				$path_secciones = "./json/secciones/seccion_oc_".$id_promocion.".json";
+				//echo "secciones " . $path_secciones;
+				//echo $path_detalle_sec;
+				$secciones = array();
+				if (file_exists($path_secciones)) {
+					$json = file_get_contents($path_secciones);
+					$js = json_decode($json);		//json secciones
+					$secciones[$id_promocion] = $js;	//Se guarda el primer elemento que viene de un array, sólo debe ser uno
+				}
+				$data['secciones'] = $secciones;
+				
 			} else {
 				//si no existe el archivo con la información ¿¿ir a BD??
 			}

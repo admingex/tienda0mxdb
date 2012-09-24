@@ -29,6 +29,7 @@ class Json_Creator {
 	private $base_detalle_promo				= "./json/detalle_promociones/detalle_promo_";
 	private $base_promocion_destacada_por_cartegoria	= "./json/promociones_destacadas/promo_destacada_categoria_";
 	private $base_promocion_destacada_por_publicacion	= "./json/promociones_destacadas/promo_destacada_publicacion_";
+	private $base_secciones_oc 		= "./json/secciones/seccion_oc_";
 	
 	//modelo a utilizar
 	private $modelo;	//modelo de datos
@@ -108,44 +109,39 @@ class Json_Creator {
 	 */
     public function generar_json_categoria_publicaciones() {
     	$publicaciones_por_categoria = array();
+		$jc = NULL;		//json categorías
 		
+		//si ya se tienen las categorías en la variable miembro
     	if (isset($this->categorias)) {
 	    	$jc = json_decode($this->categorias);
-			
-			foreach ($jc->categorias as $categoria) {
-				$id = $categoria->id_categoriaSi;
-				
-				$ppc = $this->modelo->get_publicaciones_por_categoria($id);
-								
-				$publicaciones_por_categoria[$id] = json_encode(array('publicaciones' => $ppc));
-				$filename = $this->base_publicacion_por_categoria.$id.".json";
-				
-				self::Write_To_Json_File($filename, $publicaciones_por_categoria[$id]);
-				/*echo "<pre>";
-				print_r(json_decode($publicaciones_por_categoria[$id]));
-				echo "</pre>";*/
-			}
-			
-    	} else if (file_exists($this->archivo_categorias)) {	//Si ya está en el archivo, lo toma de ahí
-    		
+		} else if (file_exists($this->archivo_categorias)) {	//Si ya está en el archivo, lo toma de ahí
     		$jc = json_decode(file_get_contents("./json/categorias/categorias.json"));
+		} else {	//generar la petición de las categorías
+			//recuperar las categorías a través del método apropiado
+			$temp = $this->get_categorias();
+			$jc = json_decode($temp);
+		}
+		
+		foreach ($jc->categorias as $categoria) {
+			$id = $categoria->id_categoriaSi;
 			
-			foreach ($jc->categorias as $categoria) {
-				$id = $categoria->id_categoriaSi;
-				
-				$ppc = $this->modelo->get_publicaciones_por_categoria($id);
-				$publicaciones_por_categoria[$id] = json_encode(array('publicaciones' => $ppc));
-				$filename = $this->base_publicacion_por_categoria.$id.".json";
-				
-				self::Write_To_Json_File($filename, $publicaciones_por_categoria[$id]);
-			}
+			$ppc = $this->modelo->get_publicaciones_por_categoria($id);
+							
+			$publicaciones_por_categoria[$id] = json_encode(array('publicaciones' => $ppc));
 			
-			/*
-			echo "<pre>File";
-			echo print_r($publicaciones_por_categoria);
-			echo "</pre>";
-			exit;*/
-    	}
+			$filename = $this->base_publicacion_por_categoria.$id.".json";
+			
+			self::Write_To_Json_File($filename, $publicaciones_por_categoria[$id]);
+			/*echo "<pre>";
+			print_r(json_decode($publicaciones_por_categoria[$id]));
+			echo "</pre>";*/
+		}
+		/*
+		echo "<pre>File";
+		echo print_r($publicaciones_por_categoria);
+		echo "</pre>";
+		exit;*/
+	
 		/*
 		 *$json = file_get_contents("./json/categorias/categorias.json");
 		$categorias = json_decode($json);		
@@ -160,85 +156,56 @@ class Json_Creator {
 	 */
     public function generar_json_publicacion_promos() {
     	$promos_por_publicacion = array();
+    	$jp = NULL;	//json promociones
     	
     	if (isset($this->publicaciones)) {		//Ya se crearon las publicaciones
+    		//echo "desde la propiedad";
 	    	$jp = json_decode($this->publicaciones);
-			//echo "desde la propiedad";
-			foreach ($jp->publicaciones as $publicacion) {
-				$id = $publicacion->id_publicacionSi;
-				//recuperar las promociones
-				$ppp = $this->modelo->get_promos_por_publicacion($id);
-				//para cada publicación se registran las promociones
-				$promos_por_publicacion[$id] = json_encode(array('promociones' => $ppp));
-				
-				//ruta: ./json/promos_publicacion_[id].json
-				$filename = $this->base_promos_por_publicacion.$id.".json";
-				
-				//registrar las promos por publicación
-				self::Write_To_Json_File($filename, $promos_por_publicacion[$id]);
-				/*
-				echo "ppp1<pre>";
-				print_r($ppp);
-				echo "</pre>";
-				*/
-				
-				//obtener el detalle de las promociones
-				$this->generar_json_promos_detalle($ppp);
-				
-				### formatos
-				//para saber qué formatos mostrar para la publicación
-				$formatos = array();
-				//considerar los formatos por publicación par el posible filtro
-				foreach ($ppp as $promocion) {					
-					$id_formato	=	$promocion['id_formato'];
-					$formatos["$id_formato"] = $id_formato;
-				}
-				
-				/*echo "<pre>";
-				print_r($formatos);
-				echo "</pre>";*/
-				//ruta del archivo de formatos por publicacion
-				$file_formatos_pp = $this->base_formatos_por_publicacion.$id.".json";
-				//echo "'".$file_detalle."'<br/>";
-				self::Write_To_Json_File($file_formatos_pp, json_encode(array("formatos_pp" => $formatos)));
-				
-			}
-    	} else if (file_exists($this->archivo_publicaciones)) {	//Si ya está en el archivo, lo toma de ahí
+		} else if (file_exists($this->archivo_publicaciones)) {	//Si ya está en el archivo, lo toma de ahí
     		//echo "desde el archivo";
     		//$jp = json_decode(file_get_contents("./json/publicaciones/publicaciones.json"));
     		$jp = json_decode(file_get_contents($this->archivo_publicaciones));
+		} else {	// si no existe el archivo, hacer la consulta de las publicaciones
+			//echo "haciendo la petición de publicaciones";
+			$temp = $this->get_publicaciones();		//json_encode(array("categorias" => $this->modelo->get_publicaciones()));
+			$jp = json_decode($temp);
+		}
+		
+		foreach ($jp->publicaciones as $publicacion) {
+			$id = $publicacion->id_publicacionSi;
+			//recuperar las promociones
+			$ppp = $this->modelo->get_promos_por_publicacion($id);
+			//para cada publicación se registran las promociones
+			$promos_por_publicacion[$id] = json_encode(array('promociones' => $ppp));
 			
-			foreach ($jp->publicaciones as $publicacion) {
-				$id = $publicacion->id_publicacionSi;
-				
-				$ppp = $this->modelo->get_promos_por_publicacion($id);
-				//para cada publicación
-				$promos_por_publicacion[$id] = json_encode(array('promociones' => $ppp));
-				
-				$filename = $this->base_promos_por_publicacion.$id.".json";
-				
-				//registrar las promos por publicación
-				self::Write_To_Json_File($filename, $promos_por_publicacion[$id]);
-				
-				$this->generar_json_promos_detalle($ppp);
-				/*
-				//obtener el detalle de las promociones
-				foreach ($ppp as $promocion) {
-					$id_promocion = $promocion['id_promocion'];
-					
-					$file_detalle = $this->base_detalle_promo.$id_promocion.".json";
-					
-					//recuperar el detalle
-					$detalle_promo = $this->modelo->get_detalle_promocion($id_promocion);
-					
-					//echo "'".$file_detalle."'<br/>";
-					self::Write_To_Json_File($file_detalle, json_encode($detalle_promo));
-				}
-				*/
-				//echo "prueba_generacion_detalles";
+			//ruta: ./json/promos_publicacion_[id].json
+			$filename = $this->base_promos_por_publicacion.$id.".json";
+			
+			//registrar las promos por publicación
+			self::Write_To_Json_File($filename, $promos_por_publicacion[$id]);
+			
+			//obtener el detalle de las promociones
+			$this->generar_json_promos_detalle($ppp);
+			
+			### formatos
+			//para saber qué formatos mostrar para la publicación
+			$formatos = array();
+			//considerar los formatos por publicación par el posible filtro
+			foreach ($ppp as $promocion) {
+				$id_formato	= $promocion['id_formato'];
+				$formatos["$id_formato"] = $id_formato;
 			}
-    	}
-
+			
+			/*echo "<pre>";
+			print_r($formatos);
+			echo "</pre>";*/
+			//ruta del archivo de formatos por publicacion
+			$file_formatos_pp = $this->base_formatos_por_publicacion.$id.".json";
+			//echo "'".$file_detalle."'<br/>";
+			self::Write_To_Json_File($file_formatos_pp, json_encode(array("formatos_pp" => $formatos)));
+			
+		}
+    	
 		return $promos_por_publicacion;
     }
 	
@@ -322,7 +289,7 @@ class Json_Creator {
     	$promos_destacadas_por_categorias = array();
 		
 		//if (isset($this->publicaciones)) {		//Ya se crearon las publicaciones
-		if (empty($this->categorias)) {
+		if (!empty($this->categorias)) {
 			//recuperar las categorías de la propiedad de la clase
 	    	$cats = json_decode($this->categorias);
 		
@@ -371,12 +338,14 @@ class Json_Creator {
     public function generar_json_promos_destacadas_por_publicaciones() {
     	$promos_destacadas_por_publicacion = array();
 		
-		//if (isset($this->publicaciones)) {		//Ya se crearon las publicaciones
-		if (empty($this->publicaciones)) {
+		//Ya se crearon las publicaciones
+		//if (isset($this->publicaciones)) {		
+		if (!empty($this->publicaciones)) {
 			//recuperar las publicaciones de la propiedad de la clase
-	    	$pubs = json_decode($this->categorias);
+	    	$pubs = json_decode($this->publicaciones);
 		
-		} else {	//generarlas
+		} else {	//generar la petición de las publicaciones
+			//recuperar las publicaciones a través del método apropiado
 			$temp = $this->get_publicaciones();
 			$pubs = json_decode($temp);
 		}
@@ -430,11 +399,36 @@ class Json_Creator {
 			//recuperar el detalle
 			$detalle_promo = $this->modelo->get_detalle_promocion($id_promocion);
 			
+			/*echo "<pre>";
+			print_r($detalle_promo);
+			echo "</pre>";*/
+			//generar jsons para las secciones de las promociones
+			$oc_id = $detalle_promo[0]['oc_id'];
+			$issue_id = $detalle_promo[0]['issue_id'];
+			$this->generar_json_secciones($id_promocion, $oc_id, $issue_id);
+			
 			//echo "'".$file_detalle."'<br/>";
 			self::Write_To_Json_File($file_detalle, json_encode($detalle_promo));
 		}
 	 }
 	################## END Recuperación y Generación del de talle de las promociones ##############
+	
+	################## Recuperación y generación de jsons de las Secciones de una promoción ############## 
+	/**
+	 * Obtener las secciones relacionadas a las suscripciones, pdfs y seminarios 
+	 */
+	public function generar_json_secciones($id_promocion, $oc_id = 0, $issue_id = 0) {
+		//ruta del archivo del detalle
+		$file_seccion = $this->base_secciones_oc.$id_promocion.".json";
+		
+		//recuperar el detalle
+		$detalle_seccion = $this->modelo->get_secciones($oc_id, $issue_id);
+		
+		//echo "'".$file_detalle."'<br/>";
+		self::Write_To_Json_File($file_seccion, json_encode($detalle_seccion));
+	 }
+	################## END Recuperación y Generación Las Secciones ##############
+	
 	
 	####################### Escritura a archivo
 	/**

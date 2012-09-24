@@ -37,6 +37,7 @@
 </head>
 <body>
 	<div id='dialog-modal'></div>
+	<div id='no-moneda'>Debes seleccionar productos de la misma moneda</div>
     <div id="header-container">
         <header>
             <img src="<?php echo TIENDA;?>images/logo_expansion.gif" alt="logo gex" width="52" height="52"/>            

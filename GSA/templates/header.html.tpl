@@ -6,7 +6,8 @@
     
     <div id="main"><!--div main-->
     	<section id="AdminMenu">
-    		<ul class="menu">
+    		<nav class="banner_menu">
+    		<ul>
     			<li>
     				<a href="categorias.php">Categorias</a>
     			</li>
@@ -19,7 +20,11 @@
     			<li>
     				<a href="catformatos.php">Formatos</a>
     			</li>
+    			<li>
+    				<a href="salirAdmin.php">Salir</a>
+    			</li>
     		</ul>
+    		</nav>
     	</section>
         <section id="descripcion-proceso">
 		<div class="titulo-proceso-img">&nbsp;

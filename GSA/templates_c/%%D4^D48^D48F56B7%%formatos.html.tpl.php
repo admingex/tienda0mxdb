@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2012-08-07 09:58:53
+<?php /* Smarty version 2.6.20, created on 2012-09-13 10:18:27
          compiled from formatos.html.tpl */ ?>
 <div class="contenedor-gris-blanco">
 	<p class="instrucciones_cursivas">Formatos</p>
@@ -7,7 +7,7 @@
 		<thead>
 			<tr class="label_izq">
 				<td>Nombre:<input type="text" name="nf" id="nf" class="text" onkeypress="tenterf(event)" /></td>
-				<td><input type="button" name="adp" id="adp" value="Agregar" onclick="javascript: fn_agregar();" /></td>
+				<td><input type="button" name="adp" id="adp" value="" class="boton-agregar" onclick="javascript: fn_agregar();" /></td>
 			</tr>
 		</thead>
 		<tbody>

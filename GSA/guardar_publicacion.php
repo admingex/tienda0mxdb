@@ -1,4 +1,7 @@
 <?php
+session_start();
+if(isset($_SESSION['login']))
+{
 require_once dirname(__FILE__) ."/include/database.php";
 $db=getDb();
 
@@ -90,4 +93,8 @@ alert('Publicacion guardada. Puede agregar el Order Class');
 window.location.href='editpublic.php?id=".$vnid."';
 </script>
 ";
+}
+else{
+	die("Error::no ha iniciado sesi&oacute;n");
+}
 ?>

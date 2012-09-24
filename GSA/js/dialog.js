@@ -1,6 +1,7 @@
+ var tienda = 'http://10.177.78.54/subir_tienda/GSA/';
 function miDialog(){
  var elid=$("#idpublicacion").val();
-   var tienda = 'http://10.177.78.54/GSA/';
+  
 	var url_carrito = tienda+'aoc.php?id='+elid;
 	 $.ajax({                
                 url:   url_carrito,
@@ -39,7 +40,7 @@ function fn_editar_oc(){
               var formato= $(this).parents("tr").find("td").eq(2).html();
                            
               
-			   var tienda = 'http://10.177.78.54/GSA/';
+			   
 				var url_carrito = tienda+'aocEdit.php?id='+idoc+'&des='+descrip+'&forma='+formato+'&idp='+elid;
 				 $.ajax({                
 			                url:   url_carrito,
@@ -77,7 +78,7 @@ function mimensaje(){
 }
 function buscador(nom){
 	$("#resulbus").show();
-	var tienda = 'http://10.177.78.54/GSA/';
+	
 	var url_carrito = tienda+'consultar_oc.php?id='+nom;
 	$.ajax({            
 		url:   url_carrito,

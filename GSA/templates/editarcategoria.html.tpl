@@ -1,6 +1,6 @@
 <form name="edit_cat" id="edit_cat" method="post" action="cambios_categoria.php" onSubmit="return checkFields(this)">	
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="cancelacion()" />
-	<input type="submit" name="enviar" id="enviar" value="Guardar categoría" />		
+	<input type="button" name="cancel" id="cancel" value="" onclick="cancelacion()" class="boton-cancel-menu" />
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-agregar-categoria-menu"/>		
 	<div class="contenedor-gris-blanco">
 		{section name=categoriaDet loop=$catDetalle}
 		<p class="instrucciones_cursivas">Carrusel de promociones</p>
@@ -104,6 +104,6 @@
 		{/section}
 	</div>
 <!--***********************************************************************************************************************************-->	
-	<input type="button" name="cancel"  value="Cancelar" onclick="cancelacion()" />
-	<input type="submit" name="enviar"  value="Guardar categoría" />
+	<input type="button" name="cancel"  value="" onclick="cancelacion()" class="boton-cancel-menu"  />
+	<input type="submit" name="enviar"  value="" class="boton-agregar-categoria-menu" />
 </form>

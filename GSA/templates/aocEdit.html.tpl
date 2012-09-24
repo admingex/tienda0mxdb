@@ -6,8 +6,8 @@
 <div class="contenedor-gris">
 
 <form name="aoc" id="aoc" method="post" action="cambiosOc.php ">
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="mimensaje()" style='font-size: 13px;'/>
-	<input type="submit" name="enviar" id="enviar" value="Guardar order class" style='font-size: 13px;' />		
+	<input type="button" name="cancel" id="cancel" value="" class="boton-cancel-menu" onclick="mimensaje()" style='font-size: 13px;'/>
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-guardar-oc" style='font-size: 13px;' />		
 	<div class="contenedor-gris-blanco">
 		<p class="instrucciones_cursivas">Datos Generales</p>
 		<div id="formato2"style="font-size: 13px;">
@@ -30,6 +30,31 @@
     		>{$cf[catf].formatoVc}</option> 
     		{/section}
     		</select>
+    		<div id="promo" style="margin-top: 5px;">
+    		<table >
+    			{section name=pm loop=$promo}
+    			<tr>
+    				<td>{$promo[pm].descripcionVc}</td>
+    		<td>
+    			<input type="checkbox" name="c{$promo[pm].id_promocionIn}" id="c{$promo[pm].id_promocionIn}" 
+    			{if $promo[pm].publicadoBi == '1'}
+                 checked
+                 {else}                
+                 {/if}
+                 />
+				<div id="d{$promo[pm].id_promocionIn}" 
+				{if  $promo[pm].publicadoBi == '1'}
+								 class="checkbox_selected"
+								 {else}
+								 class="checkbox_no_selected"
+								 {/if}
+				>&nbsp;</div>
+				<input type="hidden" name="pe[]" id="pe[]" value="{$promo[pm].id_promocionIn}">
+			</td>
+			</tr>
+			{/section}
+			</table>
+			</div>
 		</div>
 		
 	</div>
@@ -70,7 +95,7 @@
 			
 		</table>
 	</div>
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="mimensaje()" style='font-size: 13px;' />
-	<input type="submit" name="enviar" id="enviar" value="Guardar order class"  style='font-size: 13px;'/>		
+	<input type="button" name="cancel" id="cancel" value="" class="boton-cancel-menu" onclick="mimensaje()" style='font-size: 13px;' />
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-guardar-oc"  style='font-size: 13px;'/>		
 </form>
 </div>		

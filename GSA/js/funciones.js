@@ -111,7 +111,7 @@ function fn_dar_eliminar_oc(){
               idp=$("#idpublicacion").val();
               var idoc = this.id;
               id = $(this).parents("tr").find("td").eq(0).html();
-              respuesta = confirm("Desea eliminar el order class: " + id);
+              respuesta = confirm("Desea eliminar el order class: " + id + "\nEsto eliminara todas las relaciones hacia el mismo");
                if (respuesta){
                    $(this).parents("tr").fadeOut("normal", function(){
                    $(this).remove();
@@ -151,10 +151,10 @@ function fn_agregar_public(id){
 	//alert($("#h"+idp).val());
 	publicacion = "<tr class='label_izq' id='"+idp+"'  style='cursor: move; '>";
     publicacion = publicacion + "<td>" + $("#h"+idp).val() + "</td>";
-    publicacion = publicacion + "<td ><a href='#' id='"+idp+"' class='cpl'>Eliminar</a></td>";
-    $("#pgrilla tbody").append(publicacion);    
+    publicacion = publicacion + "<td ><a href='#' id='"+idp+"' class='cpl'>Eliminar</a></td><input type='hidden' name='pubid[]' id='pubid[]' value='"+idp+"' />";
     /*  aqui puedes enviar un conunto de tados ajax para agregar al usuairo */
     $.post("ajax/ajaxDnD.php", {aidc: idc, aidp: idp}); 
+	$("#pgrilla tbody").append(publicacion);    
 }
 /* verificar si existe la publicacion */
 function veri_publi(nombre){

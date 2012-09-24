@@ -43,7 +43,7 @@
 		<section class="contenedor">	
 		<div class="contenedor-gris">
 	
-<form name="login">
+<form name="login" method="post" action="valueLogin.php">
 	<table align="center">
 		
 		<tr>
@@ -60,7 +60,7 @@
 		</tr>
 		
 	</table>
-	<center><input type="submit" name="login" id="login" value="Iniciar session " /></center>
+	<center><input type="submit" name="login" id="login" value="" class="boton_login" /></center>
 	
 </form>
 {include file="footer.html.tpl"}

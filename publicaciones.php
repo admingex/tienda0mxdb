@@ -92,11 +92,13 @@
 				//pasar la información de las promociones de la publicación a la vista 
 				//$data['ofertas_publicacion'] = $promos;
 				
-				$detalles = array();
+				$detalles = array();	//detalles de las promociones
+				$secciones = array();	//secciones de las promociones
 				//Obtener los detalles de las promociones:
 				foreach ($promos->promociones as $promo) {
+					$id_promocion = $promo->id_promocion;
 					//sacar las promociones del archivo
-					$path_detalle_promo = "./json/detalle_promociones/detalle_promo_".$promo->id_promocion.".json";
+					$path_detalle_promo = "./json/detalle_promociones/detalle_promo_".$id_promocion.".json";
 					
 					//echo $path_detalle_promo;
 					if (file_exists($path_detalle_promo)) {
@@ -104,10 +106,26 @@
 						$detalle_promo = json_decode($json);
 						$promo->detalle = $detalles[] = $detalle_promo[0];	//Se guarda el primer elemento que viene de un array, sólo debe ser uno
 					}
+					
+					/**
+					 * Secciones asociadas con la promoción
+					 */
+					$path_secciones = "./json/secciones/seccion_oc_".$id_promocion.".json";
+					//echo "secciones " . $path_secciones;
+					if (file_exists($path_secciones)) {
+						$json = file_get_contents($path_secciones);
+						$js = json_decode($json);		//json secciones
+						$secciones[$id_promocion] = $js;	//Se guarda el primer elemento que viene de un array, sólo debe ser uno
+					}
 				}
+				/*echo "<pre>";
+				print_r($secciones);
+				echo "</pre>";*/
 				
 				//toda la información de la promoción
 				$data['ofertas_publicacion'] = $promos;
+				//secciones de las promociones
+				$data['secciones'] = $secciones;
 				//total de promociones de la publicación, se usa para mostrar el filtro siempre en caso de que las promociones mostradas sean menos de las mínimas para mostrar el filtro
 				$data['total_promociones'] = count($data['ofertas_publicacion']->promociones);
 				/*

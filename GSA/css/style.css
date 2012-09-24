@@ -15,6 +15,7 @@
 }
 */
 
+
 html
 {
     min-height: 100%;
@@ -839,6 +840,25 @@ input[type="checkbox"]{
     display: none;
 }
 
+.checkbox_no_selected2{
+	border: none;
+	height: 15px;
+	width: 21px;	
+	background: transparent url('../images/css-sprite_checkboxes02.png') no-repeat;	
+	background-position: -5px -4px;	
+	float: left;
+}
+.checkbox_selected2{
+	border: none;
+	height: 15px;
+	width: 21px;	
+	background: transparent url('../images/css-sprite_checkboxes02.png') no-repeat;	
+	background-position: -5px -20px;	
+	float: left;
+}
+
+
+
 .checkbox_no_selected{
 	border: none;
 	height: 15px;
@@ -917,3 +937,283 @@ textarea{
 	font-size: 12p;
 	font-weight: bold; 
 }
+/*PARA EL MENU*/
+a{
+	text-decoration:none;
+}
+nav.banner_menu{
+	background: #C00009 url(../images/nav_background.jpg) repeat-x top left;
+    padding-left:36px;
+    width:732px;
+    height: 29px;
+    overflow:hidden;
+}
+nav.banner_menu ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+nav.banner_menu ul li{
+    float: left;
+    padding: 0;
+}
+nav.banner_menu ul li a{
+	background: url(../images/nav_ul_li_background.jpg) repeat-x 0 0;
+	display:block;
+	font-size:12px;
+	font-weight:bold;
+	color:#FFFFFF;
+	text-transform:uppercase;
+	line-height:30px;
+	margin:0 8px 0 0;
+	padding:0 5px;
+	overflow:hidden;
+	font-size:14px;
+	
+}
+nav.banner_menu ul li a:hover {
+	background-position:0 -29px;
+}
+
+/*-----MIS BOTONES------*/
+.boton-guardar-home{
+	height: 18px;
+	width: 102px;
+	background: url('../images/css_sprite_guardar_homeBN.png') no-repeat;
+	background-position: -6px -4px;			
+	border: none;
+	
+}
+
+.boton-guardar-home:hover{		
+	background: url('../images/css_sprite_guardar_homeBN.png') no-repeat;
+	background-position: -6px -20px;				
+	
+}
+/*-----------*/
+.boton-agregar-publicacion{
+	height: 18px;
+	width: 142px;
+	background: url('../images/css_sprite_agregar_publi_BN.png') no-repeat;
+	background-position: -6px -4px;			
+	border: none;
+	
+}
+
+.boton-agregar-publicacion:hover{		
+	background: url('../images/css_sprite_agregar_publi_BN.png') no-repeat;
+	background-position: -6px -20px;				
+	
+}
+/*------------*/
+.boton-agregar-publicacion-menu{
+	height: 18px;
+	width: 126px;
+	background: url('../images/css_sprite_nueva_publicacion.png') no-repeat;
+	background-position: -6px -4px;			
+	border: none;
+	
+}
+
+.boton-agregar-publicacion-menu:hover{		
+	background: url('../images/css_sprite_nueva_publicacion.png') no-repeat;
+	background-position: -6px -20px;				
+	
+}
+/*------------*/
+.boton-vp-menu{
+	height: 18px;
+	width: 83px;
+	background: url('../images/css_sprite_nueva_publicacion.png') no-repeat;
+	background-position: -130px -4px;			
+	border: none;
+	
+}
+
+.boton-vp-menu:hover{		
+	background: url('../images/css_sprite_nueva_publicacion.png') no-repeat;
+	background-position: -130px -20px;				
+	
+}
+/*------------*/
+.boton-cancel-menu{
+	height: 18px;
+	width: 68px;
+	background: url('../images/css_sprite_nueva_publicacion.png') no-repeat;
+	background-position: -212px -4px;			
+	border: none;
+	
+}
+
+.boton-cancel-menu:hover{		
+	background: url('../images/css_sprite_nueva_publicacion.png') no-repeat;
+	background-position: -212px -20px;				
+	
+}
+/*------------*/
+.boton-editar-publicacion-menu{
+	height: 18px;
+	width: 126px;
+	background: url('../images/css_sprite_editar_publicacion.png') no-repeat;
+	background-position: -6px -4px;			
+	border: none;
+	
+}
+
+.boton-editar-publicacion-menu:hover{		
+	background: url('../images/css_sprite_editar_publicacion.png') no-repeat;
+	background-position: -6px -20px;				
+	
+}
+/*-----------*/
+.boton-agregar-oc{
+	height: 18px;
+	width: 142px;
+	background: url('../images/css_sprite_agregar_oc.png') no-repeat;
+	background-position: -6px -4px;			
+	border: none;
+	
+}
+
+.boton-agregar-oc:hover{		
+	background: url('../images/css_sprite_agregar_oc.png') no-repeat;
+	background-position: -6px -20px;				
+	
+}
+/*-----------------*/
+.boton-guardar-mas{
+	height: 18px;
+	width: 142px;
+	background: url('../images/css_sprite_agregar_publi_+.png') no-repeat;
+	background-position: -6px -4px;			
+	border: none;
+	
+}
+
+.boton-guardar-mas:hover{		
+	background: url('../images/css_sprite_agregar_publi_+.png') no-repeat;
+	background-position: -6px -20px;				
+	
+}
+/*-----------------*/
+.pr{
+	height: 18px;
+	width: 142px;
+	background: url('../images/css_sprite_agregar_publi_+.png') no-repeat;
+	background-position: -6px -4px;			
+	border: none;
+	
+}
+
+.pr:hover{		
+	background: url('../images/css_sprite_agregar_publi_+.png') no-repeat;
+	background-position: -6px -20px;				
+	
+}
+/*------------*/
+.boton-agregar-categoria-menu{
+	height: 18px;
+	width: 124px;
+	background: url('../images/css_sprite_varios.png') no-repeat;
+	background-position: -6px -4px;			
+	border: none;
+	
+}
+
+.boton-agregar-categoria-menu:hover{		
+	background: url('../images/css_sprite_varios.png') no-repeat;
+	background-position: -6px -20px;				
+	
+}
+/*------------*/
+.boton-agregar{
+	height: 18px;
+	width: 59px;
+	background: url('../images/css_sprite_varios.png') no-repeat;
+	background-position: -129px -4px;			
+	border: none;
+	
+}
+
+.boton-agregar:hover{		
+	background: url('../images/css_sprite_varios.png') no-repeat;
+	background-position: -129px -20px;				
+	
+}
+
+
+/*-----------*/
+.boton-guardar-oc{
+	height: 18px;
+	width: 142px;
+	background: url('../images/css_sprite_guardarr_oc.png') no-repeat;
+	background-position: -6px -4px;			
+	border: none;
+	
+}
+
+.boton-guardar-oc:hover{		
+	background: url('../images/css_sprite_guardarr_oc.png') no-repeat;
+	background-position: -6px -20px;				
+	
+}
+/*-------------*/
+.boton-buscar{
+	height: 18px;
+	width: 60px;
+	background: url('../images/css_sprite_buscar.png') no-repeat;
+	background-position: -6px -4px;			
+	border: none;
+}
+.boton-buscar:hover{		
+	background: url('../images/css_sprite_buscar.png') no-repeat;
+	background-position: -6px -20px;				
+	
+}
+/****/
+.boton-agregar-oc-blanco{
+	height: 20px;
+	width: 142px;
+	background: url('../images/css_sprite_agregar_oc_blanco.png') no-repeat;
+	background-position: -6px 1px;			
+	border: none;
+	
+}
+
+.boton-agregar-oc-blanco:hover{		
+	background: url('../images/css_sprite_agregar_oc_blanco.png') no-repeat;
+	background-position: -6px -20px;				
+	
+}
+/*----*/
+/*------------*/
+.boton-cancel-menu-blanco{
+	height: 18px;
+	width: 68px;
+	background: url('../images/css_sprite_nueva_publicacion-blanco.png') no-repeat;
+	background-position: -214px -1px;			
+	border: none;
+	
+}
+
+.boton-cancel-menu-blanco:hover{		
+	background: url('../images/css_sprite_nueva_publicacion-blanco.png') no-repeat;
+	background-position: -212px -20px;				
+	
+}
+
+/*------------
+.mp{
+	height: 18px;
+	width: 27px;
+	background: url('../images/css_sprite_varios.png') no-repeat;
+	background-position: -159px -4px;			
+	border: none;
+	
+}
+
+.mp:hover{		
+	background: url('../images/css_sprite_varios.png') no-repeat;
+	background-position: -129px -20px;				
+	
+}*/

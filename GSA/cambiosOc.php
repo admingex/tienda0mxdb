@@ -1,10 +1,14 @@
 <?php
+session_start();
+if(isset($_SESSION['login']))
+{
 require_once dirname(__FILE__) ."/include/database.php";
 $db=getDb();
 
 $idp=$_REQUEST['idp'];
 $oc_id=$_REQUEST['ocid'];
 $nfid=$_REQUEST['tf'];
+
 
 $sql="UPDATE TND_CatOCThink SET id_formatoSi=$nfid WHERE oc_id=$oc_id";
 $db -> Execute($sql);
@@ -62,5 +66,34 @@ for($i=0; $i<=$y-1; $i++){
 	$cont++;
 	$db -> Execute($sql);
 }
+
+//Promociones 
+if(!empty($_POST['pe'])){
+	foreach ($_POST['pe'] as $value){
+		if (!empty($_POST['c'.$value])){
+			//cuando estan activadas es on 		
+			/*echo "<br />";
+			echo $_POST['c'.$value];
+			echo "->";
+			echo $value;*/
+			$sql="UPDATE TND_RelPromoSitioCanalOC SET publicadoBi=1 WHERE id_promocionIn=$value AND oc_id=$oc_id";
+			$db -> Execute($sql);
+		}
+		else {
+			//cuando esta desactivadas es off 
+			/*echo "<br />";
+			echo "off";
+			echo "->";
+			echo $value;*/
+			$sql="UPDATE TND_RelPromoSitioCanalOC SET publicadoBi=0 WHERE id_promocionIn=$value AND oc_id=$oc_id";
+			$db -> Execute($sql);
+		}
+	}
+}
+//Redireccionamiento
 header('location: editpublic.php?id='.$idp);
+}
+else{
+	die("Error::no ha iniciado sesi&oacute;n");
+}
 ?>

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2012-08-30 16:37:02
+<?php /* Smarty version 2.6.20, created on 2012-09-10 12:06:45
          compiled from login.html.tpl */ ?>
 <!DOCTYPE html>
 <html lang="es-mx">
@@ -47,7 +47,7 @@
 		<section class="contenedor">	
 		<div class="contenedor-gris">
 	
-<form name="login">
+<form name="login" method="post" action="valueLogin.php">
 	<table align="center">
 		
 		<tr>
@@ -64,7 +64,7 @@
 		</tr>
 		
 	</table>
-	<center><input type="submit" name="login" id="login" value="Iniciar session " /></center>
+	<center><input type="submit" name="login" id="login" value="" class="boton_login" /></center>
 	
 </form>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;

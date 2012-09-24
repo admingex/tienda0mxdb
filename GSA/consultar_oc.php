@@ -1,5 +1,7 @@
-
 <?php
+session_start();
+if(isset($_SESSION['login']))
+{
 header ('Content-type: text/html; charset=utf-8');
 $id_cliente = $_REQUEST['id'];
 try {  
@@ -49,5 +51,9 @@ try {
 	echo $exception;  
 	echo '<br/>error: <br/>'.$exception->getMessage();
 	//exit();
+}
+}
+else{
+	die("Error::no ha iniciado sesi&oacute;n");
 }
 ?>

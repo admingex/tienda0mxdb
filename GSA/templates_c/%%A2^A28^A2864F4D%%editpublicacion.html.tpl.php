@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.20, created on 2012-08-24 10:29:30
+<?php /* Smarty version 2.6.20, created on 2012-09-12 18:46:09
          compiled from editpublicacion.html.tpl */ ?>
 <?php unset($this->_sections['ipub']);
 $this->_sections['ipub']['name'] = 'ipub';
@@ -25,10 +25,9 @@ $this->_sections['ipub']['first']      = ($this->_sections['ipub']['iteration'] 
 $this->_sections['ipub']['last']       = ($this->_sections['ipub']['iteration'] == $this->_sections['ipub']['total']);
 ?>
 <form name="edit_pub" id="edit_pub" method="post" action="cambios_publicacion.php" onSubmit="return checkFields(this)">
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="cancelacion2()" />
-	<input type="button" name="vp" id="vp" value="Vista previa" />	
-	<input type="submit" name="enviar" id="enviar" value="<?php echo $this->_tpl_vars['boton']; ?>
-" />	
+	<input type="button" name="cancel" id="cancel" value="" onclick="cancelacion2()" class="boton-cancel-menu"/>
+	<input type="button" name="vp" id="vp" value="" class="boton-vp-menu" />	
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-editar-publicacion-menu" />	
 	<div class="contenedor-gris-blanco">
 		<p class="instrucciones_cursivas">Datos generales</p>
 		<table>
@@ -101,7 +100,7 @@ $this->_sections['aocf']['last']       = ($this->_sections['aocf']['iteration'] 
 			</tbody>
 		</table>
 		<br />
-		<button type="button" onclick="miDialog()"  >Agregar order class</button>
+		<button type="button" onclick="miDialog()" class="boton-agregar-oc" >&nbsp;</button>
 		<div id="dialogo">
    		
 		</div>
@@ -415,9 +414,8 @@ $this->_sections['promoDesta']['last']       = ($this->_sections['promoDesta']['
 		<textarea name="pclave" id="pclave"><?php echo $this->_tpl_vars['infopublic'][$this->_sections['ipub']['index']]['palabras_claveVc']; ?>
 </textarea>
 	</div>
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="cancelacion2()" />
-	<input type="button" name="vp" id="vp" value="Vista previa" />	
-	<input type="submit" name="enviar" id="enviar" value="<?php echo $this->_tpl_vars['boton']; ?>
-" />	
+	<input type="button" name="cancel" id="cancel" value="" onclick="cancelacion2()" class="boton-cancel-menu"/>
+	<input type="button" name="vp" id="vp" value="" class="boton-vp-menu" />	
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-editar-publicacion-menu" />	
 </form>		
 <?php endfor; endif; ?>

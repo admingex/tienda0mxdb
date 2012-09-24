@@ -10,6 +10,7 @@
 	var id_sit = <?php echo $promo_inicial->id_sitio; ?>;
 	var id_can = <?php echo $promo_inicial->id_canal; ?>;
 	var id_ant = <?php echo $promo_inicial->id_promocion; ?>;
+	
 	var form_submit = "document.comprar_promocion" + id_ant;
 	//iniciales
 		
@@ -44,21 +45,27 @@
 		
 	/*envía el formulario al carrito*/
 	function submit_to_carrito(id_promo) {
-		
+		//alert(id_promo);
 		//se cambia el action del formulario y se envía		 			
 		//forma = $("form[id='comprar_promocion" + id_promo + "']");
 		anadir_carrito('comprar_promocion', id_sit, id_can, id_promo)												
 		
+	}
+	function no_hacer_nada(){
+		//alert("No tienes filas no puedes enviar algo");
+		submit_carrito="''";
+		submit_pagos="''";
+		$("#btn_agregar_carrito").attr("onclick", submit_carrito);
+		$("#btn_comprar_ahora").attr("onclick", submit_pagos);
 	}
 </script>
 
 <link href='<?php echo TIENDA ?>css/viewlet-detalle-suscripcion.css' rel='stylesheet' type="text/css" />
 <?php	
 	//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
-	if(file_exists("./p_images/".$promo_inicial->url_imagen)){
+	if (file_exists("./p_images/".$promo_inicial->url_imagen)){
 		$src = TIENDA ."p_images/".$promo_inicial->url_imagen;
-	}
-	else{
+	} else {
 		$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
 		//$src = TIENDA ."p_images/".$p->url_imagen;
 	}
@@ -112,13 +119,39 @@
 		</div>
 		
 		<script type='text/javascript' src='<?php echo site_url("js/filtro_pais.js");?>'></script>
+		
+		<!-- PARA CONOCER LOS PAISES  -->
+		<?php
+		$amoneda= array();
+		$i=0;
+		foreach ($detalles_promociones as $detalle) {
+			$amoneda[$i]=$detalle->moneda;
+			$i++;
+		}
+
+		?>
+		
 		<div class="descripcion">
-			<select name="sel_pais" id="sel_pais">
-				<option value="">Seleccionar</option>
-				<option value="MX">México</option>
-				<option value="UDS">Internacional</option>
-			</select>	
+			<select name="sel_pais" id="sel_pais" >
+				<?php 
+				$antvalor='ads';
+				foreach($amoneda as $valor){ 
+				
+				if($antvalor !=$valor){
+				
+				?>
+				<option value="<?php echo $valor;?>" <?php if($valor=='MX') echo "selected='selected'"; ?> >
+				<?php 
+					if($valor=='MX')
+						echo 'México';
+					else
+						echo 'Internacional';
+				?>
+				</option>
+				<?php }$antvalor = $valor;} ?>
+			</select>			
 		</div>
+		
 		<div class="space-pleca"></div>	
 		<table id="table_promociones" name="table_promociones" width="100%" cellspacing="1">
 			<thead>
@@ -148,6 +181,7 @@
 					    "<input type='hidden' name='imagen' value='".$src."' />\n" .
 					    "<input type='hidden' name='descripcion' value='". $detalle->descripcion_promocion."' />\n" .
 					    "<input type='hidden' name='precio' value='".$detalle->costo."' />\n" .
+					    "<input type='hidden' name='moneda' value='".$detalle->moneda."' />\n" .
 					    "<input type='hidden' name='cantidad' value='1' />\n					     
 					</form>";
 					
@@ -156,7 +190,7 @@
 					if ($promo_inicial->id_promocion == $detalle->id_promocion)
 						$class_radio = "class='radio_selected'";
 			?>
-				<tr id="<?php echo $detalle->moneda ?>">
+				<tr id="<?php echo $detalle->id_promocion ?>" class="<?php echo $detalle->moneda ?>">
 					<td id="<?php echo $detalle->id_promocion;?>">
 						<input type="radio" id="radio<?php echo $detalle->id_promocion; ?>" name="promocion" value="<?php echo $detalle->id_promocion; ?>"/>
 						<div id="div_promocion<?php echo $detalle->id_promocion; ?>" <?php echo $class_radio;?>  onclick="cambia_boton(<?php echo $detalle->id_promocion; ?>);" >&nbsp;</div>					
@@ -165,6 +199,7 @@
 					<td><?php echo $detalle->texto_oferta; //Contenido de la promocion(ejemplares, suplementos, regalos, etc.)?></td>
 					<td>Precio: <?php echo number_format($detalle->costo,2, ".", ",")."&nbsp;".$detalle->moneda; //Precio y descuento aplicado sobre precio de portada?></td>
 				</tr>
+				
 			<?php
 				}
 			?>
@@ -182,16 +217,21 @@
 			<div class="triangulo-negro-der"></div>Secciones de la revista
 		</div>
 		<div class="descripcion">
+			<?php
+				if (isset($secciones) AND array_key_exists($detalle->id_promocion, $secciones) && count($secciones[$detalle->id_promocion]) > 0) { 
+					//se obtiene la información de la sección
+					$seccion_promocion = $secciones[$detalle->id_promocion];		
+			?>
 			En <?php echo $promo_inicial->nombre_publicacion; ?> encontrar&aacute;s:
-			<div class="texto-detalle">
-				<div class="triangulo-rojo-der"></div> Seccion 1
-			</div>
-			<div class="texto-detalle">
-				<div class="triangulo-rojo-der"></div> Seccion 2
-			</div>		
-			<div class="texto-detalle">
-				<div class="triangulo-rojo-der"></div> Seccion 3
-			</div>													
+				<?php 
+					foreach($seccion_promocion as $value) { ?>
+					<div class="texto-detalle">
+						<div class="triangulo-rojo-der"></div><?php echo $value->titulo_seccion." ".$value->descripcion_seccion ; ?>
+					</div>
+			<?php
+					}
+				}
+			?>
 		</div>
 		<div class="space-pleca"></div>
 	</div>						

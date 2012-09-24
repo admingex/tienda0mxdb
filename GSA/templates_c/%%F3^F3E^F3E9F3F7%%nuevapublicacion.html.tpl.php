@@ -1,10 +1,9 @@
-<?php /* Smarty version 2.6.20, created on 2012-08-30 16:51:34
+<?php /* Smarty version 2.6.20, created on 2012-09-13 10:07:37
          compiled from nuevapublicacion.html.tpl */ ?>
 <form name="new_pub" id="new_pub" method="post" action="guardar_publicacion.php" onSubmit="return checkFields(this)">
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="cancelacion2()" />
-	<input type="button" name="vp" id="vp" value="Vista previa" />	
-	<input type="submit" name="enviar" id="enviar" value="<?php echo $this->_tpl_vars['boton']; ?>
-" />	
+	<input type="button" name="cancel" id="cancel" value="" class="boton-cancel-menu" onclick="cancelacion2()" />
+	<input type="button" name="vp" id="vp" value="" class="boton-vp-menu" />	
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-agregar-publicacion-menu" />	
 	<div class="contenedor-gris-blanco">
 		<p class="instrucciones_cursivas">Datos generales</p>
 		<table>
@@ -44,7 +43,7 @@
 			</tbody>
 		</table>
 		<br />
-		<button type="button" onclick="usar_oc()" >Agregar order class</button>
+		<button type="button" onclick="usar_oc()" class="boton-agregar-oc" >&nbsp;</button>
 		<div id="dialogo">
    		
 		</div>
@@ -151,7 +150,7 @@ $this->_sections['cp']['last']       = ($this->_sections['cp']['iteration'] == $
 			</select>
 		</div>
 		<br />
-		<button type="button" name="plusr" id="plusr" onclick="select_nuevo_ps()">Agregar publicación</button>
+		<button type="button" name="plusr" id="plusr" onclick="select_nuevo_ps()" class="boton-guardar-mas">&nbsp;</button>
 	</div>	
 	
 <!--**********************************   PUBLICACION RELACIONADAS   ********************************************************-->
@@ -255,7 +254,7 @@ $this->_sections['cp']['last']       = ($this->_sections['cp']['iteration'] == $
 			</select>
 		</div>
 		<br />
-		<button type="button" name="pluss" id="pluss" class="pr" onclick="select_nuevo_pr()">Agregar publicación</button>
+		<button type="button" name="pluss" id="pluss" class="pr" onclick="select_nuevo_pr()">&nbsp;</button>
 	</div>
 	
 <!--***********************************************************************************************************************************-->
@@ -316,8 +315,7 @@ $this->_sections['promoDesta']['last']       = ($this->_sections['promoDesta']['
 		<p class="label_izq">Palabras clave de búsqueda (Separadas por comas): </p>
 		<textarea name="pclave" id="pclave"></textarea>
 	</div>
-	<input type="button" name="cancel" id="cancel" value="Cancelar" onclick="cancelacion2()" />
-	<input type="button" name="vp" id="vp" value="Vista previa" />	
-	<input type="submit" name="enviar" id="enviar" value="<?php echo $this->_tpl_vars['boton']; ?>
-" />	
+	<input type="button" name="cancel" id="cancel" value="" class="boton-cancel-menu" onclick="cancelacion2()" />
+	<input type="button" name="vp" id="vp" value="" class="boton-vp-menu" />	
+	<input type="submit" name="enviar" id="enviar" value="" class="boton-agregar-publicacion-menu" />	
 </form>

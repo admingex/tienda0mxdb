@@ -2,16 +2,16 @@
 <?php	
 	//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
 	if (file_exists("./p_images/".$detalle_promocion->url_imagen)){
-		$src = TIENDA ."p_images/".$detalle_promocion->url_imagen;
-	} else{
-		$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
-		//$src = TIENDA ."p_images/".$p->url_imagen;
+		$src_imagen = TIENDA ."p_images/".$detalle_promocion->url_imagen;
+	} else {
+		$src_imagen = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+		//$src_imagen = TIENDA ."p_images/".$p->url_imagen;
 	}
 ?>
 <div id="viewlet-detalle-pdf">
 	<div>
-		<img src="<?php echo $src; ?>" />
-	</div>
+		<img src="<?php echo $src_imagen; ?>" />
+	>
 	<div class="detalle">
 		<div class="bloque-descripcion">
 			<div class="titulo-detalle">
@@ -19,7 +19,7 @@
 			</div>
 			<div class="bloque-texto">
 				<span class="texto-detalle">Precio:</span>
-				<span class="precio-detalle"><?php echo "$". number_format($detalle_promocion->costo,2,'.', ',')."&nbsp;".$detalle_promocion->moneda;?></span>
+				<span class="precio-detalle"><?php echo "$". number_format($detalle_promocion->costo, 2, '.', ',')."&nbsp;".$detalle_promocion->moneda;?></span>
 			</div>
 		</div>
 		<div class="botones">
@@ -33,9 +33,10 @@
 			echo		
 				"<input type='hidden' name='guidx' value='".API::GUIDX."'/>\n" . 
 				"<input type='hidden' name='guidz' value='".API::guid()."'/>\n". 
-			    "<input type='hidden' name='imagen' value='".$src."' />\n" .
+			    "<input type='hidden' name='imagen' value='".$src_imagen."' />\n" .
 			    "<input type='hidden' name='descripcion' value='". $detalle_promocion->descripcion_promocion."' />\n" .
 			    "<input type='hidden' name='precio' value='".$detalle_promocion->costo."' />\n" .
+			    "<input type='hidden' name='moneda' value='".$detalle_promocion->moneda."' />\n" .
 			    "<input type='hidden' name='cantidad' value='1' />\n";
 			?>
 				<input type="submit" id="btn_comprar_ahora" name="btn_comprar_ahora" value=" " class="boton-pago-express"  />
@@ -49,15 +50,30 @@
 	<div class="banner-descripcion">
 		<div class="triangulo-negro-der"></div>Sobre este reporte
 	</div>
+	<?php
+		$sobre_el_pdf = "Sobre el material.";
+		$lista_contenido = "Contenido del material.";
+		
+		//si hay secciones y existe información asociada con la promoción
+		if (isset($secciones) AND array_key_exists($detalle_promocion->id_promocion, $secciones) && count($secciones[$detalle_promocion->id_promocion]) > 0) {
+			//se obtiene la información de la sección
+			$seccion_promocion = $secciones[$detalle_promocion->id_promocion];
+			//los detalles para mostrar
+			$sobre_el_pdf = $seccion_promocion[0]->titulo_seccion;
+			$lista_contenido = $seccion_promocion[0]->descripcion_seccion;
+		}
+	?>
 	<div class="descripcion">				
-		Descripción del material web.				
+		<?php echo $sobre_el_pdf;?>
 	</div>
 	<div class="space-pleca"></div>	
 	<div class="banner-descripcion">
 		<div class="triangulo-negro-der"></div>Lista de Contenido
 	</div>
-	<div class="descripcion">						
+	<div class="descripcion">
 		<div class="lista">
+			<?php echo $lista_contenido;?>
+			<!--
 			<ol>
 				<li><span>Introducción</span></li>
 				<ol class="foo">
@@ -66,6 +82,7 @@
 				<li><span>Resumen</span></li>
 				<li><span>Ahorro</span></li>						
 			</ol>
+			-->
 		</div>				
 	</div>
 	

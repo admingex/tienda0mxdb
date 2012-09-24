@@ -1,5 +1,6 @@
 <?php
 require_once dirname(__FILE__) ."/../include/database.php";
+
 $db=getDb();
 $nf=$_REQUEST['nformato'];
 

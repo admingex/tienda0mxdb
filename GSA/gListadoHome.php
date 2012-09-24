@@ -1,5 +1,14 @@
 <?php
+session_start();
+if(isset($_SESSION['login']))
+{
 require_once dirname(__FILE__) ."/include/database.php";
+
+	/*JSON*/
+	include ('controllers/json_creator.php');
+	$jc = new Json_Creator();
+	/*----*/
+	
 $db=getDb();
 
 //esto me trae el ID conforme a la nueva posicion en la que se dejen las publicaciones
@@ -42,6 +51,13 @@ else{
 	$sql="UPDATE CMS_RelPromocionSitioCanal SET publicadoBi=0 WHERE id_canalSi=21";
 	$db -> Execute($sql);
 }
-
-header('location: home.php')
+	/*JSON*/
+	$promos_home = $jc->generar_json_home_promos();
+	//echo "Promociones para el home..................</br><br/>";
+	
+header('location: home.php');
+}
+else{
+	die("Error::no ha iniciado sesi&oacute;n");
+}
 ?>

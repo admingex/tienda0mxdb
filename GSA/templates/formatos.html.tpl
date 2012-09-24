@@ -5,7 +5,7 @@
 		<thead>
 			<tr class="label_izq">
 				<td>Nombre:<input type="text" name="nf" id="nf" class="text" onkeypress="tenterf(event)" /></td>
-				<td><input type="button" name="adp" id="adp" value="Agregar" onclick="javascript: fn_agregar();" /></td>
+				<td><input type="button" name="adp" id="adp" value="" class="boton-agregar" onclick="javascript: fn_agregar();" /></td>
 			</tr>
 		</thead>
 		<tbody>

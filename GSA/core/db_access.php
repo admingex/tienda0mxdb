@@ -10,7 +10,7 @@ class AccesoDB extends DBAbstractModel {
 	############################ CONSTRUCTOR Y DESTRUCTOR #######################
     # Método constructor
     function __construct() {
-		$this->db_name = 'cms_ecommerce';
+		$this->db_name = 'cms0mxdb';
     }
 
     # Método destructor del objeto
