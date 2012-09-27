@@ -11,6 +11,7 @@
 <div id="viewlet-detalle-pdf">
 	<div>
 		<img src="<?php echo $src_imagen; ?>" />
+	</div>
 	<div class="detalle">
 		<div class="bloque-descripcion">
 			<div class="titulo-detalle">
