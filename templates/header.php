@@ -70,10 +70,9 @@
 									$buss = json_decode($json);
 									
 									foreach ($buss->criterios as $c) {
-										
-										echo "	<option value='" . $c->valor_criterio ."' ". $sel_opcion .">" . $c->nombre_criterio . "</option>\n";		
+										echo "<option value='" . $c->valor_criterio ."'>" . $c->nombre_criterio . "</option>\n";
 									}
-								}	
+								}
                                 /*foreach($criterios_busqueda as $c) {
 									echo "	<option value='" . $c->valor_criterio ."' ". $sel_opcion .">" . $c->nombre_criterio . "</option>\n";									
 								}*/
