@@ -221,4 +221,21 @@ class Json_Model extends DBAbstractModel {
 		
 		return $promocion_destacada;
 	}
+	
+	/**
+	 * Devuelve las promociones padre
+	 */
+	public function get_promociones_padre() {
+		$this->query = "CALL SP_Obtener_Promociones_Padre()";
+		
+		$this->get_results_from_query();
+		
+		$promociones = $this->rows;
+		/*
+		echo "<pre>";
+		echo json_encode($promociones);
+		echo "</pre>";
+		*/		
+		return $promociones;
+	}
 }

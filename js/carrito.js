@@ -26,7 +26,7 @@ function anadir_carrito(nameform, sitio, canal, promocion) {
               $("#dialog-modal").html("Procesando, espere por favor...");
         },
   		success:  function (response) {
-			$("#dialog-modal").dialog( "open" );
+  			$("#dialog-modal").dialog( "open" );  							
             $("#dialog-modal").html(response);
             $("#cuenta-carrito").text($('#cuenta-detalle-carrito').text());
         }
