@@ -20,6 +20,8 @@
 	$data["title"] = $title;
 	$data["subtitle"] = $subtitle;
 	
+	
+	
 	cargar_vista('cuenta_usuario', $data);
 	exit;
 

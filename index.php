@@ -18,5 +18,8 @@
     //footer
     require('./templates/footer.php');
 	
+	
+     
+	
 ?>
 

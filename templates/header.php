@@ -33,10 +33,12 @@
     ?>  
     
     <title><?php if (isset($title)) echo $title; else echo "Portal"; ?> - Tienda GEX</title>
-    
+       
 </head>
 <body>
-	<div id='dialog-modal'></div>
+
+	
+	<div id='dialog-modal' rowspan></div>
 	<div id='no-moneda'>Debes seleccionar productos de la misma moneda</div>
     <div id="header-container">
         <header>
@@ -56,8 +58,26 @@
                     <div>
                         <form name="searh_form" method="get" action="" class="form_search">
                             <label for="search">Buscar en:</label>
-                            <select id="filtro_busqueda">
+                            <select id="filtro_busqueda" >
                                 <option value="all">Todos los productos</option>
+                                <?php
+								//Sacar la información de la categoría
+								$path_criterios_busqueda = "./json/criterios_busqueda.json";
+								
+								if (file_exists($path_criterios_busqueda)) {
+									
+									$json = file_get_contents($path_criterios_busqueda);
+									$buss = json_decode($json);
+									
+									foreach ($buss->criterios as $c) {
+										
+										echo "	<option value='" . $c->valor_criterio ."' ". $sel_opcion .">" . $c->nombre_criterio . "</option>\n";		
+									}
+								}	
+                                /*foreach($criterios_busqueda as $c) {
+									echo "	<option value='" . $c->valor_criterio ."' ". $sel_opcion .">" . $c->nombre_criterio . "</option>\n";									
+								}*/
+                                ?>
                             </select>
                             <input type="text" id="s" name="s"/>
                             <input type="submit" value="Ir"/>

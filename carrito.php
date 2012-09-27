@@ -27,6 +27,7 @@
 	echo "<pre>";
 	*/
 	
+	
 	if (($_GET)) {
 		if (isset($_GET['id_sitio']) && isset($_GET['id_canal']) && isset($_GET['id_promocion']) && $_POST) {
 			$items = 0;

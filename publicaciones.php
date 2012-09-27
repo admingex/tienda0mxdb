@@ -192,6 +192,10 @@
 		header("Location: $url");
 	}
 	
+	/* PASAMOS EL VALOR A LA VISTA */
+	//$data["criterios_busqueda"] = catalogo_criterios_busqueda();
+	
+	
 	cargar_vista($view, $data);
 	exit;
 	
