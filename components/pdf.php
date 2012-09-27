@@ -46,46 +46,25 @@
 	</div>
 	<div class="space-pleca"></div>
 		<div class="pleca-separacion"></div>
-	<div class="space-pleca"></div>	
-	<div class="banner-descripcion">
-		<div class="triangulo-negro-der"></div>Sobre este reporte
-	</div>
 	<?php
-		$sobre_el_pdf = "Sobre el material.";
-		$lista_contenido = "Contenido del material.";
-		
-		//si hay secciones y existe información asociada con la promoción
+	
+	//si hay secciones y existe información asociada con la promoción
 		if (isset($secciones) AND array_key_exists($detalle_promocion->id_promocion, $secciones) && count($secciones[$detalle_promocion->id_promocion]) > 0) {
 			//se obtiene la información de la sección
 			$seccion_promocion = $secciones[$detalle_promocion->id_promocion];
-			//los detalles para mostrar
-			$sobre_el_pdf = $seccion_promocion[0]->titulo_seccion;
-			$lista_contenido = $seccion_promocion[0]->descripcion_seccion;
-		}
+			foreach($seccion_promocion as $value) {
 	?>
-	<div class="descripcion">				
-		<?php echo $sobre_el_pdf;?>
-	</div>
 	<div class="space-pleca"></div>	
 	<div class="banner-descripcion">
-		<div class="triangulo-negro-der"></div>Lista de Contenido
+		<div class="triangulo-negro-der"></div><?php echo $value->titulo_seccion; ?>
+	</div>	
+	<div class="descripcion">				
+		<?php echo $value->descripcion_seccion ;?>
 	</div>
-	<div class="descripcion">
-		<div class="lista">
-			<?php echo $lista_contenido;?>
-			<!--
-			<ol>
-				<li><span>Introducción</span></li>
-				<ol class="foo">
-					<li><span>Sobre Grupo Expansión</span></li>
-				</ol>
-				<li><span>Resumen</span></li>
-				<li><span>Ahorro</span></li>						
-			</ol>
-			-->
-		</div>				
-	</div>
-	
+	<?php
+			}
+		} 
+	?>
 </div>
 
 

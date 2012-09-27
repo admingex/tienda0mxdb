@@ -211,28 +211,29 @@
 		</div>
 		<div class="descripcion">
 			<?php echo $promo_inicial->descripcion_publicacion_larga; ?>	
-		</div>
-		<div class="space-pleca"></div>
-		<div class="banner-descripcion">
-			<div class="triangulo-negro-der"></div>Secciones de la revista
-		</div>
-		<div class="descripcion">
+		</div>	
 			<?php
 				if (isset($secciones) AND array_key_exists($detalle->id_promocion, $secciones) && count($secciones[$detalle->id_promocion]) > 0) { 
 					//se obtiene la información de la sección
 					$seccion_promocion = $secciones[$detalle->id_promocion];		
 			?>
-			En <?php echo $promo_inicial->nombre_publicacion; ?> encontrar&aacute;s:
+			<!--En <?php //echo $promo_inicial->nombre_publicacion; ?> encontrar&aacute;s:-->
 				<?php 
 					foreach($seccion_promocion as $value) { ?>
-					<div class="texto-detalle">
-						<div class="triangulo-rojo-der"></div><?php echo $value->titulo_seccion." ".$value->descripcion_seccion ; ?>
-					</div>
+						<div class="space-pleca"></div>
+						<div class="banner-descripcion">
+							<div class="triangulo-negro-der"></div><?php echo $value->titulo_seccion; ?>
+						</div>
+						<div class="descripcion">
+							<div class="texto-detalle">
+								<div class="triangulo-rojo-der"></div><?php echo $value->descripcion_seccion ; ?>
+							</div>
+						</div>
 			<?php
 					}
 				}
 			?>
-		</div>
+		
 		<div class="space-pleca"></div>
 	</div>						
 				

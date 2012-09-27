@@ -3,10 +3,11 @@
 	#### TODO Ajustar para video
 	//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
 	if (file_exists("./p_images/".$detalle_promocion->url_imagen)){
-		$src_video = TIENDA ."p_images/".$detalle_promocion->url_imagen;
+		$src_video = TIENDA ."p_images/".$detalle_promocion->url_imagen;	
 	} else {
-		$src_video = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
 		//$src = TIENDA ."p_images/".$p->url_imagen;
+		$src_video = TIENDA ."p_images/coIDCEDIG.jpg";
+		
 	}
 ?>
 
@@ -43,6 +44,7 @@
 
 		<div class="botones">
 			<?php
+			
 			$action_pagos = ECOMMERCE."api/". $detalle_promocion->id_sitio . "/" . $detalle_promocion->id_canal . "/" . $detalle_promocion->id_promocion . "/pago";
 			//para agregar la promoción al carrito:
 			$carrito = "'comprar_promocion',".$detalle_promocion->id_sitio.", ".$detalle_promocion->id_canal.", ".$detalle_promocion->id_promocion;			
@@ -77,7 +79,6 @@
 		</div-->
 
 		<div class="texto">
-			<?php echo $detalle_promocion->texto_oferta;?>
 		</div>
 		<?php
 			$temario_seminario = "Sobre el seminario.";

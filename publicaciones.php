@@ -196,6 +196,24 @@
 	exit;
 	
 	/**
+	 * Recupera el catálogo de criterios para la busqueda
+	 * 
+	 */
+	function catalogo_criterios_busqueda() {
+		//cargar los criterios de ordenación para el listado
+		$path_criterios = "./json/criterios_busqueda.json";
+		if (file_exists($path_criterios)) {
+			$json = file_get_contents($path_criterios);
+			$criterios = json_decode($json);
+			/*echo "formatos_pp<pre>";
+			print_r($criterios);
+			echo "</pre>";*/
+			return $criterios->criterios;
+			//$data["criterios"] = $criterios->criterios;	//pasar la promoción destacada a la vista
+		}
+	}
+	
+	/**
 	 * Recupera el catálogo de criterios para el ordenamiento de las promociones
 	 * 
 	 */
