@@ -46,7 +46,7 @@
 }
 
 #viewlet-detalle-suscripcion .botones{
-	float: left;
+	position: absolute;
 	margin-left: 178px;		
 	width: 196px;
 	height: 80px;		

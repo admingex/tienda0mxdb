@@ -92,7 +92,7 @@
 			<?php
 				if (isset($info_publicacion) && $info_publicacion->auditableBi) {
 			?>
-			<div style='position: absolute; width: 177px'>
+			<div style='position: absolute; width: 177px;'>
 				<div class="texto-detalle" style='padding-bottom: 5px'>
 					Si deseas recibir esta revista de fomra gratuita, selecciona la opción de suscripción
 				</div>				
@@ -113,7 +113,8 @@
 				<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value="" class="boton-anadir-carrito" onclick="submit_to_carrito(<?php echo $promo_inicial->id_promocion;?>)"/>			
 			</div>	
 		</div>
-		<div class="space-pleca"></div>		
+		<div class="space-pleca"></div>
+		<div class="space-pleca"></div>			
 		<div class="banner-descripcion">
 			<div class="triangulo-negro-der"></div>Selecciona el pa&iacute;s de env&iacute;o para ver los precios y promociones aplicables.
 		</div>

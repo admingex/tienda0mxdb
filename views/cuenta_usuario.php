@@ -46,7 +46,7 @@ $(document).ready(function() {
           				$("#tarjetas").append('<tr><td style="background-color: #F1F1F1">' + v.descripcionVc + ' terminación' + v.terminacion_tarjetaVc  + '</td>' +
           										  '<td style="background-color: #F1F1F1">' + v.nombre_titularVc + ' ' + v.apellidoP_titularVc + ' ' + v.apellidoM_titularVc + '</td>' +
           										  '<td style="background-color: #F1F1F1">' + v.mes_expiracionVc + '/' + v.anio_expiracionVc + '</td>' +
-          										  '<td style="background-color: #F1F1F1"><a href="<?php echo ECOMMERCE."forma_pago/editar/tc/"?>' + v.id_TCSi + '">editar</a><a href="2">Eliminar</a></td></tr>');          				          				          				          				 
+          										  '<td style="background-color: #F1F1F1"><a href="<?php echo ECOMMERCE."forma_pago/editar/tc/"?>' + v.id_TCSi + '">editar</a>&nbsp;<a href="2">Eliminar</a></td></tr>');          				          				          				          				 
           			});                   			          			    			             			     				      				   			      				          																		             
                 }
         }); 	               		
@@ -68,9 +68,12 @@ $(document).ready(function() {
 												  "<div class='img-hoja'></div>Datos de envío y facturación" +
 												  "<div class='pleca-titulo'></div></div>" +
 												  "<div class='encabezado-descripcion'>Datos de facturación</div>" +
-												  "<table id='rfcs' cellspacing='0' cellpadding='0'><thead><tr><th>R.F.C.</th><th>Razón Social</th><th>Email</th></tr></thead></table> ");
+												  "<table id='rfcs' cellspacing='0' cellpadding='0'><thead><tr><th>R.F.C.</th><th>Razón Social</th><th>Email</th><th>&nbsp;</th></tr></thead></table> ");
           			$.each(data.rs, function(k,v){
-          				$("#rfcs").append('<tr><td>'+ v.tax_id_number + '</td><td>' + v.company  + '</td><td>' +  v.email + '</td></tr>');          				          				          				          				 
+          				$("#rfcs").append('<tr><td>'+ v.tax_id_number + 
+          				                  '</td><td>' + v.company  + 
+          				                  '</td><td>' +  v.email + '</td>' +
+          				                  '<td><a href="">Editar</a>&nbsp;<a href="">Eliminar</a></td></tr>');          				          				          				          				 
           			});                   			          			    			             			     				      				   			      				          																		             
                 }
         });        
@@ -88,7 +91,13 @@ $(document).ready(function() {
           			$("#result_informacion").append("<div style='margin-top:18px'></div><div class='encabezado-descripcion'>Datos de envío</div>" +
           											"<table id='direcciones' cellspacing='0'><thead><tr><th>Dirección</th><th>Colonia</th><th>Codigo Postal</th><th>Ciudad</th><th>Estado</th></tr></thead></table>");
           			$.each(data.direccion_envio, function(k,v){          				
-          				$("#direcciones").append('<tr><td>'+ v.calle + ' ' + v.num_ext + ' ' + v.num_int + '</td><td>' + v.colonia  + '</td><td>' + v.cp  + '</td><td>' +  v.ciudad + '</td><td>' + v.estado  + '</td></tr>');          				          				          				          				 
+          				$("#direcciones").append('<tr><td>'+ v.calle + ' ' + 
+          													 v.num_ext + ' ' + 
+          													 v.num_int + '</td><td>' + 
+          													 v.colonia  + '</td><td>' + 
+          													 v.cp  + '</td><td>' +  
+          													 v.ciudad + '</td><td>' + 
+          													 v.estado  + '</td></tr>');          				          				          				          				 
           			});                   			          			    			             			     				      				   			      				          																		             
                 }
         });  

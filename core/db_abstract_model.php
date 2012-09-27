@@ -1,9 +1,9 @@
 <?php
 abstract class DBAbstractModel {
 	#para la conexión
-	private static $db_host = '10.177.73.120';
-	private static $db_user = 'ecommerce_user';
-	private static $db_pass = 'ecommerce';
+	private static $db_host = 'localhost';
+	private static $db_user = 'root';
+	private static $db_pass = 'GGee00**';
 	
 	#para las consultas
 	protected $db_name = 'mydb';	//el modelo que hereda a la clase la define
