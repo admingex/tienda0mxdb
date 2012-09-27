@@ -41,6 +41,9 @@
 	$promos_destacadas_por_publicaciones = $jc->generar_json_promos_destacadas_por_publicaciones();
 	echo "Promociones Destacadas Por Publicaciones ..................</br><br/>";
 
+	$promos_padre =$jc->generar_json_promos_padre();
+	echo "Promociones Padre ..................</br><br/>";
+	
 	echo "Generación finalizada exitosamente.";
 	
 	//echo "<pre>";

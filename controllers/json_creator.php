@@ -22,6 +22,8 @@ class Json_Creator {
 	private $archivo_carrusel_home 	= "./json/carrusel_home.json";
 	private $archivo_promos_home	= "./json/promociones_home.json";
 	private $archivo_promos_especiales	= "./json/promociones_especiales.json";
+	private $archivo_promos_padre	= "./json/promociones_padre/promos_padre.json";	
+	
 	### bases
 	private $base_publicacion_por_categoria	= "./json/categorias/publicaciones_categoria_";
 	private $base_promos_por_publicacion	= "./json/publicaciones/promos_publicacion_";
@@ -398,17 +400,23 @@ class Json_Creator {
 			
 			//recuperar el detalle
 			$detalle_promo = $this->modelo->get_detalle_promocion($id_promocion);
-			
-			/*echo "<pre>";
+			/*
+			echo "<pre>";
 			print_r($detalle_promo);
-			echo "</pre>";*/
-			//generar jsons para las secciones de las promociones
-			$oc_id = $detalle_promo[0]['oc_id'];
-			$issue_id = $detalle_promo[0]['issue_id'];
-			$this->generar_json_secciones($id_promocion, $oc_id, $issue_id);
+			echo "</pre>";
+			*/
 			
-			//echo "'".$file_detalle."'<br/>";
-			self::Write_To_Json_File($file_detalle, json_encode($detalle_promo));
+			if($detalle_promo){				
+			
+				//generar jsons para las secciones de las promociones
+				$oc_id = $detalle_promo[0]['oc_id'];
+				$issue_id = $detalle_promo[0]['issue_id'];
+				$this->generar_json_secciones($id_promocion, $oc_id, $issue_id);
+			
+				//echo "'".$file_detalle."'<br/>";
+				self::Write_To_Json_File($file_detalle, json_encode($detalle_promo));
+			}
+					
 		}
 	 }
 	################## END Recuperación y Generación del de talle de las promociones ##############
@@ -429,6 +437,23 @@ class Json_Creator {
 	 }
 	################## END Recuperación y Generación Las Secciones ##############
 	
+	
+	################## Recuperación y generación de jsons de las promociones padre ############## 
+	/**
+	 * Obtener el detalle de las promociones padre y generar los correspondientes archivos json
+	 */
+	public function generar_json_promos_padre() {		
+		//ruta del archivo del detalle
+		
+		$file_seccion = $this->archivo_promos_padre;
+		
+		//recuperar el detalle
+		$detalle_seccion = $this->modelo->get_promociones_padre();
+		
+		//echo "'".$file_detalle."'<br/>";
+		self::Write_To_Json_File($file_seccion, json_encode($detalle_seccion));
+	 }
+	################## END Recuperación y generación de jsons de las promociones padre ##############
 	
 	####################### Escritura a archivo
 	/**
