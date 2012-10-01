@@ -32,6 +32,7 @@ class Json_Creator {
 	private $base_promocion_destacada_por_cartegoria	= "./json/promociones_destacadas/promo_destacada_categoria_";
 	private $base_promocion_destacada_por_publicacion	= "./json/promociones_destacadas/promo_destacada_publicacion_";
 	private $base_secciones_oc 		= "./json/secciones/seccion_oc_";
+	private $base_promociones_padre = "./json/promociones_padre/promo_padre_";
 	
 	//modelo a utilizar
 	private $modelo;	//modelo de datos
@@ -454,6 +455,75 @@ class Json_Creator {
 		self::Write_To_Json_File($file_seccion, json_encode($detalle_seccion));
 	 }
 	################## END Recuperación y generación de jsons de las promociones padre ##############
+	
+	################## Recuperación y generación de jsons de las promociones hija ############## 
+	/**
+	 * Obtener el detalle de las promociones hijas para cada una de las promociones padre y generar los correspondientes archivos json
+	 */
+	public function generar_json_promos_hijas() {				
+		
+		$promos_padre = $this->modelo->get_promociones_padre();
+				
+		foreach($promos_padre as $promo){
+			// ruta del archivo
+			$file_seccion = $this->base_promociones_padre.$promo['id_promocionIn'].".json";
+			
+			//recuperar el detalle
+			$detalle_seccion = $this->modelo->get_promociones_hijas($promo['id_promocionIn']);
+						
+			//echo "'".$file_detalle."'<br/>";
+			self::Write_To_Json_File($file_seccion, json_encode($detalle_seccion));	
+					
+		}
+		 
+	 }
+	################## END Recuperación y generación de jsons de las promociones hijas ##############
+	
+	################## Recuperación y generación de jsons de las promociones hija ############## 
+	/**
+	 * Obtener el detalle de las promociones hijas y generar los correspondientes archivos json
+	 */
+	public function generar_json_detalle_promos_hijas() {			
+		//ruta del archivo del detalle
+		
+		$promos_padre = $this->modelo->get_promociones_padre();
+		
+		foreach($promos_padre as $promo){
+			$promos_hijas = $this->modelo->get_promociones_hijas($promo['id_promocionIn']);	
+			
+			foreach ($promos_hijas as $promocion) {
+				$id_promocion = $promocion['id_promocion'];
+			
+				//ruta del archivo del detalle
+				$file_detalle = $this->base_detalle_promo.$id_promocion.".json";
+				
+				//recuperar el detalle
+				$detalle_promo = $this->modelo->get_detalle_promocion_hija($id_promocion);
+				/*
+				echo "<pre>";
+				print_r($detalle_promo);
+				echo "</pre>";
+				*/
+				
+				if($detalle_promo){				
+			
+					//generar jsons para las secciones de las promociones
+					$oc_id = $detalle_promo[0]['oc_id'];
+					$issue_id = $detalle_promo[0]['issue_id'];
+					$this->generar_json_secciones($id_promocion, $oc_id, $issue_id);
+				
+					//echo "'".$file_detalle."'<br/>";
+					self::Write_To_Json_File($file_detalle, json_encode($detalle_promo));
+				}
+				 
+					
+			}
+					
+							
+		}		
+		 
+	 }
+	################## END Recuperación y generación de jsons de las promociones hijas ##############
 	
 	####################### Escritura a archivo
 	/**

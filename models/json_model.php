@@ -238,4 +238,29 @@ class Json_Model extends DBAbstractModel {
 		*/		
 		return $promociones;
 	}
+	
+	public function get_promociones_hijas($id_promocion_padre) {
+		$this->query = "CALL SP_Obtener_Promociones_Hijas(".$id_promocion_padre.")";
+		
+		$this->get_results_from_query();
+		
+		$promociones_hijas = $this->rows;
+		/*
+		echo "<pre>";
+		echo json_encode($promociones);
+		echo "</pre>";
+		*/		
+		return $promociones_hijas;
+	}
+	
+	public function get_detalle_promocion_hija($id_promocion) {
+		
+		$this->query = "CALL SP_Obtener_Detalle_Promocion_Hija(".$id_promocion.")";
+		
+		$this->get_results_from_query();
+		
+		$detalle_promocion = $this->rows;
+		
+		return $detalle_promocion;		
+	}
 }
