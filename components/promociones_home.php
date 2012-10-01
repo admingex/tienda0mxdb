@@ -2,7 +2,9 @@
 <link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
 
 <div id="contenedor-promo">
+	
 <?php				    
+	
 	
 	//Sacar la información de la categoría
 	$path_promos_home = "./json/promociones_home.json";
