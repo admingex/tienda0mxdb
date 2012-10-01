@@ -5,7 +5,7 @@
 	echo "..................</br><br/>";
 
 	$jc = new Json_Creator();
-	
+	/*
 	//obtener el id_ del sitio la tienda y generar el archivo json correspondiente 
 	$id_tienda = $jc->get_id_tienda();
 	
@@ -43,6 +43,12 @@
 
 	$promos_padre =$jc->generar_json_promos_padre();
 	echo "Promociones Padre ..................</br><br/>";
+	
+	$promos_hijas =$jc->generar_json_promos_hijas();
+	echo "Promociones Hijas - Padre ..................</br><br/>";
+	*/
+	$detalle_promos_hijas =$jc->generar_json_detalle_promos_hijas();
+	echo "Detalle Promociones Hijas ..................</br><br/>";
 	
 	echo "Generación finalizada exitosamente.";
 	

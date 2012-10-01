@@ -30,6 +30,23 @@
 			
 			##### TODO 	validar que corresponda con la de promos especiales
 			if ($id_categoria == 6 ) {
+				
+				// se añaden las promociones padre para incluirlas en las promociones
+				$path_promo_padre_especiales = "./json/promociones_padre/promos_padre.json";	
+				if (file_exists($path_promo_padre_especiales)) {
+					$json = file_get_contents($path_promo_padre_especiales);
+					$promos_padre = json_decode($json);	
+					$items = 0;					
+					foreach($promos_padre as $p){
+						if($p->descripcion_canal == "PROMOCIONES ESPECIALES"){
+							$data["promociones_especiales"][$items] = $p;
+							$items++;
+						}
+					}
+																					 							
+				}
+				
+				/*
 				//Sacar la información de las promociones especiales
 				$path_promos_especiales = "./json/promociones_especiales.json";
 				
@@ -43,6 +60,7 @@
 				} else {
 					//si no existe el archivo con la información ¿¿ir a BD??
 				}
+				 * 
 				/*echo "<pre>";
 				print_r($data["promociones_especiales"]);
 				echo "</pre>";*/
