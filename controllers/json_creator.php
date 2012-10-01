@@ -23,6 +23,7 @@ class Json_Creator {
 	private $archivo_promos_home	= "./json/promociones_home.json";
 	private $archivo_promos_especiales	= "./json/promociones_especiales.json";
 	private $archivo_promos_padre	= "./json/promociones_padre/promos_padre.json";	
+	private $archivo_buscador		= "./json/criterios_busqueda.json";
 	
 	### bases
 	private $base_publicacion_por_categoria	= "./json/categorias/publicaciones_categoria_";
@@ -32,6 +33,7 @@ class Json_Creator {
 	private $base_promocion_destacada_por_cartegoria	= "./json/promociones_destacadas/promo_destacada_categoria_";
 	private $base_promocion_destacada_por_publicacion	= "./json/promociones_destacadas/promo_destacada_publicacion_";
 	private $base_secciones_oc 		= "./json/secciones/seccion_oc_";
+	
 	
 	//modelo a utilizar
 	private $modelo;	//modelo de datos
@@ -436,6 +438,24 @@ class Json_Creator {
 		self::Write_To_Json_File($file_seccion, json_encode($detalle_seccion));
 	 }
 	################## END Recuperación y Generación Las Secciones ##############
+	
+	################## Recuperación y genera el json para llenar el buscador  ############## 
+	/**
+	 * Obtener las secciones relacionadas a las suscripciones, pdfs y seminarios 
+	 */
+	public function generar_json_buscador() {
+		
+		//recuperar el detalle
+		$buss = $this->modelo->get_buscador();
+		
+		$this->detalle_buscador = json_encode(array("criterios" => $buss));
+				
+		self::Write_To_Json_File($this->archivo_buscador, $this->detalle_buscador);
+		
+		return $this->detalle_buscador;
+		
+	 }
+	################## END Recuperación y Generación Buscador ##############
 	
 	
 	################## Recuperación y generación de jsons de las promociones padre ############## 
