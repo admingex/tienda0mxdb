@@ -33,6 +33,16 @@
 		
 		$pe = $recorrer[$i];
 		
+		if(isset($pe->promo_padre)){
+			echo "	<div class='catego-left'>
+						<div class='contenedor-imagen'>
+		     				<a href='".TIENDA ."promocion_h.php?id_promo_padre=" .$pe->id_promocionIn."'><img src='" . TIENDA . "p_images/".$pe->url_imagen."' /></a>		     		
+		     			</div>	
+		      			<div class='titulo-promocion-back titulo-promocion'>".$pe->descripcionVc. 
+		      			"</div>	
+					</div>";
+		}
+		else{
 		echo "
 		<div class='catego-left'>
 			<form id='comprar_promocion_especial".$pe->id_promocion."' name='comprar_promocion_especial".$pe->id_promocion."' action='".ECOMMERCE."api/". $pe->id_sitio."/".$pe->id_canal."/".$pe->id_promocion."/pago' method='post'>
@@ -61,7 +71,7 @@
 		      	</div>
 	  		</form>
 	  	</div>";
-		
+		}
 		//pinta un espacio en blanco que sirve de margen						
 		if (($j == 0) || ($j == 1) || ($j == 3) || ($j == 4) ){
 			echo "<div class='catego-space'></div>";				
