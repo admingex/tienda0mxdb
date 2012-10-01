@@ -46,7 +46,7 @@
 		//Si no trae más de un formato, ir al detalle de la promoción: suscripción / producto / PDF
 		$url_p = site_url('promocion/'. $p->id_promocion);
 		
-		//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
+		//revisar que exista la imagen en caso contrario ponemos el cuadro negro						
 		if(file_exists("./p_images/".$p->url_imagen)){
 			$src = TIENDA ."p_images/".$p->url_imagen;
 		}
@@ -60,13 +60,14 @@
 					<a href='". $url_p . "'>";																	
 						echo "<img src='" . $src. "' />";																
 		echo "		</a>
-				</div>
-				<div class='titulo-promocion-back titulo-promocion'>
-					".$p->descripcion."						
+				</div>				
+				<div class='titulo-categoria-back titulo-categoria'>
+					".$p->nombre."						
 				</div>
 				<div class='descripcion-promocion-back descripcion-promocion'>
-					".$p->terminoVc."						
-				</div>									    			      			     		      	
+					".$p->descripcion."						
+				</div>									    		
+				<div class='precio-promocion-back'>".$p->terminoVc."</div>	      			     		      	
       		</div>
 	      ";
 		//pinta un espacio en blanco que sirve de margen						
