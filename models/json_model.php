@@ -197,6 +197,19 @@ class Json_Model extends DBAbstractModel {
 	}
 	
 	/**
+	 * Devuelve los formatos para el buscador
+	 */
+	public function get_buscador() {
+		$this->query = "CALL SP_Secciones_Buscador()";
+		
+		$this->get_results_from_query();
+		
+		$buscador = $this->rows;
+		
+		return $buscador;
+	}
+	
+	/**
 	 * Devuelve la promoción destacada para una categoría
 	 */
 	public function get_promocion_destacada_por_categoria($id_categoria = 0) {

@@ -59,7 +59,6 @@
                         <form name="searh_form" method="get" action="" class="form_search">
                             <label for="search">Buscar en:</label>
                             <select id="filtro_busqueda" >
-                                <option value="all">Todos los productos</option>
                                 <?php
 								//Sacar la información de la categoría
 								$path_criterios_busqueda = "./json/criterios_busqueda.json";
