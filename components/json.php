@@ -12,6 +12,9 @@
 	//obtener categorías y generar el json que las contenga
 	$cats = $jc->get_categorias();
 	echo "Categorías..................</br><br/>";
+	//BUSCADOR
+	$buss = $jc->generar_json_buscador();
+	echo "BUSCADOR..................</br><br/>"; 
 	//obtener publicaciones y generar el json que las contenga
 	$pubs = $jc->get_publicaciones();
 	echo "Publicaciones..................</br><br/>";

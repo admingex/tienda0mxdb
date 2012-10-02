@@ -23,7 +23,7 @@
 	$data["subtitle"] = $subtitle;
 	
 	if ($_GET) {
-		$mostrar = (array_key_exists('mostrar', $_GET)) ? $_GET['mostrar'] : "";		
+		$mostrar = (array_key_exists('mostrar', $_GET)) ? $_GET['mostrar'] : "";	
 		$view = 'promos_publicacion_';			//vista que se cargará dependiendo del número de formatos de la publicación
 		
 		if (array_key_exists('id_publicacion', $_GET) && filter_var($_GET['id_publicacion'], FILTER_VALIDATE_INT, array('min_range' => 1))) {	### TO DO seguridad!

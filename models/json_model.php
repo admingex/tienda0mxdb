@@ -48,6 +48,23 @@ class Json_Model extends DBAbstractModel {
     }
     
 	/**
+	 * Devuelve las promociones de la busqueda de los formatos
+	 */
+	public function get_busqueda_formatos($f,$p) {
+		$this->query = "CALL SP_Buscador_Formatos_Promocion(".$f.",'%".$p."%')";
+		
+		$this->get_results_from_query();
+		
+		$busqueda_f = $this->rows;
+		/*
+		echo "<pre>";
+		echo json_encode($categorias);
+		echo "</pre>";
+		 * */
+		return $categorias;
+	}
+	
+	/**
 	 * Devuelve el listado de las categorías existentes.
 	 */
 	public function get_categorias() {

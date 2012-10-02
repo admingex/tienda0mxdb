@@ -38,7 +38,7 @@ $(function() {
 		position:['top', 120],
 		modal: true,
 		show: 'slide',
-		width:'635px',
+		width:'640px',
 		stack: true,
 		autoOpen: false,
 		draggable: false,
