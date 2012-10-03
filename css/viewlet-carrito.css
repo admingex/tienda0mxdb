@@ -1,9 +1,9 @@
 ﻿/* viewlet-carrito */
-#viewlet-carrito{
-	
+#viewlet-carrito{	
 	/*padding-right:0px;*/
 	height: auto;
 	font-family:Arial;
+	overflow:hidden;
 }
 
 #viewlet-carrito  .pleca{

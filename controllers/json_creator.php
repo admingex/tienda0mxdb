@@ -36,6 +36,10 @@ class Json_Creator {
 	private $base_promociones_padre = "./json/promociones_padre/promo_padre_";
 	
 	
+	### Busquedas
+	private $archivo_busqueda_formatos	="./json/busqueda/b_";
+	
+	
 	//modelo a utilizar
 	private $modelo;	//modelo de datos
 	
@@ -153,6 +157,21 @@ class Json_Creator {
 		*/	
 		return $publicaciones_por_categoria;
     }
+    /*************************************************************************************/
+    public function generar_json_buscador_formatos($formato,$palabra) {
+    	//ruta del archivo del detalle
+		$file_busqueda_f = $this->archivo_busqueda_formatos.$formato.".json";
+		
+		//recuperar el detalle
+		$detalle_busqueda_f = $this->modelo->get_busqueda_formatos($formato,$palabra);
+		
+		//echo "'".$file_detalle."'<br/>";
+		self::Write_To_Json_File($file_busqueda_f, json_encode($detalle_busqueda_f));    	
+    }
+    
+    
+    
+    /*************************************************************************************/
 	
 	/**
 	 * Generar los archivos con las promociones disponibles por publicación
@@ -445,17 +464,35 @@ class Json_Creator {
 	 * Obtener las secciones relacionadas a las suscripciones, pdfs y seminarios 
 	 */
 	public function generar_json_buscador() {
-		
-		//recuperar el detalle
+		 
+		$buss2[0]['valor_criterio']="all";
+		$buss2[0]['nombre_criterio']="Todos los productos";		 
+		$buss2[1]['valor_criterio']="promociones_especiales";
+		$buss2[1]['nombre_criterio']="Promociones especiales";
+		$x=2;
+		//recuperar el detalle de los formatos
 		$buss = $this->modelo->get_buscador();
+		$i=0;
+		foreach($buss as $valor){
+			 $buss2[$x]['valor_criterio']=$buss[$i]['valor_criterio'];
+			 $buss2[$x]['nombre_criterio']=$buss[$i]['nombre_criterio'];
+			 $i++;
+			 $x++;
+		}
+		$buss2[$x]['valor_criterio']="palabras_clave";
+		$buss2[$x]['nombre_criterio']="Palabras clave";
+		$x++;
+		$buss2[$x]['valor_criterio']="codigo_promocion";
+		$buss2[$x]['nombre_criterio']="Codigo de promoción";
+		$this->detalle_buscador = json_encode(array("criterios" => $buss2));
 		
-		$this->detalle_buscador = json_encode(array("criterios" => $buss));
-				
+		//$this->detalle_buscador = json_encode(array("valor_criterio" => "ALL", "nombre_criterio" => "todos"));
+			
 		self::Write_To_Json_File($this->archivo_buscador, $this->detalle_buscador);
 		
 		return $this->detalle_buscador;
 		
-	 }
+	 }	
 	################## END Recuperación y Generación Buscador ##############
 	
 	
