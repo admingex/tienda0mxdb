@@ -160,13 +160,13 @@ class Json_Creator {
     /*************************************************************************************/
     public function generar_json_buscador_formatos($formato,$palabra) {
     	//ruta del archivo del detalle
-		$file_seccion = $this->base_secciones_oc.$id_promocion.".json";
+		$file_busqueda_f = $this->archivo_busqueda_formatos.$formato.".json";
 		
 		//recuperar el detalle
-		$detalle_seccion = $this->modelo->get_busqueda_formatos($oc_id, $issue_id);
+		$detalle_busqueda_f = $this->modelo->get_busqueda_formatos($formato,$palabra);
 		
 		//echo "'".$file_detalle."'<br/>";
-		self::Write_To_Json_File($file_seccion, json_encode($detalle_seccion));    	
+		self::Write_To_Json_File($file_busqueda_f, json_encode($detalle_busqueda_f));    	
     }
     
     

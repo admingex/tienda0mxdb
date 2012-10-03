@@ -4,9 +4,8 @@
 	//requiredincludes
     require('./config/settings.php');
 	require('./controllers/paginacion.php');
-	# Importar modelo de abstracción de base de datos 
-	require_once('./core/db_abstract_model.php');
-	require_once('./models/json_model.php');
+	
+	require('./controllers/json_creator.php');
 	
 			
     //header (y/o menús)
@@ -26,11 +25,14 @@
 	$data["title"] = $title;
 	$data["subtitle"] = $subtitle;
 	
+	$jc = new Json_Creator();
+
+	
 	if ($_GET) {
 		//$mostrar = (array_key_exists('mostrar', $_GET)) ? $_GET['mostrar'] : "";
 		$mostrar = "busqueda";		
 		//echo $mostrar;
-		$view = 'promos_publicacion_';			//vista que se cargará dependiendo del número de formatos de la publicación
+		$view = 'promos_publicacion_busqueda';			//vista que se cargará dependiendo del número de formatos de la publicación
 		
 		$fb=$_GET['filtro_busqueda'];
 		echo $_GET['s'];
@@ -41,20 +43,20 @@
 			
 			$data['id_publicacion'] = $id_publicacion;
 			echo $id_publicacion;
-			
+			$jc->generar_json_buscador_formatos($fb,$id_publicacion);
 			
 			/****************************************************************************************************************************************/			
 			switch ($fb){
 				case 'all':
 					//algo
-					$path_promociones = "./json/publicaciones/promos_publicacion_".$id_publicacion.".json";
+					$path_promociones = "./json/publicaciones/promos_publicacion_1.json";
 					break;
 				case '1':
 				case '2':
 				case '3':
 				case '4':
 					
-					$path_promociones = "./json/publicaciones/promos_publicacion_".$id_publicacion.".json";
+					$path_promociones = "./json/publicaciones/promos_publicacion_1.json";
 					break;
 			}
 			//sacar las promociones de la publicación y sus detalles correspondientes, sin importar cuántos formatos tenga

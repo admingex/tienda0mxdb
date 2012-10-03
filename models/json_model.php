@@ -61,7 +61,7 @@ class Json_Model extends DBAbstractModel {
 		echo json_encode($categorias);
 		echo "</pre>";
 		 * */
-		return $categorias;
+		return $busqueda_f;
 	}
 	
 	/**
