@@ -53,12 +53,12 @@
 		 * 
 		 * La información en "$detalles_promociones" viene siempre, ya sea por consultas desde PUBLICACIONES o directas en PROMOCIONES.
 		 */ 
-		/*echo "<pre>";
+		echo "<pre>";
 		//print_r($info_publicacion);
 		//print_r($ofertas_publicacion);
-		print_r($secciones);
+		//print_r($secciones);
 		print_r($detalles_promociones);	//siempre viene
-		echo "</pre>";*/
+		echo "</pre>";
 		
 	### //despliegue del detalle de la promoción si es que hay alguno
 	if (!empty($detalles_promociones)) {

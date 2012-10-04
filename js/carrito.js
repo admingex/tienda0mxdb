@@ -13,10 +13,7 @@ function anadir_carrito(nameform, sitio, canal, promocion) {
 		'moneda'      : formid.moneda.value
 	}		
 			
-	//document.comprar_promocion_especial".$v->id_promocionIn.".action ='".TIENDA."carrito.php?id_sitio=". $v->id_sitioSi."&id_canal=". $v->id_canalSi."&id_promocion=". $v->id_promocionIn."'; document.comprar_promocion_especial".$v->id_promocionIn.".submit()
 	var url_carrito = tienda+'carrito.php?id_sitio='+sitio+'&id_canal='+canal+'&id_promocion='+promocion+'&ajax=1';
-	//$("#comprar_promocion_especial"+ id).attr('action', url_carrito);
-    //alert($("#comprar_promocion_especial"+ id).attr('action'));
     
     $.ajax({
         data:  parametros,
@@ -38,7 +35,7 @@ $(function() {
 		position:['top', 120],
 		modal: true,
 		show: 'slide',
-		width:'640px',
+		width:'670px',
 		stack: true,
 		autoOpen: false,
 		draggable: false,
