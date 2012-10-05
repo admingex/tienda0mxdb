@@ -5,5 +5,4 @@
 	if (isset($promociones_especiales) && !empty($promociones_especiales)){
 		include('./components/promociones_especiales.php');
 	}
-	
 ?>
