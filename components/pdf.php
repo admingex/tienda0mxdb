@@ -37,6 +37,7 @@
 			    "<input type='hidden' name='descripcion' value='". $detalle_promocion->descripcion_promocion."' />\n" .
 			    "<input type='hidden' name='precio' value='".$detalle_promocion->costo."' />\n" .
 			    "<input type='hidden' name='moneda' value='".$detalle_promocion->moneda."' />\n" .
+			    "<input type='hidden' name='iva' value='".$detalle_promocion->taxable."' />\n" .
 			    "<input type='hidden' name='cantidad' value='1' />\n";
 			?>
 				<input type="submit" id="btn_comprar_ahora" name="btn_comprar_ahora" value=" " class="boton-pago-express"  />

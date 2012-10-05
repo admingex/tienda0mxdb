@@ -74,7 +74,8 @@
 													'imagenVc'=>$_POST['imagen'],
 													'descripcion'=>$_POST['descripcion'],
 													'precio'=>$_POST['precio'],
-													'moneda'=>$_POST['moneda']
+													'moneda'=>$_POST['moneda'],
+													'iva'=>$_POST['iva']
 													);	
 			}
 			

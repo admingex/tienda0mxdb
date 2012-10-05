@@ -34,8 +34,13 @@ if (isset($_SESSION['carrito'])) {
 		
 		//total a pagar
 		$total = 0;
+		//total IVA
+		$iva_compra = 0.0;
 		foreach ($_SESSION['carrito'] as $item) {
 			$total += ($item['cantidad'] * $item['precio']);
+			if ($item['iva']) {
+				$iva_compra += $item['precio'] * 0.16;
+			}
 		}
 		
 		## quitamos informacion que no es necesaria para procesar el pedido solo necesitamos id_sitio, id_canal, id_promocion  
@@ -57,7 +62,7 @@ if (isset($_SESSION['carrito'])) {
 				</div>";
 			echo "<div class='pleca'></div>";
 		}
-		$iva = $total * 0;
+		
 		echo 	"<form name='' action='".ECOMMERCE."api/carrito/".$datos_encrypt_url."' method='post'>
 					<div class='all-cont'>";
 		
@@ -106,11 +111,11 @@ if (isset($_SESSION['carrito'])) {
 		}
 		
 		echo	"<div class='calculo'>".
-					"Sub-total<span class='valor'>$".number_format($total-$iva,2,'.',',')."</span>".
+					"Sub-total<span class='valor'>$".number_format($total, 2, '.', ',')."</span>".
 					"<br />".
-					"IVA<span class='valor'> $".number_format($iva,2,'.',',')."</span>".
+					"IVA<span class='valor'> $".number_format($iva_compra, 2, '.', ',')."</span>".
 					"<br />".
-					"Total<span class='valor'> $".number_format($total,2,'.',',')."</span>".
+					"Total<span class='valor'> $".number_format($total + $iva_compra, 2, '.', ',')."</span>".
 				"</div>";
 	
 		echo 	"<div class='boton-final'>".

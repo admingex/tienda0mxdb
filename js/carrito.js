@@ -1,6 +1,6 @@
 function anadir_carrito(nameform, sitio, canal, promocion) {
 		 					
-	var tienda = 'http://localhost/tienda/';		
+	var tienda = 'http://localhost/tienda/';	//##c##		
 	
 	var formid = document.getElementById(nameform+promocion);											
 	var parametros = {
@@ -10,7 +10,8 @@ function anadir_carrito(nameform, sitio, canal, promocion) {
 		'descripcion' : formid.descripcion.value,
 		'precio'	  : formid.precio.value,
 		'cantidad'    : formid.cantidad.value,
-		'moneda'      : formid.moneda.value
+		'moneda'      : formid.moneda.value,
+		'iva'		  : formid.iva.value
 	}		
 			
 	var url_carrito = tienda+'carrito.php?id_sitio='+sitio+'&id_canal='+canal+'&id_promocion='+promocion+'&ajax=1';
