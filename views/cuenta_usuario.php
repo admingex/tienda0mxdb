@@ -1,9 +1,17 @@
 <link type="text/css" href="<?php echo TIENDA;?>css/viewlet-historial-compras.css" rel="stylesheet" />
+<script type="text/javascript" src="<?php TIENDA;?>js/admin_usuario_facturacion.js"></script>
+<script type="text/javascript" src="<?php TIENDA;?>js/admin_usuario_compras.js"></script>
+<script type="text/javascript" src="<?php TIENDA;?>js/admin_usuario_dir_envio.js"></script>
+
 <script type="text/javascript">
 var ecommerce = 'http://localhost/ecommerce/';
+ 
+	// se agrega la variable id_cliente_js con el valor del id de cliente para poderla utilizar con javascript
+var id_cliente_js =<?php echo $_SESSION['id_cliente'] ?>
+
 var parametros = {
-			"id_cliente"  : "<?php echo $_SESSION['id_cliente']; ?>"			
-		}
+	"id_cliente"  : id_cliente_js			
+}
 
 $(document).ready(function() {	
 		
@@ -31,7 +39,7 @@ $(document).ready(function() {
 		$("#result_errores").html("" );	
 		$.ajax({  
 				cache: false, 		 		           
-                url:   ecommerce + "administrador_usuario/listar_tarjetas/" + "<?php echo $_SESSION['id_cliente']; ?>",
+                url:   ecommerce + "administrador_usuario/listar_tarjetas/" + id_cliente_js,
                 type:  'POST', 
                 dataType: "json",                               
                 beforeSend: function () {                    	     	
@@ -41,12 +49,15 @@ $(document).ready(function() {
           			$("#result_informacion").html("<div class='titulo-descripcion'>" +
 												  "<div class='img-hoja'></div>Medios de pagos" +
 												  "<div class='pleca-titulo'></div>" +
-												  "</div><table id='tarjetas' cellspacing='0' cellpadding='0'><thead><tr><th>Tarjetas guardadas</th><th>Nombre</th><th>Expira</th><th>&nbsp;</th></tr></thead></table> ");
+												  "</div><table id='tarjetas' cellspacing='0' cellpadding='0'><thead><tr><th>Tarjetas guardadas</th><th>Nombre</th><th>Expira</th><th colspan='2'>&nbsp;</th></tr></thead></table> ");
           			$.each(data.tarjetas, function(k,v){
-          				$("#tarjetas").append('<tr><td style="background-color: #F1F1F1">' + v.descripcionVc + ' terminación' + v.terminacion_tarjetaVc  + '</td>' +
-          										  '<td style="background-color: #F1F1F1">' + v.nombre_titularVc + ' ' + v.apellidoP_titularVc + ' ' + v.apellidoM_titularVc + '</td>' +
-          										  '<td style="background-color: #F1F1F1">' + v.mes_expiracionVc + '/' + v.anio_expiracionVc + '</td>' +
-          										  '<td style="background-color: #F1F1F1"><a href="<?php echo ECOMMERCE."forma_pago/editar/tc/"?>' + v.id_TCSi + '">editar</a>&nbsp;<a href="2">Eliminar</a></td></tr>');          				          				          				          				 
+          				var param = ","+ v.id_tipo_tarjetaSi; 
+          				$("#tarjetas").append("<tr><td>" + v.descripcionVc + " terminación" + v.terminacion_tarjetaVc  + "</td>" +
+          										  "<td>" + v.nombre_titularVc + ' ' + v.apellidoP_titularVc + ' ' + v.apellidoM_titularVc + "</td>" +
+          										  "<td>" + v.mes_expiracionVc + '/' + v.anio_expiracionVc + "</td>" +
+          										  "<td onclick=\"editar_tc('"+ v.id_TCSi+ "', '"+v.id_tipo_tarjetaSi+ "')\" ><a href='#'>editar</a></td>" +
+          										  "<td onclick=\"eliminar_tc('"+ v.id_TCSi+ "')\" ><a href='#'>Eliminar</a></td>" +
+          										  "</tr>");          				          				          				          				 
           			});                   			          			    			             			     				      				   			      				          																		             
                 }
         }); 	               		
@@ -60,7 +71,7 @@ $(document).ready(function() {
 		$("#result_errores").html("" );	
 		$.ajax({   	
 			cache: false,	 		           
-                url:   ecommerce + "administrador_usuario/listar_razon_social/" + "<?php echo $_SESSION['id_cliente']; ?>",
+                url:   ecommerce + "administrador_usuario/listar_razon_social/" + id_cliente_js,
                 type:  'POST', 
                 dataType: "json",                                               
           		success:  function (data) {          			
@@ -68,39 +79,22 @@ $(document).ready(function() {
 												  "<div class='img-hoja'></div>Datos de envío y facturación" +
 												  "<div class='pleca-titulo'></div></div>" +
 												  "<div class='encabezado-descripcion'>Datos de facturación</div>" +
-												  "<table id='rfcs' cellspacing='0' cellpadding='0'><thead><tr><th>R.F.C.</th><th>Razón Social</th><th>Email</th><th>&nbsp;</th></tr></thead></table> ");
+												  "<table id='rfcs' cellspacing='0' cellpadding='0'><thead><tr><th>Razón Social</th><th>R.F.C.</th><th>Email</th><th colspan='2'>&nbsp;</th></tr></thead></table> ");
           			$.each(data.rs, function(k,v){
-          				$("#rfcs").append('<tr><td>'+ v.tax_id_number + 
-          				                  '</td><td>' + v.company  + 
-          				                  '</td><td>' +  v.email + '</td>' +
-          				                  '<td><a href="">Editar</a>&nbsp;<a href="">Eliminar</a></td></tr>');          				          				          				          				 
+          				var pe= ' ';
+          				if(v.id_estatusSi == 3){
+          					pe = "<div style='color: #D81830; height: 20px; font-size: 11px; font-family: italic; font-weight: bold'>pago express</div>";
+          				}
+          				$("#rfcs").append('<tr><td>'+ v.company + pe +
+          				                  '</td><td valign="top">' + v.tax_id_number  + 
+          				                  '</td><td valign="top">' +  v.email + '</td>' +
+          				                  '<td onclick=\"editar_rs('+ v.id_razonSocialIn +')\" valign="top"><a href="#">Editar</a></td>'+
+          				                  '<td onclick=\"eliminar_rs('+ v.id_razonSocialIn +')\" valign="top"><a href="#">Eliminar</a></td></tr>');          				          				          				          				 
           			});                   			          			    			             			     				      				   			      				          																		             
                 }
         });        
-        		
-		$.ajax({   
-				cache: false,		 		           
-                url:   ecommerce + "administrador_usuario/listar_direccion_envio/" + "<?php echo $_SESSION['id_cliente']; ?>",
-                type:  'POST', 
-                dataType: "json",                               
-                beforeSend: function () {                    	     	
-					$("#result_informacion").html("Procesando, espere por favor..." );
-                },
-          		success:  function (data) {            
-          			  			      			
-          			$("#result_informacion").append("<div style='margin-top:18px'></div><div class='encabezado-descripcion'>Datos de envío</div>" +
-          											"<table id='direcciones' cellspacing='0'><thead><tr><th>Dirección</th><th>Colonia</th><th>Codigo Postal</th><th>Ciudad</th><th>Estado</th></tr></thead></table>");
-          			$.each(data.direccion_envio, function(k,v){          				
-          				$("#direcciones").append('<tr><td>'+ v.calle + ' ' + 
-          													 v.num_ext + ' ' + 
-          													 v.num_int + '</td><td>' + 
-          													 v.colonia  + '</td><td>' + 
-          													 v.cp  + '</td><td>' +  
-          													 v.ciudad + '</td><td>' + 
-          													 v.estado  + '</td></tr>');          				          				          				          				 
-          			});                   			          			    			             			     				      				   			      				          																		             
-                }
-        });  
+        $('#boton_datos').attr('disabled','disabled');        
+        setTimeout('listar_dir_envio()', 500);				
 		
 		$('#boton_datos').removeClass('boton-datos').addClass('boton-datos-sel');
 		$('#boton_historial').removeClass('boton-historial-sel').addClass('boton-historial');               		
@@ -108,11 +102,11 @@ $(document).ready(function() {
 		$('#boton_configuracion').removeClass('boton-configuracion-sel').addClass('boton-configuracion');
 	});	
 	
-	$("#boton_configuracion").click(function(e) {
+	$("#boton_configuracion").click(function(e) {		
 		 $("#result_errores").html("" );	
 		 $.ajax({   	
 		 		cache: false,	 		           
-                url:   ecommerce + "administrador_usuario/cliente_id/" + <?php echo $_SESSION['id_cliente']; ?>,
+                url:   ecommerce + "administrador_usuario/cliente_id/" + id_cliente_js,
                 type:  'GET',
                 dataType: "json",                
                 beforeSend: function () {                	
@@ -146,7 +140,7 @@ $(document).ready(function() {
 						$.ajax({  
 								cache: false,
 								data: parametros, 		 		           
-					            url:   ecommerce + "administrador_usuario/actualizar_cliente/" + "<?php echo $_SESSION['id_cliente']; ?>",
+					            url:   ecommerce + "administrador_usuario/actualizar_cliente/" + id_cliente_js,
 					            type:  'POST', 
 					            dataType: "json",                               
 					            beforeSend: function () {                    	     	
@@ -183,9 +177,7 @@ $(document).ready(function() {
 		$('#boton_datos').removeClass('boton-datos-sel').addClass('boton-datos');		
 	});			
 	
-	$("#boton_historial").click();	
-	
-	
+	$("#boton_medios").click();			
 				
 });	
 
@@ -194,19 +186,43 @@ function view_pass(){
 	$('#view_pass_link').hide();
 }
 
-function detalle_compra(compra, cliente){	
-	$.ajax({
-	    data:  parametros,
-	    url:   ecommerce + "/administrador_usuario/detalle_compra/" + compra + "/" + cliente,
-	    type:  'post',
-	    beforeSend: function () {
-			$("#result_informacion").html("Procesando, espere por favor...");
-	    },
-		success:  function (response) {          			
-			$("#result_informacion").html(response);                                                
-	    }
-    });	
-}	
+function editar_tc(id_tarjeta , id_tipo ){
+	
+	$.ajax({   
+		cache: false,		 		           
+        url:   ecommerce + "administrador_usuario/editar_tc/" + id_tarjeta + "/" + id_tipo + "/" + id_cliente_js,
+        type:  'POST',                                      
+        beforeSend: function () {                    	     	
+			$("#result_informacion").html("Procesando, espere por favor..." );
+        },
+  		success:  function (response) {              			  			      			
+  			$("#result_informacion").html(response);  		  			            			          			    			             			     				      				   			      				          																		             
+        }
+    }); 	
+    
+}
+
+function eliminar_tc(id_tarjeta){
+	var conf = confirm("¿Estas seguro?");
+	if(conf){
+		$.ajax({   
+			cache: false,		 		           
+        	url:   ecommerce + "administrador_usuario/eliminar_tc/" + id_tarjeta + "/" + id_cliente_js,
+        	type:  'POST',                                      
+        	beforeSend: function () {                    	     	
+				$("#result_informacion").html("Procesando, espere por favor..." );
+        	},
+  			success:  function (response) {              			  			      			
+  				$("#result_informacion").html(response);  	
+  				if($("#eliminar_tarjeta").text()== 1){
+					$("#result_informacion").html('<div class="encabezado-descripcion">Se elimino la información de tarjeta.</div>');
+					setTimeout('$("#boton_medios").click()', 2500);	
+				}                                      	  			            			          			    			             			     				      				   			      				          																		             
+        	}
+    	});
+   }    
+     	
+}
 </script>
 <div id="historial-compras">
 	<div>	

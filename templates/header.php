@@ -58,7 +58,7 @@
                     <div>
                         <form name="searh_form" method="get" action="<?php echo TIENDA; ?>buscador.php" class="form_search">
                             <label for="search">Buscar en:</label>
-                            <select id="filtro_busqueda" name="filtro_busqueda">
+                            <select id="filtro_busqueda" name="fb">
                                 <?php
 								//Sacar la información de la categoría
 								$path_criterios_busqueda = "./json/criterios_busqueda.json";

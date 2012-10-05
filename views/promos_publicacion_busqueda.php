@@ -23,14 +23,14 @@
 	}
 	*/
 	##### Promos destacadas por publicación
-	if (isset($pd) && count($pd) == 1) {
+	/*if (isset($pd) && count($pd) == 1) {
 		include_once('./components/promocion_destacada.php');
-	}
+	}*/
 	##### Filtro por formatos y precio
-	if (isset($formatos)) {
+	/*if (isset($formatos)) {
 		echo "<script type='text/javascript' src='".TIENDA."js/filtro_formato.js'></script>";
 		include_once('./components/filtro_formatos.php');
-	}
+	}*/
 	#### Promociones de la publicación (listado)
 	if (isset($ofertas_publicacion)) {
 		//último nivel de detalle

@@ -71,7 +71,7 @@
 		$carrito='';
 		$carrito = "'comprar_promocion', ".$p->detalle->id_sitio.", ".$p->detalle->id_canal.", ".$p->detalle->id_promocion;
 		
-		$descripcion_promocion = !empty($p->detalle->descripcion_issue) ? $p->detalle->descripcion_issue : $p->descripcion_promocion; 
+		$descripcion_promocion = !empty($p->detalle->descripcion_issue) ? $p->detalle->descripcion_issue : $p->detalle->descripcion_promocion; 
 		//$action_carrito = TIENDA . "carrito.php?id_sitio=" . $p->detalle->id_sitio . "&id_canal=" . $p->detalle->id_canal . "&id_promocion=" . $p->detalle->id_promocion;
 		//$onclick_action = "document.comprar_promocion" . $p->detalle->id_promocion . ".action='" . $action_carrito . "'; ";
 		//$onclick_event = "document.comprar_promocion".$p->detalle->id_promocion.".submit()";

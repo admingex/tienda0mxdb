@@ -1,6 +1,7 @@
 <?php	 
 	include('./core/util_helper.php');
 
+
 	//requiredincludes
     require('./config/settings.php');
 	require('./controllers/paginacion.php');
@@ -21,113 +22,101 @@
 	$subtitle = "Buscador";
 	
 	$data = array();
-	$data["scripts"] = $scripts;
-	$data["title"] = $title;
-	$data["subtitle"] = $subtitle;
-	
+
 	$jc = new Json_Creator();
 
-	
-	if ($_GET) {
-		//$mostrar = (array_key_exists('mostrar', $_GET)) ? $_GET['mostrar'] : "";
-		$mostrar = "busqueda";		
-		//echo $mostrar;
-		$view = 'promos_publicacion_busqueda';			//vista que se cargará dependiendo del número de formatos de la publicación
+				//vista que se cargará dependiendo del número de formatos de la publicación
 		
-		$fb=$_GET['filtro_busqueda'];
-		echo $_GET['s'];
+		$fb=$_GET['fb'];
+		$s=$_GET['s'];
 		
-		if (array_key_exists('s', $_GET) && filter_var($_GET['s'], FILTER_VALIDATE_INT, array('min_range' => 1))) {	### TO DO seguridad!
-			//recuperar el parámetro de la consulta
-			$id_publicacion = $_GET['s'];
-			
-			$data['id_publicacion'] = $id_publicacion;
-			echo $id_publicacion;
-			$jc->generar_json_buscador_formatos($fb,$id_publicacion);
-			
-			/****************************************************************************************************************************************/			
-			switch ($fb){
-				case 'all':
-					//algo
-					$path_promociones = "./json/publicaciones/promos_publicacion_1.json";
-					break;
-				case '1':
-				case '2':
-				case '3':
-				case '4':
-					
-					$path_promociones = "./json/publicaciones/promos_publicacion_1.json";
-					break;
-			}
-			//sacar las promociones de la publicación y sus detalles correspondientes, sin importar cuántos formatos tenga
-			/*if($fb=='all'){
-				$path_promociones = "./json/publicaciones/promos_publicacion_".$id_publicacion.".json";	
-			}*/
-			
-			
-			//echo $path_promociones;
-			if (file_exists($path_promociones)) {
-				$json = file_get_contents($path_promociones);
-				$promos = json_decode($json);
-				
-				//pasar la información de las promociones de la publicación a la vista 
-				//$data['ofertas_publicacion'] = $promos;
-				
-				$detalles = array();	//detalles de las promociones
-				$secciones = array();	//secciones de las promociones
-				//Obtener los detalles de las promociones:
-				foreach ($promos->promociones as $promo) {
-					$id_promocion = $promo->id_promocion;
-					//sacar las promociones del archivo
-					$path_detalle_promo = "./json/detalle_promociones/detalle_promo_".$id_promocion.".json";
-					
-					//echo $path_detalle_promo;
-					if (file_exists($path_detalle_promo)) {
-						$json = file_get_contents($path_detalle_promo);
-						$detalle_promo = json_decode($json);
-						$promo->detalle = $detalles[] = $detalle_promo[0];	//Se guarda el primer elemento que viene de un array, sólo debe ser uno
+		/****************************************************************************************************************************************/			
+		switch ($fb){
+			case 'all':
+				//algo		archivo_busqueda_formatos.$formato.".json"
+				$path_promociones = "./json/publicaciones/promos_publicacion_".$s.".json";
+				break;
+			case '1':
+			case '2':
+			case '3':
+			case '4':
+			case '5':
+				$jc->generar_json_buscador_formatos($fb,$s);
+				$path_promociones = "./json/busqueda/b_".$fb.".json";
+				//vista
+				$view = 'promos_publicacion_busqueda';
+				//DATOS		
+				if (file_exists($path_promociones)) {
+					$json = file_get_contents($path_promociones);
+					$promos = json_decode($json);
+					$detalles = array();	//detalles de las promociones
+					$promo_resultado=array();
+					//Obtener los detalles de las promociones:
+					foreach ($promos->promociones as $promo) {
+						$id_promocion = $promo->id_promocion;
+						$data['id_publicacion'] = property_exists(get_class($promo), 'id_publicacion') ? $promo->id_publicacion: 0;
+						//sacar las promociones del archivo
+						$path_detalle_promo = "./json/detalle_promociones/detalle_promo_".$id_promocion.".json";
+						
+						//echo "<br>". $path_detalle_promo." - ".file_exists($path_detalle_promo);
+						if (file_exists($path_detalle_promo)==1) {
+							$json = file_get_contents($path_detalle_promo);
+							$detalle_promo = json_decode($json);
+							$promo->detalle = $detalles[] = $detalle_promo[0];	//Se guarda el primer elemento que viene de un array, sólo debe ser uno
+							$promo_resultado[]=$promo;
+							
+							
+						}
+						
 					}
-					
-					/**
-					 * Secciones asociadas con la promoción
-					 */
-					$path_secciones = "./json/secciones/seccion_oc_".$id_promocion.".json";
-					//echo "secciones " . $path_secciones;
-					if (file_exists($path_secciones)) {
-						$json = file_get_contents($path_secciones);
-						$js = json_decode($json);		//json secciones
-						$secciones[$id_promocion] = $js;	//Se guarda el primer elemento que viene de un array, sólo debe ser uno
-					}
+					$promos->promociones = $promo_resultado;
+					$data['ofertas_publicacion'] = $promos;
+					$data['total_promociones'] = count($data['ofertas_publicacion']->promociones);
+					$data['detalles_promociones'] = $detalles;
+					/*echo "<pre>";					
+					print_r($promos);
+					print_r($promo_resultado);
+					echo "</pre>";
+					exit;*/
 				}
-				/*echo "<pre>";
-				print_r($secciones);
-				echo "</pre>";*/
+								
+				break;
+			case 'codigo_promocion':
+				$jc->generar_json_buscador_promocion($s);
+				$path_promociones = "./json/busqueda/promocion_".$s.".json";
+				break;
+			case 'promociones_especiales':
+				$jc->generar_json_buscador_promociones_especiales($s);
 				
-				//toda la información de la promoción
-				$data['ofertas_publicacion'] = $promos;
-				//secciones de las promociones
-				$data['secciones'] = $secciones;
-				//total de promociones de la publicación, se usa para mostrar el filtro siempre en caso de que las promociones mostradas sean menos de las mínimas para mostrar el filtro
-				$data['total_promociones'] = count($data['ofertas_publicacion']->promociones);
-				/*
-				echo "Temp<pre>";
-				print_r($detalles);
-				echo "</pre>";
-				*/
-				//los detalles sólo se usan en las suscripciones, pdfs, seminarios...
-				$data['detalles_promociones'] = $detalles;
-			}
-			
-		
-				$view .= $mostrar;			
+				//datos
+				$data['id_categoria'] = 6;
+				$path_promo_padre_especiales = "./json/busqueda/promocion_especial_".$s.".json";
+				//echo $path_promo_padre_especiales;
+				if (file_exists($path_promo_padre_especiales)) {
+					$json = file_get_contents($path_promo_padre_especiales);
+					$promos_padre = json_decode($json);	
+					$items = 0;					
+					foreach($promos_padre->promociones as $p){
+						
+							$data["promociones_especiales"][$items] = $p;
+							$items++;
+						
+					}
+																					 							
+				}
+				
+				//vista
+				$view='promociones_especiales';
+				break;
+			case 'palabras_clave':
+				
+				break;
 		}
-	} else {	//si no trae parámetros de la publicación manda al home
-		##### TO DO: definir este flujo
-		$view = "$mostrar";		
-		$data['pubs_m'] = "Promos de la publicación, no trae inforación en la petición.";
-		$url = site_url("home");
-		header("Location: $url");
-	}
+		
+		//echo $path_promociones;
+		
+			
+	
 	
 	cargar_vista($view, $data);
 	exit;
