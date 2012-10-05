@@ -193,7 +193,7 @@ class Json_Creator {
 		//recuperar el detalle
 		$detalle_busqueda_f = $this->modelo->get_busqueda_promocion_especial($palabra);
 		
-		$this->promos_bus = json_encode(array("promociones" => $detalle_busqueda_f));
+		$this->promos_bus = json_encode($detalle_busqueda_f);
 		
 		//echo "'".$file_detalle."'<br/>";
 		self::Write_To_Json_File($file_busqueda, $this->promos_bus);    	

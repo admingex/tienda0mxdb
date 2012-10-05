@@ -87,7 +87,24 @@
 				break;
 			case 'promociones_especiales':
 				$jc->generar_json_buscador_promociones_especiales($s);
+				$data['fb']=$fb;
+				$data['s']=$s;
+				$data['palabra']=$s;
+				$data['id_promo_padre'] = $s;	
+	
+				$path_promos_especiales = "./json/busqueda/promocion_especial_".$data['id_promo_padre'].".json";
 				
+				if (file_exists($path_promos_especiales)) {
+					$json = file_get_contents($path_promos_especiales);
+					$jph = json_decode($json);		
+								
+					//se pasan a la vista las promociones hijas obtenidas para la promocion padre
+					$data["promociones_hijas"] = $jph;
+								
+				}
+				//header('location:promocion_h_buscador.php?palabra='.$s);
+				//echo "nada";
+				/*
 				//datos
 				$data['id_categoria'] = 6;
 				$path_promo_padre_especiales = "./json/busqueda/promocion_especial_".$s.".json";
@@ -105,8 +122,9 @@
 																					 							
 				}
 				
-				//vista
-				$view='promociones_especiales';
+				//vista*/
+				$view='promociones_hijas_busqueda';
+				
 				break;
 			case 'palabras_clave':
 				
