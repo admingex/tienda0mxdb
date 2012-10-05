@@ -56,9 +56,9 @@
                 </div>                
                 <section class="header_section">
                     <div>
-                        <form name="searh_form" method="get" action="" class="form_search">
+                        <form name="searh_form" method="get" action="<?php echo TIENDA; ?>buscador.php" class="form_search">
                             <label for="search">Buscar en:</label>
-                            <select id="filtro_busqueda" >
+                            <select id="filtro_busqueda" name="fb">
                                 <?php
 								//Sacar la información de la categoría
 								$path_criterios_busqueda = "./json/criterios_busqueda.json";
@@ -77,7 +77,7 @@
 								}*/
                                 ?>
                             </select>
-                            <input type="text" id="s" name="s"/>
+                            <input type="text" id="s" name="s" value="" placeholder="Escriba un código de promoción o palabras clave"/>
                             <input type="submit" value="Ir"/>
                         </form>
                     </div>
