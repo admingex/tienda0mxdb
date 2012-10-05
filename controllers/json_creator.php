@@ -38,6 +38,8 @@ class Json_Creator {
 	
 	### Busquedas
 	private $archivo_busqueda_formatos	="./json/busqueda/b_";
+	private $archivo_busqueda_promocion	="./json/busqueda/promocion_";
+	private $archivo_busqueda_promocion_especial	="./json/busqueda/promocion_especial_";
 	
 	
 	//modelo a utilizar
@@ -160,16 +162,42 @@ class Json_Creator {
     /*************************************************************************************/
     public function generar_json_buscador_formatos($formato,$palabra) {
     	//ruta del archivo del detalle
-		$file_busqueda_f = $this->archivo_busqueda_formatos.$formato.".json";
+		$file_busqueda = $this->archivo_busqueda_formatos.$formato.".json";
 		
 		//recuperar el detalle
 		$detalle_busqueda_f = $this->modelo->get_busqueda_formatos($formato,$palabra);
 		
+		$this->promos_bus = json_encode(array("promociones" => $detalle_busqueda_f));
+		
 		//echo "'".$file_detalle."'<br/>";
-		self::Write_To_Json_File($file_busqueda_f, json_encode($detalle_busqueda_f));    	
+		self::Write_To_Json_File($file_busqueda, $this->promos_bus);    	
     }
     
-    
+    public function generar_json_buscador_promocion($palabra) {
+    	//ruta del archivo del detalle
+		$file_busqueda = $this->archivo_busqueda_promocion.$palabra.".json";
+		
+		//recuperar el detalle
+		$detalle_busqueda_f = $this->modelo->get_busqueda_promocion($palabra);
+		
+		$this->promos_bus = json_encode(array("promociones" => $detalle_busqueda_f));
+		
+		//echo "'".$file_detalle."'<br/>";
+		self::Write_To_Json_File($file_busqueda, $this->promos_bus);    	
+    }
+	
+ 	public function generar_json_buscador_promociones_especiales($palabra) {
+    	//ruta del archivo del detalle
+		$file_busqueda = $this->archivo_busqueda_promocion_especial.$palabra.".json";
+		
+		//recuperar el detalle
+		$detalle_busqueda_f = $this->modelo->get_busqueda_promocion_especial($palabra);
+		
+		$this->promos_bus = json_encode(array("promociones" => $detalle_busqueda_f));
+		
+		//echo "'".$file_detalle."'<br/>";
+		self::Write_To_Json_File($file_busqueda, $this->promos_bus);    	
+    }
     
     /*************************************************************************************/
 	
