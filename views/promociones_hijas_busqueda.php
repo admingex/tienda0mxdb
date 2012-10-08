@@ -2,7 +2,9 @@
 <div id="contenedor-promo">
 <?php
 	//echo "promo_padre".$id_promo_padre;
-	
+	if(empty($promociones_hijas)){
+		echo "No se encontraron resultados en la búsqueda";
+	}
 	/*Despliega las publicaciones de una categoría*/
 	/*
 	echo "<pre>";
