@@ -156,6 +156,7 @@
 				
 				//filtro por formato:
 				if ($_POST) {
+					
 					// $ofertas_publicacion: trae un array de objects 
 					$promos_filtradas = array();
 					//total de las promociones

@@ -10,12 +10,10 @@
 		echo "</pre>";*/
 		
 		echo 
-		"<div class='cuenta_promociones'>Resultados de su busqueda</div>".
+		//"<div class='cuenta_promociones'>Resultados de su busqueda</div>".
 		"<div class='leyenda_formato'>".
-			"<form id='form_filtro_formatos' method='post' action='/tienda/publicacion/ofertas/".$id_publicacion."'>";
+			"<form id='form_filtro_formatos' method='post' action='/tienda/buscador.php?fb=".$fb."&s=".$s."'>";
 	
-		
-		
 		//select de ordenación
 		//if (isset($criterios_ordenacion) && !empty($criterios_ordenacion)) {
 			echo 
@@ -34,6 +32,7 @@
 		echo
 			"</form>
 		</div>";
+		echo "&nbsp;";
 	
 	
                               

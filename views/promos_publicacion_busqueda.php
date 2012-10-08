@@ -28,10 +28,14 @@
 	}*/
 	##### Filtro por formatos y precio
 	//if (isset($formatos)) {
+	if($total_promociones > 6){
+		//echo "No se encontraron resultados en la búsqueda";
 		echo "<script type='text/javascript' src='".TIENDA."js/filtro_formato.js'></script>";
 		include_once('./components/filtro_orden.php');
+	}		
 //	}
 	#### Promociones de la publicación (listado)
+	
 	if (isset($ofertas_publicacion)) {
 		//último nivel de detalle
 		include_once('./components/promociones_publicacion.php');
