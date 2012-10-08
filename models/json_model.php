@@ -46,7 +46,23 @@ class Json_Model extends DBAbstractModel {
 		*/
 		return $id;
     }
-    
+/*------------------------------------------------------------------------------------------------------------------------------*/    
+	/**
+	 * Devuelve las promociones tolas las promociones
+	 */
+	public function get_busqueda_all($p) {
+		$this->query = "CALL SP_Buscador_All('%".$p."%')";
+		
+		$this->get_results_from_query();
+		
+		$busqueda_f = $this->rows;
+		/*
+		echo "<pre>";
+		echo json_encode($busqueda_f);
+		echo "</pre>";
+		*/ 
+		return $busqueda_f;
+	}
 	/**
 	 * Devuelve las promociones de la busqueda de los formatos
 	 */
@@ -65,7 +81,7 @@ class Json_Model extends DBAbstractModel {
 	}
 	
 	/**
-	 * Devuelve las promociones de la busqueda de las promociones
+	 * Devuelve las promociones de la busqueda de los codigos de promociones
 	 */
 	public function get_busqueda_promocion($p) {
 		$this->query = "CALL SP_Buscador_Promocion('%".$p."%')";
@@ -97,7 +113,7 @@ class Json_Model extends DBAbstractModel {
 		 * */
 		return $busqueda_p;
 	}
-		
+/*------------------------------------------------------------------------------------------------------------------------------*/
 	/**
 	 * Devuelve el listado de las categorías existentes.
 	 */
