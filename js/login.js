@@ -94,7 +94,7 @@ function consulta_mail(mail) {
 	$.ajax({
 		type: "GET",
 		data: {'mail' : mail},
-		url: url_ecommerce + "login/consulta_mail",
+		url: url_ecommerce + "administrador_usuario/consulta_mail",
 		dataType: "json",
 		async: true,
 		success: function(data) {
