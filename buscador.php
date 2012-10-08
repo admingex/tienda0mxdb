@@ -132,6 +132,7 @@
 				$data['s']=$s;
 				$data['palabra']=$s;
 				$data['id_promo_padre'] = $s;	
+							
 				$path_promociones = "./json/busqueda/codigo_promocion_".$s.".json";
 							
 				if (file_exists($path_promociones)) {
@@ -149,8 +150,26 @@
 				break;
 			 */
 		}
+
+//filtro por formato:
+				if ($_POST) {
+					//ordenamiento
+					$orden = (array_key_exists('sel_ordenar', $_POST) ? $_POST['sel_ordenar'] : NULL);
+					$op = $data['ofertas_publicacion'];
+					if ($orden) {
+						$op->promociones = ordenar_promociones($op->promociones, $orden);
+					}
+				
+					//re seasignan las promociones que se van a desplegar...
+					$data['ofertas_publicacion'] = $op;
+					
+					###Ordenamiento de promociones
+				}
+
+
 	cargar_vista($view, $data);
 	exit;
+	
 	
 	
 	/**
