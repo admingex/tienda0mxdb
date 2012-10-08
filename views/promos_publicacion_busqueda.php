@@ -27,10 +27,10 @@
 		include_once('./components/promocion_destacada.php');
 	}*/
 	##### Filtro por formatos y precio
-	/*if (isset($formatos)) {
+	//if (isset($formatos)) {
 		echo "<script type='text/javascript' src='".TIENDA."js/filtro_formato.js'></script>";
-		include_once('./components/filtro_formatos.php');
-	}*/
+		include_once('./components/filtro_orden.php');
+//	}
 	#### Promociones de la publicación (listado)
 	if (isset($ofertas_publicacion)) {
 		//último nivel de detalle

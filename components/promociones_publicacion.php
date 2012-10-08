@@ -13,6 +13,9 @@
 	 echo "<pre>";*/
 	 
 	$total = count($ofertas_publicacion->promociones);	
+	if($total_promociones==0){
+		echo "No se encontraron resultados en la búsqueda";
+	}
 			
 	if (isset($_GET['page'])) {
 		$pg = $_GET['page'];
@@ -131,7 +134,14 @@
 ?>		
 <div id="paginacion">
 <?php						
-	$url = TIENDA."publicacion/ofertas/".$id_publicacion."/";
+	
+	if(!empty($buscador)){
+		//echo "<br>".$s ."<br>".$fb."<br>".$buscador;
+		$url = TIENDA."buscador.php?fb=".$fb."&s=".$s."&page=";
+	}else{
+		$url = TIENDA."publicacion/ofertas/".$id_publicacion."/";
+	}
+	
 	
 	$classCss = "numPages";
 	#$classCss = "actualPage";

@@ -38,8 +38,9 @@ class Json_Creator {
 	
 	### Busquedas
 	private $archivo_busqueda_formatos	="./json/busqueda/b_";
-	private $archivo_busqueda_promocion	="./json/busqueda/promocion_";
+	private $archivo_busqueda_promocion	="./json/busqueda/codigo_promocion_";
 	private $archivo_busqueda_promocion_especial	="./json/busqueda/promocion_especial_";
+	private $archivo_busqueda_all	="./json/busqueda/all_promociones.json";
 	
 	
 	//modelo a utilizar
@@ -160,6 +161,18 @@ class Json_Creator {
 		return $publicaciones_por_categoria;
     }
     /*************************************************************************************/
+    public function generar_json_buscador_all($palabra) {
+    	//ruta del archivo del detalle
+				
+		//recuperar el detalle
+		$detalle_busqueda_f = $this->modelo->get_busqueda_all($palabra);
+		
+		$this->promos_bus = json_encode(array("promociones" => $detalle_busqueda_f));
+		
+		//echo "'".$file_detalle."'<br/>";
+		self::Write_To_Json_File($this->archivo_busqueda_all, $this->promos_bus);    	
+    }
+    
     public function generar_json_buscador_formatos($formato,$palabra) {
     	//ruta del archivo del detalle
 		$file_busqueda = $this->archivo_busqueda_formatos.$formato.".json";
@@ -180,7 +193,7 @@ class Json_Creator {
 		//recuperar el detalle
 		$detalle_busqueda_f = $this->modelo->get_busqueda_promocion($palabra);
 		
-		$this->promos_bus = json_encode(array("promociones" => $detalle_busqueda_f));
+		$this->promos_bus = json_encode($detalle_busqueda_f);
 		
 		//echo "'".$file_detalle."'<br/>";
 		self::Write_To_Json_File($file_busqueda, $this->promos_bus);    	
@@ -507,9 +520,11 @@ class Json_Creator {
 			 $i++;
 			 $x++;
 		}
+		/*
 		$buss2[$x]['valor_criterio']="palabras_clave";
 		$buss2[$x]['nombre_criterio']="Palabras clave";
 		$x++;
+		*/
 		$buss2[$x]['valor_criterio']="codigo_promocion";
 		$buss2[$x]['nombre_criterio']="Codigo de promoción";
 		$this->detalle_buscador = json_encode(array("criterios" => $buss2));

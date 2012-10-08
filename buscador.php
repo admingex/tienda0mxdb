@@ -1,7 +1,6 @@
 <?php	 
 	include('./core/util_helper.php');
-
-
+	
 	//requiredincludes
     require('./config/settings.php');
 	require('./controllers/paginacion.php');
@@ -32,9 +31,59 @@
 		
 		/****************************************************************************************************************************************/			
 		switch ($fb){
-			case 'all':
-				//algo		archivo_busqueda_formatos.$formato.".json"
-				$path_promociones = "./json/publicaciones/promos_publicacion_".$s.".json";
+			case 'all': 
+				$jc->generar_json_buscador_all($s);
+				$path_promociones = "./json/busqueda/all_promociones.json";
+				//vista
+				$view = 'promos_publicacion_busqueda';
+				//DATOS		
+				if (file_exists($path_promociones)) {
+					$json = file_get_contents($path_promociones);
+					$promos = json_decode($json);
+					$detalles = array();	//detalles de las promociones
+					$promo_resultado=array();
+					//Obtener los detalles de las promociones:
+					foreach ($promos->promociones as $promo) {
+						$id_promocion = $promo->id_promocion;
+						$data['id_publicacion'] = property_exists(get_class($promo), 'id_publicacion') ? $promo->id_publicacion: 0;
+						//sacar las promociones del archivo
+						$path_detalle_promo = "./json/detalle_promociones/detalle_promo_".$id_promocion.".json";
+						
+						//echo "<br>". $path_detalle_promo." - ".file_exists($path_detalle_promo);
+						if (file_exists($path_detalle_promo)==1) {
+							$json = file_get_contents($path_detalle_promo);
+							$detalle_promo = json_decode($json);
+							$promo->detalle = $detalles[] = $detalle_promo[0];	//Se guarda el primer elemento que viene de un array, sólo debe ser uno
+							$promo_resultado[]=$promo;					
+						}
+						
+					}
+					$promos->promociones = $promo_resultado;
+					$data['ofertas_publicacion'] = $promos;
+					$data['total_promociones'] = count($data['ofertas_publicacion']->promociones);
+					$data['detalles_promociones'] = $detalles;
+					$data["criterios_ordenacion"] = catalogo_criterios_ordenacion();
+					$data['buscador']=1;
+					$data['fb']=$fb;
+					$data['s']=$s;	
+				}
+				break;
+			case 'promociones_especiales':
+				$jc->generar_json_buscador_promociones_especiales($s);
+				$data['fb']=$fb;
+				$data['s']=$s;
+				$data['palabra']=$s;
+				$data['id_promo_padre'] = $s;	
+				$path_promos_especiales = "./json/busqueda/promocion_especial_".$data['id_promo_padre'].".json";
+				if (file_exists($path_promos_especiales)) {
+					$json = file_get_contents($path_promos_especiales);
+					$jph = json_decode($json);										
+					//se pasan a la vista las promociones hijas obtenidas para la promocion padre
+					$data["promociones_hijas"] = $jph;								
+				}
+				//vista*/
+				$view='promociones_hijas_busqueda';
+				
 				break;
 			case '1':
 			case '2':
@@ -63,9 +112,7 @@
 							$json = file_get_contents($path_detalle_promo);
 							$detalle_promo = json_decode($json);
 							$promo->detalle = $detalles[] = $detalle_promo[0];	//Se guarda el primer elemento que viene de un array, sólo debe ser uno
-							$promo_resultado[]=$promo;
-							
-							
+							$promo_resultado[]=$promo;					
 						}
 						
 					}
@@ -73,72 +120,138 @@
 					$data['ofertas_publicacion'] = $promos;
 					$data['total_promociones'] = count($data['ofertas_publicacion']->promociones);
 					$data['detalles_promociones'] = $detalles;
-					/*echo "<pre>";					
-					print_r($promos);
-					print_r($promo_resultado);
-					echo "</pre>";
-					exit;*/
+					$data["criterios_ordenacion"] = catalogo_criterios_ordenacion();
+					$data['buscador']=1;
+					$data['fb']=$fb;
+					$data['s']=$s;	
 				}
-								
 				break;
 			case 'codigo_promocion':
 				$jc->generar_json_buscador_promocion($s);
-				$path_promociones = "./json/busqueda/promocion_".$s.".json";
-				break;
-			case 'promociones_especiales':
-				$jc->generar_json_buscador_promociones_especiales($s);
 				$data['fb']=$fb;
 				$data['s']=$s;
 				$data['palabra']=$s;
 				$data['id_promo_padre'] = $s;	
-	
-				$path_promos_especiales = "./json/busqueda/promocion_especial_".$data['id_promo_padre'].".json";
-				
-				if (file_exists($path_promos_especiales)) {
-					$json = file_get_contents($path_promos_especiales);
-					$jph = json_decode($json);		
-								
+				$path_promociones = "./json/busqueda/codigo_promocion_".$s.".json";
+							
+				if (file_exists($path_promociones)) {
+					$json = file_get_contents($path_promociones);
+					$jph = json_decode($json);										
 					//se pasan a la vista las promociones hijas obtenidas para la promocion padre
-					$data["promociones_hijas"] = $jph;
-								
+					$data["promociones_hijas"] = $jph;								
 				}
-				//header('location:promocion_h_buscador.php?palabra='.$s);
-				//echo "nada";
-				/*
-				//datos
-				$data['id_categoria'] = 6;
-				$path_promo_padre_especiales = "./json/busqueda/promocion_especial_".$s.".json";
-				//echo $path_promo_padre_especiales;
-				if (file_exists($path_promo_padre_especiales)) {
-					$json = file_get_contents($path_promo_padre_especiales);
-					$promos_padre = json_decode($json);	
-					$items = 0;					
-					foreach($promos_padre->promociones as $p){
-						
-							$data["promociones_especiales"][$items] = $p;
-							$items++;
-						
-					}
-																					 							
-				}
-				
 				//vista*/
 				$view='promociones_hijas_busqueda';
+				break;
+			 /*
+			   case 'palabras_clave':
 				
 				break;
-			case 'palabras_clave':
-				
-				break;
+			 */
 		}
-		
-		//echo $path_promociones;
-		
-			
-	
-	
 	cargar_vista($view, $data);
 	exit;
 	
+	
+	/**
+	 * Recupera el catálogo de criterios para el ordenamiento de las promociones
+	 * 
+	 */
+	function catalogo_criterios_ordenacion() {
+		//cargar los criterios de ordenación para el listado
+		$path_criterios = "./json/criterios_ordenacion.json";
+		if (file_exists($path_criterios)) {
+			$json = file_get_contents($path_criterios);
+			$criterios = json_decode($json);
+			/*echo "formatos_pp<pre>";
+			print_r($criterios);
+			echo "</pre>";*/
+			return $criterios->criterios;
+			//$data["criterios"] = $criterios->criterios;	//pasar la promoción destacada a la vista
+		}
+	}
+	
+	
+	/**
+	 * ordenar el arreglo de promociones de acuerdo al criterio solicitado:
+	 * @param criterio: precio ascendente, precio descendente, nombre ascendente y descendente de la promoción 
+	 */
+	function ordenar_promociones($promos, $criterio) {
+		//echo $criterio;		
+		switch ($criterio) {
+			case 'nombre_desc':
+				if (count($promos) > 1) {
+					for ($i = 1; $i < count($promos); $i++) {
+						$temp = $promos[$i];
+						$descripcion_temp = !empty($temp->detalle->descripcion_issue) ? $temp->detalle->descripcion_issue : $temp->descripcion_promocion;
+						
+						//$promocion = $promos[0];
+						//$descripcion_promocion = !empty($promocion->detalle->descripcion_issue) ? $promocion->detalle->descripcion_issue : $promocion->descripcion_promocion;
+						for ($j = $i - 1; $j >= 0; $j--) {
+							$promocion = $promos[$j];
+							$descripcion_promocion = !empty($promocion->detalle->descripcion_issue) ? $promocion->detalle->descripcion_issue : $promocion->descripcion_promocion;
+							
+							if (strcmp($descripcion_promocion, $descripcion_temp) < 0) {
+								$promos[$j + 1] = $promos[$j]; //intercambia
+							} else {
+								break;
+							}
+						}
+						$promos[$j + 1] = $temp;
+					}
+				}
+				break;
+			case 'nombre_asc':
+				if (count($promos) > 1) {
+					for ($i = 1; $i < count($promos); $i++) {
+						$temp = $promos[$i];
+						$descripcion_temp = !empty($temp->detalle->descripcion_issue) ? $temp->detalle->descripcion_issue : $temp->descripcion_promocion;
+						
+						for ($j = $i - 1; $j >= 0; $j--) {
+							$promocion = $promos[$j];
+							$descripcion_promocion = !empty($promocion->detalle->descripcion_issue) ? $promocion->detalle->descripcion_issue : $promocion->descripcion_promocion;
+							
+							if (strcmp($descripcion_promocion, $descripcion_temp) > 0) {
+								$promos[$j + 1] = $promos[$j]; //intercambia
+							} else {
+								break;
+							}
+						}
+						$promos[$j + 1] = $temp;
+					}
+				}
+				break;
+			case 'precio_desc':
+				if (count($promos) > 1) {
+					for ($i = 1; $i < count($promos); $i++) {
+						$temp = $promos[$i];
+						
+						for ($j = $i - 1; ($j >= 0) && ($promos[$j]->detalle->costo < $temp->detalle->costo); $j--) {
+							$promos[$j + 1] = $promos[$j]; //intercambia
+						}
+						$promos[$j + 1] = $temp;
+					}
+				}
+				break;
+			case 'precio_asc':
+				if (count($promos) > 1) {
+					for ($i = 1; $i < count($promos); $i++) {
+						$temp = $promos[$i];
+						
+						for ($j = $i - 1; ($j >= 0) && ($promos[$j]->detalle->costo > $temp->detalle->costo); $j--) {
+							$promos[$j + 1] = $promos[$j]; //intercambia
+						}
+						$promos[$j + 1] = $temp;
+					}
+				}
+				break;
+					
+			default:
+				//$promos = $promos;
+				break;
+		}
+		return $promos;
+	}
 	
 ?>
 
