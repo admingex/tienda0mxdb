@@ -1,10 +1,19 @@
+<?php
+	$total = count($promociones_hijas);	
+	if($total > 6){
+		echo "<script type='text/javascript' src='".TIENDA."js/filtro_formato.js'></script>";
+			include_once('./components/filtro_orden_dos.php');
+	}	
+?>
 <link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
 <div id="contenedor-promo">
+	
 <?php
 	//echo "promo_padre".$id_promo_padre;
 	if(empty($promociones_hijas)){
 		echo "No se encontraron resultados en la búsqueda";
 	}
+
 	
 	/*Despliega las publicaciones de una categoría*/
 	/*
@@ -12,7 +21,7 @@
 		print_r($promociones_hijas);
 	echo "</pre>";
 	*/
-	$total = count($promociones_hijas);	
+
 	
 	if (isset($_GET['page'])) {
 		$pg = $_GET['page'];	
@@ -40,7 +49,8 @@
 	
 	$j = 0;
 	//foreach ($promociones_hijas as $p) {
-	for ($i = $desde; $i < $limite; $i++){			
+	for ($i = $desde; $i < $limite; $i++){
+					
 			$p = $recorrer[$i];	
 		//url de la publicación
 		$url_p = '';

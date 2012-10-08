@@ -28,7 +28,7 @@
 		
 		$fb=$_GET['fb'];
 		$s=$_GET['s'];
-		
+		$data["criterios_ordenacion"] = catalogo_criterios_ordenacion();
 		/****************************************************************************************************************************************/			
 		switch ($fb){
 			case 'all': 
@@ -139,7 +139,8 @@
 					$json = file_get_contents($path_promociones);
 					$jph = json_decode($json);										
 					//se pasan a la vista las promociones hijas obtenidas para la promocion padre
-					$data["promociones_hijas"] = $jph;								
+					$data["promociones_hijas"] = $jph;		
+								
 				}
 				//vista*/
 				$view='promociones_hijas_busqueda';
@@ -153,16 +154,24 @@
 
 //filtro por formato:
 				if ($_POST) {
-					//ordenamiento
+					//ordenamiento -todas y formatos
 					$orden = (array_key_exists('sel_ordenar', $_POST) ? $_POST['sel_ordenar'] : NULL);
 					$op = $data['ofertas_publicacion'];
 					if ($orden) {
 						$op->promociones = ordenar_promociones($op->promociones, $orden);
-					}
-				
+					}				
 					//re seasignan las promociones que se van a desplegar...
 					$data['ofertas_publicacion'] = $op;
 					
+					//ordenamiento -especiales y codigos
+					/*$orden2 = (array_key_exists('sel_ordenar_dos', $_POST) ? $_POST['sel_ordenar_dos'] : NULL);
+					
+					if ($orden2) {
+						$op2 = $data['promociones_hijas'];
+						$op2->promociones = ordenar_promociones($op2->promociones, $orden);
+					}				
+					//re seasignan las promociones que se van a desplegar...
+					$data['promociones_hijas'] = $op2;*/
 					###Ordenamiento de promociones
 				}
 
