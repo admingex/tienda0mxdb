@@ -94,8 +94,9 @@
 			    <input type='hidden' name='guidz' value='".API::guid()."' />
 			    <input type='hidden' name='imagen' value='".$src."' />
 			    <input type='hidden' name='descripcion' value='".$descripcion_promocion."' />
-			    <input type='hidden' name='precio' value='".$p->detalle->costo."' />
-			    <input type='hidden' name='moneda' value='".$p->detalle->moneda."' />
+			    <input type='hidden' name='precio' value='".$p->detalle->costo."'/>
+			    <input type='hidden' name='moneda' value='".$p->detalle->moneda."'/>
+			    <input type='hidden' name='iva' value='".$p->detalle->taxable."' />
 			    <input type='hidden' name='cantidad' value='1' />
 			    <div class='contenedor-imagen'>			    
 		    		<a href='". $url_detalle_promo . "'>

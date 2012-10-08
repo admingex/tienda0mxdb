@@ -183,6 +183,7 @@
 					    "<input type='hidden' name='descripcion' value='". $detalle->descripcion_promocion."' />\n" .
 					    "<input type='hidden' name='precio' value='".$detalle->costo."' />\n" .
 					    "<input type='hidden' name='moneda' value='".$detalle->moneda."' />\n" .
+					    "<input type='hidden' name='iva' value='".$detalle->taxable."' />\n" .
 					    "<input type='hidden' name='cantidad' value='1' />\n					     
 					</form>";
 					

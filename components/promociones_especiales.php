@@ -51,6 +51,7 @@
 		     	<input type='hidden' name='imagen' value='".TIENDA."p_images/".$pe->url_imagen."' />
 		     	<input type='hidden' name='descripcion' value='".$pe->descripcion_promocion."' />
 		     	<input type='hidden' name='precio' value='".$pe->costo."' />
+		     	<input type='hidden' name='iva' value='".$pe->taxable."' />
 		     	<input type='hidden' name='cantidad' value='1' />
 		     	<div class='contenedor-imagen'>
 		     		<img src='" . TIENDA . "p_images/".$pe->url_imagen."' />		     		
