@@ -5,6 +5,10 @@
 	if(empty($promociones_hijas)){
 		echo "No se encontraron resultados en la búsqueda";
 	}
+	echo "<div style='font-family: Arial;
+	font-size: 13px;
+	color:	#464646;
+	font-weight: bold;'>Resultados de su busqueda</div><br />";
 	/*Despliega las publicaciones de una categoría*/
 	/*
 	echo "<pre>";

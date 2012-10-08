@@ -62,6 +62,7 @@
 					$data['ofertas_publicacion'] = $promos;
 					$data['total_promociones'] = count($data['ofertas_publicacion']->promociones);
 					$data['detalles_promociones'] = $detalles;
+					$data["criterios_ordenacion"] = catalogo_criterios_ordenacion();
 					$data['buscador']=1;
 					$data['fb']=$fb;
 					$data['s']=$s;	
@@ -119,6 +120,7 @@
 					$data['ofertas_publicacion'] = $promos;
 					$data['total_promociones'] = count($data['ofertas_publicacion']->promociones);
 					$data['detalles_promociones'] = $detalles;
+					$data["criterios_ordenacion"] = catalogo_criterios_ordenacion();
 					$data['buscador']=1;
 					$data['fb']=$fb;
 					$data['s']=$s;	
@@ -149,5 +151,107 @@
 		}
 	cargar_vista($view, $data);
 	exit;
+	
+	
+	/**
+	 * Recupera el catálogo de criterios para el ordenamiento de las promociones
+	 * 
+	 */
+	function catalogo_criterios_ordenacion() {
+		//cargar los criterios de ordenación para el listado
+		$path_criterios = "./json/criterios_ordenacion.json";
+		if (file_exists($path_criterios)) {
+			$json = file_get_contents($path_criterios);
+			$criterios = json_decode($json);
+			/*echo "formatos_pp<pre>";
+			print_r($criterios);
+			echo "</pre>";*/
+			return $criterios->criterios;
+			//$data["criterios"] = $criterios->criterios;	//pasar la promoción destacada a la vista
+		}
+	}
+	
+	
+	/**
+	 * ordenar el arreglo de promociones de acuerdo al criterio solicitado:
+	 * @param criterio: precio ascendente, precio descendente, nombre ascendente y descendente de la promoción 
+	 */
+	function ordenar_promociones($promos, $criterio) {
+		//echo $criterio;		
+		switch ($criterio) {
+			case 'nombre_desc':
+				if (count($promos) > 1) {
+					for ($i = 1; $i < count($promos); $i++) {
+						$temp = $promos[$i];
+						$descripcion_temp = !empty($temp->detalle->descripcion_issue) ? $temp->detalle->descripcion_issue : $temp->descripcion_promocion;
+						
+						//$promocion = $promos[0];
+						//$descripcion_promocion = !empty($promocion->detalle->descripcion_issue) ? $promocion->detalle->descripcion_issue : $promocion->descripcion_promocion;
+						for ($j = $i - 1; $j >= 0; $j--) {
+							$promocion = $promos[$j];
+							$descripcion_promocion = !empty($promocion->detalle->descripcion_issue) ? $promocion->detalle->descripcion_issue : $promocion->descripcion_promocion;
+							
+							if (strcmp($descripcion_promocion, $descripcion_temp) < 0) {
+								$promos[$j + 1] = $promos[$j]; //intercambia
+							} else {
+								break;
+							}
+						}
+						$promos[$j + 1] = $temp;
+					}
+				}
+				break;
+			case 'nombre_asc':
+				if (count($promos) > 1) {
+					for ($i = 1; $i < count($promos); $i++) {
+						$temp = $promos[$i];
+						$descripcion_temp = !empty($temp->detalle->descripcion_issue) ? $temp->detalle->descripcion_issue : $temp->descripcion_promocion;
+						
+						for ($j = $i - 1; $j >= 0; $j--) {
+							$promocion = $promos[$j];
+							$descripcion_promocion = !empty($promocion->detalle->descripcion_issue) ? $promocion->detalle->descripcion_issue : $promocion->descripcion_promocion;
+							
+							if (strcmp($descripcion_promocion, $descripcion_temp) > 0) {
+								$promos[$j + 1] = $promos[$j]; //intercambia
+							} else {
+								break;
+							}
+						}
+						$promos[$j + 1] = $temp;
+					}
+				}
+				break;
+			case 'precio_desc':
+				if (count($promos) > 1) {
+					for ($i = 1; $i < count($promos); $i++) {
+						$temp = $promos[$i];
+						
+						for ($j = $i - 1; ($j >= 0) && ($promos[$j]->detalle->costo < $temp->detalle->costo); $j--) {
+							$promos[$j + 1] = $promos[$j]; //intercambia
+						}
+						$promos[$j + 1] = $temp;
+					}
+				}
+				break;
+			case 'precio_asc':
+				if (count($promos) > 1) {
+					for ($i = 1; $i < count($promos); $i++) {
+						$temp = $promos[$i];
+						
+						for ($j = $i - 1; ($j >= 0) && ($promos[$j]->detalle->costo > $temp->detalle->costo); $j--) {
+							$promos[$j + 1] = $promos[$j]; //intercambia
+						}
+						$promos[$j + 1] = $temp;
+					}
+				}
+				break;
+					
+			default:
+				//$promos = $promos;
+				break;
+		}
+		return $promos;
+	}
+	
 ?>
 
