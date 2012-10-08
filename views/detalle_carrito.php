@@ -2,9 +2,9 @@
 <?php
 
 echo "<div id='viewlet-carrito'>";
-echo "<pre>";
+/*echo "<pre>";
 print_r($_SESSION['carrito']);
-echo "</pre>";
+echo "</pre>";*/
 if (isset($_SESSION['carrito'])) {
 	$in = 'width: 528px';
 	$var = 0;
