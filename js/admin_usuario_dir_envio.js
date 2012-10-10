@@ -1,6 +1,6 @@
 function actualizar_ciudades(clave_estado) {
 	// var ecommerce = "http://localhost/ecommerce/";
-	$.post( ecommerce + 'direccion_envio/get_ciudades',
+	$.post( ecommerce + 'administrador_usuario/get_ciudades',
 		// when the Web server responds to the request
 		{ 'estado': clave_estado},
 		function(datos) {
@@ -28,7 +28,7 @@ function actualizar_ciudades(clave_estado) {
 
 function actualizar_colonias(clave_estado, ciudad) {
 	//var ecommerce = "http://localhost/ecommerce/";
-	$.post( ecommerce + 'direccion_envio/get_colonias',
+	$.post( ecommerce + 'administrador_usuario/get_colonias',
 		// when the Web server responds to the request
 		{ 'estado': clave_estado, 'ciudad': ciudad },
 		function(datos) {
@@ -49,7 +49,7 @@ function actualizar_colonias(clave_estado, ciudad) {
 
 function actualizar_cp(clave_estado, ciudad, colonia) {
 	//var ecommerce = "http://localhost/ecommerce/";
-	$.post( ecommerce + 'direccion_envio/get_colonias',
+	$.post( ecommerce + 'administrador_usuario/get_colonias',
 		// when the Web server responds to the request
 		{ 'estado': clave_estado, 'ciudad': ciudad},
 		function(datos) {
@@ -226,7 +226,7 @@ function dinamic_selects(){
 	$('#sel_pais').change(function() {
 		/*hacer un toggle si es necesario*/
 		var es_mx = false; 
-		$.getJSON(ecommerce + "direccion_envio/es_mexico/" + $(this).val(),
+		$.getJSON(ecommerce + "a/es_mexico/" + $(this).val(),
 			function(data) {
 				if (!data.result) {	//no es México
 					$('.div_mexico').hide();
@@ -286,7 +286,7 @@ function dinamic_selects(){
 		$.ajax({
 			type: "POST",
 			data: {'codigo_postal' : cp},
-			url: ecommerce + "direccion_envio/get_info_sepomex",
+			url: ecommerce + "administrador_usuario/get_info_sepomex",
 			dataType: "json",				
 			async: false,
 			success: function(data) {
@@ -307,7 +307,7 @@ function dinamic_selects(){
 					
 					
 					//carga del catálogo ciudades y selección
-					$.post( ecommerce + 'direccion_envio/get_ciudades',
+					$.post( ecommerce + 'administrador_usuario/get_ciudades',
 						// when the Web server responds to the request
 						{ 'estado': clave_estado},
 						function(datos) {
