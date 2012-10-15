@@ -26,7 +26,10 @@
 	$fb = $_GET['fb'];
 	$s = $_GET['s'];
 	$data["criterios_ordenacion"] = catalogo_criterios_ordenacion();	//para mostraren el combo de la búsqueda
-	
+	if($s=='verano' or $s=='cverano12'){
+		$fb='promociones_especiales';
+	}
+	//echo $fb;
 	/****************************************************************************************************************************************/			
 	switch ($fb) {
 		case 'all':
@@ -81,6 +84,7 @@
 				$jph = json_decode($json);
 				//se pasan a la vista las promociones hijas obtenidas para la promocion padre
 				$data["promociones_hijas"] = $jph;
+				$data['ofertas_publicacion']=$jph;
 			}
 			//vista*/
 			$view = 'promociones_hijas_busqueda';
@@ -143,6 +147,7 @@
 				$jph = json_decode($json);
 				//se pasan a la vista las promociones hijas obtenidas para la promocion padre
 				$data["promociones_hijas"] = $jph;
+				$data['ofertas_publicacion']=$jph;
 				
 			}
 			//vista*/

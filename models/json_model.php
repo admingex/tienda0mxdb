@@ -176,6 +176,22 @@ class Json_Model extends DBAbstractModel {
 		
 		return $promos_carrusel;
 	}
+	/**
+	 * Regresa las promociones para el homo promociones destacadas
+	 */
+	public function get_promos_home_destacada() {
+		$this->query = "CALL SP_Obtener_Home_Promocion_Destacada()";
+		
+		$this->get_results_from_query();
+		
+		$promos_homo_destacada = $this->rows;
+		
+		/*echo "<pre>";
+		echo json_encode($promos_carrusel);
+		echo "</pre>";*/
+		
+		return $promos_homo_destacada;
+	}
 	
 	/**
 	 * Regresa las promociones para la página de home
