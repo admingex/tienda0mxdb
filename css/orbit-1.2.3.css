@@ -43,8 +43,8 @@ div.orbit>img {
     left: 0;
     display: none;
     /* para cambiar el tamaño de las imagenes*/
-    width: 529px; 
-    height: 246px;
+    width: 633px; 
+    height: 337px;
 }
 
 div.orbit>a {
@@ -55,8 +55,8 @@ div.orbit>a {
     line-height: 0; 
     display: none;
    /* para cambiar el tamaño de las imagenes*/
-    width: 529px;
-    height: 246px;
+    width: 633px;
+    height: 337px;
 }
 
 .orbit>div {
@@ -186,12 +186,12 @@ div.slider-nav span.left {
     position: absolute;
     z-index: 1000;
     list-style: none;
-    bottom: -27px;    	
+    bottom: -2px;    	
     padding: 0;    
-    border: solid 2px;  
+    /*border: solid 2px;*/  
     border-color: #CCC;  
     width: 287px; 
-    padding-left: 45%;        
+    /*padding-left: 45%;*/        
 }
 
 .orbit-bullets li {

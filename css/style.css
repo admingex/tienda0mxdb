@@ -1,358 +1,114 @@
-html
+body 
 {
-    min-height: 100%;
-    padding-bottom: 1px;
+    background:#000000;
+    font:13px Arial;
+    margin:0 auto;
+    width:985px;    
 }
-body
+img{
+	border: none;	
+}
+#header_tienda div.header_section 
 {
-    background: none repeat scroll 0 0 #000000;
-    margin: 0 auto;
-    width: 1024px;
+    display:none;
 }
-a
+#header_tienda section.header_section 
 {
-    text-decoration: none;
-}
-#no-moneda {
-	display:none;
-}
-#header-container
-{
-    float: left;
-    width: 128px;
-}
-    #header-container img
-    {
-        margin: 13px 10px 0;
+    float:right;
     }
-#main
-{
-    background: none repeat scroll 0 0 #FFFFFF;
-    float: left;
-    font-family: Arial,Helvetica,Sans-serif;
-    min-height: 728px;
-    width: 768px;
-    overflow:hidden;
-}
-#main img{								
-	border: none;										
-}
-    #encabezado_tienda
+    #header_tienda section.header_section div
     {
-        overflow: hidden;
+        display:none;
     }
-        div.header_section
-        {
-            background:url(../images/css-sprite_btnAyuda1.png) no-repeat 557px -10px;
-            height:30px;
-            margin:35px 0 26px;
-            overflow:hidden;
+    #header_tienda section.header_section div:first-child
+    {
+        display:block;
+        margin:0;
+        padding:0 0 5px 0;
+    }
+section#contenido 
+{
+    clear:both;
+    margin:0;
+    padding:0;
+    }
+    nav.banner_categorias 
+    {
+        background:#000000 url(../images/nav_background.gif) repeat-x top left;
+        height:26px;
+        margin:0;
+        padding:0;
         }
-            div.header_section div:first-child 
+        nav.banner_categorias ul 
+        {
+            height:26px;
+            list-style:none;
+            margin:0 0 0 50px;
+            padding:0;
+            }
+            nav.banner_categorias ul li 
+            {
+                float:left;
+                }
+            nav.banner_categorias ul li:first-child
             {
                 /*display:none;*/
-            }
-            div.header_section div.titulo_logo
-            {
-                float:left;
-                line-height:30px;
-                margin: 5px 0 0 100px;
-                padding:0;
-                font-weight: bold;
-                font-size: 23px;
-                font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-            }           
-            div.necesita-ayuda 
-            {
-                background: url(../images/css-sprite_btnAyuda2.png) no-repeat 0 -4px;
-                float:right;
-                height:21px;
-                width:288px;
-            }
-            div.necesita-ayuda:hover
-            {
-                background-position: 0px -25px;
-            }
-        div.blank_section
-        {
-            display: none;
-        }
-        section.header_section
-        {
-            background: #F0F0F0;
-            clear:both;
-            color: #545454;
-            font-size: 13px;
-            padding: 5px 36px 5px 36px;
-            overflow: hidden;
-            text-align:left;
-        }
-            section.header_section form 
-            {
-                float:left;
-                line-height:13px;
-                height:24px;
-                margin:0;
-                padding:0;
-                overflow:hidden;
-            }
-                section.header_section form select#filtro_busqueda 
-                {
-                   color:#343434;
-                   font-size:11px;
-                   line-height:13px;
-                   height:18px;
-                   width:143px;
                 }
-                section.header_section form input#s 
+                nav.banner_categorias ul li a
                 {
-                    background:#FFFFFF url(../images/css_sprite_LupaBuscar.png) no-repeat -3px -3px;
-                    border:1px solid #D0D0D0;
-                    border-radius:2px;
-                    font-size:11px;
-                    line-height:13px;
-                    height:18px;
-                    margin:0;
-                    padding-left:20px;
-                    width:250px;
-                }
-                section.header_section form input[type=submit] 
+                    color:#FFFFFF;
+                    font-weight:bold;
+                    line-height:26px;
+                    padding:0 25px 0 0;
+                    text-decoration:none;
+                    text-transform:uppercase;
+                    }
+                nav.banner_categorias ul li a:hover 
                 {
-                    background: url(../images/css_sprite_btnIR.png) no-repeat -7px -5px;
-                    border:none;
-                    line-height:22px;
-                    height:22px;
-                    margin:0 0 0 5px;
-                    padding:1px 0 20px;
-                    text-indent:-1000px;
-                    width:31px;
-                }
-                section.header_section form input[type=submit]:hover 
-                {
-                    background-position:-7px -27px;
-                } 
-            #header_tienda a.carrito, 
-            #header_tienda a.login,
-            #header_tienda a.mi_cuenta
-            {
-                background: url(../images/css_sprite_btn01.png) no-repeat -7px -5px;
-                float:left;
-                margin:0 0 0 8px;
-                padding:0; 
-                padding-top: 3px;               
-                text-indent:35px;
-                color: #FFF;
-                font-weight: bold;
-            }
-            #header_tienda a.login 
-            {
-                background-position:-88px -5px;
-                height:19px;
-                width:81px;
-            }
-            #header_tienda a.login:hover
-            {
-                background-position:-88px -27px;
-            }
-            #header_tienda a.mi_cuenta
-            {
-                background-position:-7px -5px;
-                height:19px;
-                width:81px;
-            }
-            #header_tienda a.mi_cuenta:hover
-            {
-                background-position:-7px -27px;
-            }
-            #header_tienda a.logout
-            {
-                display:none;
-            }
-            #header_tienda a.carrito
-            {
-                background-position:-169px -5px;
-                height:19px;
-                width:72px;
-            }
-            #header_tienda a.carrito:hover
-            {
-                background-position:-169px -27px;
-            }
-    div#contenido 
+                    color:#8DC540;
+                    }
+    div.contenidos
     {
-    }
-        nav.banner_categorias
+        margin:0;
+        padding:0;
+        }         
+        div.contenidos div.blank_section 
         {
-            background: #C00009 url(../images/nav_background.jpg) repeat-x top left;
-            padding-left:36px;
-            width:768px;
-            height: 29px;
-            overflow:hidden;
-        }
-            nav.banner_categorias ul
-            {
-                list-style: none;
-                margin: 0;
-                padding: 0;
+            height:10px;
             }
-                nav.banner_categorias ul li
-                {
-                    float: left;
-                    padding: 0;
-                }
-                    nav.banner_categorias ul li a
-                    {
-                        background: url(../images/nav_ul_li_background.jpg) repeat-x 0 0;
-                        display:block;
-                        font-size:12px;
-                        font-weight:bold;
-                        color:#FFFFFF;
-                        text-transform:uppercase;
-                        line-height:30px;
-                        margin:0 8px 0 0;
-                        padding:0 5px;
-                        overflow:hidden;
-                    }
-                    nav.banner_categorias ul li a:hover
-                    {
-                        background-position:0 -29px;
-                    }
-        div.contenidos 
+        div.contenidos div.menuv 
         {
-            margin:18px 36px 0;
-            overflow:hidden;
-        }
-            div.menuv
-            {
-                float: left;
-                padding: 0;
-                margin: 0;
-                overflow: hidden;
-                width: 138px;
-            }
-                div.menuv ul
-                {
-                    list-style: none;
-                    margin: 0;
-                    padding: 0;
-                }
-                div.menuv ul li
-                {
-                    list-style: none;
-                    margin: 0;
-                    padding: 0;
-                }
-                div.menuv ul li p
-                {
-                    background: url(../images/menuv_header.png) no-repeat left top;
-                    height:21px;
-                    margin:0;
-                    padding:0;
-                    text-indent:-1000px;
-                }
-                div.menuv ul li ul
-                {
-                    list-style: none;
-                    margin: 0;
-                    padding: 0;
-                }
-                div.menuv ul li ul li a
-                {
-                    background: #FAFAFA;
-                    border: 1px solid #DADADA;
-                    border-top: 1px solid #FFFFFF;
-                    color: #a9a9a9;
-                    display: block;
-                    font-size: 11px;
-                    font-weight: bold;
-                    padding: 3px 10px;
-                }
-                div.menuv ul li ul li a:hover
-                {
-                    background:#DEDEDE;
-                    border: 1px solid #DADADA;
-                    border-top: 1px solid #E0E0E0;
-                    color: #C60002;
-                }
-            div.contenido_promos
-            {
-                background:#FFF;
-                float: right;
-                margin:0;
-                padding: 0;
-                width:528px;
-            }
-        div#pleca-punteada 
+            display:none;
+            }   
+        div.contenidos div.contenido_promos 
         {
-            border-top:1px dotted #D0D0D0;
-            height:1px;
-            line-height:1px;
-            margin:10px auto 5px;
+            margin:0;
             padding:0;
-            overflow:hidden;
-            width:696px;
             }
-    div.footer_main
-    {
-        margin: 10px;
-        width: 350px;
-        margin: 0 auto;
-        overflow:hidden;        
-    }
-        div.footer_main div
-        {
-            float: left;
-            margin: 0 10px;
-            overflow: hidden;
-        }
-            div.footer_main div a
-            {
-                color: #0461B3;
-                font-size: 12px;
-                font-weight: bold;
-            }
-#footer-container
+div.footer_main 
 {
-    float: left;
-    overflow: hidden;
-    width: 128px;
-}
-    #footer-container img
+    border-top:2px inset #606060;
+    font-size:10px;
+    line-height:32px;
+    text-align:center;
+    text-transform:uppercase;
+    }    
+    div.footer_main div 
     {
-        margin: 65px 10px 0;
-    }
-
-
-input[type="radio"]{
-	display: none;
-}
-
-.radio_no_selected{
-    border: none;
-	height: 16px;
-	width: 16px;
-	background: transparent url('../images/css-sprite_icons.png') no-repeat;	
-	background-position: -153px -49px;	
-	float: left;	
-}
-.radio_selected{
-	border: none;
-	height: 16px;
-	width: 16px;	
-	background: transparent url('../images/css-sprite_icons.png') no-repeat;	
-	background-position: -153px -65px;	
-	float: left;
-}
-.label_radio{
-	float: left;
-	margin-left: 5px;
-}
-
-#separacion{
-	clear: both;	
-	height: 15px;	
-	width: 493px;
-}
+        display:inline;
+        padding:10px;
+        }
+            
+    div.footer_main a 
+    {
+        color:#FFFFFF;
+        text-decoration:none;
+        }
+div#footer-container 
+{
+    display:none;
+    }            
+    
 
 #paginacion{
 	clear: both;	
@@ -417,11 +173,4 @@ input[type="radio"]{
 	color:#800;	
 	font-weight: bold;	
 	float: left;
-}
- .nuevo-logo{
- 	position: absolute;
-	float: left;
-	z-index: 50;
-    width: 75px; 
-    margin: -30px 0px 0px 25px;
 }

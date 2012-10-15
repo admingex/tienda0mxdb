@@ -1,7 +1,8 @@
-#contenedor-promo {								
-	margin-top: 45px;		
-	width: 528px;	
-	font-family: Arial;											
+#contenedor-promo {											
+	font-family: Arial;		
+	border: none;	
+	position: relative;	
+	z-index: -10						
 }
 
 #contenedor-promo img{								
@@ -24,7 +25,8 @@
 #contenedor-promo .promo-left{				
 	width: 154px;					
 	float: left;
-	height: 360px ;																				
+	height: 360px ;		
+	position: relative;																		
 }
 
 
@@ -48,10 +50,10 @@
 	display: block;																
 }
 
-#contenedor-promo .contenedor-imagen img{
+#contenedor-promo img{
 	margin-top: 10px;	
 	border: none;	
-	width:	127px;
+	width:	150px;
 	height: 169px;																		
 }
 
