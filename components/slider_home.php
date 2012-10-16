@@ -35,9 +35,9 @@
 							<table cellspacing='0'>
 								<tr>
 									<td valign='bottom' style='padding-bottom: 20px'>
-										<div><img src='".TIENDA. "portada_images/" .$p->url_imagen."' width='130px' height='170px' /></div>
+										<div><img src='".TIENDA. "portada_images/" .$p->imagen_portada."' width='130px' height='170px' /></div>
 										<div style='height: 10px;'></div>
-										<div><img src='".TIENDA. "eslogan_images/" .$p->url_imagen."' width='130px' height='95px' /></div>
+										<div><img src='".TIENDA. "eslogan_images/" .$p->imagen_eslogan."' width='130px' height='95px' /></div>
 									</td>
 									<td>
 										<img src='".TIENDA. "contenido_images/" .$p->url_imagen."' width='499px' height='333px' />
