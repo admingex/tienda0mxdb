@@ -1,0 +1,56 @@
+.list_carousel {
+	background-color: #000;
+	margin: 0 0 30px 60px;
+	width: 360px;
+}
+
+.list_carousel ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: block;
+}
+.list_carousel li {
+	font-size: 40px;
+	color: #999;
+	text-align: center;
+	background-color: #800;								
+	height: 135px;
+	padding: 0;
+	margin: 6px;
+	display: block;
+	float: left;				
+}	
+
+.list_carousel li img{	
+	height: 135px;	
+	width: 102px	
+}
+
+.list_carousel.responsive {
+	width: auto;
+	margin-left: 0;
+}
+.clearfix {
+	float: none;
+	clear: both;
+}
+.prev {
+	float: left;
+	margin-left: 10px;
+	margin-top: -70px;
+	z-index: 2;
+	position: absolute;
+}
+.next {				
+	position: absolute;
+	margin-left: 680px;
+	z-index: 2;	
+	margin-top: -70px;
+}
+
+#carr_categoria{
+	width: 700px;		
+	float: left;
+	position: relative;
+}

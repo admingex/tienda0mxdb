@@ -6,7 +6,7 @@ require_once('./models/json_model.php');
 class Json_Creator {
 	
 	###############################  RUTA FIJA  ################################
-	var $ruta="/var/www/html/subir_tienda";
+	//var $ruta="/var/www/html/subir_tienda";
 
     ############################### PROPIEDADES ################################
     private $categorias;
@@ -19,31 +19,31 @@ class Json_Creator {
 	
 	
 	#### Rutas de los archivos
-	private $archido_id_sitio		= "/var/www/html/tienda/json/id_sitio_tienda.json";
-	private $archivo_categorias 	= "/var/www/html/tienda/json/categorias/categorias.json";
-	private $archivo_publicaciones 	= "/var/www/html/tienda/json/publicaciones/publicaciones.json";
-	private $archivo_formatos 		= "/var/www/html/tienda/json/formatos.json";
+	private $archido_id_sitio		= "./json/id_sitio_tienda.json";
+	private $archivo_categorias 	= "./json/categorias/categorias.json";
+	private $archivo_publicaciones 	= "./json/publicaciones/publicaciones.json";
+	private $archivo_formatos 		= "./json/formatos.json";
 	/*Administrador - Home*/
-	private $archivo_carrusel_home 	= "/var/www/html/tienda/json/carrusel_home.json";
-	private $archivo_home_promociones_destacadas 	= "/var/www/html/tienda/json/home_promociones_destacadas.json";
-	private $archivo_promos_home	= "/var/www/html/tienda/json/promociones_home.json";
-	private $archivo_promos_especiales	= "/var/www/html/tienda/json/promociones_especiales.json";
-	private $archivo_promos_padre	= "/var/www/html/tienda/json/promociones_padre/promos_padre.json";
-	private $archivo_buscador		= "/var/www/html/tienda/json/criterios_busqueda.json";	
+	private $archivo_carrusel_home 	= "./json/carrusel_home.json";
+	private $archivo_home_promociones_destacadas 	= "./json/home_promociones_destacadas.json";
+	private $archivo_promos_home	= "./json/promociones_home.json";
+	private $archivo_promos_especiales	= "./json/promociones_especiales.json";
+	private $archivo_promos_padre	= "./json/promociones_padre/promos_padre.json";
+	private $archivo_buscador		= "./json/criterios_busqueda.json";	
 	### bases
-	private $base_publicacion_por_categoria	= "/var/www/html/tienda/json/categorias/publicaciones_categoria_";
-	private $base_promos_por_publicacion	= "/var/www/html/tienda/json/publicaciones/promos_publicacion_";
-	private $base_formatos_por_publicacion	= "/var/www/html/tienda/json/publicaciones/formatos_publicacion";
-	private $base_detalle_promo				= "/var/www/html/tienda/json/detalle_promociones/detalle_promo_";
-	private $base_promocion_destacada_por_cartegoria	= "/var/www/html/tienda/json/promociones_destacadas/promo_destacada_categoria_";
-	private $base_promocion_destacada_por_publicacion	= "/var/www/html/tienda/json/promociones_destacadas/promo_destacada_publicacion_";
-	private $base_secciones_oc 		= "/var/www/html/tienda/json/secciones/seccion_oc_";
-	private $base_promociones_padre = "/var/www/html/tienda/json/promociones_padre/promo_padre_";
+	private $base_publicacion_por_categoria	= "./json/categorias/publicaciones_categoria_";
+	private $base_promos_por_publicacion	= "./json/publicaciones/promos_publicacion_";
+	private $base_formatos_por_publicacion	= "./json/publicaciones/formatos_publicacion";
+	private $base_detalle_promo				= "./json/detalle_promociones/detalle_promo_";
+	private $base_promocion_destacada_por_cartegoria	= "./json/promociones_destacadas/promo_destacada_categoria_";
+	private $base_promocion_destacada_por_publicacion	= "./json/promociones_destacadas/promo_destacada_publicacion_";
+	private $base_secciones_oc 		= "./json/secciones/seccion_oc_";
+	private $base_promociones_padre = "./json/promociones_padre/promo_padre_";
 	### Busquedas
-	private $archivo_busqueda_formatos	="/var/www/html/tienda/json/busqueda/b_";
-	private $archivo_busqueda_promocion	="/var/www/html/tienda/json/busqueda/codigo_promocion_";
-	private $archivo_busqueda_promocion_especial	="/var/www/html/tienda/json/busqueda/promocion_especial_";
-	private $archivo_busqueda_all	="/var/www/html/tienda/json/busqueda/all_promociones.json";
+	private $archivo_busqueda_formatos	="./json/busqueda/b_";
+	private $archivo_busqueda_promocion	="./json/busqueda/codigo_promocion_";
+	private $archivo_busqueda_promocion_especial	="./json/busqueda/promocion_especial_";
+	private $archivo_busqueda_all	="./json/busqueda/all_promociones.json";
 	
 	//modelo a utilizar
 	private $modelo;	//modelo de datos

@@ -1,5 +1,5 @@
-<div style="margin-top: -5px; z-index: 1000">
-	<div style='height: 337px; width: 633px; background-color: #800; float: left'>
+<div id='contenido_carrusel'>
+	<div class="carrusel_slide">
 		<div>		
 			<div id="featured"> 				
 		    <?php
@@ -35,12 +35,12 @@
 							<table cellspacing='0'>
 								<tr>
 									<td valign='bottom' style='padding-bottom: 20px'>
-										<div><img src='".TIENDA. "p_images/" .$p->url_imagen."' width='130px' height='170px' /></div>
+										<div><img src='".TIENDA. "portada_images/" .$p->url_imagen."' width='130px' height='170px' /></div>
 										<div style='height: 10px;'></div>
-										<div><img src='".TIENDA. "p_images/" .$p->url_imagen."' width='130px' height='95px' /></div>
+										<div><img src='".TIENDA. "eslogan_images/" .$p->url_imagen."' width='130px' height='95px' /></div>
 									</td>
 									<td>
-										<img src='".TIENDA. "p_images/" .$p->url_imagen."' width='499px' height='333px' />
+										<img src='".TIENDA. "contenido_images/" .$p->url_imagen."' width='499px' height='333px' />
 									</td>
 								</tr>
 							</table>
@@ -52,37 +52,39 @@
 			</div>						
 		</div>		
 	</div>
-	<div style='height: 337px; width: 48px; float: left; padding: 0px; background-image: url("images/css_sprite_pleca_home.jpg"); background-repeat: repeat-y; margin-left: 5px; margin-right: 5px;'>			
+	<div class="pleca_separate">			
 	</div>
-	<div style='height: 337px; width: 293px; float: left'>
-		<div style='height: 120px; border: solid 1px #FFF; margin-bottom: 5px; padding: 10px'>			
+	<div class="columna_derecha" >
+		<div class="promo_zinio">			
 			<img src='<?php echo TIENDA . "images/zinio.jpg";?>' />
 		</div>
-		<div style='height: 190px; position: absolute; z-index: 1001'>
+		<div class="promo_destacada">
 				<?php	    
-	    $path_promos_carrusel = "./json/carrusel_home.json";
+	    $path_promos_carrusel = "./json/home_promociones_destacadas.json";
 		
 		if (file_exists($path_promos_carrusel)) {
 			
 			$json = file_get_contents($path_promos_carrusel);
-			$cp = json_decode($json);
-			$items = count($cp->promos_carrusel);			
+			$cp = json_decode($json);			
+			$items = count($cp->homo_promos_destacada);			
+			
 			
 			// se añaden las promociones padre para incluirlas en el carrusel
-			$path_promo_padre_carrusel = "./json/promociones_padre/promos_padre.json";	
-			if (file_exists($path_promo_padre_carrusel)) {
-				$json = file_get_contents($path_promo_padre_carrusel);
-				$promos_padre = json_decode($json);								
+			$path_promo_padre = "./json/promociones_padre/promos_padre.json";	
+			if (file_exists($path_promo_padre)) {
+				$json = file_get_contents($path_promo_padre);
+				$promos_padre = json_decode($json);										
 				foreach($promos_padre as $p ){
-					if($p->descripcion_canal=="HOME CARRUSEL"){						
-						$cp->promos_carrusel[($items)] = $p;
+					if($p->descripcion_canal=="HOME PROMOCION DESTACADA"){						
+						$cp->homo_promos_destacada[($items)] = $p;
 						$items++;
 					}					
 				} 								
 			}			
-						
+										
 			$rand = rand(0, ($items-1));	
-			$p	= $cp->promos_carrusel[$rand];
+			$p	= $cp->homo_promos_destacada[$rand];
+			
 			
 			//foreach ($cp->promos_carrusel as $p) {
 				if(isset($p->promo_padre)){
