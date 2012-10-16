@@ -52,7 +52,7 @@ section#contenido
                 }
             nav.banner_categorias ul li:first-child
             {
-                /*display:none;*/
+                display:none;
                 }
                 nav.banner_categorias ul li a
                 {

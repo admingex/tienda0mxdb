@@ -1,0 +1,68 @@
+#list_carousel {				
+	margin: 0;
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px 50px;
+	position: relative;
+}
+#list_carousel ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: block;				
+}
+#list_carousel li {				
+	text-align: center;																			
+	margin: 5px 18px;
+	display: inline-block;					
+	width: 124px;
+	padding: 0px 7px 7px 5px;						
+}	
+
+#list_carousel li img{	
+	height: 180px;
+	width: 124px;	
+}	
+
+#contenido_carrusel{
+	margin-top: -5px; 
+	z-index: 1000;
+}
+
+.carrusel_slide{
+	height: 337px; 
+	width: 633px; 
+	background-color: #800; 
+	float: left;
+}
+
+.pleca_separate{
+	height: 337px; 
+	width: 48px; 
+	float: left; 
+	padding: 0px; 
+	background-image: url("../images/css_sprite_pleca_home.jpg"); 
+	background-repeat: repeat-y; 
+	margin-left: 5px; 
+	margin-right: 5px;
+}
+
+.columna_derecha{
+	height: 337px; 
+	width: 293px; 
+	float: left;
+}
+
+.promo_zinio{
+	 height: 120px; 
+	 border: solid 1px #FFF; 
+	 margin-bottom: 5px; 
+	 padding: 10px;
+}
+
+.promo_destacada{
+	height: 190px; 
+	position: absolute; 
+	z-index: 1001;
+}

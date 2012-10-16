@@ -1,35 +1,6 @@
 <link type="text/css" href="<?php echo TIENDA;?>css/orbit-1.2.3.css" rel="stylesheet" />
-<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
-<style type="text/css">				
-									
-			#list_carousel {				
-				margin: 0;
-				width: 900px;
-				margin-left: auto;
-				margin-right: auto;
-				padding: 0px 50px;
-				position: relative;
-			}
-			#list_carousel ul {
-				margin: 0;
-				padding: 0;
-				list-style: none;
-				display: block;				
-			}
-			#list_carousel li {				
-				text-align: center;																			
-				margin: 5px 18px;
-				display: inline-block;					
-				width: 124px;
-				padding: 0px 7px 7px 5px;						
-			}	
-
-			#list_carousel li img{	
-				height: 180px;
-				width: 124px	
-			}											
-		</style>
-	
+<!--<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />-->
+<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-home.css" rel="stylesheet" />
 <?php				    
 	
 	

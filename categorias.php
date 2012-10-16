@@ -10,12 +10,12 @@
 	
 	//incluir archivos js
 	$scripts = array();	
-	$scripts [] = TIENDA."js/login.js";
-	$scripts [] = TIENDA."js/registro.js";
+	$scripts [] = TIENDA."js/slide.js";
+	$scripts [] = TIENDA."js/funcion_slide.js";
 	
 	//información para la vista
-	$title = "Publicaciones por Catgoría";
-	$subtitle = "Publicaciones por Catgoría";
+	$title = "Publicaciones por Categoría";
+	$subtitle = "Publicaciones por Categoría";
 	
 	$data = array();
 	$data["scripts"] = $scripts;
@@ -53,6 +53,7 @@
 	echo "</pre>";
 	*/
 	cargar_vista('categoria_publicaciones', $data);
+
 	exit;
 
 ?>

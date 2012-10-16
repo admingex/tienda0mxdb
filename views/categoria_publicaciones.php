@@ -9,6 +9,7 @@
 	}
 ?>
 <link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
+<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-slide.css" rel="stylesheet" />
 
 <?php
 	//viene en el data del controlador
@@ -16,6 +17,16 @@
 	
 	//ruta del archivo de la categoría en cuestión
 	$path_categorias = "./json/categorias/publicaciones_categoria_".$id.".json";
+	
+	//revisar si hay publicaciones en la categoría y mostrarlas
+	if (file_exists($path_categorias)) {
+		$json = file_get_contents($path_categorias);
+		$categoria = json_decode($json);
+		
+		if (count($categoria->publicaciones) > 0) {
+			include_once('./components/categoria_publicaciones.php');
+		}
+	}
 	
 	// revisar si hay promoción destacada para la categoría
 	$path_promo_destacada = "./json/promociones_destacadas/promo_destacada_categoria_".$id.".json";
@@ -28,13 +39,5 @@
 		}
 	}
 	
-	//revisar si hay publicaciones en la categoría y mostrarlas
-	if (file_exists($path_categorias)) {
-		$json = file_get_contents($path_categorias);
-		$categoria = json_decode($json);
-		
-		if (count($categoria->publicaciones) > 0) {
-			include_once('./components/categoria_publicaciones.php');
-		}
-	}
 ?>
+<div style="clear: both"></div>

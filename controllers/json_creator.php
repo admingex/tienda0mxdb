@@ -6,7 +6,7 @@ require_once('./models/json_model.php');
 class Json_Creator {
 	
 	###############################  RUTA FIJA  ################################
-	var $ruta="/var/www/html/subir_tienda";
+	//var $ruta="/var/www/html/subir_tienda";
 
     ############################### PROPIEDADES ################################
     private $categorias;
