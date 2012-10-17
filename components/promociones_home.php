@@ -35,7 +35,7 @@
 		}
 		
 		//echo "get pag: " . $_GET['page'];
-		$cantidad = 5; //Cantidad de registros que se desea mostrar por pagina
+		$cantidad = 15; //Cantidad de registros que se desea mostrar por pagina
 		
 		//Para probar solo le coloqué 3
 		//página actual
@@ -94,7 +94,7 @@ echo "		</ul>
 	}
 ?>
 <?php
-	if($total>6){ 
+	if($total>$cantidad){ 
 ?>
 <div id="paginacion">
 <?php		 																	
