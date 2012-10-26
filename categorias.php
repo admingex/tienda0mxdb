@@ -52,6 +52,10 @@
 	print_r($data);
 	echo "</pre>";
 	*/
+	?>
+	<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-slide.css" rel="stylesheet" />
+	<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
+<?php
 	cargar_vista('categoria_publicaciones', $data);
 
 	exit;

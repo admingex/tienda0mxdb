@@ -1,6 +1,6 @@
 #list_carousel {				
 	margin: 0;
-	width: 900px;
+	width: 890px;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 0px 50px;
@@ -55,8 +55,7 @@
 }
 
 .promo_zinio{
-	 height: 120px; 
-	 #border: solid 1px #FFF; 
+	 height: 120px; 	  
 	 margin-bottom: 10px; 
 	 padding-bottom: 10px;
 }

@@ -1,7 +1,6 @@
-.list_carousel {
-	background-color: #000;
-	margin: 0 0 30px 60px;
-	width: 360px;
+.list_carousel {	
+	margin: 0px;
+	padding: 0px;	
 }
 
 .list_carousel ul {
@@ -10,22 +9,34 @@
 	list-style: none;
 	display: block;
 }
-.list_carousel li {
-	font-size: 40px;
-	color: #999;
-	text-align: center;
-	background-color: #800;								
-	height: 135px;
-	padding: 0;
-	margin: 6px;
+.list_carousel li {		
+	text-align: center;								
+	padding: 0px;
+	margin: 0px;
 	display: block;
-	float: left;				
+	float: left;		
+	height: 230px				
 }	
 
-.list_carousel li img{	
-	height: 135px;	
-	width: 102px	
+.imagen1{
+	margin-top: 25px;			
+	width: 132px;
+	height: 180px;
 }
+
+.imagen2{
+	margin-top: 5px;			
+	width: 180px;
+	height: 220px;
+}
+
+/*  
+ .list_carousel li img{
+	margin-top: 5px;			
+	width: 180px;
+	height: 210px;		
+}
+*/
 
 .list_carousel.responsive {
 	width: auto;
@@ -36,25 +47,33 @@
 	clear: both;
 }
 .prev {
-	float: left;
-	margin-left: 10px;
-	margin-top: -70px;
-	z-index: 2;
-	position: absolute;
+	position: absolute;	
+	margin-left: 1px;
+	margin-top: -65px;
+	z-index: 2;			
+	width: 18px;
+	height: 40px;		
+	background: transparent url('../images/kiosco_contenido_flecha.png') no-repeat;	
+	background-position: 0px 0px;
 }
 .next {					
 	position: absolute;
 	margin-left: 680px;
 	z-index: 2;	
-	margin-top: -70px;		
-	width: 371px;
-	height: 173px;		
+	margin-top: -65px;		
+	width: 18px;
+	height: 40px;		
 	background: transparent url('../images/kiosco_contenido_flecha.png') no-repeat;	
 	background-position: 0px 0px;
 }
 
 #carr_categoria{
-	width: 700px;		
+	width: 680px;		
 	float: left;
 	position: relative;
+}
+
+#contenedor_slide{
+	width: 700px;	
+	position: relative;	
 }
