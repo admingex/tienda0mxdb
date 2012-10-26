@@ -1,0 +1,19 @@
+/* Selectmenu
+----------------------------------*/
+.ui-selectmenu { display: block; position:relative; height:28px; text-decoration: none; overflow:hidden;}
+.ui-selectmenu-menu { padding:0; margin:0; list-style:none; position:absolute; top: 0; visibility: hidden; overflow: none; font-size: 10px }
+.ui-selectmenu-open { visibility: visible;}
+.ui-selectmenu-menu-popup {}
+.ui-selectmenu-menu-dropdown { z-index: 90000001;}
+.ui-selectmenu-menu li { padding:0; margin:0; display: block; font-weight: normal !important; }
+.ui-selectmenu-menu li a,.ui-selectmenu-status {line-height: 1.4em; display:block; padding: 0px; outline:none; text-decoration:none; color: #000}
+.ui-selectmenu-menu li.ui-selectmenu-hasIcon a,
+.ui-selectmenu-hasIcon .ui-selectmenu-status { padding-left: 0px; position: relative; margin-left: 5px;}
+.ui-selectmenu-menu li .ui-icon, .ui-selectmenu-status .ui-icon { position: absolute; top: 1em; margin-top: -8px; left: 0; }
+.ui-selectmenu-status { line-height: 20px; color: #FFF; font-size: 10px; background-color: #000; width: auto; display: inline-block;  /*background-image: url('../images/css_sprite_BtnComprarAhora.png');*/} /*promer elemento del menu*/
+.ui-selectmenu-open li.ui-selectmenu-item-focus a { background-color: #000; color: #FFF} /* background y color del mouseover*/
+.ui-selectmenu-open li.ui-selectmenu-item-selected {}
+.ui-selectmenu-menu li span,.ui-selectmenu-status span { display:block; margin-bottom: .2em;}
+.ui-selectmenu-menu li .ui-selectmenu-item-header { font-weight: bold;}
+.ui-selectmenu-menu li .ui-selectmenu-item-content {}
+.ui-selectmenu-menu li .ui-selectmenu-item-footer { opacity: .8; }

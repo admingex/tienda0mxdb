@@ -8,5 +8,18 @@
 			echo "<li><a href='".site_url('categoria/').$categoria->id_categoriaSi."'>".$categoria->nombreVc."</a></li>";
 		}
 		?>
+		<li>
+		<?php                    	
+			if(isset($_SESSION['logged_in'])){
+				if($_SESSION['logged_in']==1){
+					echo "<a class='mi_cuenta' href='".site_url('cuenta.php')."'>mi cuenta</a>";
+					echo "<a class='logout' href='".site_url('logout/')."'>logout</a>";                    								
+				}
+			}
+			else{
+				echo "<a class='login' href=".site_url('login/').">login</a>";								
+			}
+		?>	
+		</li>
 	</ul>	
 </nav>

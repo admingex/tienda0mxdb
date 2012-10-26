@@ -56,9 +56,9 @@
 
 .promo_zinio{
 	 height: 120px; 
-	 border: solid 1px #FFF; 
-	 margin-bottom: 5px; 
-	 padding: 10px;
+	 #border: solid 1px #FFF; 
+	 margin-bottom: 10px; 
+	 padding-bottom: 10px;
 }
 
 .promo_destacada{

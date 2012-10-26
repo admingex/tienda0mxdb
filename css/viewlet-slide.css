@@ -42,11 +42,15 @@
 	z-index: 2;
 	position: absolute;
 }
-.next {				
+.next {					
 	position: absolute;
 	margin-left: 680px;
 	z-index: 2;	
-	margin-top: -70px;
+	margin-top: -70px;		
+	width: 371px;
+	height: 173px;		
+	background: transparent url('../images/kiosco_contenido_flecha.png') no-repeat;	
+	background-position: 0px 0px;
 }
 
 #carr_categoria{

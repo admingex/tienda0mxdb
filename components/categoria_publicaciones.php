@@ -42,7 +42,7 @@ echo "
 				
 												
 echo  " 		</ul>				
-				<a id='prev' class='prev' href='#'>&lt;</a>
+				<a id='prev' class='prev' href='#'>&lt;this</a>
 				<a id='next' class='next' href='#'>&gt;</a>				
 			</div>";
 ?>
