@@ -1,3 +1,6 @@
+<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
+<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-slide.css" rel="stylesheet" />
+
 <?php
 	/*Vista que lista las publicaciones de una categoría*/
 	if (isset($info_categoria)) {
