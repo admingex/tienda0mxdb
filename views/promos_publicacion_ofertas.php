@@ -19,19 +19,27 @@
 		
 		//breadcum final
 		echo "<div id='breadcrumbs'><a href='".site_url("home")."'>Home</a><div class='triangulo-negro-der'></div>". $bread_cat . $bread_pub . "</div>";
-	}
+	}		
 	
 	##### Promos destacadas por publicación
+	##comente esta opcion falta definir el estilo para que no aparesca en el header
 	if (isset($pd) && count($pd) == 1) {
-		include_once('./components/promocion_destacada.php');
+		//include_once('./components/promocion_destacada.php');
 	}
 	##### Filtro por formatos y precio
 	if (isset($formatos)) {
 		echo "<script type='text/javascript' src='".TIENDA."js/filtro_formato.js'></script>";
-		include_once('./components/filtro_formatos.php');
+		//include_once('./components/filtro_formatos.php');
+		
+		##incluye el html de formatos para el canal idc es necesario que no se haya elegido ningun formato por medio del POST
+		if( !$_POST && $info_publicacion->nombreVc == "IDC" ){		
+			include ("views/canal_idc.php");
+		}
+		
 	}
 	#### Promociones de la publicación (listado)
-	if (isset($ofertas_publicacion)) {
+	## agregue $_POST para obligar a que se seleccione por lo menos un filtro para poder mostrar las ofertas lo origino el nuevo diseño con las flechas para IDC
+	if (isset($ofertas_publicacion) && $_POST) {
 		//último nivel de detalle
 		include_once('./components/promociones_publicacion.php');
 		//exit;
