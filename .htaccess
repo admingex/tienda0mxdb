@@ -28,7 +28,6 @@
     ##RewriteRule ^(0+)/?$			http://%{HTTP_HOST}/tienda/
     RewriteRule ^([0-9]+)/?$		index.php?page=$1
     
-    
     #Test Redirect
     #RewriteRule ^(*.php)$ /$1 [L]
     RewriteRule ^login/?$ 		login.php
@@ -39,6 +38,7 @@
         
     RewriteRule ^categoria/6/([0-9]+)/?$	promociones_especiales.php?id_categoria=6&page=$1
     RewriteRule ^categoria/6/?$ 			promociones_especiales.php?id_categoria=6&page=0
+    
     
     #### Home
     RewriteRule ^home/?$					http://%{HTTP_HOST}/tienda/

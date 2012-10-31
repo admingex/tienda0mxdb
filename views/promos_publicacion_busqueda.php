@@ -28,7 +28,7 @@
 	}*/
 	##### Filtro por formatos y precio
 	//if (isset($formatos)) {
-	if($total_promociones > 6){
+	if ($total_promociones > MAX_PROMOS_PAGINA) {
 		//echo "No se encontraron resultados en la búsqueda";
 		echo "<script type='text/javascript' src='".TIENDA."js/filtro_formato.js'></script>";
 		include_once('./components/filtro_orden.php');
