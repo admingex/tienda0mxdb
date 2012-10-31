@@ -1,4 +1,12 @@
-<?php
+<?php 
+	## si el explorador no es internet explorer aqui cargo los estilos para el slider en caso contrario los cargo en el front controller categorias.php
+	if(!strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")) {
+?>	
+		<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
+		<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-slide.css" rel="stylesheet" />
+<?php		
+	}
+	
 	/*Vista que lista las publicaciones de una categoría*/
 	if (isset($info_categoria)) {
 		// el breadcrum
@@ -8,8 +16,7 @@
 		echo "<div id='breadcrumbs'><a href='".site_url("home")."'>Home</a><div class='triangulo-negro-der'></div><div class='noref'>".ucwords(strtolower($info_categoria->nombreVc))."</div> </div>";
 	}
 ?>
-<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
-<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-slide.css" rel="stylesheet" />
+
 
 <?php
 	//viene en el data del controlador
@@ -35,7 +42,7 @@
 		$pd = json_decode($json);
 		
 		if (count($pd->promo_destacada) > 0) {
-			include_once('./components/promocion_destacada.php');
+			//include_once('./components/promocion_destacada.php');
 		}
 	}
 	

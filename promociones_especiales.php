@@ -12,7 +12,9 @@
     $menues = TRUE;
 	
 	//incluir archivos js
-	$scripts = array();		
+	$scripts = array();	
+	$scripts [] = TIENDA."js/slide.js";
+	$scripts [] = TIENDA."js/funcion_slide.js";
 	
 	//información para la vista
 	$title = "Promociones Especiales";

@@ -1,4 +1,4 @@
-<div style='width: 700px; float: left'>			
+<div id='contenedor_slide'>			
 <?php
 	/*Despliega las publicaciones de una categoría*/
 	/*
@@ -12,8 +12,7 @@ echo "
 				<ul id='slider'>";
 								
 				/*	<li><img src='images/cDIN.jpg'     id='1' onmouseover=\"cambia_img(this.id)\" onmouseout=\"cambia_img(this.id)\"></li>*/
-				
-				
+									
 				foreach ($categoria->publicaciones as $p) {
 					//url de la publicación
 					$url_p = '';
@@ -35,15 +34,15 @@ echo "
 					}
 					echo "	<li>					
 								<a href='". $url_p . "'>";																	
-									echo "<img src='" . $src. "' />";																
+									echo "<img id='".$p->id_publicacion."' src='" . $src. "' class='imagen1' onmouseover=\" cambia_img(id)\" onmouseout=\" cambia_img(id)\" />";																
 					echo "		</a>
 							</li>";		
 				}				
 				
 												
 echo  " 		</ul>				
-				<a id='prev' class='prev' href='#'>&lt;</a>
-				<a id='next' class='next' href='#'>&gt;</a>				
+				<a id='prev' class='prev' href='#'></a>
+				<a id='next' class='next' href='#'></a>				
 			</div>";
 ?>
 </div>

@@ -200,15 +200,15 @@ div.slider-nav span.left {
     cursor: pointer;
     color: #999;
     text-indent: -9999px;
-    background: url('../images/css_sprite_HeaderRadialBotton.png') no-repeat -4px 0;
-    width: 13px;
-    height: 24px;
+    background: url('../images/carrusel_bullets.jpg') no-repeat 0 0;
+    width: 8px;
+    height: 8px;
     overflow: hidden;        
 }
 
 .orbit-bullets li.active {
     color: #222;
-    background-position: -16px 0;  
+    background-position: -8px 0;  
 }
     
 .orbit-bullets li.has-thumb {

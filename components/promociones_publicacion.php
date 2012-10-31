@@ -1,4 +1,5 @@
 <link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
+<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-paginador.css" rel="stylesheet" />
 <div id="contenedor-promo">
 <?php	
 	/**

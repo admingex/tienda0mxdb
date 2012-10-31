@@ -3,54 +3,18 @@ body
     background:#000000;
     font:13px Arial;
     margin:0 auto;
-    width:985px;
+    width:985px;    
 }
-img {
-    border:0;
+img{
+	border: none;	
 }
-#no-moneda {display:none;}
-#header-container
-{
-    background:#3c3c3c;
-    background-image: linear-gradient(bottom, #3d3d3d 16%, #151515 100%);
-    background-image: -o-linear-gradient(bottom, #3d3d3d 16%, #151515 100%);
-    background-image: -moz-linear-gradient(bottom, #3d3d3d 16%, #151515 100%);
-    background-image: -webkit-linear-gradient(bottom, #3d3d3d 16%, #151515 100%);
-    background-image: -ms-linear-gradient(bottom, #3d3d3d 16%, #151515 100%);
-    background-image: -webkit-gradient( 	linear, 	left bottom, 	left top, 	color-stop(0.16, #3d3d3d), 	color-stop(1, #151515) );
-    height:105px;
-    overflow:hidden;    
-}
-    #header-container div#carrito {
-        background:url(../images/KIOSCO_header_iconos.png) no-repeat top left;
-        float:right;
-        height:48px;
-        margin:-85px 0;
-        width:154px;
-    }
-    #header-container div#filtro_busqueda_header {
-    margin:-36px 10px 0 0;
-    float:right;
-    } 
-    #header-container header h1 {
-        margin:0;
-        padding:0;
-    }
-    #header-container header h1 a 
-    {
-        background:url(../images/KIOSCO_logo.png) no-repeat 10px 10px;
-        display:block;
-        height:82px;
-        text-indent:-1920px;
-        width:357px;
-        }
 #header_tienda div.header_section 
 {
     display:none;
 }
 #header_tienda section.header_section 
 {
-
+    float:right;
     }
     #header_tienda section.header_section div
     {
@@ -62,11 +26,6 @@ img {
         margin:0;
         padding:0 0 5px 0;
     }
-div#main {
-        margin:-39px 0 0;
-        padding:0;
-        z-index:1;
-}
 section#contenido 
 {
     clear:both;
@@ -75,20 +34,16 @@ section#contenido
     }
     nav.banner_categorias 
     {
-        clear:both;
-        background:url(../images/KIOSCO_header.png) no-repeat 0 8px;
-        height:70px;
+        background:#000000 url(../images/nav_background.gif) repeat-x top left;
+        height:26px;
         margin:0;
         padding:0;
-        position:relative;
-        z-index:999;
         }
         nav.banner_categorias ul 
         {
-        background:#000000 url(../images/nav_background.gif) repeat-x top left;
             height:26px;
             list-style:none;
-            margin:0 0 0 0px;
+            margin:0 0 0 50px;
             padding:0;
             }
             nav.banner_categorias ul li 
@@ -104,7 +59,7 @@ section#contenido
                     color:#FFFFFF;
                     font-weight:bold;
                     line-height:26px;
-                    padding:0 0 0 25px;
+                    padding:0 25px 0 0;
                     text-decoration:none;
                     text-transform:uppercase;
                     }
@@ -114,11 +69,12 @@ section#contenido
                     }
     div.contenidos
     {
-
+        margin:0;
+        padding:0;
         }         
         div.contenidos div.blank_section 
         {
-            display:none;
+            height:10px;
             }
         div.contenidos div.menuv 
         {
@@ -136,6 +92,7 @@ div.footer_main
     line-height:32px;
     text-align:center;
     text-transform:uppercase;
+    clear: both;
     }    
     div.footer_main div 
     {
@@ -152,3 +109,4 @@ div#footer-container
 {
     display:none;
     }            
+    

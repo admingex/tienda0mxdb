@@ -1,5 +1,5 @@
 <link type="text/css" href="<?php echo TIENDA;?>css/orbit-1.2.3.css" rel="stylesheet" />
-<!--<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />-->
+<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-paginador.css" rel="stylesheet" />
 <link type="text/css" href="<?php echo TIENDA;?>css/viewlet-home.css" rel="stylesheet" />
 <?php				    
 	
@@ -35,7 +35,7 @@
 		}
 		
 		//echo "get pag: " . $_GET['page'];
-		$cantidad = 15; //Cantidad de registros que se desea mostrar por pagina
+		$cantidad = 10; //Cantidad de registros que se desea mostrar por pagina
 		
 		//Para probar solo le coloqué 3
 		//página actual
@@ -89,6 +89,7 @@ echo "	<div id='list_carousel'>
 					 }   			  
 							
 				}
+				echo "<li><a href=''><img src='".TIENDA."p_images/' /></a></li>";
 echo "		</ul>										
 		</div>";
 	}

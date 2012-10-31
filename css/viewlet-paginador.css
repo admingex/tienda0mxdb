@@ -1,0 +1,64 @@
+#paginacion{
+	clear: both;	
+	margin-left: auto; 
+	margin-right: auto; 
+	width: 320px;	
+	text-align: center;	
+}
+
+#paginacion .avance{
+	color: #21558F;
+	font-size: 13px;
+	text-decoration: underline;	
+	margin-left: 2px;	
+	float: left
+}
+
+#paginacion .padding-texto{
+	margin: 0px 5px;			
+}
+
+#paginacion .triangulo-azul-izq{
+	border:none;
+	width: 3px;			
+	height: 8px;
+	background: url('../images/css_sprite_Triangulos.png') no-repeat;	
+	background-position: -5px -10px;	
+	float:left;
+	padding-left:2px;
+	margin: 5px 3px 0px 0px;
+}
+
+#paginacion .triangulo-azul-der{
+	border:none;
+	width: 3px;			
+	height: 8px;
+	background: url('../images/css_sprite_Triangulos.png') no-repeat;	
+	background-position: -21px -2px;	
+	float:left;
+	padding-left:2px;
+	margin: 5px 0px 0px 3px;
+}
+
+#paginacion .pleca-vertical{
+	background-color: #939393;
+	width: 1px;
+	height: 15px;
+	float: left;
+	margin: 0px 7px;
+}
+
+#paginacion .texto-pagina{
+	font-size: 13px;
+	color: #939393;		
+	float: left;
+	margin: 0px 5px 0px 0px;
+}
+
+#paginacion  .actual{
+	margin: 0px 5px;
+	font-size: 13px;
+	color:#800;	
+	font-weight: bold;	
+	float: left;
+}
