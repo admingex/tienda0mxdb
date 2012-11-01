@@ -1,13 +1,13 @@
 .list_carousel {	
 	margin: 0px;
 	padding: 0px;	
+	border: solid 1px #000	
 }
 
 .list_carousel ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	display: block;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;		
 }
 .list_carousel li {		
 	text-align: center;								
@@ -15,7 +15,7 @@
 	margin: 0px;
 	display: block;
 	float: left;		
-	height: 230px				
+	height: 230px;					
 }	
 
 .imagen1{
@@ -68,12 +68,11 @@
 }
 
 #carr_categoria{
-	width: 680px;		
+	/*width: 680px;*/		
 	float: left;
 	position: relative;
 }
 
-#contenedor_slide{
-	width: 700px;	
-	position: relative;	
+#contenedor_slide{	
+	width: 700px;			
 }

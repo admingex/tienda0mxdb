@@ -99,6 +99,11 @@ section#contenido
             {
                 display:none;
                 }
+            nav.banner_categorias ul li:last-child
+            {
+                float: right;
+                margin-right: 25px
+                }    
                 nav.banner_categorias ul li a
                 {
                     color:#FFFFFF;

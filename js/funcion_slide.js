@@ -8,7 +8,7 @@ $(function() {
 		next: '#next',
 		scroll: 1,
 		items: {
-			width: 200,
+			width: 100,
 			height: 235,	//	optionally resize item-height
 			visible: {
 				min: 3,

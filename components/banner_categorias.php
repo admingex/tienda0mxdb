@@ -17,7 +17,7 @@
 				}
 			}
 			else{
-				echo "<a class='login' href=".site_url('login/').">login</a>";								
+				echo "<a class='login' href=".site_url('login/').">mi cuenta</a>";								
 			}
 		?>	
 		</li>

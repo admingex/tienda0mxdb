@@ -88,8 +88,7 @@ echo "	<div id='list_carousel'>
 						    	</li>";
 					 }   			  
 							
-				}
-				echo "<li><a href=''><img src='".TIENDA."p_images/' /></a></li>";
+				}				
 echo "		</ul>										
 		</div>";
 	}
