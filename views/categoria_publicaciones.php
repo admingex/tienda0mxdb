@@ -1,5 +1,5 @@
 <?php 
-	## si el explorador no es internet explorer aqui cargo los estilos para el slider en caso contrario los cargo en el f
+	## si el explorador no es internet explorer aqui cargo los estilos para el slider en caso contrario los cargo en el front controller categorias.php
 	if(strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")) {
 ?>	
 		<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
@@ -42,7 +42,7 @@
 		$pd = json_decode($json);
 		
 		if (count($pd->promo_destacada) > 0) {
-			//include_once('./components/promocion_destacada.php');
+			include_once('./components/promocion_destacada.php');
 		}
 	}
 	

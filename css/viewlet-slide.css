@@ -1,13 +1,13 @@
 .list_carousel {	
 	margin: 0px;
 	padding: 0px;	
+	border: solid 1px #000	
 }
 
 .list_carousel ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	display: block;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;		
 }
 .list_carousel li {		
 	text-align: center;								
@@ -15,7 +15,7 @@
 	margin: 0px;
 	display: block;
 	float: left;		
-	height: 230px				
+	height: 230px;					
 }	
 
 .imagen1{
@@ -28,6 +28,22 @@
 	margin-top: 5px;			
 	width: 180px;
 	height: 220px;
+}
+
+.back_image1{	
+	height: 180px; 
+	width: 170px; 
+	margin-left:auto; 
+	margin-right: auto; 
+	margin-top: 35px;	
+}
+
+.back_image2{
+	height: 290px; 
+	width: 180px; 
+	margin-left:auto; 
+	margin-right: auto; 
+	margin-top: 5px;
 }
 
 /*  
@@ -68,12 +84,11 @@
 }
 
 #carr_categoria{
-	width: 680px;		
+	/*width: 680px;*/		
 	float: left;
 	position: relative;
 }
 
-#contenedor_slide{
-	width: 700px;	
-	position: relative;	
+#contenedor_slide{	
+	width: 700px;			
 }

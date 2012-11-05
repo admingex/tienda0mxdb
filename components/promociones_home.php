@@ -1,6 +1,31 @@
 <link type="text/css" href="<?php echo TIENDA;?>css/orbit-1.2.3.css" rel="stylesheet" />
 <link type="text/css" href="<?php echo TIENDA;?>css/viewlet-paginador.css" rel="stylesheet" />
 <link type="text/css" href="<?php echo TIENDA;?>css/viewlet-home.css" rel="stylesheet" />
+<style type="text/css">
+.back_image1{	
+	height: 180px; 
+	width: 170px; 	
+	margin-top: 75px;	
+}
+
+.back_image2{
+	height: 230px; 
+	width: 180px; 	
+	margin-top: 5px;
+}
+</style>
+<script type="text/javascript">
+	function cambia_img(id){
+	$("#"+ id).css('display', 'none')
+	$("#o"+ id).css('display', 'block')																		
+}
+
+function cambia_img2(id){
+	$("#o"+ id).css('display', 'none')
+	$("#"+ id).css('display', 'block')
+}
+
+</script>
 <?php				    
 	
 	
@@ -35,7 +60,7 @@
 		}
 		
 		//echo "get pag: " . $_GET['page'];
-		$cantidad = 10; //Cantidad de registros que se desea mostrar por pagina
+		$cantidad = 15; //Cantidad de registros que se desea mostrar por pagina
 		
 		//Para probar solo le coloqué 3
 		//página actual
@@ -71,25 +96,36 @@ echo "	<div id='list_carousel'>
 						//obtener la información de la categoría que se consulta
 						$url_detalle_promo = TIENDA ."promocion_h.php?id_promo_padre=" .$p->id_promocionIn;
 						//
+						/*
 						echo "	<li>									
 							    	<a href='". $url_detalle_promo ."'>							
 							      		<img src='" .$src."'/>
 							      	</a>							      								      						      					      	
 							    </li>";
+						 * 
+						 */
 					} else{
 							
 						//obtener la información de la categoría que se consulta
 						$url_detalle_promo = TIENDA ."promocion/" . $p->id_promocion;
 						//
+						/*
 						echo "	<li>																											      	
 									<a href='". $url_detalle_promo ."'>							
 							      		<img src='" .$src."'/>
 							      	</a>					      							      								      				     
 						    	</li>";
+						 * 
+						 */
+						if(stristr($src, "png")){ 
+							echo "<li>
+				            	      <div id='".$p->id_promocion."' style=\"background: url('".$src."') no-repeat; background-color: #000; background-position: 0px 0px;\" class='back_image1' onmouseover=\"cambia_img(".$p->id_promocion.")\"></div>
+				                	  <div id='o".$p->id_promocion."' style=\"background: url('".$src."') no-repeat; background-color: #000; background-position: 0px -175px; display: none  \" class='back_image2' onmouseout=\"cambia_img2(".$p->id_promocion.")\"></div>				      	
+				      		  	  </li>";
+				      	}	  		
 					 }   			  
 							
-				}
-				echo "<li><a href=''><img src='".TIENDA."p_images/' /></a></li>";
+				}				
 echo "		</ul>										
 		</div>";
 	}

@@ -8,7 +8,7 @@ $(function() {
 		next: '#next',
 		scroll: 1,
 		items: {
-			width: 200,
+			width: 100,
 			height: 235,	//	optionally resize item-height
 			visible: {
 				min: 3,
@@ -21,7 +21,10 @@ $(function() {
 
 });
 
-function cambia_img(id){					
+function cambia_img(id){
+	$("#"+ id).css('display', 'none')
+	$("#o"+ id).css('display', 'block')
+	/*					
 	if($("#"+ id)){
 		if( $("#"+ id).attr("class") == "imagen1"){		
 			$("#"+ id).removeClass("imagen1").addClass("imagen2");
@@ -29,5 +32,11 @@ function cambia_img(id){
 		else{
 			$("#"+ id).removeClass("imagen2").addClass("imagen1");
 		}
-	}																		
+	}	
+	*/																	
+}
+
+function cambia_img2(id){
+	$("#o"+ id).css('display', 'none')
+	$("#"+ id).css('display', 'block')
 }
