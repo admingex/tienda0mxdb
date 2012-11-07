@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="<?php echo TIENDA;?>css/style.css" />
     <link rel="stylesheet" href="<?php echo TIENDA;?>css/viewlet-breadcrumbs.css" />       
     <link type="text/css" href="<?php echo TIENDA;?>css/blitzer/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
-    <link type="text/css" href="<?php echo TIENDA;?>css/ui.selectmenu.css" rel="stylesheet" />                 
+    <link type="text/css" href="<?php echo TIENDA;?>css/ui.selectmenu.css" rel="stylesheet" />                    
     <script type="text/javascript" src="<?php echo TIENDA;?>js/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="<?php echo TIENDA;?>js/jquery-ui-1.8.18.custom.min.js"></script>	    
     <script type="text/javascript" src="<?php echo TIENDA;?>js/jquery.orbit-1.2.3.min.js"></script>

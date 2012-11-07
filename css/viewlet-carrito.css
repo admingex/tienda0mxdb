@@ -1,9 +1,10 @@
 ﻿/* viewlet-carrito */
+
+/* new design */
 #viewlet-carrito{	
-	/*padding-right:0px;*/
-	height: auto;
-	font-family:Arial;
-	overflow:hidden;
+	padding: 10px;
+	height: auto;	
+	overflow: hidden;	
 }
 
 #viewlet-carrito  .pleca{
@@ -195,14 +196,27 @@
 	background-position: 0px 0px;	
 	float:left;
 }
+
+/* new design */
 #viewlet-carrito .img-big{
-float: left; width: 25%; height: 100%; text-align: left;
-padding-top:10px;
-padding-bottom:10px;
-padding-right:24px;
-width: 100px;
-margin-right:30px;
+	float: left; 
+	width: 175px; 
+	height: 100%;	
 }
+
+/* new design */
+#viewlet-carrito .pleca_vertical{
+	/*height: 330px;*/ 
+	min-height: 330px;
+	width: 48px; 
+	float: left; 
+	padding: 0px; 
+	background-image: url("../images/css_sprite_pleca_home.jpg"); 
+	background-repeat: repeat-y; 
+	margin: 0px 20px; 	
+}
+
+
 
 #viewlet-carrito .img-big .titulo{
 	color:#4f4f4f;

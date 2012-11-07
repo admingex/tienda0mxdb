@@ -1,29 +1,43 @@
-#list_carousel {				
-	margin: 0;
-	width: 890px;
+#list_carousel {					
+	width: 886px;	
 	margin-left: auto;
 	margin-right: auto;
 	padding: 0px 50px;
-	position: relative;
+	position: relative;	
+	
 }
 #list_carousel ul {
-	margin: 0;
-	padding: 0;
+	margin: 20px 0px 0px 0px;
+	padding: 0px;
 	list-style: none;
-	display: block;				
+	display: inline-block;
+	height: auto;				
 }
 #list_carousel li {				
 	text-align: center;																			
-	margin: 5px 18px;
+	/*margin: 0px 10px;*/
 	display: inline-block;					
-	width: 124px;
-	padding: 0px 7px 7px 5px;						
+	/*width: 124px;*/
+	/*padding: 0px 7px 7px 5px;*/						
 }	
 
 #list_carousel li img{	
-	height: 180px;
-	width: 124px;	
+	/*height: 180px;*/
+	/*width: 124px;*/	
 }	
+
+#list_carousel .mycover {
+	background-position: 0px 20px; 
+	background-repeat:no-repeat; 
+	width:175px; 
+	height:212px; 
+	margin-bottom:4px;
+	background-color: #000;
+}
+
+#list_carousel .mycover:hover{
+	background-position: 0px -190px;
+}
 
 #contenido_carrusel{
 	margin-top: -5px; 

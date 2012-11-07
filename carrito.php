@@ -91,8 +91,12 @@
 	} else {	//IF ($_GET)
 		$_SESSION['ult_elem'] = NULL;
 	}
+	?>
 	
-	if (array_key_exists('ajax', $_GET)) {
+	<link href='<?php echo TIENDA ?>css/viewlet-carrito.css' rel='stylesheet' type="text/css" />
+	
+<?php	
+	if (array_key_exists('ajax', $_GET)) {	
 		include('./views/detalle_carrito.php');
 	} else {
 		cargar_vista('detalle_carrito', $data);
