@@ -1,28 +1,11 @@
 ﻿<!--<link href='<?php echo TIENDA ?>css/viewlet-carrito.css' rel='stylesheet' type="text/css" />-->
 <?php
 
-echo "<div id='viewlet-carrito' style='border: solid 1px #800'>";
-	/*echo "<pre>";
-	print_r($_SESSION['carrito']);
-	echo "</pre>";*/
-	
-	if (isset($_SESSION['carrito'])) {		
-		$in = 'width: 100%';
-		$var = 0;
-		if (isset($_SESSION['ult_elem'])) {
-			$var = 1;
-			$ind = $_SESSION['ult_elem'];			
-			echo "<div class='img-big'>";
-			echo "    <img src='".$_SESSION['carrito'][$ind]['imagenVc']."' alt='".$_SESSION['carrito'][$ind]['imagenVc']."' width='175px' height='235px' />";
-			echo "    <div style='color: #FFF; font-weight: bold;'>AQUI TEXTO de la otra imagen</div>";			
-			echo "</div>
-			      <div class='pleca_vertical'>
-			      </div>";			
-			$in = 'width: 354px';
-		}
+
+if (isset($_SESSION['carrito'])) {		    	
 		
 		$na = count($_SESSION['carrito']);
-		if ($na > 0) {
+		if ($na > 0) {					
 				
 			//total a pagar
 			$total = 0;
@@ -47,19 +30,48 @@ echo "<div id='viewlet-carrito' style='border: solid 1px #800'>";
 			$datos_encrypt = API::encrypt(serialize($promos_env), API::API_KEY);
 			$datos_encrypt_url = rtrim(strtr(base64_encode($datos_encrypt), '+/', '-_'), '=');
 			
-			echo "<div style='float: left; $in' >";
-			echo 	"<form name='' action='".ECOMMERCE."api/carrito/".$datos_encrypt_url."' method='post'>";					
+			echo 	"<form name='' action='".ECOMMERCE."api/carrito/".$datos_encrypt_url."' method='post'>";
+			echo "<div id='viewlet-carrito'>";
+				
+			$in = 'width: 100%';
+			$var = 0;
+			if (isset($_SESSION['ult_elem'])) {
+				$var = 1;
+				$ind = $_SESSION['ult_elem'];			
+				echo "<div class='img-big'>";
+				echo "    <img src='".$_SESSION['carrito'][$ind]['imagenVc']."' alt='".$_SESSION['carrito'][$ind]['imagenVc']."' width='175px' height='235px' />";
+				echo "    <div style='color: #FFF; font-weight: bold;'>IMAGEN</div>";			
+				echo "</div>";			
+				$in = 'width: 435px';
+			}
+			
+			
+			echo "<div class='plecas'  style='float: left; $in' >";								
 				
 			foreach ($_SESSION['carrito'] as $k => $v) {
-					echo "	<div style='margin-bottom: 15px'>
-								<div>
-									<img src='".$v['imagenVc']."' alt='".$v['imagenVc']."' height='155px' width='115px'/>
-								</div>";									
-				//descripción de la promoción
-				echo 			"<span class='titulo'>".$v['descripcion']."</span><br />";						
-				echo 			"<a href='".site_url("carrito.php?eliminar_item=".$k)."'>Eliminar</a>";		        	   			
-				echo 		"    <div style='float:right; font-weight:bold ;'><span class='precio'>$".number_format($v['precio'],2,".",",")."</span></div>
-							</div>";   
+					echo "	<div>
+						        <ul>
+						            <li>
+						            	<div>
+						            		<img src='".$v['imagenVc']."' alt='".$v['imagenVc']."' height='155px' width='115px'/>
+						            	</div>	
+						            </li>
+						            <li>						            	
+						            	<div class='descripcion_producto'>
+						            	    IMAGEN<br />
+						            	    <div class='precio'>$".number_format($v['precio'],2,".",",")."</div>
+						            	    <div class='descripcion1'>".$v['descripcion']."</div>
+						            	    <!--<div class='descripcion2'>".$v['descripcion']."</div>
+						            	    <div class='descripcion3'>".$v['descripcion']."</div>-->
+						            	</div>																	            
+						            </li>
+						            <li>						            	
+						                <div class='precio_pagar'>pagar <span class='rojo'>$".number_format($v['precio'],2,".",",")."</span></div>						                
+						            </li>
+						        </ul>";						        							        						        															
+				//echo 			"<a href='".site_url("carrito.php?eliminar_item=".$k)."'>Eliminar</a>";		        	   			
+				
+				echo "		</div>";   
 					 	
 			}
 			
@@ -70,7 +82,7 @@ echo "<div id='viewlet-carrito' style='border: solid 1px #800'>";
 				$datos_login = $_SESSION['datos_login'];
 				echo "<textarea name='datos_login' style='display: none'>".$datos_login."</textarea>";	
 			}
-			
+					/*
 					echo	"<div class='calculo'>".
 								"Sub-total<span class='valor'>$".number_format($total, 2, '.', ',')."</span>".
 								"<br />".
@@ -78,21 +90,43 @@ echo "<div id='viewlet-carrito' style='border: solid 1px #800'>";
 								"<br />".
 								"Total<span class='valor'> $".number_format($total + $iva_compra, 2, '.', ',')."</span>".
 							"</div>";
-		
+					
 					echo 	"<div class='boton-final'>".
 								"<a href='".site_url('home')."' class='continuar-carrito'></a>";										
 					echo 		"<input type='submit' name='tienda_carrito' value='' class='pagar-carrito'/>".
 							"</div>	".
-					"</form>".
-				"</div>";
+					 * 
+					 */
+			echo 	"</div>";
+		echo "</div>
+      		  <div id='totales'>
+          	  	<div id='pleca_totales'>
+              	</div>  
+              	<div id='total'>
+              		<div class='total-right'>
+                  		<div class='carrito'>".$na."</div>
+                  		<div class='blanco'>total</div>
+                  		<div class='rojo'>$".number_format($v['precio'],2,".",",")."</div>
+              		</div>
+              	</div>   
+              	<div id='botones'>
+              	  	<a href='".site_url('home')."'>	
+              	  		<div class='seguir-comprando'>
+                      		Regresar a la tienda
+              	  		</div>
+              	  	</a>    
+              	  	<div class='pagar'>               	  	          	  
+                    	<input type='submit' name='tienda_carrito' value='pagar' class='boton-pagar' />
+                    </div>	              		
+          	  	</div>          
+      	      </div>
+      	      </form>";	
+			  		
 		} 
 		else {
 			echo "<p class='titulo-promo-rojo-deposito'>No hay productos en el carrito</p>";
-		}
-		
-	} 
-	else {
+		}				
+} 
+else {
 		echo "<p class='titulo-promo-rojo-deposito'>No hay productos en el carrito</p>";
-	}
-
-echo "</div>";
+}

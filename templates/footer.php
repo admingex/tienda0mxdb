@@ -17,6 +17,8 @@
             <img src="<?php echo TIENDA;?>images/text_expansion.gif" alt="Grupo expansión"width="92" height="28"/>            
         </footer>
     </div>
+</div>
+</div>
 </body>
 </html>
 

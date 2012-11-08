@@ -33,16 +33,16 @@ function anadir_carrito(nameform, sitio, canal, promocion) {
 	
 $(function() {
 	$('#dialog-modal').dialog({
-		position:['top', 120],
+		position:['top', 100],
 		modal: true,
 		show: 'slide',
-		width:'670px',
+		width:'750px',
 		stack: true,
 		autoOpen: false,
 		draggable: false,
 		//esta parte hace que se cierre el popup al dar click en cualquier parte fuera del mismo
 		open: function(event, ui){
-			$('body').css('overflow','hidden');
+			//$('body').css('overflow','hidden');			 
 			$('.ui-widget-overlay').css('width','100%');
 			$('.ui-widget-overlay').css('height','100%');				
 			$('.ui-widget-overlay').bind('click',function(){

@@ -5,7 +5,7 @@
 <script type="text/javascript" src="<?php TIENDA;?>js/admin_usuario_tarjetas.js"></script>
 
 <script type="text/javascript">
-var ecommerce = 'https://pagos.grupoexpansion.mx/';
+var ecommerce = 'http://localhost/ecommerce/';
  
 	// se agrega la variable id_cliente_js con el valor del id de cliente para poderla utilizar con javascript
 var id_cliente_js =<?php echo $_SESSION['id_cliente'] ?>

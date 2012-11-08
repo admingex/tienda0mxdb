@@ -1,14 +1,20 @@
 body 
 {
-    background:#000000;
+    background:#000 url("../images/kiosco_contenido_costado2.png") no-repeat top center;
     font:13px Arial;
     margin:0 auto;
-    width:985px;
+    width:1008px;
 }
 img {
     border:0;
 }
 #no-moneda {display:none;}
+#portal-wrapper {
+margin:0 auto;
+width:985px;
+}
+#container {
+}
 #header-container
 {
     background:#3c3c3c;
@@ -22,15 +28,33 @@ img {
     overflow:hidden;    
 }
     #header-container div#carrito {
-        background:url(../images/KIOSCO_header_iconos.png) no-repeat top left;
+        background:url(../images/KIOSCO_header_iconos_shopcart.png) no-repeat top left;
         float:right;
         height:48px;
-        margin:-85px 0;
-        width:154px;
+        margin:-85px 24px;
+        width:48px;
+        text-indent:-1920px;
     }
     #header-container div#filtro_busqueda_header {
+    background:url(../images/kiosco_header_buscador.png) no-repeat top left;
     margin:-36px 10px 0 0;
+    padding:0;
     float:right;
+    } 
+    #header-container div#filtro_busqueda_header input {
+        background:transparent;
+        border:none;
+        font-size:10px; 
+        line-height:12px;
+        text-indent:-1920px;
+    } 
+    #header-container div#filtro_busqueda_header input#s {
+        background:transparent;
+        color:#202020;
+        margin:0 2px;
+        padding:0 2px;
+        text-indent:0;
+        width:132px;
     } 
     #header-container header h1 {
         margin:0;
