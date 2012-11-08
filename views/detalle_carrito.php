@@ -37,10 +37,14 @@ if (isset($_SESSION['carrito'])) {
 			$var = 0;
 			if (isset($_SESSION['ult_elem'])) {
 				$var = 1;
-				$ind = $_SESSION['ult_elem'];			
+				$ind = $_SESSION['ult_elem'];	
+				// obtener imagen logo revista
+				$img1 = str_replace("p_images", "l_images", $_SESSION['carrito'][$ind]['imagenVc']);
+				$img1 = str_replace(".jpg", ".png", $img1);		
+				
 				echo "<div class='img-big'>";
 				echo "    <img src='".$_SESSION['carrito'][$ind]['imagenVc']."' alt='".$_SESSION['carrito'][$ind]['imagenVc']."' width='175px' height='235px' />";
-				echo "    <div style='color: #FFF; font-weight: bold;'>IMAGEN</div>";			
+				echo "    <img src='".$img1."' alt 'logo'/>";			
 				echo "</div>";			
 				$in = 'width: 435px';
 			}
@@ -49,6 +53,9 @@ if (isset($_SESSION['carrito'])) {
 			echo "<div class='plecas'  style='float: left; $in' >";								
 				
 			foreach ($_SESSION['carrito'] as $k => $v) {
+				    // obtener imagen logo revista
+					$img1 = str_replace("p_images", "l_images", $v['imagenVc']);
+					$img1 = str_replace(".jpg", ".png", $img1);
 					echo "	<div>
 						        <ul>
 						            <li>
@@ -58,7 +65,7 @@ if (isset($_SESSION['carrito'])) {
 						            </li>
 						            <li>						            	
 						            	<div class='descripcion_producto'>
-						            	    IMAGEN<br />
+						            	    <img src='".$img1."' alt 'logo'/>
 						            	    <div class='precio'>$".number_format($v['precio'],2,".",",")."</div>
 						            	    <div class='descripcion1'>".$v['descripcion']."</div>
 						            	    <!--<div class='descripcion2'>".$v['descripcion']."</div>
@@ -106,7 +113,7 @@ if (isset($_SESSION['carrito'])) {
               		<div class='total-right'>
                   		<div class='carrito'>".$na."</div>
                   		<div class='blanco'>total</div>
-                  		<div class='rojo'>$".number_format($v['precio'],2,".",",")."</div>
+                  		<div class='rojo'>$".number_format($total,2,".",",")."</div>
               		</div>
               	</div>   
               	<div id='botones'>

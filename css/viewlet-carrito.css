@@ -58,8 +58,9 @@
 }
 
 #viewlet-carrito ul li .descripcion_producto{
-	padding: 0px 15px;	
+	padding: 0px 5px;	
 	width: 180px;
+	overflow: hidden
 }
 
 #viewlet-carrito ul li .descripcion_producto .precio{

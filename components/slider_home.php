@@ -31,19 +31,8 @@
 					} else{
 						$url_p = TIENDA ."promocion/" .$p->id_promocion;	
 					}				
-					echo "	<a href='".$url_p."'>
-							<table cellspacing='0'>
-								<tr>
-									<td valign='bottom' style='padding-bottom: 20px'>
-										<div><img src='".TIENDA. "portada_images/" .$p->imagen_portada."' width='130px' height='170px' /></div>
-										<div style='height: 10px;'></div>
-										<div><img src='".TIENDA. "eslogan_images/" .$p->imagen_eslogan."' width='130px' height='95px' /></div>
-									</td>
-									<td>
-										<img src='".TIENDA. "contenido_images/" .$p->url_imagen."' width='499px' height='333px' />
-									</td>
-								</tr>
-							</table>
+					echo "	<a href='".$url_p."'>							
+								<img src='".TIENDA. "contenido_images/" .$p->url_imagen."' width='530px' height='310px' />
 							</a>";
 				}														
 			}		    
@@ -51,15 +40,19 @@
 			?>					  						 											
 			</div>						
 		</div>		
-	</div>
-	<div class="pleca_separate">			
-	</div>
+	</div>	
 	<div class="columna_derecha" >
-		<div class="promo_zinio">			
-			<img src='<?php echo TIENDA . "images/zinio.jpg";?>' />
-		</div>
+		<div class="titulos">
+			<div>
+				<img src="<?php echo TIENDA?>images/kiosco_contenido_logo.png" />
+			</div>
+		</div>	
+		<div class="spread">
+		    <img src="<?php echo TIENDA?>images/kiosco_contenido_spread.png" />	
+		</div>	
 		<div class="promo_destacada">
-				<?php	    
+				<?php	  
+		/*		  
 	    $path_promos_carrusel = "./json/home_promociones_destacadas.json";
 		
 		if (file_exists($path_promos_carrusel)) {
@@ -95,8 +88,11 @@
 				echo "<a href='".$url_p."'><img src='".TIENDA. "p_images/" .$p->url_imagen."' width='293px' height='190px' border='0'/></a>";
 			//}														
 		}		    
-					
+			*/		
 		?>	
+		</div>
+		<div class="pleca_apps">
+			<div class="apps">APPS</div>						
 		</div>		
 	</div>
 </div>

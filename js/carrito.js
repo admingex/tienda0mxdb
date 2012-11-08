@@ -33,8 +33,8 @@ function anadir_carrito(nameform, sitio, canal, promocion) {
 	
 $(function() {
 	$('#dialog-modal').dialog({
-		position:['top', 100],
-		modal: true,
+		position: ['120', 'top'],
+		//modal: true,
 		show: 'slide',
 		width:'750px',
 		stack: true,
@@ -47,7 +47,7 @@ $(function() {
 			$('.ui-widget-overlay').css('height','100%');				
 			$('.ui-widget-overlay').bind('click',function(){
             	$('#dialog-modal').dialog('close');
-        	}) 
+        	})         	
 		}, 
 		close: function(event, ui){
 			$('body').css('overflow','auto');

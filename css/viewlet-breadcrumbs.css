@@ -5,7 +5,7 @@
 	padding-bottom: 0px;		
 	z-index: 50px;
 	position: relative;
-	z-index:10000;
+	z-index:999;
 }
 
 #breadcrumbs a{

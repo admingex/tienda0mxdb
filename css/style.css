@@ -36,8 +36,9 @@ width:985px;
         text-indent:-1920px;
     }
     #header-container div#filtro_busqueda_header {
-    background:url(../images/kiosco_header_buscador.png) no-repeat top left;
-    margin:-36px 10px 0 0;
+    background:url(../images/kiosco_header_buscador.png) no-repeat;
+    width: 180px;
+    margin:-36px 30px 0 0;
     padding:0;
     float:right;
     } 
@@ -46,15 +47,17 @@ width:985px;
         border:none;
         font-size:10px; 
         line-height:12px;
-        text-indent:-1920px;
+        text-indent:-1920px;   
+        cursor: pointer;     
     } 
     #header-container div#filtro_busqueda_header input#s {
         background:transparent;
         color:#202020;
         margin:0 2px;
-        padding:0 2px;
+        padding:0 0px;
         text-indent:0;
-        width:132px;
+        width:153px;
+        cursor: auto;
     } 
     #header-container header h1 {
         margin:0;
@@ -123,6 +126,10 @@ section#contenido
             {
                 display:none;
                 }
+            nav.banner_categorias ul li:nth-child(2)
+            {
+                margin-left: 10px;
+                }    
             nav.banner_categorias ul li:last-child
             {
                 float: right;
@@ -133,7 +140,7 @@ section#contenido
                     color:#FFFFFF;
                     font-weight:bold;
                     line-height:26px;
-                    padding:0 0 0 25px;
+                    padding:0 0 0 30px;
                     text-decoration:none;
                     text-transform:uppercase;
                     }
