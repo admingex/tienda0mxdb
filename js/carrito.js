@@ -26,15 +26,15 @@ function anadir_carrito(nameform, sitio, canal, promocion) {
   		success:  function (response) {
   			$("#dialog-modal").dialog( "open" );  							
             $("#dialog-modal").html(response);
-            $("#cuenta-carrito").text($('#cuenta-detalle-carrito').text());
+            //$("#cuenta-carrito").text($('#cuenta-detalle-carrito').text());
         }
     });
 }
 	
 $(function() {
 	$('#dialog-modal').dialog({
-		position: ['120', 'top'],
-		//modal: true,
+		position: ['top', 100],
+		modal: true,
 		show: 'slide',
 		width:'750px',
 		stack: true,

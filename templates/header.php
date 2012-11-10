@@ -47,9 +47,9 @@
             <h1><a href="<?php echo TIENDA;?>">Kiosco</a></h1>
         </header>  
         <div id='header_tienda'>		
-			<div id='carrito'>
-				<a id='cuenta-carrito' class="carrito" href="<?php echo site_url('carrito.php');?>">&nbsp;</a>
-			</div>				
+			<a id='cuenta-carrito' class="carrito" href="<?php echo site_url('carrito.php');?>">
+			    <div id='carrito'>&nbsp;</div>		
+			</a>		
 		</div>  
         <section class="header_section"> 
         	<div id="filtro_busqueda_header">       	     	           

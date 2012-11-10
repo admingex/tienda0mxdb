@@ -80,7 +80,7 @@
 			}
 			
 		} else {
-			$_SESSION['ult_elem'] = NULL;
+			//$_SESSION['ult_elem'] = NULL;
 		}
 	
 		## eliminar items del carrito
@@ -89,7 +89,7 @@
 		}
 		
 	} else {	//IF ($_GET)
-		$_SESSION['ult_elem'] = NULL;
+		//$_SESSION['ult_elem'] = NULL;
 	}
 	?>
 	
