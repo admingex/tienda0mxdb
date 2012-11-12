@@ -1,14 +1,102 @@
 #viewlet-detalle-suscripcion{						
-	margin-top: 22px;		
-	width: 528px;	
-	font-family: Arial;										
+	margin-top: 22px;			
+	font-family: Arial;	
+	padding-left: 40px;
+	overflow:hidden; 
+	display: block;								
 }
 
-#viewlet-detalle-suscripcion img{
-	width: 127px;
+#viewlet-detalle-suscripcion .bloque-left{	
+	width: 190px;
 	height: 173px;
 	float: left;		
+	text-align: center;
+	padding-top: 20px;
+}
+	
+#viewlet-detalle-suscripcion .bloque-left .selects{
+	text-align: left
+}
+
+#viewlet-detalle-suscripcion .bloque-left .selects select{
+	width: 190px;
+	margin-top: 5px;
+	height: 25px;
+}
+
+#viewlet-detalle-suscripcion .bloque-middle{
+	float: left;
+	padding: 0px 60px;	
+	width: 100px;
+	width: 165px;
+}
+
+#viewlet-detalle-suscripcion .bloque-middle img{
+	height: 225px;
+	width: 165px;
+}
+
+#viewlet-detalle-suscripcion .bloque-right{
+	float: left;	
+	width: 190px;
+	height: 173px;
+	padding-top: 20px;
+	text-align: center;
+}
+
+#viewlet-detalle-suscripcion .back-rayado{
+	background-image: url('../images/kisco_contenido_pleca.png');	
+	color: #FFFFFF;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 3px;
+	text-align: left;
+	margin: 10px 0px;
 }	
+
+#viewlet-detalle-suscripcion .boton-comprar-ahora{
+	background: url('../images/kiosco_carrito_tarjeta.png') no-repeat;	
+	background-position: 150px 0px;				
+	height: 30px;
+	width: 185px;
+	color: #FFF;
+	text-align: left;
+	border: none;
+	color: #FFFFFF;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#viewlet-detalle-suscripcion .boton-anadir-carrito{
+	background: url('../images/kiosco_carrito.png') no-repeat;	
+	background-position: 150px 0px;				
+	height: 30px;
+	width: 185px;
+	color: #FFF;
+	text-align: left;
+	border: none;
+	color: #FFFFFF;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#viewlet-detalle-suscripcion .precio{
+	color: #E80403;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+#viewlet-detalle-suscripcion .descripcion-promocion{
+	color: #9A9A9A;
+	font-size: 12px;
+	font-weight: bold;
+	padding-top: 10px;
+}
+
+
+
 
 #viewlet-detalle-suscripcion .detalle{
 	float: left;
@@ -45,44 +133,6 @@
 	font-weight: bold;	
 }
 
-#viewlet-detalle-suscripcion .botones{
-	position: absolute;
-	margin-left: 178px;		
-	width: 196px;
-	height: 80px;		
-	background: url('../images/css_sprite_formaAnadir01.png') no-repeat;	
-	background-position: -37px -24px;			
-}
-
-#viewlet-detalle-suscripcion .boton-anadir-carrito{
-	border: none;
-	height: 18px;
-	width: 111px;
-	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
-	background-position: -11px -8px;
-	position: absolute;
-	margin: 12px 0px 0px 10px;
-}
-
-#viewlet-detalle-suscripcion .boton-anadir-carrito:hover{	
-	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
-	background-position: -11px -26px;	
-}
-
-#viewlet-detalle-suscripcion .boton-pago-express{
-	border: none;
-	height: 18px;
-	width: 163px;
-	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
-	background-position: -122px -8px;
-	position: absolute;
-	margin: 50px 0px 0px 10px;
-}
-
-#viewlet-detalle-suscripcion .boton-pago-express:hover{	
-	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
-	background-position: -122px -26px;	
-}
 
 #viewlet-detalle-suscripcion .space-pleca{
 	clear: both;		
@@ -130,7 +180,9 @@
 	font-size: 13px;			
 }
 
-
+table{
+	display: none
+}
 th{
 	background-color: #D0D0D0;	
 	height: 18px;			
