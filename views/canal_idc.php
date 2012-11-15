@@ -6,12 +6,12 @@
 	
 	#selector_pdf{		
 		top: 247px; 
-		margin-left: 250px; 		
+		margin-left: 258px; 		
 	}
 	
 	#selector_asisprint{		 
-		top: 293px; 
-		margin-left: 203px; 			
+		top: 288px; 
+		margin-left: 360px; 			
 	}
 	
 	#selector_contenido{
@@ -21,7 +21,7 @@
 	
 	#selector_asistel{
 		top: 415px; 
-		margin-left: 355px; 
+		margin-left: 375px; 
 	}
 	
 	#selector_video{
@@ -30,8 +30,8 @@
 	}
 	
 	#selector_sempersona{
-		top: 290px; 
-		margin-left: 514px;
+		top: 287px; 
+		margin-left: 515px;
 	}
 	
 	#selector_semonline{
@@ -40,8 +40,8 @@
 	}
 	
 	#selector_carpeta{
-		top: 216px;
-		margin-left: 316px
+		top: 210px;
+		margin-left: 318px
 	}
 	
 	.selector{
@@ -79,6 +79,11 @@
 	#pleca_formato{
 		background-color: #808080; height: 1px
 	}
+	
+	#imagen_formato{
+		height: 190px; 
+		overflow: hidden;
+	}
 </style>
 
 
@@ -86,7 +91,7 @@
 <?php 
 	echo "<form id='form_filtro_formatos' method='post' action='".TIENDA."publicacion/ofertas/".$id_publicacion."'>";				
 ?>	
-	<img src="<?php echo TIENDA?>images/kiosco_contenido_idc.png" alt='contenido_idc' />
+	<img src="<?php echo TIENDA?>images/kiosco_arbol_idc.png" alt='contenido_idc' />
 	
 	<!--<div style="border: solid 1px #800; height: 40px; width: 40px; position: absolute ; top: 166px; margin-left: 317px; cursor: pointer">		
 	</div>-->

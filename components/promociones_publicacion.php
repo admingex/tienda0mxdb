@@ -1,6 +1,14 @@
-<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
-<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-paginador.css" rel="stylesheet" />
-<div id="contenedor-promo">
+<?php 
+	## si el explorador no es internet explorer aqui cargo los estilos para el slider en caso contrario los cargo en el front controller categorias.php
+	if(strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")) {
+?>			
+		<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-slide-ptomociones.css" rel="stylesheet" />
+<?php		
+	}
+?>	
+<div id="contenedor_slide">	
+<div class='list_carousel responsive'>
+				<ul id='slider'>
 <?php	
 	/**
 	 * Despliega las promociones de una publicación cuando se tienen más de un formato para dicha publicación
@@ -14,15 +22,10 @@
 	 echo "<pre>";*/
 	 
 	$total = count($ofertas_publicacion->promociones);	
-	if($total_promociones==0){
+	if($total==0){
 		echo "No se encontraron resultados en la búsqueda";
 	}
 			
-	if (isset($_GET['page'])) {
-		$pg = $_GET['page'];
-	} else {
-		$pg = 0;
-	}
 	
 	$cantidad = MAX_PROMOS_PAGINA;//6; //Cantidad de registros que se desea mostrar por pagina
 	
@@ -38,11 +41,11 @@
 	if ($limite > $total) {
 		$limite = $total;
 	}
-	
-	$j = 0;
+		
 	/*echo "<pre>";	######ordenamientos
 			print_r($recorrer[0]);
 		echo "</pre>";*/
+
 	for ($i = $desde; $i < $limite ; $i++) {
 		//echo "<br />->".$i."<-";
 		
@@ -88,8 +91,10 @@
 			//$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
 			$src = TIENDA ."p_images/".$p->detalle->url_imagen;
 		}
+		
 		echo "		
-			<div class='promo-left'>
+			<li>
+			<div>
 			<form id='comprar_promocion".$p->detalle->id_promocion."' name='comprar_promocion".$p->detalle->id_promocion."' action='". $action_pagos ."' method='post'>
 				<input type='hidden' name='guidx' value='".API::GUIDX."' />
 			    <input type='hidden' name='guidz' value='".API::guid()."' />
@@ -98,39 +103,35 @@
 			    <input type='hidden' name='precio' value='".$p->detalle->costo."'/>
 			    <input type='hidden' name='moneda' value='".$p->detalle->moneda."'/>
 			    <input type='hidden' name='iva' value='".$p->detalle->taxable."' />
-			    <input type='hidden' name='cantidad' value='1' />
-			    <div class='contenedor-imagen'>			    
+			    <input type='hidden' name='cantidad' value='1' />			    		    
 		    		<a href='". $url_detalle_promo . "'>
 		    			<img src='" . $src . "' alt='".$src."' />
-		    		</a>
-		    	</div>	
-		      	<div class='titulo-publicacion-back descripcion-promocion'>
-		      		".$descripcion_promocion."
-		      	</div>
-		      	<div class='descripcion-publicacion-back'>
-					<span class='precio-promocion'> $ " . number_format($p->detalle->costo, 2, ".", "," )."</span>
-				</div>		      	
-		      	
-		      	<div class='boton'>
-	          		<input type='submit' name='btn_comprar_ahora' value=' ' class='boton-comprar-ahora' />";
+		    		</a>		    	
+		    		<div>
+		      		".$descripcion_promocion."		      	
+					$ " . number_format($p->detalle->costo, 2, ".", "," )."				
+	          		<input type='submit' name='btn_comprar_ahora' value=' '  />";
 		 ?>		      	
-		      		<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value=" " onclick="anadir_carrito(<?php echo $carrito ;?>)" class='boton-anadir-carrito'/>
+		      		<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value=" " onclick="anadir_carrito(<?php echo $carrito ;?>)" />
 		 <?php     	
-	      echo "
-		      	</div>
-		    </form>  	
-	  		</div>
+	      echo "		      	
+		    </form>  
+		    </div>	
+	  		</li>
 	  	";
-		//pinta un espacio en blanco que sirve de margen						
-		if (($j == 0) || ($j == 1) || ($j == 3) || ($j == 4) ){
-			echo "<div class='catego-space'></div>";				
-		}
-		$j++;
+		 
+		 
+		 
 	}
+	echo "</ul>
+	      <a id='prev' class='prev' href='#'></a>
+		  <a id='next' class='next' href='#'></a>	
+	  </div>";
 ?>
 </div>
-
+</div>
 <?php 
+/*
 	if($total > 6) {
 ?>		
 <div id="paginacion">
@@ -157,5 +158,6 @@
 </div>
 <?php
 	} 
+ * 
+ */
 ?>
-<div id="space-pleca"></div>

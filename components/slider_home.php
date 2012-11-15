@@ -3,14 +3,14 @@
 		<div>		
 			<div id="featured"> 
 			<?php	  
-					  
-	    	$path_promos_carrusel = "./json/home_promociones_destacadas.json";
+			$path_promos_carrusel = "./json/carrusel_home.json";					  
+	    	//$path_promos_carrusel = "./json/home_promociones_destacadas.json";
 		
 			if (file_exists($path_promos_carrusel)) {
 			
 				$json = file_get_contents($path_promos_carrusel);
 				$cp = json_decode($json);			
-				$items = count($cp->homo_promos_destacada);			
+				$items = count($cp->promos_carrusel);			
 			
 			
 				// se añaden las promociones padre para incluirlas en el carrusel
@@ -34,7 +34,7 @@
 				//	print_r($cp->homo_promos_destacada);
 				//echo "</pre>";
 			
-				foreach ($cp->homo_promos_destacada as $p) {
+				foreach ($cp->promos_carrusel as $p) {
 					if(isset($p->promo_padre)){
 						$url_p = TIENDA ."promocion_h.php?id_promo_padre=" .$p->id_promocionIn;	
 					} else{
@@ -96,7 +96,11 @@
 			?>
 		</div>
 		<div class="pleca_apps">
-			<div class="apps">APPS</div>						
+			<div class="apps">APPS</div>
+			<a href='exp'><div class='links expan'></div></a>
+			<a href='quo'><div class='links quo'></div></a>
+			<a href='chi'><div class='links chi'></div></a>
+			<a href='cnn'><div class='links cnn'></div></a>						
 		</div>		
 	</div>
 </div>

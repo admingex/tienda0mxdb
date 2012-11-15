@@ -55,8 +55,7 @@
 echo "	<div id='list_carousel'>
 			<ul>";
 				for ($i = $desde; $i < $limite; $i++){		
-					$p = $recorrer[$i];				
-								
+					$p = $recorrer[$i];									
 					//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
 					if(file_exists("./p_images/".$p->url_imagen)){
 						$src = TIENDA ."p_images/".$p->url_imagen;
@@ -92,13 +91,13 @@ echo "	<div id='list_carousel'>
 						    	</li>";
 						 * 
 						 */
-						if(stristr($src, "png")){ 
-							echo "<li>
-								      <a href='". $url_detalle_promo ."'>
-				            	          <div style=\"background-image: url('".$src."')\" class='mycover'></div>	
-				            	      </a>
-				            	  </li>";
-				      	}	  		
+						
+						echo "<li>
+							      <a href='". $url_detalle_promo ."'>
+			            	          <div style=\"background-image: url('".$src."')\" class='mycover'></div>	
+			            	      </a>
+			            	  </li>";							  
+				      		  		
 					 }   			  
 							
 				}				

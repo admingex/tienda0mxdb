@@ -3,35 +3,41 @@
 	$promo_inicial = $detalles_promociones[0];	//siempre viene
 	//para pasar a pagar en la plataforma de pagos, es la acción por defecto:
 	$action_pagos_inicial = ECOMMERCE."api/". $promo_inicial->id_sitio . "/" . $promo_inicial->id_canal . "/" . $promo_inicial->id_promocion . "/pago";
-	$onclick_action_pagos_inicial = "document.comprar_promocion" . $promo_inicial->id_promocion . ".action='" . $action_pagos_inicial . "'; ";	
-	
+	$onclick_action_pagos_inicial = "document.comprar_promocion" . $promo_inicial->id_promocion . ".action='" . $action_pagos_inicial . "'; ";
+				
+	echo "<pre>";
+		    print_r($detalles_promociones);
+	echo "</pre>";	
 ?>
 <script type="text/javascript">
 	var id_sit = <?php echo $promo_inicial->id_sitio; ?>;
 	var id_can = <?php echo $promo_inicial->id_canal; ?>;
 	var id_ant = <?php echo $promo_inicial->id_promocion; ?>;
 	
-	var form_submit = "document.comprar_promocion" + id_ant;
+	var form_submit = "document.comprar_promocion" + id_ant;			
 	//iniciales
 		
 	function cambia_boton(id) {
-		if (document.getElementById(id_ant)) {
+		//alert(id);
+		//if (document.getElementById(id_ant)) {
 			//limpia la selección anterior
 			//document.getElementById(id_ant).innerHTML = '';
-			document.getElementById('div_promocion' + id_ant).className = 'radio_no_selected';
-			document.getElementById('radio' + id_ant).checked = '';  									 			
-		}
+			//document.getElementById('div_promocion' + id_ant).className = 'radio_no_selected';
+			//document.getElementById('radio' + id_ant).checked = '';  									 			
+		//}
 		
 		//document.getElementById(id).innerHTML = '<input type="submit" id="usar_tarjeta" name="usar_tarjeta" value="&nbsp;" class="usar_tarjeta"/>';
-		document.getElementById('div_promocion' + id).className = 'radio_selected';
-		document.getElementById('radio' + id).checked = 'checked';						
+		//document.getElementById('div_promocion' + id).className = 'radio_selected';
+		//document.getElementById('radio' + id).checked = 'checked';						
 		
 		//actuaclización de eventos;
 		var submit_pagos = "submit_to_pagos(" + id + ");";
 		var submit_carrito = "submit_to_carrito(" + id + ");";
 		
 		$("#btn_comprar_ahora").attr("onclick", submit_pagos);
-		$("#btn_agregar_carrito").attr("onclick", submit_carrito);
+		$("#btn_agregar_carrito").attr("onclick", submit_carrito);	
+		  					
+		
 			
 		//indica cuál es el que está selceccionado
 		id_ant = id;
@@ -77,16 +83,15 @@
 			<img src="<?php echo $logo;?>" />
 			<script type='text/javascript' src='<?php echo site_url("js/filtro_pais.js");?>'></script>		
 		
-			<?php
+			<?php			    
 				$amoneda= array();
 				$i=0;
 				foreach ($detalles_promociones as $detalle) {
 					$amoneda[$i]=$detalle->moneda;
 					$i++;
 				}
-			?>
-		
-			<div class='selects'>
+			?>			
+			<div class='selects'>				
 				<select name="sel_pais" id="sel_pais" >
 				<?php 
 					$antvalor='ads';
@@ -106,7 +111,19 @@
 				 		}
 				 		$antvalor = $valor;
 					} ?>
-				</select>		
+				</select>	
+				<select name="promos" onchange="cambia_boton(this.value)">					
+				<?php
+					$sel='';
+					foreach ($detalles_promociones as $detalle) {						
+						if($detalle->id_promocion == $promo_inicial->id_promocion)
+						    $sel = "selected='selected'";																
+				?>				
+							<option id="<?php echo $detalle->id_promocion;?>" value="<?php echo $detalle->id_promocion;?>" <?php echo $sel?> class="<?php echo $detalle->moneda ?>"><?php echo $detalle->descripcion_promocion;?></option>																																											
+				<?php
+					}
+				?>	
+				</select>	
 				<?php
 				//para B2B
 				if (isset($info_publicacion) && $info_publicacion->auditableBi) {
@@ -135,13 +152,12 @@
 	    	<img src="<?php echo $src;?>" />
 	    </div>
 	    <div class="bloque-right">
-	    	<div class="precio"> 
+	    	<div id='precio_promo' class="precio"> 
 	    		$ <?php echo number_format($promo_inicial->costo,2 ,"." ,",")."&nbsp;".$promo_inicial->moneda?> 
 	    	</div>
-	    	<div class="descripcion-promocion">
+	    	<div id='descripcion-promo' class="descripcion-promocion">
 	    		<?php echo $promo_inicial->descripcion_promocion?>
-	    	</div>
-	    	
+	    	</div>	    	
 	    	<div class="back-rayado" style="margin-top: 60px">
 	    		<input type="button" id="btn_comprar_ahora" name="btn_comprar_ahora" value="Comprar ahora" class="boton-comprar-ahora" onclick="submit_to_pagos(<?php echo $promo_inicial->id_promocion;?>)"/>
 	    	</div>
@@ -161,12 +177,7 @@
 				foreach ($detalles_promociones as $detalle) {
 					//para pasar a pagar en la plataforma de pagos, es la acción por defecto:
 					$action_pagos = ECOMMERCE."api/". $detalle->id_sitio . "/" . $detalle->id_canal . "/" . $detalle->id_promocion . "/pago";
-					
-					//para agregar la promoción al carrito:
-					//$action_carrito = TIENDA . "carrito.php?id_sitio=" . $detalle->id_sitio . "&id_canal=" . $detalle->id_canal . "&id_promocion=" . $detalle->id_promocion;
-					//$onclick_action_carrito = "document.comprar_promocion" . $detalle->id_promocion . ".action='" . $action_carrito . "'; ";
-					//$onclick_submit = "document.comprar_promocion". $detalle->id_promocion . ".submit()";
-					
+										
 					//datos para que se procese el pago en la plataforma 
 					echo "
 					<form id='comprar_promocion".$detalle->id_promocion."' name='comprar_promocion" . $detalle->id_promocion . "' action='" . $action_pagos . "' method='post'>".

@@ -8,10 +8,11 @@
 
 #viewlet-detalle-suscripcion .bloque-left{	
 	width: 190px;
-	height: 173px;
+	min-height: 173px;
 	float: left;		
 	text-align: center;
 	padding-top: 20px;
+	display: block;	
 }
 	
 #viewlet-detalle-suscripcion .bloque-left .selects{
@@ -26,9 +27,8 @@
 
 #viewlet-detalle-suscripcion .bloque-middle{
 	float: left;
-	padding: 0px 60px;	
-	width: 100px;
-	width: 165px;
+	padding: 0px 60px;		
+	width: 165px;	
 }
 
 #viewlet-detalle-suscripcion .bloque-middle img{
@@ -39,9 +39,9 @@
 #viewlet-detalle-suscripcion .bloque-right{
 	float: left;	
 	width: 190px;
-	height: 173px;
+	min-height: 173px;
 	padding-top: 20px;
-	text-align: center;
+	text-align: center;	
 }
 
 #viewlet-detalle-suscripcion .back-rayado{
@@ -180,9 +180,7 @@
 	font-size: 13px;			
 }
 
-table{
-	display: none
-}
+
 th{
 	background-color: #D0D0D0;	
 	height: 18px;			
