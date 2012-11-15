@@ -6,7 +6,7 @@ require_once('./models/json_model.php');
 class Json_Creator {
 	
 	###############################  RUTA FIJA  ################################
-	var $ruta="/var/www/html/subir_tienda";
+	//var $ruta="./tienda";
 
     ############################### PROPIEDADES ################################
     private $categorias;
@@ -18,21 +18,21 @@ class Json_Creator {
 	private $promos_destacadas_por_cartegoria;
 	
 	#### Rutas de los archivos
-	private $archido_id_sitio		= "/var/www/html/subir_tienda/json/id_sitio_tienda.json";
-	private $archivo_categorias 	= "/var/www/html/subir_tienda/json/categorias/categorias.json";
-	private $archivo_publicaciones 	= "/var/www/html/subir_tienda/json/publicaciones/publicaciones.json";
-	private $archivo_formatos 		= "/var/www/html/subir_tienda/json/formatos.json";
+	private $archido_id_sitio		= "./json/id_sitio_tienda.json";
+	private $archivo_categorias 	= "./json/categorias/categorias.json";
+	private $archivo_publicaciones 	= "./json/publicaciones/publicaciones.json";
+	private $archivo_formatos 		= "./json/formatos.json";
 	/*Administrador - Home*/
-	private $archivo_carrusel_home 	= "/var/www/html/subir_tienda/json/carrusel_home.json";
-	private $archivo_promos_home	= "/var/www/html/subir_tienda/json/promociones_home.json";
-	private $archivo_promos_especiales	= "/var/www/html/subir_tienda/json/promociones_especiales.json";
+	private $archivo_carrusel_home 	= "./json/carrusel_home.json";
+	private $archivo_promos_home	= "./json/promociones_home.json";
+	private $archivo_promos_especiales	= "./json/promociones_especiales.json";
 	### bases
-	private $base_publicacion_por_categoria	= "/var/www/html/subir_tienda/json/categorias/publicaciones_categoria_";
-	private $base_promos_por_publicacion	= "/var/www/html/subir_tienda/json/publicaciones/promos_publicacion_";
-	private $base_formatos_por_publicacion	= "/var/www/html/subir_tienda/json/publicaciones/formatos_publicacion";
-	private $base_detalle_promo				= "/var/www/html/subir_tienda/json/detalle_promociones/detalle_promo_";
-	private $base_promocion_destacada_por_cartegoria	= "/var/www/html/subir_tienda/json/promociones_destacadas/promo_destacada_categoria_";
-	private $base_promocion_destacada_por_publicacion	= "/var/www/html/subir_tienda/json/promociones_destacadas/promo_destacada_publicacion_";
+	private $base_publicacion_por_categoria	= "./json/categorias/publicaciones_categoria_";
+	private $base_promos_por_publicacion	= "./json/publicaciones/promos_publicacion_";
+	private $base_formatos_por_publicacion	= "./json/publicaciones/formatos_publicacion";
+	private $base_detalle_promo				= "./json/detalle_promociones/detalle_promo_";
+	private $base_promocion_destacada_por_cartegoria	= "./json/promociones_destacadas/promo_destacada_categoria_";
+	private $base_promocion_destacada_por_publicacion	= "./json/promociones_destacadas/promo_destacada_publicacion_";
 	
 	//modelo a utilizar
 	private $modelo;	//modelo de datos

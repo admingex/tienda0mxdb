@@ -12,7 +12,7 @@
 		echo 
 		//"<div class='cuenta_promociones'>Resultados de su busqueda</div>".
 		"<div class='leyenda_formato'>".
-			"<form id='form_filtro_formatos' method='post' action='/tienda/buscador.php?fb=".$fb."&s=".$s."'>";
+			"<form id='form_filtro_formatos' method='post' action='".TIENDA."buscador.php?fb=".$fb."&s=".$s."'>";
 	
 		//select de ordenación
 		//if (isset($criterios_ordenacion) && !empty($criterios_ordenacion)) {

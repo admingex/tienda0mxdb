@@ -1,7 +1,7 @@
 <link href='<?php echo TIENDA ?>css/viewlet-login.css' rel='stylesheet' type="text/css" />
 <div id="viewlet-login">
 	<div class="titulo">
-		<?php if (isset($proceso)) echo $proceso; ?>
+		<span style="padding-left: 20px;"><?php if (isset($proceso)) echo $proceso; ?></span>
 	</div>	
 	<div class="pleca-superior"></div>	
 	<section class="contenedor-tienda">	

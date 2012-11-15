@@ -1,4 +1,4 @@
-<div style='width: 700px; float: left'>			
+<div id='contenedor_slide'>		
 <?php
 	/*Despliega las publicaciones de una categoría*/
 	/*
@@ -12,8 +12,11 @@ echo "
 				<ul id='slider'>";
 								
 				/*	<li><img src='images/cDIN.jpg'     id='1' onmouseover=\"cambia_img(this.id)\" onmouseout=\"cambia_img(this.id)\"></li>*/
-				
-				
+				/*echo "<li>
+				          <div id='69' style=\"background: url('".TIENDA."p_images/cDIN.png') no-repeat; background-color: #000; background-position: 0px -175px; background-position: 0px 0px;\" class='back_image1' onmouseover=\"cambia_img(69)\"></div>
+				          <div id='o69' style=\"background: url('".TIENDA."p_images/cDIN.png') no-repeat; background-color: #000; background-position: 0px -175px; \" class='back_image2' onmouseout=\"cambia_img2(69)\"></div>				      	
+				      </li>"; */
+					  
 				foreach ($categoria->publicaciones as $p) {
 					//url de la publicación
 					$url_p = '';
@@ -34,16 +37,18 @@ echo "
 						//$src = TIENDA ."p_images/".$p->url_imagen;
 					}
 					echo "	<li>					
-								<a href='". $url_p . "'>";																	
-									echo "<img src='" . $src. "' />";																
+								<a href='". $url_p . "'>								    
+								    <div id='".$p->id_publicacion."' style=\"background: url('".$src."') no-repeat; background-color: #000; background-position: 0px -175px; background-position: 0px 0px;\" class='back_image1' onmouseover=\"cambia_img(".$p->id_publicacion.")\"></div>
+				          			<div id='o".$p->id_publicacion."' style=\"background: url('".$src."') no-repeat; background-color: #000; background-position: 0px -175px; \" class='back_image2' onmouseout=\"cambia_img2(".$p->id_publicacion.")\"></div>";																	
+									//echo "<img id='".$p->id_publicacion."' src='" . $src. "' class='imagen1' onmouseover=\" cambia_img(id)\" onmouseout=\" cambia_img(id)\" />";																
 					echo "		</a>
 							</li>";		
 				}				
 				
 												
 echo  " 		</ul>				
-				<a id='prev' class='prev' href='#'>&lt;</a>
-				<a id='next' class='next' href='#'>&gt;</a>				
+				<a id='prev' class='prev' href='#'></a>
+				<a id='next' class='next' href='#'></a>				
 			</div>";
 ?>
 </div>

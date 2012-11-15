@@ -1,20 +1,83 @@
 body 
 {
-    background:#000000;
+    background:#000 url("../images/kiosco_contenido_costado2.png") no-repeat top center;
     font:13px Arial;
     margin:0 auto;
-    width:985px;    
+    width:1008px;
 }
-img{
-	border: none;	
+img {
+    border:0;
 }
+#no-moneda {display:none;}
+#portal-wrapper {
+margin:0 auto;
+width:985px;
+}
+#container {
+}
+#header-container
+{
+    background:#3c3c3c;
+    background-image: linear-gradient(bottom, #3d3d3d 16%, #151515 100%);
+    background-image: -o-linear-gradient(bottom, #3d3d3d 16%, #151515 100%);
+    background-image: -moz-linear-gradient(bottom, #3d3d3d 16%, #151515 100%);
+    background-image: -webkit-linear-gradient(bottom, #3d3d3d 16%, #151515 100%);
+    background-image: -ms-linear-gradient(bottom, #3d3d3d 16%, #151515 100%);
+    background-image: -webkit-gradient( 	linear, 	left bottom, 	left top, 	color-stop(0.16, #3d3d3d), 	color-stop(1, #151515) );
+    height:105px;
+    overflow:hidden;    
+}
+    #header-container div#carrito {
+        background:url(../images/KIOSCO_header_iconos_shopcart.png) no-repeat top left;
+        float:right;
+        height:48px;
+        margin:-85px 24px;
+        width:48px;
+        text-indent:-1920px;
+    }
+    #header-container div#filtro_busqueda_header {
+    background:url(../images/kiosco_header_buscador.png) no-repeat;
+    width: 180px;
+    margin:-36px 30px 0 0;
+    padding:0;
+    float:right;
+    } 
+    #header-container div#filtro_busqueda_header input {
+        background:transparent;
+        border:none;
+        font-size:10px; 
+        line-height:12px;
+        text-indent:-1920px;   
+        cursor: pointer;     
+    } 
+    #header-container div#filtro_busqueda_header input#s {
+        background:transparent;
+        color:#202020;
+        margin:0 2px;
+        padding:0 0px;
+        text-indent:0;
+        width:153px;
+        cursor: auto;
+    } 
+    #header-container header h1 {
+        margin:0;
+        padding:0;
+    }
+    #header-container header h1 a 
+    {
+        background:url(../images/KIOSCO_logo.png) no-repeat 10px 10px;
+        display:block;
+        height:82px;
+        text-indent:-1920px;
+        width:357px;
+        }
 #header_tienda div.header_section 
 {
     display:none;
 }
 #header_tienda section.header_section 
 {
-    float:right;
+
     }
     #header_tienda section.header_section div
     {
@@ -26,6 +89,11 @@ img{
         margin:0;
         padding:0 0 5px 0;
     }
+div#main {
+        margin:-39px 0 0;
+        padding:0;
+        z-index:1;
+}
 section#contenido 
 {
     clear:both;
@@ -34,16 +102,20 @@ section#contenido
     }
     nav.banner_categorias 
     {
-        background:#000000 url(../images/nav_background.gif) repeat-x top left;
-        height:26px;
+        clear:both;
+        background:url(../images/KIOSCO_header.png) no-repeat 0 8px;
+        height:70px;
         margin:0;
         padding:0;
+        position:relative;
+        z-index:999;
         }
         nav.banner_categorias ul 
         {
+        background:#000000 url(../images/nav_background.gif) repeat-x top left;
             height:26px;
             list-style:none;
-            margin:0 0 0 50px;
+            margin:0 0 0 0px;
             padding:0;
             }
             nav.banner_categorias ul li 
@@ -54,12 +126,21 @@ section#contenido
             {
                 display:none;
                 }
+            nav.banner_categorias ul li:nth-child(2)
+            {
+                margin-left: 10px;
+                }    
+            nav.banner_categorias ul li:last-child
+            {
+                float: right;
+                margin-right: 25px
+                }    
                 nav.banner_categorias ul li a
                 {
                     color:#FFFFFF;
                     font-weight:bold;
                     line-height:26px;
-                    padding:0 25px 0 0;
+                    padding:0 0 0 30px;
                     text-decoration:none;
                     text-transform:uppercase;
                     }
@@ -69,12 +150,11 @@ section#contenido
                     }
     div.contenidos
     {
-        margin:0;
-        padding:0;
+
         }         
         div.contenidos div.blank_section 
         {
-            height:10px;
+            display:none;
             }
         div.contenidos div.menuv 
         {
@@ -108,69 +188,3 @@ div#footer-container
 {
     display:none;
     }            
-    
-
-#paginacion{
-	clear: both;	
-	margin-left: auto; 
-	margin-right: auto; 
-	width: 320px;	
-	text-align: center;	
-}
-
-#paginacion .avance{
-	color: #21558F;
-	font-size: 13px;
-	text-decoration: underline;	
-	margin-left: 2px;	
-	float: left
-}
-
-#paginacion .padding-texto{
-	margin: 0px 5px;			
-}
-
-#paginacion .triangulo-azul-izq{
-	border:none;
-	width: 3px;			
-	height: 8px;
-	background: url('../images/css_sprite_Triangulos.png') no-repeat;	
-	background-position: -5px -10px;	
-	float:left;
-	padding-left:2px;
-	margin: 5px 3px 0px 0px;
-}
-
-#paginacion .triangulo-azul-der{
-	border:none;
-	width: 3px;			
-	height: 8px;
-	background: url('../images/css_sprite_Triangulos.png') no-repeat;	
-	background-position: -21px -2px;	
-	float:left;
-	padding-left:2px;
-	margin: 5px 0px 0px 3px;
-}
-
-#paginacion .pleca-vertical{
-	background-color: #939393;
-	width: 1px;
-	height: 15px;
-	float: left;
-	margin: 0px 7px;
-}
-
-#paginacion .texto-pagina{
-	font-size: 13px;
-	color: #939393;		
-	float: left;
-	margin: 0px 5px 0px 0px;
-}
-
-#paginacion  .actual{
-	margin: 0px 5px;
-	font-size: 13px;
-	color:#800;	
-	font-weight: bold;	
-	float: left;
-}

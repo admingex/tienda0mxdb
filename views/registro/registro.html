@@ -1,17 +1,17 @@
 <link href='<?php echo TIENDA ?>css/viewlet-login.css' rel='stylesheet' type="text/css" />
 <div id="viewlet-login">
-	<div class="titulo">Registro de cliente</div>
+	<div class="titulo"><span style="padding-left: 40px;">REGISTRO DE CLIENTE</span></div>
 	<div class="pleca-superior"></div>
 	<div class="formulario">
-		<table width="100%">	
+		<table class="tabla" style="margin-left: 0px">	
 			<form id="form_registro_usuario" action="<?php echo site_url('registro/'); ?>" method="POST">	
 			<tr>
-				<td class="label"> 
+				<td class="label" > 
 					Nombre
 				</td>
 				<td>
 					<input type="text" name="txt_nombre" id="txt_nombre" 
-						value="<?php if(isset($_POST['txt_nombre'])) echo htmlspecialchars($_POST['txt_nombre']);?>" />
+						value="<?php if(isset($_POST['txt_nombre'])) echo htmlspecialchars($_POST['txt_nombre']);?>" class="lasttext"/>
 					<?php if(isset($registro_errores['txt_nombre'])) echo $registro_errores['txt_nombre'];?>
 				</td>
 			</tr>	
@@ -21,7 +21,7 @@
 				</td>
 				<td>
 					<input type="text" name="txt_apellidoPaterno" id="txt_apellidoPaterno" 
-						value="<?php if(isset($_POST['txt_apellidoPaterno'])) echo htmlspecialchars($_POST['txt_apellidoPaterno']);?>" />
+						value="<?php if(isset($_POST['txt_apellidoPaterno'])) echo htmlspecialchars($_POST['txt_apellidoPaterno']);?>" class="lasttext"/>
 					<?php if(isset($registro_errores['txt_apellidoPaterno'])) echo $registro_errores['txt_apellidoPaterno'];?>
 				</td>
 			</tr>	
@@ -31,7 +31,7 @@
 				</td>
 				<td>
 					<input type="text" name="txt_apellidoMaterno" id="txt_apellidoMaterno" 
-						value="<?php if(isset($_POST['txt_apellidoMaterno'])) echo htmlspecialchars($_POST['txt_apellidoMaterno']);?>" />
+						value="<?php if(isset($_POST['txt_apellidoMaterno'])) echo htmlspecialchars($_POST['txt_apellidoMaterno']);?>" class="lasttext"/>
 					<?php if(isset($registro_errores['txt_apellidoMaterno'])) echo $registro_errores['txt_apellidoMaterno'];?>
 				</td>
 			</tr>							
@@ -41,7 +41,7 @@
 				</td>
 				<td>
 					<input type="text" name="email" id="email" maxlength="60" 
-						value="<?php if(isset($_POST['email'])) echo htmlspecialchars($_POST['email']);?>" size="35"/>
+						value="<?php if(isset($_POST['email'])) echo htmlspecialchars($_POST['email']);?>" size="35" class="lasttext"/>
 					<?php if((isset($_POST['email'])&& isset($_POST['txt_nombre']))&&(isset($registro_errores['email']))) echo $registro_errores['email'];?>
 				</td>
 			</tr>
@@ -51,7 +51,7 @@
 				</td>
 				<td>
 					<input type="password" name="password" id="password"  
-						value="<?php if(isset($_POST['password'])) echo htmlspecialchars($_POST['password']);?>" />							
+						value="<?php if(isset($_POST['password'])) echo htmlspecialchars($_POST['password']);?>" class="lasttext"/>							
 						<?php if(isset($registro_errores['password']) && isset($_POST['txt_nombre'])) echo $registro_errores['password'];?>			
 				</td>
 			</tr>			
@@ -67,7 +67,7 @@
 				</td>
 				<td>
 					<input type="password" name="password_2" id="password_2"  
-						value="<?php if(isset($_POST['password_2'])) echo htmlspecialchars($_POST['password_2']);?>" />
+						value="<?php if(isset($_POST['password_2'])) echo htmlspecialchars($_POST['password_2']);?>" class="lasttext"/>
 						<?php if(isset($registro_errores['password_2'])) echo $registro_errores['password_2'];?>											
 				</td>
 			</tr>	
@@ -76,7 +76,7 @@
 			</tr>	
 			<tr>
 				<td>&nbsp;</td>
-				<td><input type="submit" id="enviar" value="&nbsp;" class="crear-cuenta"/></td>
+				<td><input type="submit" id="enviar" value="Crear cuenta y continuar" class="boton-iniciar-sesion-crear"/></td>
 			</tr>			
 			</form>
 		</table>

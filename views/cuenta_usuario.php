@@ -21,6 +21,7 @@ $(document).ready(function() {
         $.ajax({
         		cache: false,
                 data:  parametros,
+                
                 url:   ecommerce + "administrador_usuario/compras_cliente",
                 type:  'post',
                 beforeSend: function () {
@@ -191,7 +192,7 @@ function view_pass(){
 
 </script>
 <div id="historial-compras">
-	<div>	
+	<div style="position: absolute; z-index: 10000008; border: solid 1px #800">	
 		<input type="button" id="boton_historial" value="" class="boton-historial" />
 		<input type="button" id="boton_medios" value="" class="boton-medios"/>
 		<input type="button" id="boton_datos" value="" class="boton-datos"/>

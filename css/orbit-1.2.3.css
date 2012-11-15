@@ -9,7 +9,7 @@
 /* PUT IN YOUR SLIDER ID AND SIZE TO MAKE LOAD BEAUTIFULLY
    ================================================== */
 #featured {
-	width: 800px;
+	width: 530px;
 	height: 450px;
 	background: #000 url('../images/loading.gif') no-repeat center center;
 	overflow: hidden; }
@@ -43,7 +43,7 @@ div.orbit>img {
     left: 0;
     display: none;
     /* para cambiar el tamaño de las imagenes*/
-    width: 633px; 
+    width: 530px; 
     height: 337px;
 }
 
@@ -55,7 +55,7 @@ div.orbit>a {
     line-height: 0; 
     display: none;
    /* para cambiar el tamaño de las imagenes*/
-    width: 633px;
+    width: 530px;
     height: 337px;
 }
 
@@ -186,12 +186,12 @@ div.slider-nav span.left {
     position: absolute;
     z-index: 1000;
     list-style: none;
-    bottom: -2px;    	
+    bottom: 10px;    	
     padding: 0;    
     /*border: solid 2px;*/  
     border-color: #CCC;  
     width: 287px; 
-    /*padding-left: 45%;*/        
+    padding-left: 45%;      
 }
 
 .orbit-bullets li {
@@ -200,15 +200,15 @@ div.slider-nav span.left {
     cursor: pointer;
     color: #999;
     text-indent: -9999px;
-    background: url('../images/css_sprite_HeaderRadialBotton.png') no-repeat -4px 0;
-    width: 13px;
-    height: 24px;
+    background: url('../images/carrusel_bullets.jpg') no-repeat 0 0;
+    width: 8px;
+    height: 8px;
     overflow: hidden;        
 }
 
 .orbit-bullets li.active {
     color: #222;
-    background-position: -16px 0;  
+    background-position: -8px 0;  
 }
     
 .orbit-bullets li.has-thumb {

@@ -1,6 +1,7 @@
 <link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
-<div id="contenedor-promo">
-<?php		
+<div style='width: 700px; float: left'>
+<?php
+	/*		
 	//paginador	
 	$total = count($promociones_especiales);	
 			
@@ -16,23 +17,28 @@
 	
 	$paginacion = new paginacion($cantidad, $pg);
 	$desde = $paginacion->getFrom();		
-		
+	*/	
 	$recorrer = $promociones_especiales;
 	
+	/*
 	$limite = ($desde + $cantidad);
 	if ($limite > $total) {
 		$limite = $total;
 	}
-	$j=0;
+		
 	for ($i = $desde; $i < $limite ; $i++) {
+	 */ 
+	echo "<div class='list_carousel responsive'>
+				<ul id='slider'>"; 
+	foreach($promociones_especiales as $pe){ 
 		//echo "<br />->".$i."<-";
 		
 		/*echo "<pre>";
 			print_r($recorrer[$i]);
 		echo "</pre>";*/
 		
-		$pe = $recorrer[$i];
-		
+		//$pe = $recorrer[$i];
+		echo "<li>";
 		if(isset($pe->promo_padre)){
 			echo "	<div class='catego-left'>
 						<div class='contenedor-imagen'>
@@ -73,33 +79,13 @@
 	  		</form>
 	  	</div>";
 		}
-		//pinta un espacio en blanco que sirve de margen						
-		if (($j == 0) || ($j == 1) || ($j == 3) || ($j == 4) ){
-			echo "<div class='catego-space'></div>";				
-		}
-		$j++;
+		echo "</li>";
+		
 	}
+	echo "	</ul>
+				<a id='prev' class='prev' href='#'>&lt;</a>
+				<a id='next' class='next' href='#'>&gt;</a>
+			</div>";
 ?>
 </div>
-<?php 
-	if($total>6){
-?>		
-<div id="paginacion">
-<?php						
-	$url = TIENDA."categoria/6/";
-	
-	$classCss = "numPages";
-	#$classCss = "actualPage";
-	
-	//Clase CSS que queremos asignarle a los links 
-	
-	$back = "Atras";
-	$next = "Siguiente";
-	
-	$paginacion->generaPaginacion($total, $back, $next, $url, $classCss);
-?>
-</div>
-<?php
-	} 
-?>
 <div class="space-pleca"></div>
