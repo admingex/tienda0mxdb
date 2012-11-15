@@ -1,10 +1,10 @@
 $(document).ready(function() {
 /*-PARA CARGAR LOS MX AL CARGAR LA PAGINA -*/
 fmx=$('option.MX:first').attr("id");
-$("option.USD").hide();
+$("#selusd").hide();
 cambia_boton(fmx);
 
-
+	
 	$("#sel_pais").change(function(){
 			
 	//alert(id_ant);
@@ -13,22 +13,33 @@ cambia_boton(fmx);
 		opcion=$(this).val();						
 		switch (opcion){
 			case 'MX':
-					$("option.MX").show();
-					$("option.USD").hide();				
+					$("#selmx").show();
+					$("#selusd").hide();				
 					cambia_boton(fmx);				
 					break;
 			case 'USD':
-					$("option.USD").show();
-					$("option.MX").hide();				
+					$("#selusd").show();
+					$("#selmx").hide();				
 					cambia_boton(fusd);								
 					break;
 			case 'ALL':
-					$("option.USD").show();
-					$("option.MX").show()
+					$("#selmx").show();
+					$("#sel").show()
 					cambia_boton(id_ant);
 					break;		
 		}
 	
 	});
 	
+	$("#sel_b2b").change(function(){
+		document.enviar_tipo_suscripcion.submit()
+	});	
+	
+	$("#promosmx").change(function(){		
+		cambia_boton(this.val());
+	});
+	
+	$("#promosusd").change(function(){		
+		cambia_boton(this.val());
+	});					
 });

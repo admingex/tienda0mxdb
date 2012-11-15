@@ -46,10 +46,13 @@
             <!-- img src="<?php echo TIENDA;?>images/KIOSCO_logo.png" alt="logo gex" / -->
             <h1><a href="<?php echo TIENDA;?>">Kiosco</a></h1>
         </header>  
-        <div id='header_tienda'>		
-			<a id='cuenta-carrito' class="carrito" href="<?php echo site_url('carrito.php');?>">
-			    <div id='carrito'>&nbsp;</div>		
+        <div id='header_tienda'>
+        	<a href="#">
+			    <div id='01800'>&nbsp;</div>		
 			</a>		
+			<a href="<?php echo site_url('carrito.php');?>">
+			    <div id='carrito'>&nbsp;</div>		
+			</a>				
 		</div>  
         <section class="header_section"> 
         	<div id="filtro_busqueda_header">       	     	           

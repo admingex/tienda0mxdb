@@ -65,15 +65,18 @@ if (isset($_SESSION['carrito'])) {
 						            </li>
 						            <li>						            	
 						            	<div class='descripcion_producto'>
-						            	    <img src='".$img1."' alt 'logo'/>
-						            	    <div class='precio'>$".number_format($v['precio'],2,".",",")."</div>
+						            	    <img src='".$img1."' alt 'logo'/>";
+											if($v['cantidad']>1){
+						            	    	echo "<div class='descripcion3'>".$v['cantidad']." lugares</div>";
+											}
+					echo "            	    <div class='precio'>$".number_format($v['precio'],2,".",",")."</div>
 						            	    <div class='descripcion1'>".$v['descripcion']."</div>
 						            	    <!--<div class='descripcion2'>".$v['descripcion']."</div>
 						            	    <div class='descripcion3'>".$v['descripcion']."</div>-->
 						            	</div>																	            
 						            </li>
 						            <li>						            	
-						                <div class='precio_pagar'>pagar <span class='rojo'>$".number_format($v['precio'],2,".",",")."</span></div>						                
+						                <div class='precio_pagar'>pagar <span class='rojo'>$".number_format($v['cantidad']*$v['precio'],2,".",",")."</span></div>						                
 						            </li>
 						        </ul>";						        							        						        															
 				//echo 			"<a href='".site_url("carrito.php?eliminar_item=".$k)."'>Eliminar</a>";		        	   			
