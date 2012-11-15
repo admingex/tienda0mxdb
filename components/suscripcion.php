@@ -4,10 +4,11 @@
 	//para pasar a pagar en la plataforma de pagos, es la acción por defecto:
 	$action_pagos_inicial = ECOMMERCE."api/". $promo_inicial->id_sitio . "/" . $promo_inicial->id_canal . "/" . $promo_inicial->id_promocion . "/pago";
 	$onclick_action_pagos_inicial = "document.comprar_promocion" . $promo_inicial->id_promocion . ".action='" . $action_pagos_inicial . "'; ";
-				
+	/*			
 	echo "<pre>";
 		    print_r($detalles_promociones);
 	echo "</pre>";	
+	*/
 ?>
 <script type="text/javascript">
 	var id_sit = <?php echo $promo_inicial->id_sitio; ?>;
@@ -17,8 +18,7 @@
 	var form_submit = "document.comprar_promocion" + id_ant;			
 	//iniciales
 		
-	function cambia_boton(id) {
-		//alert(id);
+	function cambia_boton(id) {		
 		//if (document.getElementById(id_ant)) {
 			//limpia la selección anterior
 			//document.getElementById(id_ant).innerHTML = '';
@@ -37,7 +37,8 @@
 		$("#btn_comprar_ahora").attr("onclick", submit_pagos);
 		$("#btn_agregar_carrito").attr("onclick", submit_carrito);	
 		  					
-		
+		$('#precio_promo').text('$'+$('#precio'+id).text());
+		$('#descripcion-promo').text($('#descripcion'+id).text());
 			
 		//indica cuál es el que está selceccionado
 		id_ant = id;
@@ -91,8 +92,9 @@
 					$i++;
 				}
 			?>			
-			<div class='selects'>				
-				<select name="sel_pais" id="sel_pais" >
+			<div class='selects'>	
+				<div class="styled-select">					
+				<select name="sel_pais" id="sel_pais" class="styled">
 				<?php 
 					$antvalor='ads';
 					foreach($amoneda as $valor){ 
@@ -112,26 +114,42 @@
 				 		$antvalor = $valor;
 					} ?>
 				</select>	
-				<select name="promos" onchange="cambia_boton(this.value)">					
+				</div>					
 				<?php
 					$sel='';
-					foreach ($detalles_promociones as $detalle) {						
+					$usd='';
+					$mx = '';
+					foreach ($detalles_promociones as $detalle) {
+												
 						if($detalle->id_promocion == $promo_inicial->id_promocion)
-						    $sel = "selected='selected'";																
-				?>				
-							<option id="<?php echo $detalle->id_promocion;?>" value="<?php echo $detalle->id_promocion;?>" <?php echo $sel?> class="<?php echo $detalle->moneda ?>"><?php echo $detalle->descripcion_promocion;?></option>																																											
-				<?php
+						    $sel = "selected='selected'";
+						
+						if($detalle->moneda=="MX")
+							$mx.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda.">".$detalle->descripcion_promocion."</option>";
+												
+						if($detalle->moneda=="USD")
+							$usd.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda.">".$detalle->descripcion_promocion."</option>";																			
 					}
+					echo "<div id='selmx' class='styled-select'>
+						      <select name='promos' onchange=\"cambia_boton(this.value)\" class='styled' >	
+						      	".$mx."
+						      </select>
+					      </div>";
+					echo "<div id='selusd' class='styled-select'>
+						      <select name='promos' onchange=\"cambia_boton(this.value)\" class='styled' >		
+						      	".$usd."
+						      </select>
+					      </div>";	  
 				?>	
-				</select>	
+				
 				<?php
 				//para B2B
 				if (isset($info_publicacion) && $info_publicacion->auditableBi) {
 				?>
 				
-				<div>								
+				<div class="styled-select"> 								
 					<form name="enviar_tipo_suscripcion" action="<?php echo site_url('B2B/ptienda.php') ?>" method="POST">
-						<select name='tipo_suscripcion' onchange="document.enviar_tipo_suscripcion.submit()">
+						<select name='tipo_suscripcion' class="styled" id='sel_b2b'>
 							<option value=''>Selecciona opción</option>
 							<option value='nva_<?php echo $info_publicacion->id_publicacionSi;?>'>Suscripción nueva</option>
 							<option value='ren_<?php echo $info_publicacion->id_publicacionSi;?>'>Renovación</option>
@@ -162,17 +180,7 @@
 	    		<input type="button" id="btn_comprar_ahora" name="btn_comprar_ahora" value="Comprar ahora" class="boton-comprar-ahora" onclick="submit_to_pagos(<?php echo $promo_inicial->id_promocion;?>)"/>
 	    	</div>
 	    </div>
-	    			
-		<table id="table_promociones" name="table_promociones" width="100%" cellspacing="1">
-			<thead>
-				<tr>
-					<th>&nbsp;</th>
-					<th>Promoci&oacute;n</th>
-					<th>Descripci&oacute;n</th>
-					<th>Precio</th>
-				</tr>	
-			</thead>
-			<tbody>
+	    					
 			<?php
 				foreach ($detalles_promociones as $detalle) {
 					//para pasar a pagar en la plataforma de pagos, es la acción por defecto:
@@ -196,21 +204,14 @@
 					if ($promo_inicial->id_promocion == $detalle->id_promocion)
 						$class_radio = "class='radio_selected'";
 			?>
-				<tr id="<?php echo $detalle->id_promocion ?>" class="<?php echo $detalle->moneda ?>">
-					<td id="<?php echo $detalle->id_promocion;?>">
-						<input type="radio" id="radio<?php echo $detalle->id_promocion; ?>" name="promocion" value="<?php echo $detalle->id_promocion; ?>"/>
-						<div id="div_promocion<?php echo $detalle->id_promocion; ?>" <?php echo $class_radio;?>  onclick="cambia_boton(<?php echo $detalle->id_promocion; ?>);" >&nbsp;</div>					
-					</td>
-					<td><?php echo $detalle->descripcion_promocion; ?></td>
-					<td><?php echo $detalle->texto_oferta; //Contenido de la promocion(ejemplares, suplementos, regalos, etc.)?></td>
-					<td>Precio: <?php echo number_format($detalle->costo,2, ".", ",")."&nbsp;".$detalle->moneda; //Precio y descuento aplicado sobre precio de portada?></td>
-				</tr>
+									
+					<div class="hidden" id='descripcion<?php echo $detalle->id_promocion ?>'><?php echo $detalle->descripcion_promocion; ?></div>
+					<div class="hidden" ><?php echo $detalle->texto_oferta; //Contenido de la promocion(ejemplares, suplementos, regalos, etc.)?></div>
+					<div class="hidden" id='precio<?php echo $detalle->id_promocion ?>'><?php echo number_format($detalle->costo,2, ".", ",")."&nbsp;".$detalle->moneda; //Precio y descuento aplicado sobre precio de portada?></div>				
 				
 			<?php
 				}
-			?>
-			</tbody>
-		</table>
+			?>			
 		<!--
 		<div class="banner-descripcion">
 			<div class="triangulo-negro-der"></div><?php echo $promo_inicial->nombre_publicacion;?>: <?php echo $promo_inicial->descripcion_publicacion; ?>
