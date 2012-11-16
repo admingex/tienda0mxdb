@@ -30,16 +30,9 @@ cambia_boton(fmx);
 		}
 	
 	});
-	
+		
 	$("#sel_b2b").change(function(){
-		document.enviar_tipo_suscripcion.submit()
+		document.enviar_tipo_suscripcion.submit();			
 	});	
-	
-	$("#promosmx").change(function(){		
-		cambia_boton(this.val());
-	});
-	
-	$("#promosusd").change(function(){		
-		cambia_boton(this.val());
-	});					
+				
 });

@@ -93,27 +93,29 @@
 				}
 			?>			
 			<div class='selects'>	
-				<div class="styled-select">					
-				<select name="sel_pais" id="sel_pais" class="styled">
-				<?php 
-					$antvalor='ads';
-					foreach($amoneda as $valor){ 
-				
-						if($antvalor !=$valor){				
-				?>
-						<option value="<?php echo $valor;?>" <?php if($valor=='MX') echo "selected='selected'"; ?> >
+				<div class="styled-select">	
+					<div class="cont-select">				
+						<select name="sel_pais" id="sel_pais" >
 						<?php 
-						if($valor=='MX')
-							echo 'México';
-						else
-							echo 'Internacional';
+						$antvalor='ads';
+						foreach($amoneda as $valor){ 
+					
+							if($antvalor !=$valor){				
 						?>
-						</option>
-				<?php
-				 		}
-				 		$antvalor = $valor;
-					} ?>
-				</select>	
+							<option value="<?php echo $valor;?>" <?php if($valor=='MX') echo "selected='selected'"; ?> >
+							<?php 
+							if($valor=='MX')
+								echo 'México';
+							else
+								echo 'Internacional';
+							?>
+							</option>
+						<?php
+					 		}
+					 		$antvalor = $valor;
+						} ?>
+						</select>
+					</div>	
 				</div>					
 				<?php
 					$sel='';
@@ -131,14 +133,18 @@
 							$usd.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda.">".$detalle->descripcion_promocion."</option>";																			
 					}
 					echo "<div id='selmx' class='styled-select'>
-						      <select name='promos' onchange=\"cambia_boton(this.value)\" class='styled' >	
-						      	".$mx."
-						      </select>
+					          <div class='cont-select'>
+						      	<select name='promos' onchange=\"cambia_boton(this.value)\">	
+						      		".$mx."
+						      	</select>
+						      </div>	
 					      </div>";
 					echo "<div id='selusd' class='styled-select'>
-						      <select name='promos' onchange=\"cambia_boton(this.value)\" class='styled' >		
+							<div class='cont-select'>
+						      <select name='promos' onchange=\"cambia_boton(this.value)\" >		
 						      	".$usd."
 						      </select>
+						    </div>  
 					      </div>";	  
 				?>	
 				
@@ -147,15 +153,17 @@
 				if (isset($info_publicacion) && $info_publicacion->auditableBi) {
 				?>
 				
-				<div class="styled-select"> 								
-					<form name="enviar_tipo_suscripcion" action="<?php echo site_url('B2B/ptienda.php') ?>" method="POST">
-						<select name='tipo_suscripcion' class="styled" id='sel_b2b'>
-							<option value=''>Selecciona opción</option>
-							<option value='nva_<?php echo $info_publicacion->id_publicacionSi;?>'>Suscripción nueva</option>
-							<option value='ren_<?php echo $info_publicacion->id_publicacionSi;?>'>Renovación</option>
-							<option value='can_<?php echo $info_publicacion->id_publicacionSi;?>'>Cancelar</option>
-						</select>
-					</form>				
+				<div class="styled-select"> 
+					<div class="cont-select">								
+						<form name="enviar_tipo_suscripcion" action="<?php echo site_url('B2B/ptienda.php') ?>" method="POST">
+							<select name='tipo_suscripcion' class="styled" id='sel_b2b'>
+								<option value=''>Selecciona opción</option>
+								<option value='nva_<?php echo $info_publicacion->id_publicacionSi;?>'>Suscripción nueva</option>
+								<option value='ren_<?php echo $info_publicacion->id_publicacionSi;?>'>Renovación</option>
+								<option value='can_<?php echo $info_publicacion->id_publicacionSi;?>'>Cancelar</option>
+							</select>
+						</form>
+					</div>								
 				</div>
 				<?php
 				}

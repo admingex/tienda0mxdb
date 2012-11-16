@@ -130,12 +130,16 @@
    	background: transparent url('../images/selector.png') no-repeat;   
 }
 
+.cont-select{
+	width: 156px;	
+	overflow: hidden;
+}
+
 .styled-select select {
 	background: transparent;
- 	width: 185px;
-   	padding: 0px 25px 0px 5px;
-   	font-size: 10px;
-   	border: 1px solid #800;
+ 	width: 215px;
+   	padding: 0px 35px 0px 5px;
+   	font-size: 10px;   	
    	height: 20px;
    	-webkit-appearance: none;   
    	border: none;	   	

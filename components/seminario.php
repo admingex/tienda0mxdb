@@ -38,12 +38,14 @@
 			<div class='selects'>
 				<div class="indicaciones">Numero de lugares</div>
 				<div class="styled-select">
-					<select name="cantidad" class="styled" >
-						<?php 
-						for ($in=1; $in<=10; $in++)
-							echo "<option value='$in'>$in</option>";
-						?>					
-					</select>
+					<div class="cont-select">
+						<select name="cantidad" class="styled" >
+							<?php 
+							for ($in=1; $in<=10; $in++)
+								echo "<option value='$in'>$in</option>";
+							?>					
+						</select>
+					</div>	
 				</div>
 			</div>
 			<div class="back-rayado">			

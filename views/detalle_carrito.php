@@ -1,8 +1,9 @@
-﻿<!--<link href='<?php echo TIENDA ?>css/viewlet-carrito.css' rel='stylesheet' type="text/css" />-->
+﻿<link href='<?php echo TIENDA ?>css/viewlet-carrito.css' rel='stylesheet' type="text/css" />
 <?php
 
 
-if (isset($_SESSION['carrito'])) {		    	
+if (isset($_SESSION['carrito'])) {
+	
 		
 		$na = count($_SESSION['carrito']);
 		if ($na > 0) {					
@@ -30,10 +31,10 @@ if (isset($_SESSION['carrito'])) {
 			$datos_encrypt = API::encrypt(serialize($promos_env), API::API_KEY);
 			$datos_encrypt_url = rtrim(strtr(base64_encode($datos_encrypt), '+/', '-_'), '=');
 			
-			echo 	"<form name='' action='".ECOMMERCE."api/carrito/".$datos_encrypt_url."' method='post'>";
+			
 			echo "<div id='viewlet-carrito'>";
-				
-			$in = 'width: 100%';
+			echo 	"<form name='' action='".ECOMMERCE."api/carrito/".$datos_encrypt_url."' method='post'>";
+							
 			$var = 0;
 			if (isset($_SESSION['ult_elem'])) {
 				$var = 1;
@@ -46,11 +47,11 @@ if (isset($_SESSION['carrito'])) {
 				echo "    <img src='".$_SESSION['carrito'][$ind]['imagenVc']."' alt='".$_SESSION['carrito'][$ind]['imagenVc']."' width='175px' height='235px' />";
 				echo "    <img src='".$img1."' alt 'logo'/>";			
 				echo "</div>";			
-				$in = 'width: 435px';
+				
 			}
 			
 			
-			echo "<div class='plecas'  style='float: left; $in' >";								
+			echo "<div class='plecas'  style='float: left; width: 435px' >";								
 				
 			foreach ($_SESSION['carrito'] as $k => $v) {
 				    // obtener imagen logo revista
@@ -105,7 +106,6 @@ if (isset($_SESSION['carrito'])) {
 								"<a href='".site_url('home')."' class='continuar-carrito'></a>";										
 					echo 		"<input type='submit' name='tienda_carrito' value='' class='pagar-carrito'/>".
 							"</div>	".
-					 * 
 					 */
 			echo 	"</div>";
 		echo "</div>
@@ -130,12 +130,14 @@ if (isset($_SESSION['carrito'])) {
                     </div>	              		
           	  	</div>          
       	      </div>
-      	      </form>";	
+      	      </form>
+      	      ";	
 			  		
 		} 
 		else {
 			echo "<p class='titulo-promo-rojo-deposito'>No hay productos en el carrito</p>";
-		}				
+		}	
+	 			
 } 
 else {
 		echo "<p class='titulo-promo-rojo-deposito'>No hay productos en el carrito</p>";
