@@ -35,6 +35,13 @@ width:985px;
         width:48px;
         text-indent:-1920px;
     }
+    #cont {
+        background:url(../images/KIOSCO_header_iconos_01800.png) no-repeat top left;
+        float:right;
+        height:48px;        
+        width:48px;        
+        margin: -85px 80px;        
+    }
     #header-container div#filtro_busqueda_header {
     background:url(../images/kiosco_header_buscador.png) no-repeat;
     width: 180px;

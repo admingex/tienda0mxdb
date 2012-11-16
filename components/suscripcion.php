@@ -70,10 +70,9 @@
 <link href='<?php echo TIENDA ?>css/viewlet-detalle-suscripcion.css' rel='stylesheet' type="text/css" />
 <?php	
 	//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
-	if (file_exists("./p_images/".$promo_inicial->url_imagen)){
-		$src = TIENDA ."p_images/".$promo_inicial->url_imagen;
-		$logo = TIENDA."l_images/".$promo_inicial->url_imagen;
-		$logo = str_replace(".jpg", ".png", $logo);
+	if (file_exists("./r_images/".$promo_inicial->url_imagen)){
+		$src = TIENDA ."r_images/".$promo_inicial->url_imagen;
+		$logo = TIENDA."l_images/".$promo_inicial->url_imagen;		
 	} else {
 		$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
 		$logo = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";

@@ -40,11 +40,10 @@ if (isset($_SESSION['carrito'])) {
 				$var = 1;
 				$ind = $_SESSION['ult_elem'];	
 				// obtener imagen logo revista
-				$img1 = str_replace("p_images", "l_images", $_SESSION['carrito'][$ind]['imagenVc']);
-				$img1 = str_replace(".jpg", ".png", $img1);		
+				$img1 = str_replace("r_images", "l_images", $_SESSION['carrito'][$ind]['imagenVc']);						
 				
 				echo "<div class='img-big'>";
-				echo "    <img src='".$_SESSION['carrito'][$ind]['imagenVc']."' alt='".$_SESSION['carrito'][$ind]['imagenVc']."' width='175px' height='235px' />";
+				echo "    <img src='".$_SESSION['carrito'][$ind]['imagenVc']."' alt='".$_SESSION['carrito'][$ind]['imagenVc']."' />";
 				echo "    <img src='".$img1."' alt 'logo'/>";			
 				echo "</div>";			
 				
@@ -55,8 +54,7 @@ if (isset($_SESSION['carrito'])) {
 				
 			foreach ($_SESSION['carrito'] as $k => $v) {
 				    // obtener imagen logo revista
-					$img1 = str_replace("p_images", "l_images", $v['imagenVc']);
-					$img1 = str_replace(".jpg", ".png", $img1);
+					$img1 = str_replace("r_images", "l_images", $v['imagenVc']);					
 					echo "	<div>
 						        <ul>
 						            <li>
