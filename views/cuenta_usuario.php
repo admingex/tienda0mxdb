@@ -42,13 +42,14 @@ $(document).ready(function() {
 		$("#result_errores").html("" );	
 		$.ajax({  
 				cache: false, 		 		           
-                url:   ecommerce + "administrador_usuario/listar_tarjetas/" + id_cliente_js,
+                url:   administrador + "administrador_usuario.php?accion=listar_tarjetas",
                 type:  'POST', 
-                dataType: "json",                               
+                dataType: "json",
+                data: {"id_cliente": id_cliente_js},                               
                 beforeSend: function () {                    	     	
 					$("#result_informacion").html("Procesando, espere por favor..." );
                 },
-          		success:  function (data) {          			
+          		success:  function (data) {                  			          			  			
           			$("#result_informacion").html("<div class='titulo-descripcion'>" +
 												  "<div class='img-hoja'></div>Medios de pagos" +
 												  "<div class='pleca-titulo'></div>" +
@@ -61,7 +62,7 @@ $(document).ready(function() {
           										  "<td onclick=\"editar_tc('"+ v.id_TCSi+ "', '"+v.id_tipo_tarjetaSi+ "')\" ><a href='#'>editar</a></td>" +
           										  "<td onclick=\"eliminar_tc('"+ v.id_TCSi+ "')\" ><a href='#'>Eliminar</a></td>" +
           										  "</tr>");          				          				          				          				 
-          			});                   			          			    			             			     				      				   			      				          																		             
+          			});          			                   			          			    			             			     				      				   			      				          																		             
                 }
         }); 	               		
 		$('#boton_medios').removeClass('boton-medios').addClass('boton-medios-sel');

@@ -69,13 +69,14 @@ function listar_dir_envio(){
 
 	$.ajax({   
 		cache: false,		 		           
-        url:   ecommerce + "administrador_usuario/listar_direccion_envio/" + id_cliente_js,
-        type:  'POST', 
+        url:   administrador + "administrador_usuario.php?accion=listar_direccion_envio",
+        type:  'POST',
+        data: {"id_cliente": id_cliente_js}, 
         dataType: "json",                               
         beforeSend: function () {                    	     	
 			//$("#result_informacion").html("Procesando, espere por favor..." );
         },
-  		success:  function (data) {            
+  		success:  function (data) {              			
   			  			      			
   			$("#result_informacion").append("<div style='margin-top:18px'></div><div class='encabezado-descripcion'>Datos de envío</div>" +
   											"<table id='direcciones' cellspacing='0'><thead><tr><th>Dirección</th><th>Colonia</th><th>Codigo Postal</th><th>Ciudad</th><th>Estado</th><th colspan='2'>&nbsp;</th></tr></thead></table>");
@@ -95,6 +96,7 @@ function listar_dir_envio(){
   													 '<td onclick=\"eliminar_dir_envio('+ v.id_consecutivoSi +')\" valign="top"><a href="#">eliminar</a></td>'+
   													 '</tr>');          				          				          				          				 
   			});   
+  			
   			$('#boton_datos').removeAttr('disabled');                			          			    			             			     				      				   			      				          																		             
         }
     });  
@@ -106,8 +108,9 @@ function eliminar_dir_envio(id_env){
 	if(conf){
 		$.ajax({   
 			cache: false,		 		           
-        	url:   ecommerce + "administrador_usuario/eliminar_dir_envio/" + id_env + "/" + id_cliente_js,
+        	url:   administrador + "administrador_usuario.php?accion=eliminar_direccion",
         	type:  'POST',                                      
+        	data: {"id_dir": id_env, "id_cliente": id_cliente_js},                                      
         	beforeSend: function () {                    	     	
 				$("#result_informacion").html("Procesando, espere por favor..." );
         	},

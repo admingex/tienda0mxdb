@@ -56,17 +56,42 @@
 									break;					
 				case 'actualizar_cliente':
 									//requiere $_POST con la informacion que se va a actualizar
-									if(array_key_exists("id_cliente", $_POST)){
+									if(array_key_exists("id_cliente", $_POST))
 										if(is_numeric($_POST['id_cliente']))
 											$admin_controller->actualizar_cliente($_POST['id_cliente']);	
-									}
 									break;
+									
 				case 'listar_razon_social':									
-									if(array_key_exists("id_cliente", $_POST)){
+									if(array_key_exists("id_cliente", $_POST))
 										if(is_numeric($_POST['id_cliente']))
-											$admin_controller->listar_razon_social($_POST['id_cliente']);																																																		
-									}
-									break;				
+											$admin_controller->listar_razon_social($_POST['id_cliente']);																																																											
+									break;	
+				case 'listar_direccion_facturacion':
+									if(array_key_exists("id_cliente", $_POST))
+										if(is_numeric($_POST['id_cliente']))																						
+											$admin_controller->listar_direccion_facturacion($_POST['id_cliente']);
+									break;												
+				case 'listar_direccion_envio':
+									if(array_key_exists("id_cliente", $_POST))
+										if(is_numeric($_POST['id_cliente']))
+											$admin_controller->listar_direccion_envio($_POST['id_cliente']);										    
+									break;	
+				case 'listar_tarjetas':
+									if(array_key_exists("id_cliente", $_POST))
+										if(is_numeric($_POST['id_cliente']))											
+											$admin_controller->listar_tarjetas($_POST['id_cliente']);										    
+									break;		
+				case 'eliminar_rs':
+									if(array_key_exists('id_rs', $_POST))
+										if(is_numeric($_POST['id_rs']))	
+											$admin_controller->eliminar_rs($_POST['id_rs']);
+									break;	
+				case 'eliminar_direccion':
+									if(array_key_exists('id_dir', $_POST) && array_key_exists('id_cliente', $_POST))
+										if(is_numeric($_POST['id_dir']) && is_numeric($_POST['id_cliente']))
+											$admin_controller->eliminar_direccion($_POST['id_dir'], $_POST['id_cliente']);
+									break;
+																											
 																			
 			}						 
 		}	

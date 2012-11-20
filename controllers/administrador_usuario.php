@@ -70,14 +70,49 @@ class Administrador_Usuario {
 		echo json_encode($data);
 				
 	}
-	
-	
+		
 	// se obtiene un listado JSON con las Razones Sociales que tenga guardadas el cliente
 	public function listar_razon_social($id_cliente = ""){
 				
 		$data['rs'] = $this->administrador_usuario_model->listar_razon_social($id_cliente);						
 		echo json_encode($data);
 	}
+	
+	// se obtiene un listado JSON con las Direcciones de Facturacion que tenga guardadas el cliente
+	public function listar_direccion_facturacion($id_cliente = ""){
+				
+		$data['direccion_facturacion']=$this->administrador_usuario_model->listar_direcciones($id_cliente);							
+		echo json_encode($data);
+	}
+	
+	// se obtiene un listado JSON con las Direcciones de Envio que tenga guardadas el cliente
+	public function listar_direccion_envio($id_cliente = ""){
+					
+		$data['direccion_envio'] = $this->administrador_usuario_model->listar_direcciones_envio($id_cliente);							
+		echo json_encode($data);
+	}
+	
+	// se obtiene un listado JSON con las Razones Sociales que tenga guardadas el cliente
+	public function listar_tarjetas($id_cliente = ""){
+		
+		$data['tarjetas'] = $this->administrador_usuario_model->listar_tarjetas($id_cliente);							
+		echo json_encode($data);
+	}
+	
+	// funcion para eliminar una razon social por id, el label id es para comprobar que se elimino correctamente en el AJAX
+	public function eliminar_rs($id_rs = ''){		
+		if($this->administrador_usuario_model->eliminar_rs($id_rs)){
+			echo "<label id='eliminar_correcto'>1</label>";	
+		}				
+	}
+	
+	// funcion para eliminar una direccion por id, el label id es para comprobar que se elimino correctamente en el AJAX
+	public function eliminar_direccion($id_dir, $id_cliente){				
+		if($this->administrador_usuario_model->eliminar_direccion($id_cliente, $id_dir)){
+			echo "<label id='eliminar_direccion'>1</label>";	
+		}				
+	}
+	
 	
 	
 	
@@ -337,25 +372,11 @@ class Administrador_Usuario {
 		
 	}
 	
+		
 	
 	
-	// se obtiene un listado JSON con las Direcciones de Facturacion que tenga guardadas el cliente
-	public function listar_direccion_facturacion($id_cliente = ""){		
-		$data['direccion_facturacion'] = $this->direccion_facturacion_model->listar_direcciones($id_cliente)->result_array();							
-		echo json_encode($data);
-	}
 	
-	// se obtiene un listado JSON con las Direcciones de Envio que tenga guardadas el cliente
-	public function listar_direccion_envio($id_cliente = ""){
-		$data['direccion_envio'] = $this->direccion_envio_model->listar_direcciones($id_cliente)->result_array();							
-		echo json_encode($data);
-	}
 	
-	// se obtiene un listado JSON con las Razones Sociales que tenga guardadas el cliente
-	public function listar_tarjetas($id_cliente = ""){
-		$data['tarjetas'] = $this->forma_pago_model->listar_tarjetas($id_cliente)->result_array();							
-		echo json_encode($data);
-	}
 	
 	// Funcion en la cual se edita la informacion del usuario.
 	public function editar_rs($consecutivo = 0){								
@@ -557,19 +578,9 @@ class Administrador_Usuario {
 		return $datos;
 	}
 	
-	// funcion para eliminar una razon social por id, el label id es para comprobar que se elimino correctamente en el AJAX
-	public function eliminar_rs($id_rs = ''){		
-		if($this->direccion_facturacion_model->eliminar_rs($id_rs)){
-			echo "<label id='eliminar_correcto'>1</label>";	
-		}				
-	}
+	
 
-	// funcion para eliminar una direccion de facturacion por id, el label id es para comprobar que se elimino correctamente en el AJAX
-	public function eliminar_direccion_facturacion($id_dir, $id_cliente){		
-		if($this->direccion_facturacion_model->eliminar_direccion($id_cliente, $id_dir)){
-			echo "<label id='eliminar_direccion'>1</label>";	
-		}				
-	}
+	
 
 	// Funcion para actualizar los datops de TC
 	public function editar_tc($id_tc = "", $id_tipo = "", $id_cliente = ""){
@@ -674,15 +685,7 @@ class Administrador_Usuario {
 		}
 	}	
 	
-	//Funcion para eliminar direccion de envio		
-	public function eliminar_dir_envio($id_dir_envio = "", $id_cliente){		
-		if(!stristr($this->direccion_envio_model->eliminar_direccion($id_cliente, $id_dir_envio), "error")){
-			echo "<label id='eliminar_direccion'>1</label>";	
-		}						
-		//$msg_eliminacion = ;
-						
-	}
-	
+
 	// Funcio para editar direccion envio
 	public function editar_dir_envio($consecutivo, $id_cliente){
 			
