@@ -1,7 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
 
-include('api.php');
-class Administrador_usuario extends CI_Controller {
+class Administrador_Usuario {
 	
 	var $reg_errores = array();
 	
@@ -16,34 +15,71 @@ class Administrador_usuario extends CI_Controller {
 		
 	function __construct()
     {
-        // Call the Model constructor
-        parent::__construct();						
+        $this->login_registro_model = new Login_Registro_Model();	
+		$this->administrador_usuario_model = new Administrador_Usuario_Model();					
 
 		
 		// incluye el modelo de las direcciones de facturacion		
-		$this->load->model('direccion_facturacion_model', 'direccion_facturacion_model', true);				
-		$this->load->model('direccion_envio_model', 'direccion_envio_model', true);
-		$this->load->model('forma_pago_model', 'forma_pago_model', true);
-		$this->load->model('login_registro_model', 'login_registro_model', true);
-		$this->load->model('reporte_model', 'reporte_model', true);
+		//$this->load->model('direccion_facturacion_model', 'direccion_facturacion_model', true);				
+		//$this->load->model('direccion_envio_model', 'direccion_envio_model', true);
+		//$this->load->model('forma_pago_model', 'forma_pago_model', true);
+		//$this->load->model('login_registro_model', 'login_registro_model', true);
+		//$this->load->model('reporte_model', 'reporte_model', true);
 		
-		$this->api = new Api();
+		//$this->api = new Api();
     }
 	
-	public function index()
-	{
+	### consulta si el mail ya esta registrado
+	public function consulta_mail(){		
+		$res=$this->login_registro_model->verifica_registro_email($_GET['mail']);		
+		$value['mail']=count($res['email']);
+		
+		echo json_encode($value);			
 	}
 	
+	
+	
 	### obtener los datos del cliente por id
-	public function cliente_id($id_cliente = ""){		
+	public function cliente_id($id_cliente = ""){			
 		$cliente = $this->login_registro_model->obtener_cliente_id($id_cliente);
-		if($cliente->num_rows() > 0){
-			$data['cliente'] = $cliente->row();			
-			echo json_encode($data);
-		} else{
-			echo json_encode($data);
-		}				
+		return $cliente;		
+						
 	}
+	
+	###actualizar la informacion del cliente, los datos se reciben mediante POST 
+	public function actualizar_cliente($id_cliente = ""){
+							 
+			// se valida que la informacion sea correcta			
+			$cliente_info =	$this->valida_datos_update();
+			$cliente_info['id_clienteIn'] = $id_cliente;
+				
+			// si existe algun error se vuelve a solicitar la onformacion	
+			if(!empty($this->login_errores)){				
+					$data['error'] = 1;					
+					$data['errores'] = $this->login_errores;					
+			// si no hay errores se procede con la actualizacion						
+			} else{						
+				if($this->login_registro_model->actualizar_cliente($cliente_info)){
+					$data['error'] = 0;							
+				} else{
+					$data['error'] = 1;
+				}				
+			}				
+		
+		// se regresa la informacion en json si ocurrio algun error se regresa 1 en caso contrario se regresa 0		
+		echo json_encode($data);
+				
+	}
+	
+	
+	// se obtiene un listado JSON con las Razones Sociales que tenga guardadas el cliente
+	public function listar_razon_social($id_cliente = ""){
+				
+		$data['rs'] = $this->administrador_usuario_model->listar_razon_social($id_cliente);						
+		echo json_encode($data);
+	}
+	
+	
 	
 	## obtener las compras que ha realizado el cliente
 	public function compras_cliente(){
@@ -232,39 +268,14 @@ class Administrador_usuario extends CI_Controller {
 		$this->load->view('reportes/detalle_compra', $data);
 	}
 	
-	###actualizar la informacion del cliente, los datos se reciben mediante POST y el id de cliente viene en GET
-	public function actualizar_cliente($id_cliente = ""){
-				
-		if($_POST){
-			// se valida que la informacion sea correcta			
-			$cliente_info =	$this->valida_datos_update();
-			$cliente_info['id_clienteIn'] = $id_cliente;
-				
-			// si existe algun error se vuelve a solicitar la onformacion	
-			if(!empty($this->login_errores)){
-					$data['error'] = 1;					
-					$data['errores'] = $this->login_errores;
-				// si no hay errores se procede con la actualizacion						
-			} else{				
-				if($this->login_registro_model->actualizar_cliente($cliente_info)){
-					$data['error'] = 0;							
-				} else{
-					$data['error'] = 1;
-				}				
-			}
-			
-		}
-		// se regresa la informacion en json si ocurrio algun error se regresa 1 en caso contrario se regresa 0		
-		echo json_encode($data);
-				
-	}
+	
 	
 	// valida que la informacion del cliente se acorrecta
 	public function valida_datos_update(){
 		$datos = array();
 		//revisamos que venga encriptada la informcaion del usuario (mail y password), en caso contraro regresamos el error
-		if(!empty($_POST['log_data'])){
-			$login_data = $this->api->decrypt($_POST['log_data'], $this->api->key);
+		if(!empty($_POST['log_data'])){			
+			$login_data = API::decrypt($_POST['log_data'], API::API_KEY);			
 			$login_data = explode('|',$login_data);
 			$mail_registrado = 	$login_data[0]; 												   	
 			$pass_registrado = 	$login_data[1];						
@@ -320,20 +331,13 @@ class Administrador_usuario extends CI_Controller {
 			} else{
 				$this->login_errores['password'] = '<div class="error2">Password actual incorrecto</div>';
 			}												
-		} else{
-			
-		}	
-		
+		} 		
 											
 		return $datos;				
 		
 	}
 	
-	// se obtiene un listado JSON con las Razones Sociales que tenga guardadas el cliente
-	public function listar_razon_social($id_cliente = ""){		
-		$data['rs'] = $this->direccion_facturacion_model->listar_razon_social($id_cliente);						
-		echo json_encode($data);
-	}
+	
 	
 	// se obtiene un listado JSON con las Direcciones de Facturacion que tenga guardadas el cliente
 	public function listar_direccion_facturacion($id_cliente = ""){		
@@ -1220,12 +1224,7 @@ private function get_datos_tarjeta()
 		return $datos;
 	}
 
-	public function consulta_mail(){
-		//$value['mail']=$_GET['mail'];
-		$res=$this->login_registro_model->verifica_registro_email($_GET['mail']);
-		$value['mail']=$res->num_rows();
-		echo json_encode($value);			
-	}
+	
 	
 	####->-> para documentacion de las siguientes funciones revisar controllers/direccion envio 
 	public function es_mexico($codigo_pais="") {

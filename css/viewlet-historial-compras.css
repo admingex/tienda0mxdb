@@ -94,14 +94,15 @@
 
 
 #result_informacion{	
-	margin-top: 12px;
+	margin-top: 20px;
 }
 
 #result_informacion .titulo-descripcion{
 	color: #4F4F4F;
 	font-size: 17px;
 	font-weight: bold;
-	margin-bottom: 15px;	
+	margin-bottom: 15px;
+	margin-top: 20px;	
 }
 
 #result_informacion .img-reloj{

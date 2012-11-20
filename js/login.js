@@ -89,21 +89,22 @@ $(document).ready(function() {
 });
 
 function consulta_mail(mail) {
-	var url_ecommerce = "http://localhost/ecommerce/"
+	var url_ecommerce = "http://localhost/tienda/"
 	$(".error2").remove();
 	$.ajax({
 		type: "GET",
-		data: {'mail' : mail},
-		url: url_ecommerce + "administrador_usuario/consulta_mail",
+		data: {'mail' : mail, 'accion': 'consulta_mail'},
+		url: url_ecommerce + "administrador_usuario.php",
 		dataType: "json",
 		async: true,
-		success: function(data) {
+		success: function(data) {			
 			if (data.mail) {
 				cte_reg=document.getElementById('tipo_inicio2').checked;
 				if (!cte_reg && data.mail==1) {
 					$('#email').focus().after("<div class='error2'>Esta dirección de correo ya se encuentra registrada</div>");
 				}
 			}
+			
 		},
 		error: function(data) {
 			alert("error: " + data);

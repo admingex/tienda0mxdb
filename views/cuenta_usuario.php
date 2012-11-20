@@ -6,6 +6,7 @@
 
 <script type="text/javascript">
 var ecommerce = 'http://localhost/ecommerce/';
+var administrador = 'http://localhost/tienda/';
  
 	// se agrega la variable id_cliente_js con el valor del id de cliente para poderla utilizar con javascript
 var id_cliente_js =<?php echo $_SESSION['id_cliente'] ?>
@@ -73,10 +74,13 @@ $(document).ready(function() {
 		$("#result_errores").html("" );	
 		$.ajax({   	
 			cache: false,	 		           
-                url:   ecommerce + "administrador_usuario/listar_razon_social/" + id_cliente_js,
+                url:   administrador + "administrador_usuario.php?accion=listar_razon_social",
                 type:  'POST', 
-                dataType: "json",                                               
-          		success:  function (data) {          			
+                data: {"id_cliente": id_cliente_js},
+                dataType: "json",                                                              
+          		success:  function (data) {          	
+          			$("#result_informacion").html(data);
+          				
           			$("#result_informacion").html("<div class='titulo-descripcion'>" +
 												  "<div class='img-hoja'></div>Datos de envío y facturación" +
 												  "<div class='pleca-titulo'></div></div>" +
@@ -92,7 +96,8 @@ $(document).ready(function() {
           				                  '</td><td valign="top">' +  v.email + '</td>' +
           				                  '<td onclick=\"editar_rs('+ v.id_razonSocialIn +')\" valign="top"><a href="#">Editar</a></td>'+
           				                  '<td onclick=\"eliminar_rs('+ v.id_razonSocialIn +')\" valign="top"><a href="#">Eliminar</a></td></tr>');          				          				          				          				 
-          			});                   			          			    			             			     				      				   			      				          																		             
+          			});
+          			                   			          			    			             			     				      				   			      				          																		             
                 }
         });        
         $('#boton_datos').attr('disabled','disabled');
@@ -110,68 +115,14 @@ $(document).ready(function() {
 		 $("#result_errores").html("" );	
 		 $.ajax({   	
 		 		cache: false,	 		           
-                url:   ecommerce + "administrador_usuario/cliente_id/" + id_cliente_js,
+                url:   administrador + "administrador_usuario.php",
                 type:  'GET',
-                dataType: "json",                
-                beforeSend: function () {                	
+                data: {"accion": "cliente_id", "id_cliente": id_cliente_js},                            
+                beforeSend: function () {                    	            
 					$("#result_informacion").html("Procesando, espere por favor..." );
                 },
-          		success:  function (data) {              			       			            			     				
-      				var form = <?php include ('cuenta_usuario/formulario_usuario.html'); ?>   				
-      				$("#result_informacion").html(form);
-      				    
-      				$("#boton_actualizar").click(function(e) {
-      					var nombre = $('#nombre').val();
-      					var apellido_paterno = $('#apellido_paterno').val();
-      					var apellido_materno = $('#apellido_materno').val();
-      					var email = $('#email').val();
-      					var password_actual = $('#password_actual').val();
-      					var nuevo_password = $('#nuevo_password').val();
-      					var nuevo_password2 = $('#nuevo_password2').val();
-      					var log_data = $('#log_data').val();
-      					
-      					var parametros = {
-							"nombre"  			: nombre,
-							"apellido_paterno"  : apellido_paterno,
-							"apellido_materno"  : apellido_materno,
-							"email"  			: email,
-							"password_actual"  	: password_actual,
-							"nuevo_password"  	: nuevo_password,
-							"nuevo_password2" 	: nuevo_password2,
-							"log_data"			: log_data
-						}							
-						
-						$.ajax({  
-								cache: false,
-								data: parametros, 		 		           
-					            url:   ecommerce + "administrador_usuario/actualizar_cliente/" + id_cliente_js,
-					            type:  'POST', 
-					            dataType: "json",                               
-					            beforeSend: function () {                    	     	
-									$("#result_informacion").html("Procesando, espere por favor..." );
-					            },
-					      		success:  function (data) {   
-					      			if (data.error == 1){
-					      									      									      				 	
-					      				$("#boton_configuracion").click();
-					      				$("#result_errores").html("<br />Por favor Revise la información siguiente<br />" );	
-					      				
-					      				$.each(data.errores, function(k,v){						      										      								      										      				
-				      						$("#result_errores").append('<br />' + v);						      					         					      					          									          				          				          				          				
-          								}); 
-					      				
-					      			}         
-					      			else{		
-					      				$("#result_errores").html("" );			      				
-					      				$("#result_informacion").html('<div class="encabezado-descripcion">Tus datos se han actualizado correctamente.</div>');
-					      				setTimeout('$("#boton_configuracion").click()', 2500);
-					      				
-					      			}
-					      			  			      								      			                   			          			    			             			     				      				   			      				          																		             
-					            }
-					    });
-						
-					});      																		             
+          		success:  function (data) {             			       			            		
+           			$("#result_informacion").html(data);           			       			            			     				      				      																		            
                 }
         });	
 		
@@ -179,11 +130,67 @@ $(document).ready(function() {
 		$('#boton_historial').removeClass('boton-historial-sel').addClass('boton-historial');               		
 		$('#boton_medios').removeClass('boton-medios-sel').addClass('boton-medios');
 		$('#boton_datos').removeClass('boton-datos-sel').addClass('boton-datos');		
-	});			
+	});						
 	
-	$("#boton_datos").click();			
-				
+	$("#boton_datos").click();
+									
 });	
+
+function actualizar(){
+	
+	var nombre = $('#nombre').val();
+	var apellido_paterno = $('#apellido_paterno').val();
+	var apellido_materno = $('#apellido_materno').val();
+	var email = $('#email').val();
+	var password_actual = $('#password_actual').val();
+	var nuevo_password = $('#nuevo_password').val();
+	var nuevo_password2 = $('#nuevo_password2').val();
+	var log_data = $('#log_data').val();
+	
+	var parametros = {
+		"nombre"  			: nombre,
+		"apellido_paterno"  : apellido_paterno,
+		"apellido_materno"  : apellido_materno,
+		"email"  			: email,
+		"password_actual"  	: password_actual,
+		"nuevo_password"  	: nuevo_password,
+		"nuevo_password2" 	: nuevo_password2,
+		"log_data"			: log_data,			
+		"id_cliente"		: id_cliente_js
+	}							
+	
+	$.ajax({  
+			cache: false,
+			data: parametros, 		 		           
+            url:   administrador + "administrador_usuario.php?accion=actualizar_cliente",
+            type:  'POST', 
+            dataType: "json",                               
+            beforeSend: function () {                    	     	
+				$("#result_informacion").html("Procesando, espere por favor..." );
+            },
+      		success:  function (data) {   	      			
+      			
+      			if (data.error == 1){
+      									      									      				 	
+      				$("#boton_configuracion").click();
+      				$("#result_errores").html("<br />Por favor Revise la información siguiente<br />" );	
+      				
+      				$.each(data.errores, function(k,v){						      										      								      										      				
+  						$("#result_errores").append('<br />' + v);
+  						setTimeout('$("#boton_configuracion").click()', 3500);						      					         					      					          									          				          				          				          				
+					}); 
+      				
+      			}         
+      			else{		
+      				$("#result_errores").html("" );			      				
+      				$("#result_informacion").html('<div class="encabezado-descripcion">Tus datos se han actualizado correctamente.</div>');
+      				setTimeout('$("#boton_configuracion").click()', 2500);
+      				
+      			}	      			
+      			  			      								      			                   			          			    			             			     				      				   			      				          																		             
+            }
+    });
+}
 
 function view_pass(){
 	$('#cambiar_password').toggle();	
@@ -192,7 +199,7 @@ function view_pass(){
 
 </script>
 <div id="historial-compras">
-	<div style="position: absolute; z-index: 10000008; border: solid 1px #800">	
+	<div style="position: absolute; z-index: 10000008; border: solid 1px #800; display: block; margin-top: -30px">	
 		<input type="button" id="boton_historial" value="" class="boton-historial" />
 		<input type="button" id="boton_medios" value="" class="boton-medios"/>
 		<input type="button" id="boton_datos" value="" class="boton-datos"/>
