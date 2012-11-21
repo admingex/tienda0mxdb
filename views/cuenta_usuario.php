@@ -83,8 +83,8 @@ $(document).ready(function() {
           			$("#result_informacion").html(data);
           				
           			$("#result_informacion").html("<div class='titulo-descripcion'>" +
-												  "<div class='img-hoja'></div>Datos de envío y facturación" +
-												  "<div class='pleca-titulo'></div></div>" +
+												  "Datos de envío y facturación</div>" +
+												  "<div class='pleca-titulo'></div>" +
 												  "<div class='encabezado-descripcion'>Datos de facturación</div>" +
 												  "<table id='rfcs' cellspacing='0' cellpadding='0'><thead><tr><th>Razón Social</th><th>R.F.C.</th><th>Email</th><th colspan='2'>&nbsp;</th></tr></thead></table> ");
           			$.each(data.rs, function(k,v){
@@ -199,6 +199,7 @@ function view_pass(){
 }
 
 </script>
+
 <div class="banner_compras">
 	<ul>
 		<li><a href='#' id="boton_historial">historial de compras</a></li>
@@ -207,5 +208,6 @@ function view_pass(){
 		<li><a href='#' id="boton_configuracion" >configurar cuenta</a></li>
 	</ul>			
 </div>	
+
 <div id="result_errores"></div>
 <div id="result_informacion"></div>		
