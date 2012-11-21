@@ -112,7 +112,7 @@ $(document).ready(function() {
 		$('#boton_configuracion').removeClass('boton-configuracion-sel').addClass('boton-configuracion');
 	});	
 	
-	$("#boton_configuracion").click(function(e) {		
+	$("#boton_configuracion").click(function(e) {			
 		 $("#result_errores").html("" );	
 		 $.ajax({   	
 		 		cache: false,	 		           
@@ -199,15 +199,13 @@ function view_pass(){
 }
 
 </script>
-<div id="historial-compras">
-	<div style="position: absolute; z-index: 10000008; border: solid 1px #800; display: block; margin-top: -30px">	
-		<input type="button" id="boton_historial" value="" class="boton-historial" />
-		<input type="button" id="boton_medios" value="" class="boton-medios"/>
-		<input type="button" id="boton_datos" value="" class="boton-datos"/>
-		<input type="button" id="boton_configuracion" value="" class="boton-configuracion" />
-	</div>
-	<div id="result_errores">						
-	</div>
-	<div id="result_informacion">						
-	</div>			
-</div>		
+<div class="banner_compras">
+	<ul>
+		<li><a href='#' id="boton_historial">historial de compras</a></li>
+		<li><a href='#' id="boton_medios">medios de pago</a></li>
+		<li><a href='#' id="boton_datos">datos de envío y facturación </a></li>
+		<li><a href='#' id="boton_configuracion" >configurar cuenta</a></li>
+	</ul>			
+</div>	
+<div id="result_errores"></div>
+<div id="result_informacion"></div>		

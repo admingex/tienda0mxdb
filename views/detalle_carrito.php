@@ -33,7 +33,7 @@ if (isset($_SESSION['carrito'])) {
 			
 			
 			echo "<div id='viewlet-carrito'>";
-			echo 	"<form name='' action='".ECOMMERCE."api/carrito/".$datos_encrypt_url."' method='post'>";
+			echo 	"<form name='pagar_carrito' action='".ECOMMERCE."api/carrito/".$datos_encrypt_url."' method='post'>";
 							
 			$var = 0;
 			if (isset($_SESSION['ult_elem'])) {
@@ -124,7 +124,7 @@ if (isset($_SESSION['carrito'])) {
               	  		</div>
               	  	</a>    
               	  	<div class='pagar'>               	  	          	  
-                    	<input type='submit' name='tienda_carrito' value='pagar' class='boton-pagar' />
+                    	<input type='button' name='tienda_carrito' value='pagar' class='boton-pagar' onclick='document.pagar_carrito.submit()' />
                     </div>	              		
           	  	</div>          
       	      </div>

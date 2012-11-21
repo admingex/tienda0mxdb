@@ -5,9 +5,6 @@
 	//algunas constantes y funciones genéricas
 	include_once('./core/util_helper.php');
 	
-	//el modelo del login	
-	require_once('./models/login_registro_model.php');
-	require_once('./models/administrador_usuario_model.php');
 		
 	$title = 'Iniciar Sesi&oacute;n'; 				// Capitalize the first letter
 	$subtitle = 'Iniciar Sesi&oacute;n Segura'; 	// Capitalize the first letter
@@ -44,8 +41,8 @@
 			//echo "accion:".$_GET['accion'];
 			switch ($_GET['accion']) {
 				case 'consulta_mail':
-									//requiere $_GET['mail]								
-									$admin_controller->consulta_mail();																	
+									//requiere $_GET['mail]																
+									$admin_controller->consulta_mail($mail);																	
 									break;
 				case 'cliente_id': 
 									//requiere $_GET['id_cliente'];

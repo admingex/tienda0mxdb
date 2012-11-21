@@ -1,5 +1,8 @@
 <?php 
-
+//el modelo del login	
+require_once('./models/login_registro_model.php');
+require_once('./models/administrador_usuario_model.php');
+	
 class Administrador_Usuario {
 	
 	var $reg_errores = array();
@@ -30,8 +33,8 @@ class Administrador_Usuario {
     }
 	
 	### consulta si el mail ya esta registrado
-	public function consulta_mail(){		
-		$res=$this->login_registro_model->verifica_registro_email($_GET['mail']);		
+	public function consulta_mail($mail){		
+		$res=$this->login_registro_model->verifica_registro_email($mail);		
 		$value['mail']=count($res['email']);
 		
 		echo json_encode($value);			
