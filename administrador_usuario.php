@@ -41,8 +41,10 @@
 			//echo "accion:".$_GET['accion'];
 			switch ($_GET['accion']) {
 				case 'consulta_mail':
-									//requiere $_GET['mail]																
-									$admin_controller->consulta_mail($mail);																	
+									//requiere $_GET['mail]
+									//if (filter_var($_GET['mail'], FILTER_VALIDATE_EMAIL))																									
+										$admin_controller->consulta_mail($_GET['mail']);
+																											
 									break;
 				case 'cliente_id': 
 									//requiere $_GET['id_cliente'];
@@ -88,7 +90,12 @@
 										if(is_numeric($_POST['id_dir']) && is_numeric($_POST['id_cliente']))
 											$admin_controller->eliminar_direccion($_POST['id_dir'], $_POST['id_cliente']);
 									break;
-																											
+									
+				case 'editar_rs':
+									if(array_key_exists('id_rs', $_GET))
+										if(is_numeric($_GET['id_rs']))										
+											$admin_controller->editar_rs($_GET['id_rs']);
+									break;																																								
 																			
 			}						 
 		}	

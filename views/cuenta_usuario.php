@@ -17,7 +17,7 @@ var parametros = {
 
 $(document).ready(function() {	
 		
-	$("#boton_historial").click(function(e) {																						
+	$("li#boton_historial").click(function(e) {																								
         $("#result_errores").html("" );	
         $.ajax({
         		cache: false,
@@ -32,10 +32,10 @@ $(document).ready(function() {
 					$("#result_informacion").html(response);                                                
                 }
         }); 
-		$('#boton_historial').removeClass('boton-historial').addClass('boton-historial-sel');               		
-		$('#boton_medios').removeClass('boton-medios-sel').addClass('boton-medios');
-		$('#boton_datos').removeClass('boton-datos-sel').addClass('boton-datos');
-		$('#boton_configuracion').removeClass('boton-configuracion-sel').addClass('boton-configuracion');
+        $('#boton_historial').css('color', '#8DC540');		               		
+		$('#boton_medios').css('color', '');
+		$('#boton_datos').css('color', '');
+		$('#boton_configuracion').css('color', '');
 	});
 	
 	$("#boton_medios").click(function(e) {
@@ -51,9 +51,9 @@ $(document).ready(function() {
                 },
           		success:  function (data) {                  			          			  			
           			$("#result_informacion").html("<div class='titulo-descripcion'>" +
-												  "<div class='img-hoja'></div>Medios de pagos" +
+												  "Medios de pagos</div>" +
 												  "<div class='pleca-titulo'></div>" +
-												  "</div><table id='tarjetas' cellspacing='0' cellpadding='0'><thead><tr><th>Tarjetas guardadas</th><th>Nombre</th><th>Expira</th><th colspan='2'>&nbsp;</th></tr></thead></table> ");
+												  "<table id='tarjetas' cellspacing='0' cellpadding='0'><thead><tr><th>Tarjetas guardadas</th><th>Nombre</th><th>Expira</th><th colspan='2'>&nbsp;</th></tr></thead></table> ");
           			$.each(data.tarjetas, function(k,v){
           				var param = ","+ v.id_tipo_tarjetaSi; 
           				$("#tarjetas").append("<tr><td>" + v.descripcionVc + " terminación" + v.terminacion_tarjetaVc  + "</td>" +
@@ -64,11 +64,12 @@ $(document).ready(function() {
           										  "</tr>");          				          				          				          				 
           			});          			                   			          			    			             			     				      				   			      				          																		             
                 }
-        }); 	               		
-		$('#boton_medios').removeClass('boton-medios').addClass('boton-medios-sel');
-		$('#boton_historial').removeClass('boton-historial-sel').addClass('boton-historial');
-		$('#boton_datos').removeClass('boton-datos-sel').addClass('boton-datos');
-		$('#boton_configuracion').removeClass('boton-configuracion-sel').addClass('boton-configuracion');
+        }); 	           
+		            		
+		$('#boton_medios').css('color', '#8DC540');
+		$('#boton_historial').css('color', '');
+		$('#boton_datos').css('color', '');
+		$('#boton_configuracion').css('color', '');
 	});	
 	
 	$("#boton_datos").click(function(e) {
@@ -95,8 +96,8 @@ $(document).ready(function() {
           				$("#rfcs").append('<tr><td>'+ v.company + pe +
           				                  '</td><td valign="top">' + v.tax_id_number  + 
           				                  '</td><td valign="top">' +  v.email + '</td>' +
-          				                  '<td onclick=\"editar_rs('+ v.id_razonSocialIn +')\" valign="top"><a href="#">Editar</a></td>'+
-          				                  '<td onclick=\"eliminar_rs('+ v.id_razonSocialIn +')\" valign="top"><a href="#">Eliminar</a></td></tr>');          				          				          				          				 
+          				                  '<td onclick=\"editar_rs('+ v.id_razonSocialIn +')\" valign="top"><a href="#">editar</a></td>'+
+          				                  '<td onclick=\"eliminar_rs('+ v.id_razonSocialIn +')\" valign="top"><a href="#">eliminar</a></td></tr>');          				          				          				          				 
           			});
           			                   			          			    			             			     				      				   			      				          																		             
                 }
@@ -106,10 +107,10 @@ $(document).ready(function() {
         setTimeout('listar_dir_envio()', 1000);
                 			
 		
-		$('#boton_datos').removeClass('boton-datos').addClass('boton-datos-sel');
-		$('#boton_historial').removeClass('boton-historial-sel').addClass('boton-historial');               		
-		$('#boton_medios').removeClass('boton-medios-sel').addClass('boton-medios');		
-		$('#boton_configuracion').removeClass('boton-configuracion-sel').addClass('boton-configuracion');
+		$('#boton_datos').css('color', '#8DC540');
+		$('#boton_historial').css('color', '');               		
+		$('#boton_medios').css('color', '');		
+		$('#boton_configuracion').css('color', '');
 	});	
 	
 	$("#boton_configuracion").click(function(e) {			
@@ -127,10 +128,10 @@ $(document).ready(function() {
                 }
         });	
 		
-		$('#boton_configuracion').removeClass('boton-configuracion').addClass('boton-configuracion-sel');
-		$('#boton_historial').removeClass('boton-historial-sel').addClass('boton-historial');               		
-		$('#boton_medios').removeClass('boton-medios-sel').addClass('boton-medios');
-		$('#boton_datos').removeClass('boton-datos-sel').addClass('boton-datos');		
+		$('#boton_configuracion').css('color', '#8DC540');
+		$('#boton_historial').css('color', '');               		
+		$('#boton_medios').css('color', '');
+		$('#boton_datos').css('color', '');		
 	});						
 	
 	$("#boton_datos").click();
@@ -202,10 +203,10 @@ function view_pass(){
 
 <div class="banner_compras">
 	<ul>
-		<li><a href='#' id="boton_historial">historial de compras</a></li>
-		<li><a href='#' id="boton_medios">medios de pago</a></li>
-		<li><a href='#' id="boton_datos">datos de envío y facturación </a></li>
-		<li><a href='#' id="boton_configuracion" >configurar cuenta</a></li>
+		<li id="boton_historial">historial de compras</li>
+		<li id="boton_medios">medios de pago</li>
+		<li id="boton_datos">datos de envío y facturación</li>
+		<li id="boton_configuracion" >configurar cuenta</li>
 	</ul>			
 </div>	
 

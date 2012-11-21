@@ -135,19 +135,19 @@ section#contenido
                 }
             nav.banner_categorias ul li:nth-child(2)
             {
-                margin-left: 10px;
+                margin-left: 15px;
                 }    
             nav.banner_categorias ul li:last-child
             {
                 float: right;
-                margin-right: 25px
+                margin-right: 20px
                 }    
                 nav.banner_categorias ul li a
                 {
                     color:#FFFFFF;
                     font-weight:bold;
                     line-height:26px;
-                    padding:0 0 0 30px;
+                    padding:0 0 0 25px;
                     text-decoration:none;
                     text-transform:uppercase;
                     }

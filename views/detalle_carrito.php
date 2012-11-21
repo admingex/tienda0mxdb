@@ -72,10 +72,12 @@ if (isset($_SESSION['carrito'])) {
 						            	    <div class='descripcion1'>".$v['descripcion']."</div>
 						            	    <!--<div class='descripcion2'>".$v['descripcion']."</div>
 						            	    <div class='descripcion3'>".$v['descripcion']."</div>-->
+						            	    <a href='".site_url("carrito.php?eliminar_item=".$k)."' class='link-eliminar'>Eliminar</a> 
 						            	</div>																	            
 						            </li>
 						            <li>						            	
-						                <div class='precio_pagar'>pagar <span class='rojo'>$".number_format($v['cantidad']*$v['precio'],2,".",",")."</span></div>						                
+						                <div class='precio_pagar'>pagar <span class='rojo'>$".number_format($v['cantidad']*$v['precio'],2,".",",")."</span></div>
+						                						                
 						            </li>
 						        </ul>";						        							        						        															
 				//echo 			"<a href='".site_url("carrito.php?eliminar_item=".$k)."'>Eliminar</a>";		        	   			

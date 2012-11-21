@@ -193,4 +193,10 @@
 	border: none;
 }
 
-
+.link-eliminar{
+	padding-top: 10px;
+	display: block;
+	color: #333;
+	font-size: 12px;
+	font-weight: bold;
+}

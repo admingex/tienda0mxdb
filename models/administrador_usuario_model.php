@@ -95,6 +95,26 @@ class Administrador_usuario_Model extends DBAbstractModel {
 		return $res;			
 	}
 	
+	function obtener_rs($id_rs) {
+		$this->query = "SELECT * FROM CMS_IntRazonSocial WHERE id_razonSocialIn =".$id_rs;
+		
+		$this->get_results_from_query();		
+		return $this->rows;  		
+	}
+	
+	function actualizar_rs($id_rs, $datos){
+		$this->query = "UPDATE CMS_IntRazonSocial SET tax_id_number='".$datos['tax_id_number']."', company='".$datos['company']."', email ='".$datos['email']."' WHERE id_razonSocialIn=".$id_rs;		
+		$res = $this->execute_single_query();
+		return $res;	
+	}
+	
+	function establecer_predeterminado_rs($id_cliente, $id_rs){
+		$this->query = "UPDATE CMS_IntRazonSocial SET id_estatusSi=1 WHERE id_clienteIn=".$id_cliente." AND id_estatusSi!=2";
+		$this->execute_single_query();
+		
+		$this->query = "UPDATE CMS_IntRazonSocial SET id_estatusSi=3 WHERE id_clienteIn=".$id_cliente." AND id_razonSocialIn=".$id_rs;
+		$this->execute_single_query();						
+	}
 				
 	
 }

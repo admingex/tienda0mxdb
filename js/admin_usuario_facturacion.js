@@ -1,8 +1,9 @@
 function editar_rs(id_rs){	
 	$.ajax({	  
 		cache: false,  
-	    url:   ecommerce + "administrador_usuario/editar_rs/"+ id_rs,
-	    type:  'post',
+	    url:   administrador + "administrador_usuario.php?accion=editar_rs",
+	    type:  'GET',
+	    data: {"id_rs": id_rs},
 	    beforeSend: function () {
 			$("#result_informacion").html("Procesando, espere por favor...");
 	    },
@@ -55,7 +56,7 @@ function enviar_rs(id_rs){
 	$.ajax({	
 		cache: false,  
 		data: parametros,    
-	    url:   ecommerce + "administrador_usuario/editar_rs/"+ id_rs,
+	    url:   administrador + "administrador_usuario.php?accion=editar_rs&id_rs="+ id_rs,
 	    type:  'post',
 	    beforeSend: function () {
 			$("#result_informacion").html("Procesando, espere por favor...");

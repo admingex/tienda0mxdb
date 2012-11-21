@@ -116,6 +116,60 @@ class Administrador_Usuario {
 		}				
 	}
 	
+	// Funcion en la cual se edita la informacion del usuario.
+	public function editar_rs($consecutivo = 0){
+																	
+		if ($consecutivo) {			
+			// obtenemos la informacion de la razon social a editar							
+			$datos_direccion = $this->administrador_usuario_model->obtener_rs($consecutivo);
+																
+			// si se enviaron los datos del formulario  seguimos con el proceso en caso contrario solo desplegamos la informacion del ciente q se va a a actualizar																					
+			if($_POST){							
+					
+				$form_values = array();	//alojará los datos previos a la inserción	
+				$form_values = $this->get_datos_rs(); // se obtienen los datos validados o los errores por mostrar					
+				
+				// si no  hay errores en la informacion continuamos en caso contrario se muestran los errores en la vista		
+				if (empty($this->reg_errores)) {										
+					
+					//asignamos el id de razon social		
+					$form_values['direccion']['id_razonSocialIn'] = $consecutivo;	
+					//guardamos los datos de direccion																							
+					$direccion = $form_values['direccion'];
+					
+											
+					// se actualiza la informacion						
+					if($this->administrador_usuario_model->actualizar_rs($consecutivo, $direccion)){
+						if($_POST['chk_default'] == 1 || $consecutivo == 0) {
+							$this->administrador_usuario_model->establecer_predeterminado_rs($_POST['id_cliente'], $consecutivo);						
+						}						
+						echo "<label id='update_correcto'>1</label>";
+					}	
+					else{
+						
+						include('./views/cuenta_usuario/editar_rs.php');		
+					}
+											
+				}
+				// caso contraio se muestran los errores en la vista 
+				else{												
+					$reg_errores = $this->reg_errores;							
+					include('./views/cuenta_usuario/editar_rs.php');								
+				}	
+																
+			}	// caso contrario solo se muestra la informacion por actualizar
+			
+			else{				
+				include('./views/cuenta_usuario/editar_rs.php');				
+			}								
+		}		 
+								
+	}
+	
+	
+	
+	
+	
 	
 	
 	
@@ -381,52 +435,7 @@ class Administrador_Usuario {
 	
 	
 	
-	// Funcion en la cual se edita la informacion del usuario.
-	public function editar_rs($consecutivo = 0){								
-		
-		// obtenemos la informacion de la razon social a editar							
-		$datos_rs = $this->direccion_facturacion_model->obtener_rs($consecutivo);
-			
-		if ($consecutivo) {
-			// se guarda el id de la razoon social										
-			$data['consecutivo']=$consecutivo;
-			// se guarda la informacion de razon social
-			$data['datos_direccion'] = $datos_rs;										
-																
-			// si se enviaron los datos del formulario  seguimos con el proceso en caso contrario solo desplegamos la informacion del ciente q se va a a actualizar																					
-			if($_POST){				
-								
-				$form_values = array();	//alojará los datos previos a la inserción	
-				$form_values = $this->get_datos_rs(); // se obtienen los datos validados o los errores por mostrar					
-				
-				// si no  hay errores en la informacion continuamos en caso contrario se muestran los errores en la vista		
-				if (empty($this->reg_errores)) {										
-					
-					//asignamos el id de razon social		
-					$form_values['direccion']['id_razonSocialIn'] = $consecutivo;																								
-											
-					// se actualiza la informacion						
-					if($this->direccion_facturacion_model->actualizar_rs($consecutivo, $form_values['direccion'])){
-						if($_POST['chk_default'] == 1 || $consecutivo == 0) {
-							$this->direccion_facturacion_model->establecer_predeterminado_rs($_POST['id_cliente'], $consecutivo);						
-						}						
-						echo "<label id='update_correcto'>1</label>";
-					}	
-					
-											
-				}
-				// caso contraio se muestran los errores en la vista 
-				else{												
-					$data['reg_errores'] = $this->reg_errores;		
-					$this->load->view('administrador_usuario/editar_rs', $data);								
-				}																			
-			}	// caso contrario solo se muestra la informacion por actualizar
-			else{
-				$this->load->view('administrador_usuario/editar_rs', $data);	
-			}								
-		}
-								
-	}
+	
 
 	public function editar_direccion_facturacion($id_dir, $id_cliente){
 				

@@ -1,7 +1,8 @@
 <div class='titulo-descripcion'>
-	<div class='img-hoja'></div>Configuración de cuenta
-	<div class='pleca-titulo'></div>
-</div>
+	Configuración de cuenta
+</div>	
+<div class='pleca-titulo'></div>
+<div class="form-container">
 <form name='actualizar_cliente' action='' method='GET'>
 	<input type='hidden' id='log_data' name='log_data' value='<?php echo $_SESSION['datos_login']; ?>' />	
 	<div class='form-label'>Nombre</div><input type='text' id='nombre' name='nombre' value='<?php echo $cliente['nombre'];?>' class='input-tex' />
@@ -25,3 +26,4 @@
     <div class='space-label'></div>
     <input type='button' id='boton_actualizar' name='boton_actualizar' value='Guardar cambios' class='boton-guardar' onclick="actualizar()"/>
 </form>
+</div>

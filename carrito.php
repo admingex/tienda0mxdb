@@ -96,7 +96,7 @@
 	
 		## eliminar items del carrito
 		if (isset($_GET['eliminar_item'])) {
-			unset($_SESSION['carrito'][($_GET['eliminar_item'])]);
+			unset($_SESSION['carrito'][($_GET['eliminar_item'])]);			
 		}
 		
 	} else {	//IF ($_GET)
