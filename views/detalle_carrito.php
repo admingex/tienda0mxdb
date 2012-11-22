@@ -35,20 +35,18 @@ if (isset($_SESSION['carrito'])) {
 			echo "<div id='viewlet-carrito'>";
 			echo 	"<form name='pagar_carrito' action='".ECOMMERCE."api/carrito/".$datos_encrypt_url."' method='post'>";
 							
-			$var = 0;
-			if (isset($_SESSION['ult_elem'])) {
-				$var = 1;
-				$ind = $_SESSION['ult_elem'];	
+			####obtiene el ultimo elemento agregado al carrito y lo muestra
+				$ultimo = end($_SESSION['carrito']);	
 				// obtener imagen logo revista
-				$img1 = str_replace("r_images", "l_images", $_SESSION['carrito'][$ind]['imagenVc']);						
+				$img1 = str_replace("r_images", "l_images", $ultimo['imagenVc']);						
 				
 				echo "<div class='img-big'>";
-				echo "    <img src='".$_SESSION['carrito'][$ind]['imagenVc']."' alt='".$_SESSION['carrito'][$ind]['imagenVc']."' />";
+				echo "    <img src='".$ultimo['imagenVc']."' alt='".$ultimo['imagenVc']."' />";
 				echo "    <img src='".$img1."' alt 'logo'/>";			
-				echo "</div>";			
+				echo "</div>";	
+			########		
+															
 				
-			}
-			
 			
 			echo "<div class='plecas'  style='float: left; width: 435px' >";								
 				
@@ -72,7 +70,7 @@ if (isset($_SESSION['carrito'])) {
 						            	    <div class='descripcion1'>".$v['descripcion']."</div>
 						            	    <!--<div class='descripcion2'>".$v['descripcion']."</div>
 						            	    <div class='descripcion3'>".$v['descripcion']."</div>-->
-						            	    <a href='".site_url("carrito.php?eliminar_item=".$k)."' class='link-eliminar'>Eliminar</a> 
+						            	    <a href='".site_url("carrito.php?eliminar_item=".$k)."'><div class='link-eliminar'></div></a> 
 						            	</div>																	            
 						            </li>
 						            <li>						            	
@@ -135,10 +133,10 @@ if (isset($_SESSION['carrito'])) {
 			  		
 		} 
 		else {
-			echo "<p class='titulo-promo-rojo-deposito'>No hay productos en el carrito</p>";
+			echo "<p class='no-items'>No hay productos en el carrito</p>";
 		}	
 	 			
 } 
 else {
-		echo "<p class='titulo-promo-rojo-deposito'>No hay productos en el carrito</p>";
+		echo "<p class='no-items'>No hay productos en el carrito</p>";
 }

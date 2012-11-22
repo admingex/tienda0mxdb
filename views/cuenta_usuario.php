@@ -17,7 +17,13 @@ var parametros = {
 
 $(document).ready(function() {	
 		
-	$("li#boton_historial").click(function(e) {																								
+	$("li#boton_historial").click(function(e) {	
+		
+		$('#boton_historial').css('color', '#8DC540');		               		
+		$('#boton_medios').css('color', '');
+		$('#boton_datos').css('color', '');
+		$('#boton_configuracion').css('color', '');
+																									
         $("#result_errores").html("" );	
         $.ajax({
         		cache: false,
@@ -31,14 +37,16 @@ $(document).ready(function() {
           		success:  function (response) {          			
 					$("#result_informacion").html(response);                                                
                 }
-        }); 
-        $('#boton_historial').css('color', '#8DC540');		               		
-		$('#boton_medios').css('color', '');
-		$('#boton_datos').css('color', '');
-		$('#boton_configuracion').css('color', '');
+        });         
 	});
 	
 	$("#boton_medios").click(function(e) {
+		
+		$('#boton_medios').css('color', '#8DC540');
+		$('#boton_historial').css('color', '');
+		$('#boton_datos').css('color', '');
+		$('#boton_configuracion').css('color', '');
+		
 		$("#result_errores").html("" );	
 		$.ajax({  
 				cache: false, 		 		           
@@ -53,26 +61,26 @@ $(document).ready(function() {
           			$("#result_informacion").html("<div class='titulo-descripcion'>" +
 												  "Medios de pagos</div>" +
 												  "<div class='pleca-titulo'></div>" +
-												  "<table id='tarjetas' cellspacing='0' cellpadding='0'><thead><tr><th>Tarjetas guardadas</th><th>Nombre</th><th>Expira</th><th colspan='2'>&nbsp;</th></tr></thead></table> ");
+												  "<table id='tarjetas' cellspacing='0' cellpadding='0'><thead><tr><th>Tarjetas guardadas</th><th>Nombre</th><th>Expira</th><th>&nbsp;</th></tr></thead></table> ");
           			$.each(data.tarjetas, function(k,v){
           				var param = ","+ v.id_tipo_tarjetaSi; 
           				$("#tarjetas").append("<tr><td>" + v.descripcionVc + " terminación" + v.terminacion_tarjetaVc  + "</td>" +
           										  "<td>" + v.nombre_titularVc + ' ' + v.apellidoP_titularVc + ' ' + v.apellidoM_titularVc + "</td>" +
           										  "<td>" + v.mes_expiracionVc + '/' + v.anio_expiracionVc + "</td>" +
-          										  "<td onclick=\"editar_tc('"+ v.id_TCSi+ "', '"+v.id_tipo_tarjetaSi+ "')\" ><a href='#'>editar</a></td>" +
-          										  "<td onclick=\"eliminar_tc('"+ v.id_TCSi+ "')\" ><a href='#'>Eliminar</a></td>" +
+          										  "<td><div onclick=\"editar_tc('"+ v.id_TCSi+ "', '"+v.id_tipo_tarjetaSi+ "')\" ><a href='#'>editar cuenta</a></div><div onclick=\"eliminar_tc('"+ v.id_TCSi+ "')\" ><a href='#'>eliminar cuenta</a></div></td>" +          										  
           										  "</tr>");          				          				          				          				 
           			});          			                   			          			    			             			     				      				   			      				          																		             
                 }
-        }); 	           
-		            		
-		$('#boton_medios').css('color', '#8DC540');
-		$('#boton_historial').css('color', '');
-		$('#boton_datos').css('color', '');
-		$('#boton_configuracion').css('color', '');
+        }); 	           		            				
 	});	
 	
 	$("#boton_datos").click(function(e) {
+		
+		$('#boton_datos').css('color', '#8DC540');
+		$('#boton_historial').css('color', '');               		
+		$('#boton_medios').css('color', '');		
+		$('#boton_configuracion').css('color', '');
+		
 		$("#result_errores").html("" );	
 		$.ajax({   	
 			cache: false,	 		           
@@ -87,17 +95,17 @@ $(document).ready(function() {
 												  "Datos de envío y facturación</div>" +
 												  "<div class='pleca-titulo'></div>" +
 												  "<div class='encabezado-descripcion'>Datos de facturación</div>" +
-												  "<table id='rfcs' cellspacing='0' cellpadding='0'><thead><tr><th>Razón Social</th><th>R.F.C.</th><th>Email</th><th colspan='2'>&nbsp;</th></tr></thead></table> ");
+												  "<table id='rfcs' cellspacing='0' cellpadding='0'><thead><tr><th>Razón Social</th><th>R.F.C.</th><th>Email</th><th>&nbsp;</th></tr></thead></table> ");
           			$.each(data.rs, function(k,v){
           				var pe= ' ';
           				if(v.id_estatusSi == 3){
           					pe = "<div style='color: #D81830; height: 20px; font-size: 11px; font-family: italic; font-weight: bold'>pago express</div>";
           				}
           				$("#rfcs").append('<tr><td>'+ v.company + pe +
-          				                  '</td><td valign="top">' + v.tax_id_number  + 
-          				                  '</td><td valign="top">' +  v.email + '</td>' +
-          				                  '<td onclick=\"editar_rs('+ v.id_razonSocialIn +')\" valign="top"><a href="#">editar</a></td>'+
-          				                  '<td onclick=\"eliminar_rs('+ v.id_razonSocialIn +')\" valign="top"><a href="#">eliminar</a></td></tr>');          				          				          				          				 
+          				                  '</td><td>' + v.tax_id_number  + 
+          				                  '</td><td>' +  v.email + '</td>' +
+          				                  '<td><div onclick=\"eliminar_rs('+ v.id_razonSocialIn +')\"><a href="#">eliminar cuenta</a></div><div onclick=\"editar_rs('+ v.id_razonSocialIn +')\"><a href="#">editar cuenta</a></div></td>'+
+          				                  '</tr>');          				          				          				          				 
           			});
           			                   			          			    			             			     				      				   			      				          																		             
                 }
@@ -105,17 +113,18 @@ $(document).ready(function() {
         $('#boton_datos').attr('disabled','disabled');
         setTimeout('listar_dir_facturacion()', 500);        
         setTimeout('listar_dir_envio()', 1000);
-                			
-		
-		$('#boton_datos').css('color', '#8DC540');
-		$('#boton_historial').css('color', '');               		
-		$('#boton_medios').css('color', '');		
-		$('#boton_configuracion').css('color', '');
+                							
 	});	
 	
-	$("#boton_configuracion").click(function(e) {			
-		 $("#result_errores").html("" );	
-		 $.ajax({   	
+	$("#boton_configuracion").click(function(e) {	
+		
+		$('#boton_configuracion').css('color', '#8DC540');
+		$('#boton_historial').css('color', '');               		
+		$('#boton_medios').css('color', '');
+		$('#boton_datos').css('color', '');	
+				
+		$("#result_errores").html("" );	
+		$.ajax({   	
 		 		cache: false,	 		           
                 url:   administrador + "administrador_usuario.php",
                 type:  'GET',
@@ -126,12 +135,7 @@ $(document).ready(function() {
           		success:  function (data) {             			       			            		
            			$("#result_informacion").html(data);           			       			            			     				      				      																		            
                 }
-        });	
-		
-		$('#boton_configuracion').css('color', '#8DC540');
-		$('#boton_historial').css('color', '');               		
-		$('#boton_medios').css('color', '');
-		$('#boton_datos').css('color', '');		
+        });					
 	});						
 	
 	$("#boton_datos").click();

@@ -80,8 +80,8 @@ function listar_dir_facturacion(){
                 dataType: "json",                                                         
           		success:  function (data) {         					
 					    			 			
-          			$("#result_informacion").append("<div class='encabezado-descripcion'>Direcciones de facturación</div>" +
-												  "<table id='direcciones_facturacion' cellspacing='0'><thead><tr><th>Dirección</th><th>Colonia</th><th>Codigo Postal</th><th>Ciudad</th><th>Estado</th><th colspan='2'>&nbsp;</th></tr></thead></table>");
+          			$("#result_informacion").append("<div class='pleca-titulo space10'></div><div class='encabezado-descripcion'>Direcciones de facturación</div>" +
+												  "<table id='direcciones_facturacion' cellspacing='0'><thead><tr><th>Dirección</th><th>Colonia</th><th>Codigo Postal</th><th>Ciudad</th><th>Estado</th><th>&nbsp;</th></tr></thead></table>");
 											  
           			$.each(data.direccion_facturacion, function(k,v){
           				var inter = '';  
@@ -94,13 +94,12 @@ function listar_dir_facturacion(){
           				}
           				$("#direcciones_facturacion").append('<tr><td>'+ v.calle + ' ' + 
   													 v.num_ext + ' ' + 
-  													 inter + '</td><td>' + 
+  													 inter + pe + '</td><td>' + 
   													 v.colonia  + '</td><td>' + 
   													 v.cp  + '</td><td>' +  
   													 v.ciudad + '</td><td>' + 
-  													 v.estado  + '</td>'+
-  													 '<td onclick=\"editar_dir_facturacion('+ v.id_consecutivoSi +')\" valign="top"><a href="#">editar</a></td>'+
-  													 '<td onclick=\"eliminar_dir_facturacion('+ v.id_consecutivoSi +')\" valign="top"><a href="#">eliminar</a></td>'+
+  													 v.estado  + '</td>'+  													 
+  													 '<td valign="top"><div onclick=\"eliminar_dir_facturacion('+ v.id_consecutivoSi +')\"><a href="#">eliminar cuenta</a></div><div onclick=\"editar_dir_facturacion('+ v.id_consecutivoSi +')\"><a href="#">editar cuenta</a></div></td>'+
   													 '</tr>');          				          				          				          				 
           			});  
           			
@@ -113,7 +112,7 @@ function editar_dir_facturacion(id_dir){
 	
 	$.ajax({	  
 		cache: false,  
-	    url:   ecommerce + "administrador_usuario/editar_direccion_facturacion/" + id_dir + "/" + id_cliente_js,
+	    url:   administrador + "administrador_usuario.php?accion=editar_dir_facturacion&id_dir=" + id_dir + "&id_cliente=" + id_cliente_js,
 	    type:  'post',
 	    beforeSend: function () {
 			$("#result_informacion").html("Procesando, espere por favor...");
@@ -155,7 +154,7 @@ function enviar_dir_facturacion(id_dir){
 	$.ajax({	  
 		cache: false,
 		data: parametros,  
-	    url:   ecommerce + "administrador_usuario/editar_direccion_facturacion/" + id_dir + "/" + id_cliente_js,
+		url:   administrador + "administrador_usuario.php?accion=editar_dir_facturacion&id_dir=" + id_dir + "&id_cliente=" + id_cliente_js,	    
 	    type:  'post',
 	    beforeSend: function () {
 			$("#result_informacion").html("Procesando, espere por favor...");

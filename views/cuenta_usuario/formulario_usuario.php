@@ -24,6 +24,6 @@
     	<div class='form-label'>Confirmar contraseña</div><input type='text' id='nuevo_password2' name='nuevo_password2' value='' class='input-tex' />	
     </div>
     <div class='space-label'></div>
-    <input type='button' id='boton_actualizar' name='boton_actualizar' value='Guardar cambios' class='boton-guardar' onclick="actualizar()"/>
+    <div class="form-label">&nbsp;</div><input type='button' id='boton_actualizar' name='boton_actualizar' value='Guardar cambios' class='boton-guardar' onclick="actualizar()"/>
 </form>
 </div>

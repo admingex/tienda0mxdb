@@ -51,7 +51,13 @@
 	margin: 0px;
 	display: inline-block;	
 	float: left;		
-	margin-bottom: 15px;	
+	margin-bottom: 15px;			
+}
+
+#viewlet-carrito ul li:nth-child(2){
+	overflow: hidden;	
+	height: 165px;
+	position: relative;
 }
 
 #viewlet-carrito ul li:last-child{
@@ -165,8 +171,7 @@
 	float: left;
 	background-image: url('../images/kisco_contenido_pleca.png');	
 	color: #FFFFFF;
-	font-size: 14px;
-	font-weight: bold;
+	font-size: 14px;	
 	padding: 5px 10px;
 	cursor: pointer;
 }
@@ -191,12 +196,21 @@
 	color: #FFF;
 	text-align: left;
 	border: none;
+	cursor: pointer;
 }
 
 .link-eliminar{
-	padding-top: 10px;
-	display: block;
-	color: #333;
-	font-size: 12px;
+	background: url('../images/kiosco_carrito_eliminar.png') no-repeat;
+	height: 25px;
+	width: 80px;		
+	position: absolute;
+	bottom: 0px; 
+	left: 0px;							
+}
+
+.no-items{
+	color: #E80403;
+	font-size: 16px;
 	font-weight: bold;
+	padding-left: 40px; 
 }

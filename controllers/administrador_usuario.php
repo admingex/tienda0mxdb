@@ -166,6 +166,113 @@ class Administrador_Usuario {
 								
 	}
 	
+	public function editar_direccion_facturacion($id_dir, $id_cliente){
+			
+		if(is_numeric($id_dir) && is_numeric($id_cliente)){
+			//obtenemos los datos de la direccion
+			$datos_direccion = $this->administrador_usuario_model->obtener_direccion($id_cliente, $id_dir);									
+			
+			// obtenemos la lista de paise de think
+			$lista_paises = $this->administrador_usuario_model->listar_paises_think();			
+																							
+			if($_POST){									
+				
+				$form_values = array();	//alojará los datos previos a la inserción	
+				$form_values = $this->get_datos_direccion();
+				
+				if (empty($this->reg_errores)) {					
+					
+					$form_values['direccion']['id_ConsecutivoSi'] = $id_dir;
+					$direccion = $form_values['direccion'];
+					
+					
+																																							
+					if($this->administrador_usuario_model->actualizar_direccion($id_cliente,$id_dir, $direccion)){
+						
+						if ($_POST['chk_default'] == 1) {
+							$this->administrador_usuario_model->establecer_predeterminado_dir($id_cliente, $id_dir);								
+						}
+						 
+						echo "<label id='update_correcto'>1</label>";
+					}					 	
+																																		
+				}
+				else{								
+					$reg_errores= $this->reg_errores;				
+					include('./views/cuenta_usuario/editar_direccion_facturacion.php');
+				}	
+				 
+																					
+			}	
+			else{
+		 		include('./views/cuenta_usuario/editar_direccion_facturacion.php');					
+			}	
+		}			 												 	
+	}
+	
+	// Funcio para editar direccion envio
+	public function editar_dir_envio($consecutivo, $id_cliente){		
+		
+		//recuperar la información de la dirección
+		$direccion = $this->administrador_usuario_model->detalle_direccion($consecutivo, $id_cliente);				
+									
+		//catálogo de países de think
+		$lista_paises_think = $this->administrador_usuario_model->listar_paises_think();
+					
+		//muestra lo de sepomex
+		//catálogo de estados
+		$lista_estados_sepomex = $this-> consulta_estados();	
+				
+		//ciudades				
+		$lista_ciudades_sepomex = $this->consulta_ciudades($direccion[0]['estado']);				
+				
+		//colonias		
+		$lista_colonias_sepomex = $this->consulta_colonias($direccion[0]['estado'], $direccion[0]['ciudad']);
+		/*
+		echo "<pre>";
+			print_r($lista_colonias_sepomex);
+		echo "</pre>";		 	
+		*/
+		//Se intentará actualizar la información
+		if ($_POST) {
+								
+			//array para la nueva información
+			$nueva_info = array();
+			//trae datos del formulario para actualizar
+			$nueva_info = $this->get_datos_direccion_envio();
+			
+			if (empty($this->reg_errores)) {	//si no hubo errores
+				
+				
+				$nueva_info['direccion']['id_consecutivoSi'] = $consecutivo;
+			
+				if (isset($nueva_info['predeterminar'])) {
+					$this->administrador_usuario_model->quitar_predeterminado($id_cliente);
+				} else {	//si no es predeterminado se quda sólo como "activa"habilitado"
+					$nueva_info['direccion']['id_estatusSi'] = 1;
+				}
+				
+				
+				//actualizar la información en BD
+				if($this->administrador_usuario_model->actualizar_direccion_env($consecutivo, $id_cliente, $nueva_info['direccion'])){
+						echo "<label id='update_correcto'>1</label>";
+				}
+				 
+																		 												
+			} else {	//ERRORES FORMULARIO
+							
+				$reg_errores = $this->reg_errores;
+				include('./views/cuenta_usuario/editar_direccion_envio.php');
+			}	//ERRORES FORMULARIO
+			 
+		} else {	//If POST					
+			include('./views/cuenta_usuario/editar_direccion_envio.php');
+		}		
+		
+	}
+	
+	
+	
 	
 	
 	
@@ -437,45 +544,7 @@ class Administrador_Usuario {
 	
 	
 
-	public function editar_direccion_facturacion($id_dir, $id_cliente){
-				
-			$datos_direccion = $this->direccion_facturacion_model->obtener_direccion($id_cliente, $id_dir);			
-			
-			$data['datos_direccion'] = $datos_direccion;				
-		
-			$lista_paises_think = $this->direccion_facturacion_model->listar_paises_think();
-			$data['lista_paises_think'] = $lista_paises_think;
-																								
-			if($_POST){					
-				
-				$form_values = array();	//alojará los datos previos a la inserción	
-				$form_values = $this->get_datos_direccion();
-				
-				if (empty($this->reg_errores)) {
-					
-					$form_values['direccion']['id_ConsecutivoSi'] = $id_dir;
-																																							
-					if($this->direccion_facturacion_model->actualizar_direccion($id_cliente,$id_dir, $form_values['direccion'])){
-						if ($_POST['chk_default'] == 1) {
-							$this->direccion_facturacion_model->establecer_predeterminado($id_cliente, $id_dir);	
-							$form_values['direccion']['id_estatusSi'] = 3;
-						}
-						echo "<label id='update_correcto'>1</label>";
-					}		
-																																		
-				}
-				else{								
-					$data['reg_errores'] = $this->reg_errores;				
-					$this->load->view('administrador_usuario/editar_direccion_facturacion', $data);
-				}		
-																					
-			}	
-			else{
-		 
-				$this->load->view('administrador_usuario/editar_direccion_facturacion', $data);	
-			}											
-			 		
-	}
+	
 	
 	// funcion que revisa que los datos enviados para actualizar la razon social sean correctos
 	private function get_datos_rs(){
@@ -698,65 +767,7 @@ class Administrador_Usuario {
 	}	
 	
 
-	// Funcio para editar direccion envio
-	public function editar_dir_envio($consecutivo, $id_cliente){
-			
-		//inclusión de Scripts
-		//$script_file = "<script type='text/javascript' src='". base_url() ."js/dir_envio.js'></script>";
-						
-		//recuperar la información de la dirección
-		$detalle_direccion = $this->direccion_envio_model->detalle_direccion($consecutivo, $id_cliente);
-		
-		
-		//se pasa la información de la dirección a la vista
-		$data['direccion'] = $detalle_direccion;
-		
-		//catálogo de países de think
-		$lista_paises_think = $this->direccion_envio_model->listar_paises_think();
-		$data['lista_paises_think'] = $lista_paises_think;
-		
-		/*muestra lo de sepomex*/
-		//catálogo de estados
-		$lista_estados = $this->consulta_estados();		
-		$data['lista_estados_sepomex'] = $lista_estados['estados'];
-		//ciudades		
-		$lista_ciudades = $this->consulta_ciudades($detalle_direccion->state);		
-		$data['lista_ciudades_sepomex'] = $lista_ciudades['ciudades'];
-		//colonias
-		$lista_colonias = $this->consulta_colonias($detalle_direccion->state, $detalle_direccion->city);		
-		$data['lista_colonias_sepomex'] = $lista_colonias['colonias'];
-		
-		//Se intentará actualizar la información
-		if ($_POST) {
-						
-			//array para la nueva información
-			$nueva_info = array();
-			//trae datos del formulario para actualizar
-			$nueva_info = $this->get_datos_direccion_envio();
-			
-			if (empty($this->reg_errores)) {	//si no hubo errores
-				$nueva_info['direccion']['id_consecutivoSi'] = $consecutivo;
-			
-				if (isset($nueva_info['predeterminar'])) {
-					$this->direccion_envio_model->quitar_predeterminado($id_cliente);
-				} else {	//si no es predeterminado se quda sólo como "activa"habilitado"
-					$nueva_info['direccion']['id_estatusSi'] = 1;
-				}
-				
-				//actualizar la información en BD
-				if(!stristr($this->direccion_envio_model->actualizar_direccion($consecutivo, $id_cliente, $nueva_info['direccion']), "error")){
-						echo "<label id='update_correcto'>1</label>";
-				}
-																		 												
-			} else {	//ERRORES FORMULARIO				
-				$data['reg_errores'] = $this->reg_errores;
-				$this->load->view('administrador_usuario/editar_direccion_envio', $data);
-			}	//ERRORES FORMULARIO
-		} else {	//If POST
-		 
-			$this->load->view('administrador_usuario/editar_direccion_envio', $data);
-		}
-	}
+	
 	
 	//Funcion para eliminar una tarjeta
 	public function eliminar_tc($id_tc, $id_cliente){												
@@ -1075,53 +1086,22 @@ private function get_datos_tarjeta()
 	private function consulta_estados()
 	{
 		$resultado = array();
-		
-		try
-		{
-			$resultado['estados'] = $this->direccion_envio_model->listar_estados_sepomex()->result();
-			$resultado['success'] = true;
-			$resultado['msg'] = "Ok";
-			return $resultado;
-		}
-		catch (Exception $e)
-		{
-			$resultado['exception'] =  $exception;
-			$resultado['msg'] = $exception->getMessage();
-			$resultado['error'] = true;
-			return $resultado;	
-		}
+		$resultado = $this->administrador_usuario_model->listar_estados_sepomex();	
+		return $resultado; 
 	}
 	
 	private function consulta_ciudades($estado)
-	{
-		$resultado = array();			
-		try {
-			$resultado['ciudades'] = $this->direccion_envio_model->listar_ciudades_sepomex($estado)->result();
-			$resultado['success'] = true;
-			$resultado['msg'] = "Ciudades Resultados";
-			return $resultado;
-		} catch (Exception $e) {
-			$resultado['exception'] =  $exception;
-			$resultado['msg'] = $exception->getMessage();
-			$resultado['error'] = true;
-			return $resultado;
-		}		
+	{		
+		$resultado = array();
+		$resultado = $this->administrador_usuario_model->listar_ciudades_sepomex($estado);	
+		return $resultado;							
 	}
 	
 	private function consulta_colonias($estado, $ciudad)
-	{
+	{		
 		$resultado = array();
-		try {
-			$resultado['colonias'] = $this->direccion_envio_model->listar_colonias_sepomex($estado, $ciudad)->result();
-			$resultado['success'] = true;
-			$resultado['msg'] = "Colonias Resultados";
-			return $resultado;
-		} catch (Exception $e) {
-			$resultado['exception'] =  $exception;
-			$resultado['msg'] = $exception->getMessage();
-			$resultado['error'] = true;
-			return $resultado;
-		}
+		$resultado = $this->administrador_usuario_model->listar_colonias_sepomex($estado, $ciudad);			
+		return $resultado;		
 		
 	}
 	

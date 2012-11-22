@@ -95,7 +95,19 @@
 									if(array_key_exists('id_rs', $_GET))
 										if(is_numeric($_GET['id_rs']))										
 											$admin_controller->editar_rs($_GET['id_rs']);
-									break;																																								
+									break;	
+									
+				case 'editar_dir_facturacion':
+									if(array_key_exists('id_dir', $_GET) && array_key_exists('id_cliente', $_GET))
+										if(is_numeric($_GET['id_dir']) && is_numeric($_GET['id_cliente']))											
+											$admin_controller->editar_direccion_facturacion($_GET['id_dir'], $_GET['id_cliente']);
+									break;		
+				case 'editar_dir_envio':
+									if(array_key_exists('id_dir', $_GET) && array_key_exists('id_cliente', $_GET))
+										if(is_numeric($_GET['id_dir']) && is_numeric($_GET['id_cliente']))
+											$admin_controller->editar_dir_envio($_GET['id_dir'], $_GET['id_cliente']);												
+									break;												
+																																																
 																			
 			}						 
 		}	

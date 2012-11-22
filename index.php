@@ -16,6 +16,7 @@
     include('./components/promociones_home.php');
     
     //footer
-    require('./templates/footer.php');		 
+    require('./templates/footer.php');		
+	
 ?>
 

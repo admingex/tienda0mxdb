@@ -1,70 +1,3 @@
-function actualizar_ciudades(clave_estado) {
-	// var ecommerce = "http://localhost/ecommerce/";
-	$.post( ecommerce + 'direccion_envio/get_ciudades',
-		// when the Web server responds to the request
-		{ 'estado': clave_estado},
-		function(datos) {
-			var ciudades = datos.ciudades;
-			
-			$("#sel_ciudades").empty();
-			$("<option></option>").attr("value", '').html('Selecionar').appendTo("#sel_ciudades");
-			
-			if (ciudades != null) {
-				if (ciudades.length == undefined) {	//DF sólo devuelve un obj de ciudad.
-					$("<option></option>").attr("value", ciudades.clave_ciudad).html(ciudades.ciudad).appendTo("#sel_ciudades");
-					$("#sel_ciudades").trigger('change');	//trigger cities' change event
-				} else {							//ciudades.length == 'undefined'
-					$.each(ciudades, function(indice, ciudad) {
-						if (ciudad.clave_ciudad != '') {
-							$("<option></option>").attr("value", ciudad.clave_ciudad).html(ciudad.ciudad).appendTo("#sel_ciudades");
-						}
-					});
-				}
-			}
-		}, 
-		"json"
-	);
-}
-
-function actualizar_colonias(clave_estado, ciudad) {
-	//var ecommerce = "http://localhost/ecommerce/";
-	$.post( ecommerce + 'direccion_envio/get_colonias',
-		// when the Web server responds to the request
-		{ 'estado': clave_estado, 'ciudad': ciudad },
-		function(datos) {
-			var colonias = datos.colonias;
-			
-			$("#sel_colonias").empty();
-			$("<option></option>").attr("value", '').html('Selecionar').appendTo("#sel_colonias");
-			
-			if (colonias != null) {
-				$.each(colonias, function(indice, colonia) {
-					$("<option></option>").attr("value", colonia.colonia).html(colonia.colonia).appendTo("#sel_colonias");
-				});
-			}
-		}, 
-		"json"
-	);
-}
-
-function actualizar_cp(clave_estado, ciudad, colonia) {
-	//var ecommerce = "http://localhost/ecommerce/";
-	$.post( ecommerce + 'direccion_envio/get_colonias',
-		// when the Web server responds to the request
-		{ 'estado': clave_estado, 'ciudad': ciudad},
-		function(datos) {
-			var colonias = datos.colonias;
-			
-			$.each(colonias, function(indice, col) {
-				if (colonia == col.colonia)
-					$("#txt_cp").val(col.codigo_postal);
-					//$("<option></option>").attr("value", colonia.colonia).html(colonia.colonia).appendTo("#sel_colonias");
-			});
-		}, 
-		"json"
-	);
-}
-
 function listar_dir_envio(){	
 
 	$.ajax({   
@@ -78,22 +11,25 @@ function listar_dir_envio(){
         },
   		success:  function (data) {              			
   			  			      			
-  			$("#result_informacion").append("<div style='margin-top:18px'></div><div class='encabezado-descripcion'>Datos de envío</div>" +
-  											"<table id='direcciones' cellspacing='0'><thead><tr><th>Dirección</th><th>Colonia</th><th>Codigo Postal</th><th>Ciudad</th><th>Estado</th><th colspan='2'>&nbsp;</th></tr></thead></table>");
+  			$("#result_informacion").append("<div class='pleca-titulo space10'></div><div class='encabezado-descripcion'>Datos de envío</div>" +
+  											"<table id='direcciones' cellspacing='0'><thead><tr><th>Dirección</th><th>Colonia</th><th>Codigo Postal</th><th>Ciudad</th><th>Estado</th><th>&nbsp;</th></tr></thead></table>");
   			$.each(data.direccion_envio, function(k,v){
   				var inter = '';  
   				if(v.num_int){
   					inter = v.num_int;		
-  				}        				
+  				}        			
+  				var pe= ' ';
+          		if(v.id_estatusSi == 3){
+          			pe = "<div style='color: #D81830; height: 20px; font-size: 11px; font-family: italic; font-weight: bold'>pago express</div>";
+          		}	
   				$("#direcciones").append('<tr><td>'+ v.calle + ' ' + 
   													 v.num_ext + ' ' + 
-  													 inter + '</td><td>' + 
+  													 inter + pe +'</td><td>' + 
   													 v.colonia  + '</td><td>' + 
   													 v.cp  + '</td><td>' +  
   													 v.ciudad + '</td><td>' + 
   													 v.estado  + '</td>'+
-  													 '<td onclick=\"editar_dir_envio('+ v.id_consecutivoSi +')\" valign="top"><a href="#">editar</a></td>'+
-  													 '<td onclick=\"eliminar_dir_envio('+ v.id_consecutivoSi +')\" valign="top"><a href="#">eliminar</a></td>'+
+  													 '<td valign="top"><div onclick=\"eliminar_dir_envio('+ v.id_consecutivoSi +')\"><a href="#">eliminarcuenta</a></div><div onclick=\"editar_dir_envio('+ v.id_consecutivoSi +')\"><a href="#">editar cuenta</a></div></td>'+
   													 '</tr>');          				          				          				          				 
   			});   
   			
@@ -101,6 +37,7 @@ function listar_dir_envio(){
         }
     });  
 }
+
 
 function eliminar_dir_envio(id_env){	
 	
@@ -124,19 +61,21 @@ function eliminar_dir_envio(id_env){
     	});
    }  
 }
-	
+
+
 function editar_dir_envio(id_dir){
 	
 	$.ajax({   
 		cache: false,		 		           
-    	url:   ecommerce + "administrador_usuario/editar_dir_envio/" + id_dir + "/" + id_cliente_js,
-    	type:  'POST',                                      
+    	url:   administrador + "administrador_usuario.php?accion=editar_dir_envio",
+    	type:  'GET',                                      
+    	data: {"id_dir": id_dir, "id_cliente": id_cliente_js},
     	beforeSend: function () {                    	     	
 			$("#result_informacion").html("Procesando, espere por favor..." );
     	},
 		success:  function (response) {              			  			      			
 			$("#result_informacion").html(response);  							
-			
+/*			
 			var forms = $("form[id*='registro']");				
 			
 			var reg_cp = /^([1-9]{2}|[0-9][1-9]|[1-9][0-9])[0-9]{3}$/;
@@ -163,7 +102,7 @@ function editar_dir_envio(id_dir){
 			
 			//onChange:
 			$('#sel_pais').change(function() {
-				/*hacer un toggle si es necesario*/
+				//hacer un toggle si es necesario
 				var es_mx = false; 
 				$.getJSON(ecommerce + "direccion_envio/es_mexico/" + $(this).val(),
 					function(data) {
@@ -290,7 +229,7 @@ function editar_dir_envio(id_dir){
 							$('#sel_estados').trigger('change');
 							alert("El código no devolvió resultados");
 							//Remover información del formulario
-						}
+						}						
 					},
 					error: function(data) {
 						alert("error: " + data.error);
@@ -301,7 +240,7 @@ function editar_dir_envio(id_dir){
 					cache: false
 				});
 			});	        
-			                              	  			            			          			    			             			     				      				   			      				          																		             
+			*/                              	  			            			          			    			             			     				      				   			      				          																		             
     	}
 	});
 }
@@ -349,17 +288,88 @@ function enviar_dir_envio(id_dir){
 	$.ajax({	  
 		cache: false,
 		data: parametros,  
-	    url:   ecommerce + "administrador_usuario/editar_dir_envio/" + id_dir + "/" + id_cliente_js,
-	    type:  'post',
+		url:   administrador + "administrador_usuario.php?accion=editar_dir_envio&id_dir=" + id_dir + "&id_cliente=" + id_cliente_js,	    	    
+	    type:  'POST',
 	    beforeSend: function () {
 			$("#result_informacion").html("Procesando, espere por favor...");
 	    },
 		success:  function (response) {          			
 			$("#result_informacion").html(response);   
 			if($("#update_correcto").text()== 1){
+				alert('llega');
 				$("#result_informacion").html('<div class="encabezado-descripcion">Tus datos se han actualizado correctamente.</div>');
 				setTimeout('$("#boton_datos").click()', 2500);
 			}                                             
 	    }
     });	
 }
+
+
+
+function actualizar_ciudades(clave_estado) {
+	// var ecommerce = "http://localhost/ecommerce/";
+	$.post( ecommerce + 'direccion_envio/get_ciudades',
+		// when the Web server responds to the request
+		{ 'estado': clave_estado},
+		function(datos) {
+			var ciudades = datos.ciudades;
+			
+			$("#sel_ciudades").empty();
+			$("<option></option>").attr("value", '').html('Selecionar').appendTo("#sel_ciudades");
+			
+			if (ciudades != null) {
+				if (ciudades.length == undefined) {	//DF sólo devuelve un obj de ciudad.
+					$("<option></option>").attr("value", ciudades.clave_ciudad).html(ciudades.ciudad).appendTo("#sel_ciudades");
+					$("#sel_ciudades").trigger('change');	//trigger cities' change event
+				} else {							//ciudades.length == 'undefined'
+					$.each(ciudades, function(indice, ciudad) {
+						if (ciudad.clave_ciudad != '') {
+							$("<option></option>").attr("value", ciudad.clave_ciudad).html(ciudad.ciudad).appendTo("#sel_ciudades");
+						}
+					});
+				}
+			}
+		}, 
+		"json"
+	);
+}
+
+function actualizar_colonias(clave_estado, ciudad) {
+	//var ecommerce = "http://localhost/ecommerce/";
+	$.post( ecommerce + 'direccion_envio/get_colonias',
+		// when the Web server responds to the request
+		{ 'estado': clave_estado, 'ciudad': ciudad },
+		function(datos) {
+			var colonias = datos.colonias;
+			
+			$("#sel_colonias").empty();
+			$("<option></option>").attr("value", '').html('Selecionar').appendTo("#sel_colonias");
+			
+			if (colonias != null) {
+				$.each(colonias, function(indice, colonia) {
+					$("<option></option>").attr("value", colonia.colonia).html(colonia.colonia).appendTo("#sel_colonias");
+				});
+			}
+		}, 
+		"json"
+	);
+}
+
+function actualizar_cp(clave_estado, ciudad, colonia) {
+	//var ecommerce = "http://localhost/ecommerce/";
+	$.post( ecommerce + 'direccion_envio/get_colonias',
+		// when the Web server responds to the request
+		{ 'estado': clave_estado, 'ciudad': ciudad},
+		function(datos) {
+			var colonias = datos.colonias;
+			
+			$.each(colonias, function(indice, col) {
+				if (colonia == col.colonia)
+					$("#txt_cp").val(col.codigo_postal);
+					//$("<option></option>").attr("value", colonia.colonia).html(colonia.colonia).appendTo("#sel_colonias");
+			});
+		}, 
+		"json"
+	);
+}
+

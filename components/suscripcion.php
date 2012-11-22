@@ -183,7 +183,10 @@
 	    	<div id='descripcion-promo' class="descripcion-promocion">
 	    		<?php echo $promo_inicial->descripcion_promocion?>
 	    	</div>	    	
-	    	<div class="back-rayado" style="margin-top: 60px">
+	    	<div id="descripcion-larga" class="descripcion3">
+	    		<?php echo $promo_inicial->texto_oferta?>	    		
+	    	</div>
+	    	<div class="back-rayado" style="position: relative; bottom: 0px;">
 	    		<input type="button" id="btn_comprar_ahora" name="btn_comprar_ahora" value="Comprar ahora" class="boton-comprar-ahora" onclick="submit_to_pagos(<?php echo $promo_inicial->id_promocion;?>)"/>
 	    	</div>
 	    </div>
@@ -208,12 +211,18 @@
 					
 					//promoción seleccionada inicialmente:
 					$class_radio = "class='radio_no_selected'";
+					/*
+					echo "<pre>";
+						print_r($detalle);
+					echo "</pre>";
+					*/
 					if ($promo_inicial->id_promocion == $detalle->id_promocion)
 						$class_radio = "class='radio_selected'";
 			?>
 									
 					<div class="hidden" id='descripcion<?php echo $detalle->id_promocion ?>'><?php echo $detalle->descripcion_promocion; ?></div>
-					<div class="hidden" ><?php echo $detalle->texto_oferta; //Contenido de la promocion(ejemplares, suplementos, regalos, etc.)?></div>
+					<div class="hidden" ><?php echo $detalle->descripcion_publicacion_larga; ?></div>
+					<div class="hidden" id='texto-oferta<?php echo $detalle->id_promocion ?>'><?php echo $detalle->texto_oferta;?></div>
 					<div class="hidden" id='precio<?php echo $detalle->id_promocion ?>'><?php echo number_format($detalle->costo,2, ".", ",")."&nbsp;".$detalle->moneda; //Precio y descuento aplicado sobre precio de portada?></div>				
 				
 			<?php
