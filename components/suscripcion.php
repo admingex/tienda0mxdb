@@ -9,6 +9,7 @@
 		    print_r($detalles_promociones);
 	echo "</pre>";	
 	*/
+	
 ?>
 <script type="text/javascript">
 	var id_sit = <?php echo $promo_inicial->id_sitio; ?>;
@@ -38,8 +39,8 @@
 		$("#btn_agregar_carrito").attr("onclick", submit_carrito);	
 		  					
 		$('#precio_promo').text('$'+$('#precio'+id).text());
-		$('#descripcion-promo').text($('#descripcion'+id).text());
-			
+		$('#descripcion-promo').text($('#descripcion'+id).text());		
+		$('#ejemplares-promo').text($('#ejemplares'+id).text());		
 		//indica cuál es el que está selceccionado
 		id_ant = id;
 	}
@@ -182,10 +183,13 @@
 	    	</div>
 	    	<div id='descripcion-promo' class="descripcion-promocion">
 	    		<?php echo $promo_inicial->descripcion_promocion?>
+	    	</div>
+	    	<div id='ejemplares-promo' class="descripcion3">
+	    		<?php echo $promo_inicial->ejemplares?>
 	    	</div>	    	
 	    	<div id="descripcion-larga" class="descripcion3">
 	    		<?php echo $promo_inicial->texto_oferta?>	    		
-	    	</div>
+	    	</div>	    	
 	    	<div class="back-rayado" style="position: relative; bottom: 0px;">
 	    		<input type="button" id="btn_comprar_ahora" name="btn_comprar_ahora" value="Comprar ahora" class="boton-comprar-ahora" onclick="submit_to_pagos(<?php echo $promo_inicial->id_promocion;?>)"/>
 	    	</div>
@@ -222,6 +226,7 @@
 									
 					<div class="hidden" id='descripcion<?php echo $detalle->id_promocion ?>'><?php echo $detalle->descripcion_promocion; ?></div>
 					<div class="hidden" ><?php echo $detalle->descripcion_publicacion_larga; ?></div>
+					<div class="hidden" id='ejemplares<?php echo $detalle->id_promocion ?>'><?php echo $detalle->ejemplares; ?></div>
 					<div class="hidden" id='texto-oferta<?php echo $detalle->id_promocion ?>'><?php echo $detalle->texto_oferta;?></div>
 					<div class="hidden" id='precio<?php echo $detalle->id_promocion ?>'><?php echo number_format($detalle->costo,2, ".", ",")."&nbsp;".$detalle->moneda; //Precio y descuento aplicado sobre precio de portada?></div>				
 				

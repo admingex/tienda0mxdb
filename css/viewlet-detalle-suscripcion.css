@@ -125,10 +125,12 @@
 .styled-select {
 	margin-top: 5px;
 	padding-right: 7px;
+	padding-top: 0px;
    	width: 185px;
    	height: 18px;
    	overflow: hidden;
    	background: transparent url('../images/selector.png') no-repeat;   
+   	padding-bottom: 5px; 	
 }
 
 .cont-select{
@@ -141,7 +143,7 @@
  	width: 215px;
    	padding: 0px 35px 0px 5px;
    	font-size: 10px;   	
-   	height: 20px;
+   	height: 17px;
    	-webkit-appearance: none;   
    	border: none;	   	
 } 

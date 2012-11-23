@@ -42,8 +42,7 @@
 	<div id='dialog-modal' rowspan></div>
 	<div id='no-moneda'>Debes seleccionar productos de la misma moneda</div>
     <div id="header-container">
-        <header>
-            <!-- img src="<?php echo TIENDA;?>images/KIOSCO_logo.png" alt="logo gex" / -->
+        <header>            
             <h1><a href="<?php echo TIENDA;?>">Kiosco</a></h1>
         </header>  
         <div id='header_tienda'>

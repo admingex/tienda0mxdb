@@ -54,16 +54,6 @@
 	margin-bottom: 15px;			
 }
 
-#viewlet-carrito ul li:nth-child(2){
-	overflow: hidden;	
-	height: 165px;
-	position: relative;
-}
-
-#viewlet-carrito ul li:last-child{
-	margin-top: 145px;
-	color: #E0E0E0	
-}
 
 #viewlet-carrito ul li .descripcion_producto{
 	padding: 0px 5px;	

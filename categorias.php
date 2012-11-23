@@ -55,9 +55,8 @@
 	
 	## si el explorador es internet explorer aqui cargo los estilos en caso contrario los cargo en la vista categoria publicaciones
 	if(!strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")) {
-	?>	
-		<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
-		<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-slide.css" rel="stylesheet" />
+	?>			
+		<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-slide.css" rel="stylesheet" />			
 <?php		
 	}	
 

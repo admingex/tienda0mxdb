@@ -35,7 +35,7 @@ class Administrador_Usuario {
 	### consulta si el mail ya esta registrado
 	public function consulta_mail($mail){		
 		$res=$this->login_registro_model->verifica_registro_email($mail);		
-		$value['mail']=count($res['email']);
+		$value['mail']=count($res);
 		
 		echo json_encode($value);			
 	}
