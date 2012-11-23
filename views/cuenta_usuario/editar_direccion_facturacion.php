@@ -1,7 +1,5 @@
-<div class='titulo-descripcion'>
-	Datos de envío y facturación 
-</div>	
 <div class='pleca-titulo'></div>
+<div class='encabezado-descripcion'>Editar dirección de Facturación</div>
 <div class="form-container">
 <form id="form_agregar_direccion" action="" method="POST">
 <div class='form-label'>Calle</div>		

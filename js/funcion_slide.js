@@ -2,16 +2,13 @@ $(function() {
 
 	//	Responsive layout, resizing the items
 	$('#slider').carouFredSel({
-		responsive: true,
-		width: '100%',
+		responsive: true,			
 		prev: '#prev',
 		next: '#next',
 		scroll: 1,
-		items: {
-			width: 100,
-			height: 235,	//	optionally resize item-height
+		items: {						
 			visible: {
-				min: 3,
+				min: 1,
 				max: 3
 			}
 		}	
@@ -21,9 +18,8 @@ $(function() {
 
 });
 
-function cambia_img(id){
-	$("#"+ id).css('display', 'none')
-	$("#o"+ id).css('display', 'block')
+function cambia_img(id){	
+	$("#temp").html($("#descripcion"+id).text());
 	/*					
 	if($("#"+ id)){
 		if( $("#"+ id).attr("class") == "imagen1"){		

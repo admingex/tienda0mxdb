@@ -151,7 +151,7 @@
 				//para B2B
 				if (isset($info_publicacion) && $info_publicacion->auditableBi) {
 				?>
-				
+				<div class="descripcion3">Si deseas recibir esta revista de forma gratuita, selecciona la opción de suscripción</div>
 				<div class="styled-select"> 
 					<div class="cont-select">								
 						<form name="enviar_tipo_suscripcion" action="<?php echo site_url('B2B/ptienda.php') ?>" method="POST">

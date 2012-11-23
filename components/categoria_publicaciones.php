@@ -29,19 +29,22 @@ echo "
 					}
 					
 					//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
-					if(file_exists("./p_images/".$p->url_imagen)){
-						$src = TIENDA ."p_images/".$p->url_imagen;
+					if(file_exists("./r_images/".$p->url_imagen)){
+						$src = TIENDA ."r_images/".$p->url_imagen;
 					}
 					else{
 						$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
 						//$src = TIENDA ."p_images/".$p->url_imagen;
 					}
-					echo "	<li>					
-								<a href='". $url_p . "'>								    
-								    <div id='".$p->id_publicacion."' style=\"background: url('".$src."') no-repeat; background-color: #000; background-position: 0px -175px; background-position: 0px 0px;\" class='back_image1' onmouseover=\"cambia_img(".$p->id_publicacion.")\"></div>
-				          			<div id='o".$p->id_publicacion."' style=\"background: url('".$src."') no-repeat; background-color: #000; background-position: 0px -175px; \" class='back_image2' onmouseout=\"cambia_img2(".$p->id_publicacion.")\"></div>";																	
+					echo "	<li>
+								<a href='". $url_p . "'>
+									<img id='".$p->id_publicacion."' src='$src' alt='GrupoExpansion' onmouseover=\" cambia_img(id)\" width='179px' height='217px'>
+									<div id='descripcion".$p->id_publicacion."' style='display: none'>".$p->desc_publicacion."</div>";								    
+								    //<div id='".$p->id_publicacion."' style=\"background-image: url('".$src."')\" class='back_image1'></div>";																
 									//echo "<img id='".$p->id_publicacion."' src='" . $src. "' class='imagen1' onmouseover=\" cambia_img(id)\" onmouseout=\" cambia_img(id)\" />";																
 					echo "		</a>
+								
+					
 							</li>";		
 				}				
 				
@@ -49,6 +52,9 @@ echo "
 echo  " 		</ul>				
 				<a id='prev' class='prev' href='#'></a>
 				<a id='next' class='next' href='#'></a>				
-			</div>";
+			</div>";						
 ?>
+</div>
+<div id='temp' style="border: solid 1px #800; color: #FFF; position: absolute; margin-top: -230px; margin-left: 690px; width: 290px; height: 210px;">
+	aui
 </div>

@@ -1,9 +1,5 @@
-<div class='titulo-descripcion'>
-	Datos de envío y facturación
-</div>	
 <div class='pleca-titulo'></div>
 <div class='encabezado-descripcion'>Editar Razón Social</div>
-
 <div class="form-container">		
 	<form id="form_agregar_rs" action="" method="POST">
 		<div class='form-label'>Nombre o Raz&oacute;n Social</div>		

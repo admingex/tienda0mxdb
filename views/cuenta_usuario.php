@@ -32,7 +32,7 @@ $(document).ready(function() {
                 url:   ecommerce + "administrador_usuario/compras_cliente",
                 type:  'post',
                 beforeSend: function () {
-					$("#result_informacion").html("Procesando, espere por favor...");
+					$("#result_informacion").html("<div style='color: #D81830; height: 20px; font-size: 11px; font-family: italic; font-weight: bold'>Procesando, espere por favor...</div>");
                 },
           		success:  function (response) {          			
 					$("#result_informacion").html(response);                                                
@@ -58,9 +58,7 @@ $(document).ready(function() {
 					$("#result_informacion").html("Procesando, espere por favor..." );
                 },
           		success:  function (data) {                  			          			  			
-          			$("#result_informacion").html("<div class='titulo-descripcion'>" +
-												  "Medios de pagos</div>" +
-												  "<div class='pleca-titulo'></div>" +
+          			$("#result_informacion").html("<div class='pleca-titulo'></div>" +
 												  "<table id='tarjetas' cellspacing='0' cellpadding='0'><thead><tr><th>Tarjetas guardadas</th><th>Nombre</th><th>Expira</th><th>&nbsp;</th></tr></thead></table> ");
           			$.each(data.tarjetas, function(k,v){
           				var param = ","+ v.id_tipo_tarjetaSi; 
@@ -91,9 +89,7 @@ $(document).ready(function() {
           		success:  function (data) {          	
           			$("#result_informacion").html(data);
           				
-          			$("#result_informacion").html("<div class='titulo-descripcion'>" +
-												  "Datos de envío y facturación</div>" +
-												  "<div class='pleca-titulo'></div>" +
+          			$("#result_informacion").html("<div class='pleca-titulo'></div>" +
 												  "<div class='encabezado-descripcion'>Datos de facturación</div>" +
 												  "<table id='rfcs' cellspacing='0' cellpadding='0'><thead><tr><th>Razón Social</th><th>R.F.C.</th><th>Email</th><th>&nbsp;</th></tr></thead></table> ");
           			$.each(data.rs, function(k,v){
@@ -138,7 +134,7 @@ $(document).ready(function() {
         });					
 	});						
 	
-	$("#boton_datos").click();
+	$("#boton_medios").click();
 									
 });	
 

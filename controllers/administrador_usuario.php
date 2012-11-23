@@ -530,22 +530,15 @@ class Administrador_Usuario {
 			} else{
 				$this->login_errores['password'] = '<div class="error2">Password actual incorrecto</div>';
 			}												
-		} 		
+		} 	
+		else{
+			$datos['password']=$pass_registrado;
+		}	
 											
 		return $datos;				
 		
 	}
-	
 		
-	
-	
-	
-	
-	
-	
-
-	
-	
 	// funcion que revisa que los datos enviados para actualizar la razon social sean correctos
 	private function get_datos_rs(){
 		$datos = array();		 		

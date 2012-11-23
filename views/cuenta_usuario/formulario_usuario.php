@@ -1,6 +1,3 @@
-<div class='titulo-descripcion'>
-	Configuración de cuenta
-</div>	
 <div class='pleca-titulo'></div>
 <div class="form-container">
 <form name='actualizar_cliente' action='' method='GET'>

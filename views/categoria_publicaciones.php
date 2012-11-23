@@ -42,7 +42,7 @@
 		$pd = json_decode($json);
 		
 		if (count($pd->promo_destacada) > 0) {
-			include_once('./components/promocion_destacada.php');
+			//include_once('./components/promocion_destacada.php');
 		}
 	}
 	
