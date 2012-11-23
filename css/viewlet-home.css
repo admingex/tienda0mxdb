@@ -55,7 +55,9 @@
 .columna_derecha{
 	height: 330px; 
 	width: 331px; 
-	float: left;	
+	float: left;
+	position: relative; 
+	z-index: 500;	
 }
 
 .pleca_apps{

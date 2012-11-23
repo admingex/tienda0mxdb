@@ -112,7 +112,7 @@ if (isset($_SESSION['carrito'])) {
               	</div>  
               	<div id='total'>
               		<div class='total-right'>
-                  		<div class='carrito'>".$na."</div>
+                  		<div id='cuenta-detalle-carrito' class='carrito'>".$na."</div>
                   		<div class='blanco'>total</div>
                   		<div class='rojo'>$".number_format($total,2,".",",")."</div>
               		</div>

@@ -2,7 +2,7 @@ $(function() {
 
 	//	Responsive layout, resizing the items
 	$('#slider').carouFredSel({
-		responsive: true,			
+		responsive: false,			
 		prev: '#prev',
 		next: '#next',
 		scroll: 1,
@@ -20,6 +20,8 @@ $(function() {
 
 function cambia_img(id){	
 	$("#temp").html($("#descripcion"+id).text());
+	$("#titulo_pub").html($("#titulo"+id).text());
+	
 	/*					
 	if($("#"+ id)){
 		if( $("#"+ id).attr("class") == "imagen1"){		

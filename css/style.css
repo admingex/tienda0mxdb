@@ -27,14 +27,19 @@ width:985px;
     height:105px;
     overflow:hidden;    
 }
-    #header-container div#carrito {
-        background:url(../images/KIOSCO_header_iconos_shopcart.png) no-repeat top left;
+    #header-container div#carrito {        
+        background:url(../images/kiosco_carrito.png) no-repeat;
+        background-position: 5px 8px;
         float:right;
-        height:48px;
+        height:33px;
         margin:-85px 24px;
-        width:48px;
-        text-indent:-1920px;
+        width:28px;
+        padding: 17px 0px 0px 20px;
+        color: #E50304;
+		font-size: 12px;
+		font-weight: bold;        
     }
+    
     #cont {
         background:url(../images/KIOSCO_header_iconos_01800.png) no-repeat top left;
         float:right;

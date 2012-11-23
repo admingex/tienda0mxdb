@@ -51,7 +51,7 @@
 			    <div id='cont'></div>		
 			</a>		
 			<a href="<?php echo site_url('carrito.php');?>">
-			    <div id='carrito'></div>		
+			    <div id='carrito'><?php if(isset($_SESSION['carrito'])) echo count($_SESSION['carrito']); else echo 0;?></div>		
 			</a>				
 		</div>  
         <section class="header_section"> 

@@ -16,7 +16,7 @@ echo "
 				          <div id='69' style=\"background: url('".TIENDA."p_images/cDIN.png') no-repeat; background-color: #000; background-position: 0px -175px; background-position: 0px 0px;\" class='back_image1' onmouseover=\"cambia_img(69)\"></div>
 				          <div id='o69' style=\"background: url('".TIENDA."p_images/cDIN.png') no-repeat; background-color: #000; background-position: 0px -175px; \" class='back_image2' onmouseout=\"cambia_img2(69)\"></div>				      	
 				      </li>"; */
-					  
+				$ini= 0;	  
 				foreach ($categoria->publicaciones as $p) {
 					//url de la publicación
 					$url_p = '';
@@ -29,23 +29,26 @@ echo "
 					}
 					
 					//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
-					if(file_exists("./r_images/".$p->url_imagen)){
+					//if(file_exists("./r_images/".$p->url_imagen)){
 						$src = TIENDA ."r_images/".$p->url_imagen;
-					}
-					else{
-						$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+					//}
+					//else{
+						//$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
 						//$src = TIENDA ."p_images/".$p->url_imagen;
-					}
+					//}
 					echo "	<li>
 								<a href='". $url_p . "'>
-									<img id='".$p->id_publicacion."' src='$src' alt='GrupoExpansion' onmouseover=\" cambia_img(id)\" width='179px' height='217px'>
-									<div id='descripcion".$p->id_publicacion."' style='display: none'>".$p->desc_publicacion."</div>";								    
+									<img id='".$p->id_publicacion."' src='$src' alt='".$p->url_imagen."' onmouseover=\" cambia_img(id)\" width='179px' height='217px'>
+									<div id='descripcion".$p->id_publicacion."' style='display: none'>".$p->desc_publicacion."</div>
+									<div id='titulo".$p->id_publicacion."' style='display: none'>".$p->nombre_publicacion."</div>";								    
 								    //<div id='".$p->id_publicacion."' style=\"background-image: url('".$src."')\" class='back_image1'></div>";																
 									//echo "<img id='".$p->id_publicacion."' src='" . $src. "' class='imagen1' onmouseover=\" cambia_img(id)\" onmouseout=\" cambia_img(id)\" />";																
-					echo "		</a>
-								
-					
-							</li>";		
+					echo "		</a>													
+							</li>";	
+					if($ini==0){
+						echo "<script>cambia_img(".$p->id_publicacion.")</script>";
+						$ini=1;
+					}			
 				}				
 				
 												
@@ -55,6 +58,7 @@ echo  " 		</ul>
 			</div>";						
 ?>
 </div>
-<div id='temp' style="border: solid 1px #800; color: #FFF; position: absolute; margin-top: -230px; margin-left: 690px; width: 290px; height: 210px;">
-	aui
+<div style="position: absolute; margin-top: -230px; margin-left: 670px; width: 270px; height: 210px; padding: 0px 10px; text-align: center;  ">
+	<div id="titulo_pub" style="height: 50px; width: 255px; font-size: 24px; color: #FE0000; font-weight: lighter; padding: 5px; background-image:url('<?php echo TIENDA  ?>images/kisco_contenido_pleca.png'); background-position: 0px 0px; background-repeat: repeat-x">titulo</div>
+	<div id='temp' style="color: #9A9A9A; font-size: 18px">nombre_publicacion</div>	
 </div>
