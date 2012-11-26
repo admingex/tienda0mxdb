@@ -36,7 +36,7 @@
 //	}
 	#### Promociones de la publicación (listado)
 	
-	if (isset($ofertas_publicacion)) {
+	if (isset($ofertas_publicacion) && count($ofertas_publicacion) > 0) {		
 		//último nivel de detalle
 		include_once('./components/promociones_publicacion.php');
 		//exit;

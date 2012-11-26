@@ -35,12 +35,14 @@
 				//echo "</pre>";
 			
 				foreach ($cp->promos_carrusel as $p) {
-					if(isset($p->promo_padre)){
-						$url_p = TIENDA ."promocion_h.php?id_promo_padre=" .$p->id_promocionIn;	
-					} else{
-						$url_p = TIENDA ."promocion/" .$p->id_promocion;	
-					}				
-					echo "<a href='".$url_p."'><img src='".TIENDA. "p_images/" .$p->url_imagen."' width='530px' height='310px' /></a>";
+					if($p->publicado == 1){
+						if(isset($p->promo_padre)){
+							$url_p = TIENDA ."promocion_h.php?id_promo_padre=" .$p->id_promocionIn;	
+						} else{
+							$url_p = TIENDA ."promocion/" .$p->id_promocion;	
+						}				
+						echo "<a href='".$url_p."'>".print_r($p)."<img src='".TIENDA. "p_images/" .$p->url_imagen."' width='530px' height='310px' /></a>";
+					}	
 				}														
 			}		    					
 			?>						  						 											

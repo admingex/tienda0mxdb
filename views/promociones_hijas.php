@@ -45,8 +45,8 @@
 		$url_p = site_url('promocion/'. $p->id_promocion);
 		
 		//revisar que exista la imagen en caso contrario ponemos el cuadro negro						
-		if(file_exists("./p_images/".$p->url_imagen)){
-			$src = TIENDA ."p_images/".$p->url_imagen;
+		if(file_exists("./r_images/".$p->url_imagen)){
+			$src = TIENDA ."r_images/".$p->url_imagen;
 		}
 		else{
 			$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";

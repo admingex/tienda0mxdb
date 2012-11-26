@@ -40,7 +40,9 @@
 		  					
 		$('#precio_promo').text('$'+$('#precio'+id).text());
 		$('#descripcion-promo').text($('#descripcion'+id).text());		
-		$('#ejemplares-promo').text($('#ejemplares'+id).text());		
+		$('#ejemplares-promo').text($('#ejemplares'+id).text());
+		$('#descripcion-larga').text($('#texto-oferta'+id).text());	
+			
 		//indica cuál es el que está selceccionado
 		id_ant = id;
 	}
