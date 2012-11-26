@@ -171,3 +171,10 @@ td a{
 	padding-left: 40px;
 	padding-top: 10px;
 }
+
+.label_tarjeta{
+	color: #CECECE;
+	font-size: 12px;
+	padding: 0px;	
+	display: inline-block;
+}	

@@ -109,14 +109,28 @@
 									break;	
 									
 				case 'compras_cliente':
-									if(array_key_exists('id_cliente', $_POST))										
-										$admin_controller->compras_cliente($_POST['id_cliente']);									
+									if(array_key_exists('id_cliente', $_POST))	
+										if(is_numeric($_POST['id_cliente']))									
+											$admin_controller->compras_cliente($_POST['id_cliente']);									
 									break; 	
 																								
 				case 'detalle_compra':
 									if(array_key_exists('id_compra', $_POST) && array_key_exists('id_cliente', $_POST))
-										$admin_controller->detalle_compra($_POST['id_compra'], $_POST['id_cliente']);									
-									break;																																																															
+										if(is_numeric($_POST['id_compra']) && is_numeric($_POST['id_cliente']))
+											$admin_controller->detalle_compra($_POST['id_compra'], $_POST['id_cliente']);									
+									break;	
+									
+				case 'eliminar_tc':
+									if(array_key_exists('id_cliente', $_POST) && array_key_exists('id_tarjeta', $_POST))
+										if(is_numeric($_POST['id_tarjeta']) && is_numeric($_POST['id_cliente']))																		
+											$admin_controller->eliminar_tc($_POST['id_tarjeta'], $_POST['id_cliente']);									
+									break;	
+				
+				case 'editar_tc':
+									if(array_key_exists('id_tarjeta', $_GET) && array_key_exists('id_tipo', $_GET) && array_key_exists('id_cliente', $_GET))
+										if(is_numeric($_GET['id_tarjeta']) && is_numeric($_GET['id_tipo']) && is_numeric($_GET['id_cliente']))									
+											$admin_controller->editar_tc($_GET['id_tarjeta'], $_GET['id_tipo'], $_GET['id_cliente']);
+									break; 																																																																							
 			}						 
 		}	
 		

@@ -358,12 +358,7 @@ class Administrador_Usuario {
 		
 		include('./views/cuenta_usuario/reporte_compras_usuario.php');
 		
-	}
-	
-	
-	
-	
-	
+	}	
 	
 	## obtener el detalle de cada una de las compras que tiene el cliente
 	public function detalle_compra($id_compra = "", $id_cliente = ""){
@@ -499,6 +494,133 @@ class Administrador_Usuario {
 		$compra = $data['compra'];
 		include('./views/cuenta_usuario/detalle_compra.php');
 	}
+	
+	
+	//Funcion para eliminar una tarjeta
+	public function eliminar_tc($id_tc, $id_cliente){
+		####TO DO CCTC												
+		//if ($this->eliminar_tarjeta_interfase_CCTC($id_cliente, $id_tc)) {					
+			if($this->administrador_usuario_model->eliminar_tarjeta($id_cliente, $id_tc)){
+				echo "<label id='eliminar_tarjeta'>1</label>";
+			}
+		//}	
+	}
+		
+	// Funcion para actualizar los datops de TC
+	public function editar_tc($id_tc = "", $id_tipo = "", $id_cliente = ""){
+		//echo "tc: ".$id_tc." tipo: ".$id_tipo." cliente".$id_cliente."<br />";
+		//el detalle de la tarjeta en BD antes de actualizar			
+		$detalle_tarjeta = array();	
+		
+		$tarjeta_tc = end($this->administrador_usuario_model->detalle_tarjeta($id_tc, $id_cliente));
+			
+		//$data['tarjeta_tc'] = $detalle_tarjeta; 
+		//$data['id_cliente'] = $id_cliente;
+		//$data['id_tc'] = $id_tc;					
+			
+		if($_POST){
+			//echo "tcPOST: ".$id_tc." tipoPOST: ".$id_tipo." clientePOST".$id_cliente."<br />";
+			/*
+			echo $id_tc."--".$id_tipo."--".$id_cliente;
+			echo "<pre>";			
+				print_r($_POST);
+			echo "</pre>";
+			*/
+			
+			
+			//detalle de la nueva info de la tarjeta 					
+			$nueva_info = array();
+			$nueva_info = $this->get_datos_tarjeta();	//datos generales
+														
+			//errores
+			$data['reg_errores'] = $this->reg_errores;			
+			
+			if (empty($data['reg_errores'])) {	//si no hubo errores
+				
+				//preparar la petición al WS, campos comunes
+				$nueva_info['tc']['id_clienteIn'] = $id_cliente;
+				$nueva_info['tc']['id_TCSi'] = $id_tc;
+				$nueva_info['tc']['terminacion_tarjetaVc'] = $tarjeta_tc['terminacion_tarjetaVc'];
+				$nueva_info['tc']['descripcionVc'] = $tarjeta_tc['descripcionVc'];
+				$nueva_info['tc']['id_tipo_tarjetaSi'] = $tarjeta_tc['id_tipo_tarjetaSi'];
+				
+				/*
+				if ($detalle_tarjeta->id_tipo_tarjetaSi == 1 ) {	//es AMEX y hay información
+					//var_dump($detalle_amex);
+					
+					$nueva_info['amex']['id_clienteIn'] = $id_cliente;
+					$nueva_info['amex']['id_TCSi'] = $detalle_tarjeta->id_TCSi;
+					$nueva_info['amex']['nombre_titularVc'] = $nueva_info['tc']['nombre_titularVc'];
+					$nueva_info['amex']['apellidoP_titularVc'] = $nueva_info['tc']['apellidoP_titularVc'];
+					$nueva_info['amex']['apellidoM_titularVc'] = $nueva_info['tc']['apellidoM_titularVc'];
+					//var_dump($detalle_amex);	//$detalle_amex trae al menos: consecutivo_cmsSi y id_clienteIn
+					
+					$nueva_info['amex']['pais'] = isset($detalle_amex->pais) ? $detalle_amex->pais : NULL;
+					$nueva_info['amex']['codigo_postal'] = isset($detalle_amex->codigo_postal) ? $detalle_amex->codigo_postal : NULL;
+					$nueva_info['amex']['calle'] = isset($detalle_amex->calle) ? $detalle_amex->calle : NULL;
+					$nueva_info['amex']['ciudad'] = isset($detalle_amex->ciudad) ? $detalle_amex->ciudad : NULL;
+					$nueva_info['amex']['estado'] = isset($detalle_amex->estado) ? $detalle_amex->estado : NULL;
+					$nueva_info['amex']['mail'] = isset($detalle_amex->mail) ? $detalle_amex->mail : $this->session->userdata('email');
+					$nueva_info['amex']['telefono'] = isset($detalle_amex->telefono) ? $detalle_amex->telefono : NULL;
+				} else {
+				 */ 
+					$nueva_info['amex'] = NULL;
+				//}
+				/*
+				echo "<br />";
+				echo "<pre>";
+					print_r($nueva_info);
+				echo "</pre>";
+				 */ 		
+				//actualizar en CCTC, si el consecutivo es distinto de 0				
+				//if ($this->editar_tarjeta_CCTC($nueva_info['tc'], $nueva_info['amex'])) {
+				
+				///if ($this->editar_tarjeta_interfase_CCTC($nueva_info['tc'], $nueva_info['amex'])) {
+					//actualizar predeterminado
+					if (isset($nueva_info['predeterminar'])) {
+						$this->administrador_usuario_model->quitar_predeterminado_tc($id_cliente);
+					} else {
+						$nueva_info['tc']['id_estatusSi'] = 1;
+					}
+					
+					//ahora para registrar cambios localmente, siempre se manda la info de $nueva_info['tc']					
+					if($this->administrador_usuario_model->actualiza_tarjeta($id_tc, $id_cliente, $nueva_info['tc'])){
+						echo "<label id='actualizar_tarjeta'>1</label>";
+					}																			
+				///} 				
+							
+			} else {	//sí hubo errores				
+				$reg_errores = $this->reg_errores;
+				include('./views/cuenta_usuario/editar_tc.php');  					
+			}					
+		}
+		else{									
+				
+			/*
+			echo "<pre>";			
+				print_r($detalle_tarjeta);
+			echo "</pre>";
+			*/
+			  			
+			/*
+			 * para amex revisar
+			if ($detalle_tarjeta->id_tipo_tarjetaSi == 1 ) 
+				//$detalle_amex = $this->detalle_tarjeta_CCTC($id_cliente, $consecutivo);
+				$detalle_amex = $this->obtener_detalle_interfase_CCTC($id_cliente, $id_tc);
+			 */
+			include('./views/cuenta_usuario/editar_tc.php');  																		
+		}
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -688,121 +810,8 @@ class Administrador_Usuario {
 	
 
 	
-
-	// Funcion para actualizar los datops de TC
-	public function editar_tc($id_tc = "", $id_tipo = "", $id_cliente = ""){
-		//echo "tc: ".$id_tc." tipo: ".$id_tipo." cliente".$id_cliente."<br />";
-		//el detalle de la tarjeta en BD antes de actualizar			
-		$detalle_tarjeta = array();	
-		
-		$detalle_tarjeta = $this->forma_pago_model->detalle_tarjeta($id_tc, $id_cliente);	
-		$data['tarjeta_tc'] = $detalle_tarjeta; 
-		$data['id_cliente'] = $id_cliente;
-		$data['id_tc'] = $id_tc;				
-			
-		if($_POST){
-			//echo "tcPOST: ".$id_tc." tipoPOST: ".$id_tipo." clientePOST".$id_cliente."<br />";
-			/*
-			echo $id_tc."--".$id_tipo."--".$id_cliente;
-			echo "<pre>";			
-				print_r($_POST);
-			echo "</pre>";
-			*/
-			
-			
-			//detalle de la nueva info de la tarjeta 					
-			$nueva_info = array();
-			$nueva_info = $this->get_datos_tarjeta();	//datos generales
-														
-			//errores
-			$data['reg_errores'] = $this->reg_errores;			
-			
-			if (empty($data['reg_errores'])) {	//si no hubo errores
-				//preparar la petición al WS, campos comunes
-				$nueva_info['tc']['id_clienteIn'] = $id_cliente;
-				$nueva_info['tc']['id_TCSi'] = $id_tc;
-				$nueva_info['tc']['terminacion_tarjetaVc'] = $detalle_tarjeta->terminacion_tarjetaVc;
-				//$nueva_info['tc']['descripcionVc'] = $detalle_tarjeta->descripcionVc;
-				$nueva_info['tc']['id_tipo_tarjetaSi'] = $detalle_tarjeta->id_tipo_tarjetaSi;
-				
-				/*
-				if ($detalle_tarjeta->id_tipo_tarjetaSi == 1 ) {	//es AMEX y hay información
-					//var_dump($detalle_amex);
-					
-					$nueva_info['amex']['id_clienteIn'] = $id_cliente;
-					$nueva_info['amex']['id_TCSi'] = $detalle_tarjeta->id_TCSi;
-					$nueva_info['amex']['nombre_titularVc'] = $nueva_info['tc']['nombre_titularVc'];
-					$nueva_info['amex']['apellidoP_titularVc'] = $nueva_info['tc']['apellidoP_titularVc'];
-					$nueva_info['amex']['apellidoM_titularVc'] = $nueva_info['tc']['apellidoM_titularVc'];
-					//var_dump($detalle_amex);	//$detalle_amex trae al menos: consecutivo_cmsSi y id_clienteIn
-					
-					$nueva_info['amex']['pais'] = isset($detalle_amex->pais) ? $detalle_amex->pais : NULL;
-					$nueva_info['amex']['codigo_postal'] = isset($detalle_amex->codigo_postal) ? $detalle_amex->codigo_postal : NULL;
-					$nueva_info['amex']['calle'] = isset($detalle_amex->calle) ? $detalle_amex->calle : NULL;
-					$nueva_info['amex']['ciudad'] = isset($detalle_amex->ciudad) ? $detalle_amex->ciudad : NULL;
-					$nueva_info['amex']['estado'] = isset($detalle_amex->estado) ? $detalle_amex->estado : NULL;
-					$nueva_info['amex']['mail'] = isset($detalle_amex->mail) ? $detalle_amex->mail : $this->session->userdata('email');
-					$nueva_info['amex']['telefono'] = isset($detalle_amex->telefono) ? $detalle_amex->telefono : NULL;
-				} else {
-				 */ 
-					$nueva_info['amex'] = NULL;
-				//}
-				/*
-				echo "<br />";
-				echo "<pre>";
-					print_r($nueva_info);
-				echo "</pre>";
-				 */ 		
-				//actualizar en CCTC, si el consecutivo es distinto de 0				
-				//if ($this->editar_tarjeta_CCTC($nueva_info['tc'], $nueva_info['amex'])) {
-				
-				if ($this->editar_tarjeta_interfase_CCTC($nueva_info['tc'], $nueva_info['amex'])) {
-					//actualizar predeterminado
-					if (isset($nueva_info['predeterminar'])) {
-						$this->forma_pago_model->quitar_predeterminado($id_cliente);
-					} else {
-						$nueva_info['tc']['id_estatusSi'] = 1;
-					}
-					
-					//ahora para registrar cambios localmente, siempre se manda la info de $nueva_info['tc']					
-					if(!stristr($this->forma_pago_model->actualiza_tarjeta($id_tc, $id_cliente, $nueva_info['tc']), "error")){
-						echo "<label id='actualizar_tarjeta'>1</label>";
-					}																			
-				} 				
-							
-			} else {	//sí hubo errores				
-				$this->load->view('administrador_usuario/editar_tc', $data);				
-			}					
-		}
-		else{									
-				
-			/*
-			echo "<pre>";			
-				print_r($detalle_tarjeta);
-			echo "</pre>";
-			*/
-			  			
-			/*
-			 * para amex revisar
-			if ($detalle_tarjeta->id_tipo_tarjetaSi == 1 ) 
-				//$detalle_amex = $this->detalle_tarjeta_CCTC($id_cliente, $consecutivo);
-				$detalle_amex = $this->obtener_detalle_interfase_CCTC($id_cliente, $id_tc);
-			 */ 														
-			$this->load->view('administrador_usuario/editar_tc', $data);	
-		}
-	}	
-	
-
 	
 	
-	//Funcion para eliminar una tarjeta
-	public function eliminar_tc($id_tc, $id_cliente){												
-		if ($this->eliminar_tarjeta_interfase_CCTC($id_cliente, $id_tc)) {					
-			if(!stristr($this->forma_pago_model->eliminar_tarjeta($id_cliente, $id_tc), "error")){
-				echo "<label id='eliminar_tarjeta'>1</label>";
-			}
-		}	
-	}
 	
 	private function eliminar_tarjeta_interfase_CCTC($id_cliente = 0, $consecutivo = 0) {
 		if (isset($id_cliente, $consecutivo)) {
@@ -1021,7 +1030,7 @@ private function get_datos_tarjeta()
 				$datos['guardar'] = $_POST['chk_guardar'];		//indicador para saber si se guarda o no la tarjeta
 				$datos['tc']['id_estatusSi'] = 1;
 			}
-			if (array_key_exists('chk_default', $_POST)) {
+			if ($_POST['chk_default'] == 1) {
 				$datos['tc']['id_estatusSi'] = 3;	//indica que será la tarjeta predeterminada
 				$datos['predeterminar'] = true;	
 			}

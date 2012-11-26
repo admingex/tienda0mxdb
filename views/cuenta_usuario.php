@@ -5,7 +5,6 @@
 <script type="text/javascript" src="<?php TIENDA;?>js/admin_usuario_tarjetas.js"></script>
 
 <script type="text/javascript">
-var ecommerce = 'http://localhost/ecommerce/';
 var administrador = 'http://localhost/tienda/';
  
 	// se agrega la variable id_cliente_js con el valor del id de cliente para poderla utilizar con javascript
@@ -60,8 +59,12 @@ $(document).ready(function() {
           			$("#result_informacion").html("<div class='pleca-titulo'></div>" +
 												  "<table id='tarjetas' cellspacing='0' cellpadding='0'><thead><tr><th>Tarjetas guardadas</th><th>Nombre</th><th>Expira</th><th>&nbsp;</th></tr></thead></table> ");
           			$.each(data.tarjetas, function(k,v){
+          				var pe= ' ';
+          				if(v.id_estatusSi == 3){
+          					pe = "<div style='color: #D81830; height: 20px; font-size: 11px; font-family: italic; font-weight: bold'>pago express</div>";
+          				}
           				var param = ","+ v.id_tipo_tarjetaSi; 
-          				$("#tarjetas").append("<tr><td>" + v.descripcionVc + " terminación" + v.terminacion_tarjetaVc  + "</td>" +
+          				$("#tarjetas").append("<tr><td>" + v.descripcionVc + " terminación" + v.terminacion_tarjetaVc  + pe + "</td>" +
           										  "<td>" + v.nombre_titularVc + ' ' + v.apellidoP_titularVc + ' ' + v.apellidoM_titularVc + "</td>" +
           										  "<td>" + v.mes_expiracionVc + '/' + v.anio_expiracionVc + "</td>" +
           										  "<td><div onclick=\"editar_tc('"+ v.id_TCSi+ "', '"+v.id_tipo_tarjetaSi+ "')\" ><a href='#'>editar cuenta</a></div><div onclick=\"eliminar_tc('"+ v.id_TCSi+ "')\" ><a href='#'>eliminar cuenta</a></div></td>" +          										  

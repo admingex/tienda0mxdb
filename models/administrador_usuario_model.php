@@ -325,5 +325,40 @@ class Administrador_usuario_Model extends DBAbstractModel {
 		        WHERE id_clienteIn=".$id_cliente." AND id_compraIn=".$id_compra." AND address_type=1";
 		$this->get_results_from_query();        		
 		return $this->rows;	
-	}			
+	}	
+	
+	function eliminar_tarjeta($id_cliente, $consecutivo){
+		$this->query = "UPDATE CMS_IntTC SET id_estatusSi = 2 WHERE id_TCSi =".$consecutivo." AND id_clienteIn=".$id_cliente;	
+		$res = $this->execute_single_query();
+		return $res;		
+	}	
+	
+	function detalle_tarjeta($id_tc, $id_cliente){
+		$this->query = "SELECT * FROM CMS_IntTC WHERE id_TCSi =".$id_tc." AND id_clienteIn = ".$id_cliente;
+		$this->get_results_from_query();        		
+		return $this->rows;
+	}	
+	
+	function quitar_predeterminado_tc($id_cliente){
+		$this->query = "UPDATE CMS_IntTC SET id_estatusSi = 1 WHERE id_clienteIn=".$id_cliente." AND id_estatusSi = 3";
+		$res = $this->execute_single_query();		
+		return $res;
+	}	
+	
+	function actualiza_tarjeta($consecutivo, $id_cliente, $nueva_info){
+	
+		$this->query="UPDATE CMS_IntTC SET 	nombre_titularVc = '".$nueva_info['nombre_titularVc']."', 
+											apellidoP_titularVc = '".$nueva_info['apellidoP_titularVc']."', 
+											apellidoM_titularVc = '".$nueva_info['apellidoM_titularVc']."',
+											mes_expiracionVc = ".$nueva_info['mes_expiracionVc'].",
+											anio_expiracionVc = ".$nueva_info['anio_expiracionVc'].",
+											id_clienteIn = ".$nueva_info['id_clienteIn'].",  
+											id_TCSi = ".$nueva_info['id_TCSi'].",
+											terminacion_tarjetaVc = ".$nueva_info['terminacion_tarjetaVc'].",
+											descripcionVc = '".$nueva_info['descripcionVc']."',
+											id_tipo_tarjetaSi = ".$nueva_info['id_tipo_tarjetaSi'].",
+											id_estatusSi = ".$nueva_info['id_estatusSi']." WHERE id_TCSi=".$consecutivo." AND id_clienteIn=".$id_cliente;
+		$res = $this->execute_single_query();		
+		return $res;
+	}
 }
