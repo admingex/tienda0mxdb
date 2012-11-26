@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"homo_promos_destacada":[{"id_promocion":"29","is_sitio":"3","id_canal":"29","descripcion_promocion":"PROMOCI\u00d3N GENERAL DE ELLE","url_imagen":"IDC_1301_52_IDAG12-BAADAP1301e.jpg","posicion":null,"fijo":null},{"id_promocion":"541","is_sitio":"3","id_canal":"29","descripcion_promocion":"EXPANSION CONTENIDO DIGITAL","url_imagen":"5002012.jpg","posicion":null,"fijo":null},{"id_promocion":"496","is_sitio":"3","id_canal":"29","descripcion_promocion":"IDC PAQ-A 2595 POR 24 EDICIONES 12 CONSULTAS","url_imagen":"IDC_1301_52_IDAG12-BAADAP1301d.jpg","posicion":null,"fijo":null}]}
-=======
 {"homo_promos_destacada":[{"id_promocion":"530","is_sitio":"3","id_canal":"29","descripcion_promocion":"TRAVEL & LEISURE SUSCRIPCION NUEVA","url_imagen":"default.jpg","imagen_portada":"kiosco_contenido_spread.png","imagen_eslogan":"kiosco_contenido_logo.png","posicion":null,"agrupada":"0","publicado":"1","publicacionId":"16"}]}
->>>>>>> 3520cb1839662eb77e1d6704b076338772cd8c00
