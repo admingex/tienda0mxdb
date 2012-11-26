@@ -75,6 +75,7 @@
 	print_r($data);
 	echo "</pre>";
 	*/
+	
 	cargar_vista('promociones_especiales', $data);
 	exit;
 

@@ -14,25 +14,20 @@
 			
 			
 				// se añaden las promociones padre para incluirlas en el carrusel
-				/*
+				
 				$path_promo_padre = "./json/promociones_padre/promos_padre.json";	
 				if (file_exists($path_promo_padre)) {
 					$json = file_get_contents($path_promo_padre);
 					$promos_padre = json_decode($json);										
 					foreach($promos_padre as $p ){
-						if($p->descripcion_canal=="HOME PROMOCION DESTACADA"){						
-							$cp->homo_promos_destacada[($items)] = $p;
+						if($p->descripcion_canal=="HOME CARRUSEL"){						
+							$cp->promos_carrusel[($items)] = $p;
 							$items++;
 						}					
 					} 								
 				}	
-				*/		
-										
-				//$rand = rand(0, ($items-1));	
-				//$p	= $cp->homo_promos_destacada[$rand];
-				//echo "<pre>";
-				//	print_r($cp->homo_promos_destacada);
-				//echo "</pre>";
+					
+						
 			
 				foreach ($cp->promos_carrusel as $p) {
 					if($p->publicado == 1){
@@ -41,7 +36,7 @@
 						} else{
 							$url_p = TIENDA ."promocion/" .$p->id_promocion;	
 						}				
-						echo "<a href='".$url_p."'>".print_r($p)."<img src='".TIENDA. "p_images/" .$p->url_imagen."' width='530px' height='310px' /></a>";
+						echo "<a href='".$url_p."'><img src='".TIENDA. "p_images/" .$p->url_imagen."' width='530px' height='310px' /></a>";
 					}	
 				}														
 			}		    					
@@ -58,12 +53,7 @@
 			
 				$json = file_get_contents($path_promos_destacada);
 				$cp = json_decode($json);
-			}
-			/*
-			echo "<pre>";
-				print_r($cp->homo_promos_destacada);
-			echo "</pre>";	
-			*/	
+			}			
 		?>		
 		<div class="titulos">
 			<div>
@@ -132,11 +122,4 @@
 			<a href='http://itunes.apple.com/mx/app/cnnmexico/id492116980' target="_blank"><div class='links cnn'></div></a>						
 		</div>		
 	</div>
-</div>
-<?php
-/*
-echo "<pre>";
-	print_r($apps);
-echo "</pre>";
-*/ 
-?>			
+</div>		

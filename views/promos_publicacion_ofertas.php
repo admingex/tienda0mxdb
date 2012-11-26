@@ -51,10 +51,7 @@
 	#### Promociones de la publicación (listado)
 	## agregue $_POST para obligar a que se seleccione por lo menos un filtro para poder mostrar las ofertas lo origino el nuevo diseño con las flechas para IDC
 	if (isset($ofertas_publicacion) && $_POST) {
-		//último nivel de detalle		
-
-		echo "<link type='text/css' href='".TIENDA."css/viewlet-slide-idc.css' rel='stylesheet' />";		
-		
+		//último nivel de detalle						
 		include_once('./components/promociones_publicacion.php');
 		//exit;
 	}

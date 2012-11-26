@@ -1,4 +1,6 @@
-
+<?php
+echo "<link type='text/css' href='".TIENDA."css/viewlet-slide-idc.css' rel='stylesheet' />";
+?>		
 <div id='contenedor_slide'>	
 	<div class='list_carousel responsive'>
 		<ul id='slider'>

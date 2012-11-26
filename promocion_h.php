@@ -5,13 +5,16 @@
     require('./config/settings.php');
 	
 	//Paginador
-	include("/controllers/paginacion.php");
+	include("./controllers/paginacion.php");
 			
     //header (y/o menús)
     $menues = TRUE;	
 	
 	//Scripts
 	$scripts = '';
+	$scripts [] = TIENDA."js/slide.js";
+	$scripts [] = TIENDA."js/funcion_slide.js";	
+
 	
 	//información para la vista
 	$title = "Publicaciones por Promoción";
@@ -19,6 +22,7 @@
 	
 	$data = array();
 	
+	$data["scripts"] = $scripts;
 	$data["title"] = $title;
 	$data["subtitle"] = $subtitle;		
 	
@@ -33,7 +37,7 @@
 		$data["promociones_hijas"] = $jph;
 					
 	}
-	
+		
 	cargar_vista('promociones_hijas', $data);
 	
 	exit;

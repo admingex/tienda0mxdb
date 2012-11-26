@@ -1,4 +1,3 @@
-<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-slide.css" rel="stylesheet" />
 <?php
 	/*Vista que lista las "Promociones Especiales"*/
 		

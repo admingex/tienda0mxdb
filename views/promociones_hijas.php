@@ -1,5 +1,3 @@
-<script type="text/javascript" src="<?php echo TIENDA;?>js/slide.js"></script>
-<script type="text/javascript" src="<?php echo TIENDA;?>js/funcion_slide.js"></script>
 <link type="text/css" href="<?php echo TIENDA;?>css/viewlet-slide.css" rel="stylesheet" />
 <div id='contenedor_slide'>
 	<div class='list_carousel responsive'>
@@ -29,7 +27,7 @@
 		else{
 			$dist_promo[]= $ph;
 		}				
-	}		
+	}			
 	/*
 	echo "<pre>";
 		print_r($dist_promo);
@@ -53,22 +51,23 @@
 			//$src = TIENDA ."p_images/".$p->url_imagen;
 		}
 		echo "
-			<div class='catego-left'>
-				<div class='contenedor-imagen'>
+			
 					<a href='". $url_p . "'>";																	
-						echo "<img src='" . $src. "' />";																
-		echo "		</a>
-				</div>				
-				<div class='titulo-categoria-back titulo-categoria'>
+						echo "<img src='" . $src. "' width='179px' height='217px' />
+					</a>";
+		/*																			
+		echo "		
+							
+				<div class='titulo-categoria-back titulo-categoria' display='none'>
 					".$p->nombre."						
 				</div>
-				<div class='descripcion-promocion-back descripcion-promocion'>
+				<div class='descripcion-promocion-back descripcion-promocion' >
 					".$p->descripcion."						
 				</div>									    		
-				<div class='precio-promocion-back'>".$p->terminoVc."</div>	      			     		      	
-      		</div>
+				<div class='precio-promocion-back'>".$p->terminoVc."</div>";
+		*/			      			     		      	      		
       			      	
-		</li>";  	
+		echo "</li>";  	
 	}
 ?>
 		</ul>
@@ -76,7 +75,3 @@
 		<a id='next' class='next' href='#'></a>	
 	</div>
 </div>
-<?php
-	echo "total:".count($promociones_hijas);
-	echo "<br />:filtado".count($dist_promo); 
-?>
