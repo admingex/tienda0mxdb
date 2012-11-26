@@ -207,3 +207,14 @@ div#footer-container
 {
     display:none;
     }            
+    
+div#copyright{
+	margin-right: auto; 
+	margin-left: auto; 
+	width: 300px; 
+	text-align: center; 
+	color: #FFF;
+	font-size: 10px;
+	text-transform: uppercase;
+	padding: 0px 0px 10px 0px;		
+}

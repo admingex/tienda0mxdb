@@ -5,7 +5,7 @@ function editar_rs(id_rs){
 	    type:  'GET',
 	    data: {"id_rs": id_rs},
 	    beforeSend: function () {
-			$("#result_informacion").html("Procesando, espere por favor...");
+			$("#result_informacion").html("<div class='procesando'>Procesando, espere por favor...</div>");
 	    },
 		success:  function (response) {          			
 			$("#result_informacion").html(response);                                                
@@ -22,7 +22,7 @@ function eliminar_rs(id_rs){
 		    type:  'post',
 		    data: {"id_rs":id_rs},
 		    beforeSend: function () {
-				$("#result_informacion").html("Procesando, espere por favor...");
+				$("#result_informacion").html("<div class='procesando'>Procesando, espere por favor...</div>");
 		    },
 			success:  function (response) {          			
 				$("#result_informacion").html(response);  
@@ -59,7 +59,7 @@ function enviar_rs(id_rs){
 	    url:   administrador + "administrador_usuario.php?accion=editar_rs&id_rs="+ id_rs,
 	    type:  'post',
 	    beforeSend: function () {
-			$("#result_informacion").html("Procesando, espere por favor...");
+			$("#result_informacion").html("<div class='procesando'>Procesando, espere por favor...</div>");
 	    },
 		success:  function (response) {          			
 			$("#result_informacion").html(response);  
@@ -157,7 +157,7 @@ function enviar_dir_facturacion(id_dir){
 		url:   administrador + "administrador_usuario.php?accion=editar_dir_facturacion&id_dir=" + id_dir + "&id_cliente=" + id_cliente_js,	    
 	    type:  'post',
 	    beforeSend: function () {
-			$("#result_informacion").html("Procesando, espere por favor...");
+			$("#result_informacion").html("<div class='procesando'>Procesando, espere por favor...</div>");
 	    },
 		success:  function (response) {          			
 			$("#result_informacion").html(response);   
@@ -179,7 +179,7 @@ function eliminar_dir_facturacion(id_dir){
         	type:  'POST',                                      
         	data: {"id_dir": id_dir, "id_cliente": id_cliente_js},
         	beforeSend: function () {                    	     	
-				$("#result_informacion").html("Procesando, espere por favor..." );
+				$("#result_informacion").html("<div class='procesando'>Procesando, espere por favor...</div>" );
         	},
   			success:  function (response) {              			  			      			
   				$("#result_informacion").html(response);  	

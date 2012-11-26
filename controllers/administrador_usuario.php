@@ -271,83 +271,99 @@ class Administrador_Usuario {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	## obtener las compras que ha realizado el cliente
-	public function compras_cliente(){
+	public function compras_cliente($id_cliente){
 				
-		$data['id_cliente'] = $id_cliente = $_POST['id_cliente'];			 
+		//$data['id_cliente'] = $id_cliente; 			 
 		## obtener las compras pagadas del cliente
-		$compras_cliente = $this->reporte_model->obtener_compras_cliente($id_cliente);
-		
-		if($compras_cliente->num_rows()>0){
+		$compras_cliente = $this->administrador_usuario_model->obtener_compras_cliente($id_cliente);
+		/*
+		echo "<pre>";
+			print_r($compras_cliente);
+		echo "</pre>";
+		*/		
+		if(count($compras_cliente)>0){
 			$data['compras'] = array();
-			$todas_compras = $compras_cliente->result_array();			
+				
+			$todas_compras = $compras_cliente;
+				
 			foreach($todas_compras as $ind => $compra){
+							 	 
 				$id_compra = $compra['id_compraIn'];				
 				$data['compras'][$ind]['compra'] = $compra;
 				
 				//se obtiene el medio y la fecha de pago
-				$forma_pago = $this->reporte_model->obtener_medio_pago($id_compra, $id_cliente);
-				if($forma_pago -> num_rows > 0){
-					$data['compras'][$ind]['medio_pago'] = self::$FORMA_PAGO[($forma_pago->row()->id_tipoPagoSi)];	
-					$data['compras'][$ind]['fecha_compra'] = 	$forma_pago->row()->fecha_registroTs;				
+				$forma_pago = $this->administrador_usuario_model->obtener_medio_pago($id_compra, $id_cliente);
+				
+				if(count($forma_pago)>0){
+					$data['compras'][$ind]['medio_pago'] = self::$FORMA_PAGO[($forma_pago[0]['id_tipoPagoSi'])];	
+					$data['compras'][$ind]['fecha_compra'] = 	$forma_pago[0]['fecha_registroTs'];
 				}
+				
 				else{
 					$data['compras'][$ind]['medio_pago'] = "no existe";
 					$data['compras'][$ind]['fecha_pago'] = "no existe";					
 				}
+				
 				//se obtiene el codigo de autorizacion de la transaccion
-				$ca = $this->reporte_model->obtener_codigo_autorizacion($id_compra, $id_cliente);
-				if($ca->num_rows() > 0){
-					$data['compras'][$ind]['respuesta_banco'] = $ca->row()->respuesta_bancoVc;
+				$ca = $this->administrador_usuario_model->obtener_codigo_autorizacion($id_compra, $id_cliente);		
+				
+				if(count($ca) > 0){
+					//obtenemos la ultima respuesta del banco ultimo
+					$ca_last = end($ca);											
+					$data['compras'][$ind]['respuesta_banco'] = $ca_last['respuesta_bancoVc'];
 				}			
 				else{
 					$data['compras'][$ind]['respuesta_banco'] = "no hay respuesta";
 				}
+				 
 				
 				//se obtiene el id de promocion de la compra
-				$id_promo = $this->reporte_model->obtener_promo_compra($id_compra, $id_cliente);
+				$id_promo = $this->administrador_usuario_model->obtener_promo_compra($id_compra, $id_cliente);
 				
 				// se obtiene el detalle de la promocion
-				$promocion = $this->reporte_model->obtener_detalle_promo($id_promo);	
-				if($promocion->num_rows()>0){
-					$data['compras'][$ind]['promocion'] = $promocion->row();
+				$promocion = $this->administrador_usuario_model->obtener_detalle_promo($id_promo);					
+				if(count($promocion)>0){
+					$data['compras'][$ind]['promocion'] = end($promocion);
 				}
-				//se obtiene el total de articulos en la promocion y el total que se pago por ellos 
-				$articulos_res = $this->reporte_model->obtener_articulos($id_promo);
-				$articulos = $articulos_res->result_array();							 
-				$monto = 0;
-
+				 
+				//se obtiene el total de articulos en la promocion y el total que se pago por ellos 				
+				$articulos = $this->administrador_usuario_model->obtener_articulos($id_promo);							 
+				$monto = 0;				
+				
 				// Se obtienen los articulos de cada promocion y el total pagado por ellos 							
 				foreach( $articulos as $i => $articulo){
-					if($articulo['issue_id']){
-						$issue = $this->reporte_model->obtener_issue($articulo['issue_id']);						
-						$articulos[$i]['tipo_productoVc']= $issue->row()->descripcionVc;
+					
+					if($articulo['issue_id']){												
+						$issue = end($this->administrador_usuario_model->obtener_issue($articulo['issue_id']));						
+						$articulos[$i]['tipo_productoVc']= $issue['descripcionVc'];
 					}
 					else{
 						$articulos[$i]['tipo_productoVc'] = $articulo['tipo_productoVc'];
 					}
+					
 					$monto+= $articulo['tarifaDc'];
 				}
 				
 				$data['compras'][$ind]['articulos'] = $articulos;				
-				$data['compras'][$ind]['monto'] = $monto;												
+				$data['compras'][$ind]['monto'] = $monto;	
+			 	
+			 	$compras = $data['compras'];	 											
 			}
+			
 		}
 		else{
-			$data['compras'] = NULL;
+			$compras = NULL;
 		}
 		
-		$this->load->view('reportes/reporte_compras_usuario', $data);		
+		include('./views/cuenta_usuario/reporte_compras_usuario.php');
+		
 	}
+	
+	
+	
+	
+	
 	
 	## obtener el detalle de cada una de las compras que tiene el cliente
 	public function detalle_compra($id_compra = "", $id_cliente = ""){
@@ -357,114 +373,131 @@ class Administrador_Usuario {
 		$data['compra']['codigo_autorizacion'] = NULL;
 		
 		//se obtiene el medio y la fecha de pago
-		$forma_pago = $this->reporte_model->obtener_medio_pago($id_compra, $id_cliente);
+		$forma_pago = end($this->administrador_usuario_model->obtener_medio_pago($id_compra, $id_cliente));
 		
-		if($forma_pago -> num_rows > 0){
+		if( count($forma_pago) > 0){
+		 	
 			//si el pago es con prosa se obtiene el detalle de la tarjeta
-			if(($forma_pago->row()->id_tipoPagoSi == 1) || ($forma_pago->row()->id_tipoPagoSi == 2)){				
-				$tc = $this->reporte_model->obtener_tc($id_cliente, $forma_pago->row()->id_tipoPagoSi);				
-				$data['compra']['medio_pago'] = $tc->row()->descripcionVc." terminación ".$tc->row()->terminacion_tarjetaVc;				
-					
+			if(($forma_pago['id_tipoPagoSi'] == 1) || ($forma_pago['id_tipoPagoSi'] == 2)){				
+							
+				$tc = end($this->administrador_usuario_model->obtener_tc($id_cliente, $forma_pago['id_tipoPagoSi']));												
+				$data['compra']['medio_pago'] = $tc['descripcionVc']." terminación ".$tc['terminacion_tarjetaVc'];				
+				
 				//se obtiene el codigo de autorizacion si es que existe
-				$ca = $this->reporte_model->obtener_codigo_autorizacion($id_compra, $id_cliente);
-				if($ca->num_rows() > 0 ){									
-					if($ca->row()->codigo_autorizacionVc > 0){
-						$data['compra']['codigo_autorizacion'] = "<span class='info-negro'>codigo de autorización:</span> ".$ca->row()->codigo_autorizacionVc;
+				$ca = end($this->administrador_usuario_model->obtener_codigo_autorizacion($id_compra, $id_cliente));				
+				
+				if(count($ca) > 0 ){									
+					if($ca['codigo_autorizacionVc'] > 0){
+						$data['compra']['codigo_autorizacion'] = "<span class='info-blanco'>codigo de autorización:</span> ".$ca['codigo_autorizacionVc'];
 					}
 					else{
-						$data['compra']['codigo_autorizacion'] = "<span class='info-negro'>codigo de autorización:</span> ".$ca->row()->codigo_autorizacionVc ."<br />". $ca->row()->respuesta_bancoVc ;
+						$data['compra']['codigo_autorizacion'] = "<span class='info-blanco'>codigo de autorización:</span> ".$ca['codigo_autorizacionVc'] ."<br />". $ca['respuesta_bancoVc'];
 					}
 				}	
 				else{
-					$data['compra']['codigo_autorizacion'] = "<span class='info-negro'>(No se realizo el cobro)</span>";	
-				}
-					
+					$data['compra']['codigo_autorizacion'] = "<span class='info-blanco'>(No se realizo el cobro)</span>";	
+				}				 				 					
 			}
 			else{				
-				$data['compra']['medio_pago'] = self::$FORMA_PAGO[($forma_pago->row()->id_tipoPagoSi)];					
+				$data['compra']['medio_pago'] = self::$FORMA_PAGO[($forma_pago['id_tipoPagoSi'])];					
 			}
 			
 			//si el pago es con amex se obtiene el detalle de la tarjeta y la direccion de amex
-			if($forma_pago->row()->id_tipoPagoSi == 2){				
-				$data['compra']['direccion_amex'] = "direccion ammex";	
+			if($forma_pago['id_tipoPagoSi'] == 2){				
+				$data['compra']['direccion_amex'] = "direccion ammex s";	
 			}
-										
-			$data['compra']['fecha_compra'] = 	$forma_pago->row()->fecha_registroTs;				
+									
+			$data['compra']['fecha_compra'] = 	$forma_pago['fecha_registroTs'];		 	 				
 		}
 		else{
 			$data['compra']['medio_pago'] = NULL;
 			$data['compra']['fecha_pago'] = NULL;				
 		}
-				
+
+		
 		//se obtiene la direccion de envio si es que existe			
-		$dir_envio = $this->reporte_model->obtener_dir_envio($id_compra, $id_cliente);
-		if($dir_envio->num_rows() > 0){
-				$data['compra']['dir_envio'] = 	$dir_envio->row()->address1." ".
-												$dir_envio->row()->address2." ".
-												$dir_envio->row()->address4."<br />".
-												$dir_envio->row()->zip."<br />".
-														$dir_envio->row()->address3."<br />".
-														$dir_envio->row()->city."<br />".
-														$dir_envio->row()->state;	
+		$rel_envio = $this->administrador_usuario_model->obtener_rel_envio($id_compra, $id_cliente);
+		if(count($rel_envio) > 0){
+			$rel_envio = end($rel_envio);
+			$dir_envio = $this->administrador_usuario_model->obtener_direccion($id_cliente, $rel_envio['id_consecutivoSi']);			 
+			if(count($dir_envio) > 0){
+				$dir_envio= end($dir_envio);
+				$data['compra']['dir_envio'] = 	$dir_envio['calle']." ".
+												$dir_envio['num_ext']." ".
+												$dir_envio['num_int']."<br />".
+												$dir_envio['cp']."<br />".
+												$dir_envio['colonia']."<br />".
+												$dir_envio['ciudad']."<br />".
+												$dir_envio['estado'];	
+			}	
+			else{
+				$data['compra']['dir_envio']= "No requiere";
+			}
+			
 		}
 		else{
 			$data['compra']['dir_envio']= "No requiere";
 		}
 		
+		
+		
 		//se obtiene la direccion de facturacion y Razon Social
-		$facturacion = $this->reporte_model->obtener_facturacion($id_compra, $id_cliente);
-		if($facturacion->num_rows() > 0){								
-			$consecutivo = $facturacion->row()->id_consecutivoSi;
-			$id_rs = $facturacion->row()->id_razonSocialIn;
+		$facturacion = $this->administrador_usuario_model->obtener_rel_facturacion($id_compra, $id_cliente);		
+		
+		if(count($facturacion) > 0){
+			$facturacion = end($facturacion);								
+			$consecutivo = $facturacion['id_consecutivoSi'];
+			$id_rs = $facturacion['id_razonSocialIn'];
 			
-			$dir_facturacion = $this->reporte_model->obtener_dir_facturacion($consecutivo, $id_cliente);				
-			$data['compra']['dir_facturacion']  =  $dir_facturacion->row()->address1." ".
-														$dir_facturacion->row()->address2." ".
-														$dir_facturacion->row()->address4."<br />".
-														$dir_facturacion->row()->zip."<br />".
-														$dir_facturacion->row()->address3."<br />".
-														$dir_facturacion->row()->city."<br />".
-														$dir_facturacion->row()->state;
+			$dir_facturacion = end($this->administrador_usuario_model->obtener_direccion($id_cliente, $consecutivo));
+							
+			$data['compra']['dir_facturacion']  =  	$dir_facturacion['calle']." ".
+													$dir_facturacion['num_ext']." ".
+													$dir_facturacion['num_int']."<br />".
+													$dir_facturacion['cp']."<br />".
+													$dir_facturacion['colonia']."<br />".
+													$dir_facturacion['ciudad']."<br />".
+													$dir_facturacion['estado'];
 			
-			$rs = $this->reporte_model->obtener_razon_social($id_rs);
-			$data['compra']['razon_social'] = $rs->row()->company."<br />".$rs->row()->tax_id_number;											
-			
+			$rs = end($this->administrador_usuario_model->obtener_rs($id_rs));
+			$data['compra']['razon_social'] = $rs['company']."<br />".$rs['tax_id_number'];																
 		}						
 		else{
 			$data['compra']['dir_facturacion'] = NULL;
 			$data['compra']['razon_social'] = NULL;
 		}
 		
+		
 		//se obtiene el id de promocion de la compra
-		$id_promo = $this->reporte_model->obtener_promo_compra($id_compra, $id_cliente);
+		$id_promo = $this->administrador_usuario_model->obtener_promo_compra($id_compra, $id_cliente);
 		
 		// se obtiene el detalle de la promocion
-		$promocion = $this->reporte_model->obtener_detalle_promo($id_promo);	
-		if($promocion->num_rows()>0){
-			$data['compra']['promocion'] = $promocion->row();
+		$promocion = $this->administrador_usuario_model->obtener_detalle_promo($id_promo);	
+		if(count($promocion) >0){
+			$data['compra']['promocion'] = end($promocion);
 		}
 					
 		
 		//se obtiene el total de articulos en la promocion y el total que se pago por ellos 
-		$articulos_res = $this->reporte_model->obtener_articulos($id_promo);
-		$articulos = $articulos_res->result_array();							 
-		$monto = 0;
-
+		$articulos = $this->administrador_usuario_model->obtener_articulos($id_promo);								 
+		$monto = 0;		
+		
 		// Se obtienen los articulos de cada promocion y el total pagado por ellos 							
 		foreach( $articulos as $i => $articulo){
-			if($articulo['issue_id']){
-				$issue = $this->reporte_model->obtener_issue($articulo['issue_id']);						
-				$articulos[$i]['tipo_productoVc']= $issue->row()->descripcionVc;
+			if($articulo['issue_id']){												
+				$issue = end($this->administrador_usuario_model->obtener_issue($articulo['issue_id']));						
+				$articulos[$i]['tipo_productoVc']= $issue['descripcionVc'];
 			}
 			else{
 				$articulos[$i]['tipo_productoVc'] = $articulo['tipo_productoVc'];
-			}
+			}											
 			$monto+= $articulo['tarifaDc'];
 		}
 		$data['compra']['articulos'] = $articulos;
 		$data['compra']['monto'] = $monto;
-													
-		$this->load->view('reportes/detalle_compra', $data);
+																	
+		$compra = $data['compra'];
+		include('./views/cuenta_usuario/detalle_compra.php');
 	}
 	
 	

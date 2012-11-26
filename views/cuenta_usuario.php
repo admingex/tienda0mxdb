@@ -27,12 +27,11 @@ $(document).ready(function() {
         $("#result_errores").html("" );	
         $.ajax({
         		cache: false,
-                data:  parametros,
-                
-                url:   ecommerce + "administrador_usuario/compras_cliente",
+                data:  parametros,                
+                url:   administrador + "administrador_usuario.php?accion=compras_cliente",
                 type:  'post',
                 beforeSend: function () {
-					$("#result_informacion").html("<div style='color: #D81830; height: 20px; font-size: 11px; font-family: italic; font-weight: bold'>Procesando, espere por favor...</div>");
+					$("#result_informacion").html("<div class='procesando'>Procesando, espere por favor...</div>");
                 },
           		success:  function (response) {          			
 					$("#result_informacion").html(response);                                                
@@ -55,7 +54,7 @@ $(document).ready(function() {
                 dataType: "json",
                 data: {"id_cliente": id_cliente_js},                               
                 beforeSend: function () {                    	     	
-					$("#result_informacion").html("Procesando, espere por favor..." );
+					$("#result_informacion").html("<div class='procesando'>Procesando, espere por favor...</div>" );
                 },
           		success:  function (data) {                  			          			  			
           			$("#result_informacion").html("<div class='pleca-titulo'></div>" +
@@ -85,7 +84,10 @@ $(document).ready(function() {
                 url:   administrador + "administrador_usuario.php?accion=listar_razon_social",
                 type:  'POST', 
                 data: {"id_cliente": id_cliente_js},
-                dataType: "json",                                                              
+                dataType: "json",   
+                beforeSend: function () {                    	     	
+					$("#result_informacion").html("<div class='procesando'>Procesando, espere por favor...</div>" );
+                },                                                           
           		success:  function (data) {          	
           			$("#result_informacion").html(data);
           				
@@ -125,8 +127,8 @@ $(document).ready(function() {
                 url:   administrador + "administrador_usuario.php",
                 type:  'GET',
                 data: {"accion": "cliente_id", "id_cliente": id_cliente_js},                            
-                beforeSend: function () {                    	            
-					$("#result_informacion").html("Procesando, espere por favor..." );
+                beforeSend: function () {                    	            					
+					$("#result_informacion").html("<div class='procesando'>Procesando, espere por favor...</div>" );                                                
                 },
           		success:  function (data) {             			       			            		
            			$("#result_informacion").html(data);           			       			            			     				      				      																		            
@@ -134,7 +136,7 @@ $(document).ready(function() {
         });					
 	});						
 	
-	$("#boton_medios").click();
+	$("#boton_historial").click();
 									
 });	
 

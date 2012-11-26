@@ -245,4 +245,85 @@ class Administrador_usuario_Model extends DBAbstractModel {
 		
 	}
 	
+	function obtener_compras_cliente($id_cliente){
+			
+		$this->query = "SELECT * FROM CMS_IntCompra 
+		        WHERE id_clienteIn=".$id_cliente;
+		$this->get_results_from_query();		
+		return $this->rows;				
+	}
+	
+	function obtener_medio_pago($id_compra, $id_cliente){
+				
+		$this->query = "SELECT * FROM CMS_RelCompraPago 
+		        	WHERE id_clienteIn=".$id_cliente." AND id_compraIn=".$id_compra;					
+		$this->get_results_from_query();		
+		return $this->rows;	
+	}
+	
+	function obtener_codigo_autorizacion($id_compra, $id_cliente){
+				
+		$this->query = "SELECT * FROM CMS_RelCompraPagoDetalleTC 
+		        WHERE id_clienteIn=".$id_cliente." AND id_compraIn=".$id_compra."  ORDER BY fecha_registroTs DESC";
+		$this->get_results_from_query();		
+		return $this->rows;		
+	}
+	
+	function obtener_promo_compra($id_compra, $id_cliente){
+				
+		$this->query = "SELECT * FROM CMS_RelCompraArticulo 
+		        WHERE id_clienteIn=".$id_cliente." AND id_compraIn=".$id_compra;
+		$this->get_results_from_query();
+		
+		if(count($this->rows)>0){			
+			$id_promo = $this->rows[0]['id_promocionIn'];						
+		}			
+		else{
+			$id_promo = 0; 
+		}
+		return $id_promo;		 		 		
+	}
+	
+	function obtener_detalle_promo($id_promo){
+		$this->query = "SELECT * FROM CMS_IntPromocion 
+		        WHERE id_promocionIn=".$id_promo;
+		$this->get_results_from_query();        		
+		return $this->rows;	
+	}
+	
+	function obtener_articulos($id_promocion){
+	
+		$this->query = "SELECT * FROM CMS_IntArticulo 
+		        WHERE id_promocionIn=".$id_promocion;
+				
+		$this->get_results_from_query();        		
+		return $this->rows;	
+	}
+	
+	function obtener_issue($issue_id){
+		$this->query = "SELECT * FROM CMS_IntIssue WHERE issue_id = ".$issue_id;
+		$this->get_results_from_query();        		
+		return $this->rows;
+	}
+	
+	function obtener_tc($id_cliente, $id_tc){
+		$this->query = "SELECT * FROM CMS_IntTC 
+		        WHERE id_clienteIn=".$id_cliente." AND id_TCSi=".$id_tc;
+		$this->get_results_from_query();        		
+		return $this->rows;		
+	}
+	
+	function obtener_rel_envio($id_compra, $id_cliente){		
+		$this->query = "SELECT * FROM CMS_RelCompraDireccion 
+		        WHERE id_clienteIn=".$id_cliente." AND id_compraIn=".$id_compra." AND address_type=0";
+		$this->get_results_from_query();        		
+		return $this->rows;	
+	}
+		
+	function obtener_rel_facturacion($id_compra, $id_cliente){		
+		$this->query = "SELECT * FROM CMS_RelCompraDireccion 
+		        WHERE id_clienteIn=".$id_cliente." AND id_compraIn=".$id_compra." AND address_type=1";
+		$this->get_results_from_query();        		
+		return $this->rows;	
+	}			
 }

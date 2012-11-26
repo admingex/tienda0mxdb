@@ -106,9 +106,17 @@
 									if(array_key_exists('id_dir', $_GET) && array_key_exists('id_cliente', $_GET))
 										if(is_numeric($_GET['id_dir']) && is_numeric($_GET['id_cliente']))
 											$admin_controller->editar_dir_envio($_GET['id_dir'], $_GET['id_cliente']);												
-									break;												
-																																																
-																			
+									break;	
+									
+				case 'compras_cliente':
+									if(array_key_exists('id_cliente', $_POST))										
+										$admin_controller->compras_cliente($_POST['id_cliente']);									
+									break; 	
+																								
+				case 'detalle_compra':
+									if(array_key_exists('id_compra', $_POST) && array_key_exists('id_cliente', $_POST))
+										$admin_controller->detalle_compra($_POST['id_compra'], $_POST['id_cliente']);									
+									break;																																																															
 			}						 
 		}	
 		

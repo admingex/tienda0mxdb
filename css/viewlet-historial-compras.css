@@ -31,7 +31,7 @@
 #result_informacion .encabezado-descripcion{
 	color: #9F9F9F;
 	font-size: 16px;	
-	margin: 10px 0px 12px 30px;	
+	margin: 10px 0px 12px 40px;	
 	font-weight: bold		
 }
 
@@ -72,8 +72,24 @@
 	margin-top: 10px;	
 }
 
+#result_informacion .contenedor1{	
+	padding-left: 40px;	
+	padding-bottom: 5px;
+}
+
+#result_informacion .info-blanco{
+	color: #FFF;	
+	font-size: 12px;
+}
+
+#result_informacion .info-rojo{
+	color: #CF1820;
+	font-size: 12px;
+	font-weight: bold;	
+}
+
 table{
-	margin-left: 30px;
+	margin-left: 40px;
 	width: 950px;	
 }
 
@@ -145,4 +161,13 @@ td a{
     padding: 5px 10px;    
     border: none;    
     cursor: pointer;    
+}
+
+.procesando{
+	color: #D81830; 
+	height: 20px; 
+	font-size: 15px; 
+	font-weight: bold;
+	padding-left: 40px;
+	padding-top: 10px;
 }

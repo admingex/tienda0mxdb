@@ -49,7 +49,7 @@ function eliminar_dir_envio(id_env){
         	type:  'POST',                                      
         	data: {"id_dir": id_env, "id_cliente": id_cliente_js},                                      
         	beforeSend: function () {                    	     	
-				$("#result_informacion").html("Procesando, espere por favor..." );
+				$("#result_informacion").html("<div class='procesando'>Procesando, espere por favor...</div>" );
         	},
   			success:  function (response) {              			  			      			
   				$("#result_informacion").html(response);  	
@@ -71,7 +71,7 @@ function editar_dir_envio(id_dir){
     	type:  'GET',                                      
     	data: {"id_dir": id_dir, "id_cliente": id_cliente_js},
     	beforeSend: function () {                    	     	
-			$("#result_informacion").html("Procesando, espere por favor..." );
+			$("#result_informacion").html("<div class='procesando'>Procesando, espere por favor...</div>" );
     	},
 		success:  function (response) {              			  			      			
 			$("#result_informacion").html(response);  							
@@ -291,7 +291,7 @@ function enviar_dir_envio(id_dir){
 		url:   administrador + "administrador_usuario.php?accion=editar_dir_envio&id_dir=" + id_dir + "&id_cliente=" + id_cliente_js,	    	    
 	    type:  'POST',
 	    beforeSend: function () {
-			$("#result_informacion").html("Procesando, espere por favor...");
+			$("#result_informacion").html("<div class='procesando'>Procesando, espere por favor...</div>");
 	    },
 		success:  function (response) {          			
 			$("#result_informacion").html(response);   
