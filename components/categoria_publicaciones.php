@@ -58,7 +58,7 @@ echo  " 		</ul>
 			</div>";						
 ?>
 </div>
-<div style="position: absolute; margin-top: -230px; margin-left: 670px; width: 270px; height: 210px; padding: 0px 10px; text-align: center;  ">
-	<div id="titulo_pub" style="height: 50px; width: 255px; font-size: 24px; color: #FE0000; font-weight: lighter; padding: 5px; background-image:url('<?php echo TIENDA  ?>images/kisco_contenido_pleca.png'); background-position: 0px 0px; background-repeat: repeat-x">titulo</div>
-	<div id='temp' style="color: #9A9A9A; font-size: 18px">nombre_publicacion</div>	
+<div id='cuadro_der'>
+	<div id="titulo_pub" >titulo</div>
+	<div id='temp'>nombre_publicacion</div>	
 </div>

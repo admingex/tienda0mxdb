@@ -1,5 +1,4 @@
-<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
-<div style='width: 700px; float: left'>
+<div id='contenedor_slide'>
 <?php
 	/*		
 	//paginador	
@@ -40,13 +39,11 @@
 		//$pe = $recorrer[$i];
 		echo "<li>";
 		if(isset($pe->promo_padre)){
-			echo "	<div class='catego-left'>
-						<div class='contenedor-imagen'>
-		     				<a href='".TIENDA ."promocion_h.php?id_promo_padre=" .$pe->id_promocionIn."'><img src='" . TIENDA . "p_images/".$pe->url_imagen."' /></a>		     		
-		     			</div>	
-		      			<div class='titulo-promocion-back titulo-promocion'>".$pe->descripcionVc. 
-		      			"</div>	
-					</div>";
+			echo "	<a href='".TIENDA ."promocion_h.php?id_promo_padre=" .$pe->id_promocionIn."'>
+						<img src='" . TIENDA . "p_images/".$pe->url_imagen."' width='179px' height='217px'/>
+					</a>		     		
+		     		<div style='display: none'>".$pe->descripcionVc. 
+		      		"</div>";
 		}
 		else{
 		echo "
@@ -88,4 +85,3 @@
 			</div>";
 ?>
 </div>
-<div class="space-pleca"></div>

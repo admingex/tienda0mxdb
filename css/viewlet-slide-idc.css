@@ -14,7 +14,7 @@
 	margin: 0px 20px 0px 0px;	
 	display: block;
 	float: left;		
-	height: 230px;			
+	height: 190px;			
 }	
 
 /*
@@ -43,7 +43,7 @@
 }
 .next {					
 	position: absolute;
-	margin-left: 580px;
+	margin-left: 695px;
 	z-index: 2;	
 	margin-top: -50px;		
 	width: 18px;
@@ -58,26 +58,38 @@
 }
 
 #contenedor_slide{	
-	width: 650px;	
+	width: 695px;	
 	margin-top: 10px;
 	margin-left: 35px;			
+}
+
+.roll{
+	background-position: -12px 10px;	
+	background-repeat: no-repeat;
+	width: 216px;
+	height: 190px;			
+}
+
+.roll:hover{
+	background-position: -12px -171px;			
 }
 
 
 #cuadro_der{
 	position: absolute; 
-	margin-top: -230px; 
-	margin-left: 670px; 
-	width: 270px; 
+	margin-top: -175px; 
+	margin-left: 750px; 
+	width: 220px; 
 	height: 210px; 
 	padding: 0px 10px; 
-	text-align: center;
+	text-align: center; 
 }
 
 #titulo_pub{
 	height: 50px; 
-	width: 255px; 
-	font-size: 24px; 
+	width: 210px; 
+	font-size: 22px; 
+	font-weight: bold; 
 	color: #FE0000; 
 	font-weight: lighter; 
 	padding: 5px; 
@@ -88,6 +100,5 @@
 
 #temp{
 	color: #9A9A9A; 
-	font-size: 18px;
+	font-size: 14px;	
 }
-

@@ -1,45 +1,43 @@
-<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
-<div id="contenedor-promo">
+<script type="text/javascript" src="<?php echo TIENDA;?>js/slide.js"></script>
+<script type="text/javascript" src="<?php echo TIENDA;?>js/funcion_slide.js"></script>
+<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-slide.css" rel="stylesheet" />
+<div id='contenedor_slide'>
+	<div class='list_carousel responsive'>
+				<ul id='slider'>
 <?php
-	//echo "promo_padre".$id_promo_padre;
-	
-	/*Despliega las publicaciones de una categoría*/
+	//echo "promo_padre".$id_promo_padre;		
 	/*
 	echo "<pre>";
 		print_r($promociones_hijas);
 	echo "</pre>";
-	*/
+	 * 
+	 */	
+	$dist_promo= array();
 	
-	$total = count($promociones_hijas);	
-				
-	if (isset($_GET['page'])) {
-		$pg = $_GET['page'];	
-	} else {
-		$pg = 0;
-	}
+	foreach($promociones_hijas as $i => $ph){
+		if(count($dist_promo)>0){
+			$repetido = 0;
+			foreach($dist_promo as $j){
+				if($ph->nombre == $j->nombre){
+					$repetido = 1;	
+				}				
+			}			 		
+			if($repetido == 0){		
+				$dist_promo[] = $ph;
+			}
+		}		
+		else{
+			$dist_promo[]= $ph;
+		}				
+	}		
+	/*
+	echo "<pre>";
+		print_r($dist_promo);
+	echo "</pre>";
+	*/						
 	
-	//echo "get pag: " . $_GET['page'];
-	$cantidad = 6; //Cantidad de registros que se desea mostrar por pagina
-	
-	//Para probar solo le coloqué 3
-	//página actual
-	$paginacion = new paginacion($cantidad, $pg);
-	//página inicial
-	$desde = $paginacion->getFrom();		
-	
-	$recorrer = $promociones_hijas;
-	
-	$limite = ($desde + $cantidad);
-	
-	//revisión de límites
-	if ($limite > $total) {
-		$limite = $total;
-	}
-	
-	$j = 0;
-	//foreach ($promociones_hijas as $p) {
-	for ($i = $desde; $i < $limite; $i++){			
-			$p = $recorrer[$i];	
+	foreach ($dist_promo as $p) {
+		echo "<li>";			
 		//url de la publicación
 		$url_p = '';
 		
@@ -69,35 +67,16 @@
 				</div>									    		
 				<div class='precio-promocion-back'>".$p->terminoVc."</div>	      			     		      	
       		</div>
-	      ";
-		//pinta un espacio en blanco que sirve de margen						
-		if (($j == 0) || ($j == 1) || ($j == 3) || ($j == 4) ){
-			echo "<div class='catego-space'></div>";				
-		}
-		$j++; 
+      			      	
+		</li>";  	
 	}
 ?>
-</div>
-
-<div id="separacion"></div>
-<?php
-	if($total>6){ 
-?>
-<div id="paginacion">
-<?php		 																	
-	$url = TIENDA."promocion_h.php?id_promo_padre=".$id_promo_padre."&page=";
-	
-	$classCss = "numPages";
-	#$classCss = "actualPage";
-	
-	//Clase CSS que queremos asignarle a los links 
-	$back = "Atrás";
-	$next = "Siguiente";
-	
-	$paginacion->generaPaginacion($total, $back, $next, $url, $classCss);
-?>
+		</ul>
+		<a id='prev' class='prev' href='#'></a>
+		<a id='next' class='next' href='#'></a>	
+	</div>
 </div>
 <?php
-	} 
+	echo "total:".count($promociones_hijas);
+	echo "<br />:filtado".count($dist_promo); 
 ?>
-<div id="separacion"></div>

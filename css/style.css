@@ -191,6 +191,7 @@ div.footer_main
     line-height:32px;
     text-align:center;
     text-transform:uppercase;
+    clear: both;
     }    
     div.footer_main div 
     {
