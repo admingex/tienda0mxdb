@@ -26,9 +26,11 @@ echo "<link type='text/css' href='".TIENDA."css/viewlet-slide-idc.css' rel='styl
 
 	//for ($i = $desde; $i < $limite ; $i++) {
 	foreach($ofertas_publicacion->promociones as $p){
+		/*
 		echo "<pre>";
 		print_r($p->detalle);
 		echo "</pre>";	
+		*/
 		//echo "<br />->".$i."<-";
 		
 		/*echo "<pre>";
