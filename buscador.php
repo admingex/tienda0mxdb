@@ -26,7 +26,7 @@
 	$fb = $_GET['fb'];
 	$s = $_GET['s'];
 	$data["criterios_ordenacion"] = catalogo_criterios_ordenacion();	//para mostraren el combo de la búsqueda
-	if($s=='verano' or $s=='cverano12'){
+	if($s=='navidad'){
 		$fb='promociones_especiales';
 	}
 	//echo $fb;
@@ -96,6 +96,11 @@
 		case '3':
 		case '4':
 		case '5':
+		case '32':
+		case '33':
+		case '34':
+		case '35':
+		case '36':
 			$jc->generar_json_buscador_formatos($fb, $s);
 			$path_promociones = "./json/busqueda/b_".$fb.".json";
 			//vista

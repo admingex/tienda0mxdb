@@ -1,8 +1,9 @@
-﻿<!--<link href='<?php echo TIENDA ?>css/viewlet-carrito.css' rel='stylesheet' type="text/css" />-->
+﻿<link href='<?php echo TIENDA ?>css/viewlet-carrito.css' rel='stylesheet' type="text/css" />
 <?php
 
 
-if (isset($_SESSION['carrito'])) {		    	
+if (isset($_SESSION['carrito'])) {
+	
 		
 		$na = count($_SESSION['carrito']);
 		if ($na > 0) {					
@@ -30,32 +31,28 @@ if (isset($_SESSION['carrito'])) {
 			$datos_encrypt = API::encrypt(serialize($promos_env), API::API_KEY);
 			$datos_encrypt_url = rtrim(strtr(base64_encode($datos_encrypt), '+/', '-_'), '=');
 			
-			echo 	"<form name='' action='".ECOMMERCE."api/carrito/".$datos_encrypt_url."' method='post'>";
+			
 			echo "<div id='viewlet-carrito'>";
-				
-			$in = 'width: 100%';
-			$var = 0;
-			if (isset($_SESSION['ult_elem'])) {
-				$var = 1;
-				$ind = $_SESSION['ult_elem'];	
+			echo 	"<form name='pagar_carrito' action='".ECOMMERCE."api/carrito/".$datos_encrypt_url."' method='post'>";
+							
+			####obtiene el ultimo elemento agregado al carrito y lo muestra
+				$ultimo = end($_SESSION['carrito']);	
 				// obtener imagen logo revista
-				$img1 = str_replace("p_images", "l_images", $_SESSION['carrito'][$ind]['imagenVc']);
-				$img1 = str_replace(".jpg", ".png", $img1);		
+				$img1 = str_replace("r_images", "l_images", $ultimo['imagenVc']);						
 				
 				echo "<div class='img-big'>";
-				echo "    <img src='".$_SESSION['carrito'][$ind]['imagenVc']."' alt='".$_SESSION['carrito'][$ind]['imagenVc']."' width='175px' height='235px' />";
+				echo "    <img src='".$ultimo['imagenVc']."' alt='".$ultimo['imagenVc']."' />";
 				echo "    <img src='".$img1."' alt 'logo'/>";			
-				echo "</div>";			
-				$in = 'width: 435px';
-			}
+				echo "</div>";	
+			########		
+															
+				
 			
-			
-			echo "<div class='plecas'  style='float: left; $in' >";								
+			echo "<div class='plecas'  style='float: left; width: 435px' >";								
 				
 			foreach ($_SESSION['carrito'] as $k => $v) {
 				    // obtener imagen logo revista
-					$img1 = str_replace("p_images", "l_images", $v['imagenVc']);
-					$img1 = str_replace(".jpg", ".png", $img1);
+					$img1 = str_replace("r_images", "l_images", $v['imagenVc']);					
 					echo "	<div>
 						        <ul>
 						            <li>
@@ -63,7 +60,7 @@ if (isset($_SESSION['carrito'])) {
 						            		<img src='".$v['imagenVc']."' alt='".$v['imagenVc']."' height='155px' width='115px'/>
 						            	</div>	
 						            </li>
-						            <li>						            	
+						            <li style='overflow: hidden; height: 165px; position: relative; display: block;'>						            	
 						            	<div class='descripcion_producto'>
 						            	    <img src='".$img1."' alt 'logo'/>";
 											if($v['cantidad']>1){
@@ -73,10 +70,12 @@ if (isset($_SESSION['carrito'])) {
 						            	    <div class='descripcion1'>".$v['descripcion']."</div>
 						            	    <!--<div class='descripcion2'>".$v['descripcion']."</div>
 						            	    <div class='descripcion3'>".$v['descripcion']."</div>-->
+						            	    <a href='".site_url("carrito.php?eliminar_item=".$k)."'><div class='link-eliminar'></div></a> 
 						            	</div>																	            
 						            </li>
-						            <li>						            	
-						                <div class='precio_pagar'>pagar <span class='rojo'>$".number_format($v['cantidad']*$v['precio'],2,".",",")."</span></div>						                
+						            <li style='padding-top: 145px; color: #E0E0E0; bottom: 0px;'>						            	
+						                <div class='precio_pagar'>pagar&nbsp;<span class='rojo'>$".number_format($v['cantidad']*$v['precio'],2,".",",")."</span></div>
+						                						                
 						            </li>
 						        </ul>";						        							        						        															
 				//echo 			"<a href='".site_url("carrito.php?eliminar_item=".$k)."'>Eliminar</a>";		        	   			
@@ -105,7 +104,6 @@ if (isset($_SESSION['carrito'])) {
 								"<a href='".site_url('home')."' class='continuar-carrito'></a>";										
 					echo 		"<input type='submit' name='tienda_carrito' value='' class='pagar-carrito'/>".
 							"</div>	".
-					 * 
 					 */
 			echo 	"</div>";
 		echo "</div>
@@ -114,7 +112,7 @@ if (isset($_SESSION['carrito'])) {
               	</div>  
               	<div id='total'>
               		<div class='total-right'>
-                  		<div class='carrito'>".$na."</div>
+                  		<div id='cuenta-detalle-carrito' class='carrito'>".$na."</div>
                   		<div class='blanco'>total</div>
                   		<div class='rojo'>$".number_format($total,2,".",",")."</div>
               		</div>
@@ -126,17 +124,19 @@ if (isset($_SESSION['carrito'])) {
               	  		</div>
               	  	</a>    
               	  	<div class='pagar'>               	  	          	  
-                    	<input type='submit' name='tienda_carrito' value='pagar' class='boton-pagar' />
+                    	<input type='button' name='tienda_carrito' value='pagar' class='boton-pagar' onclick='document.pagar_carrito.submit()' />
                     </div>	              		
           	  	</div>          
       	      </div>
-      	      </form>";	
+      	      </form>
+      	      ";	
 			  		
 		} 
 		else {
-			echo "<p class='titulo-promo-rojo-deposito'>No hay productos en el carrito</p>";
-		}				
+			echo "<p class='no-items'>No hay productos en el carrito</p>";
+		}	
+	 			
 } 
 else {
-		echo "<p class='titulo-promo-rojo-deposito'>No hay productos en el carrito</p>";
+		echo "<p class='no-items'>No hay productos en el carrito</p>";
 }

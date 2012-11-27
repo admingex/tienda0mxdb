@@ -32,7 +32,7 @@ class Login_Registro_Model extends DBAbstractModel {
 	 * Regresa un array con la información.
 	 * Si no encuentra el correo regresa un array vacío: isset($e) === TRUE
 	 */
-    public function verifica_registro_email($email='') {
+    public function verifica_registro_email($email='') {    	
 		$this->query = "SELECT id_clienteIn, email, COALESCE(LastLockoutDate,'0000-00-00 00:00:00') AS LastLockoutDate 
 						FROM CMS_IntCliente
 						WHERE email = '" . $email. "' LIMIT 1";
@@ -47,7 +47,50 @@ class Login_Registro_Model extends DBAbstractModel {
 			return $this->rows;
 		}
 	}
-    
+	
+	/*
+	 * obtiene la informacion del cliente por ID
+	 */ 
+    function obtener_cliente_id($id_cliente){
+							
+		$this->query = "SELECT id_clienteIn, salutation as nombre, fname as apellido_paterno, lname as apellido_materno, email, password  
+				FROM CMS_IntCliente
+				WHERE id_clienteIn = ".$id_cliente;
+				
+		$this->get_results_from_query();
+		
+			
+		if (count($this->rows) > 0) {
+			return $this->rows[0];
+		} else {			
+			return $this->rows;
+		}
+							
+	}
+	
+	/*
+	 *actualizar informacion de cliente 
+	 */
+	 function actualizar_cliente($datos){
+		if(array_key_exists('password', $datos)){
+			$datos['password'] = md5($datos['email']."|".$datos['password']);	
+		}
+				
+		
+		$this->query = "UPDATE  CMS_IntCliente SET salutation = '".$datos['salutation']."',
+												   fname = '".$datos['fname']."',
+												   lname = '".$datos['lname']."',
+												   email = '".$datos['email']."',
+												   password ='".$datos['password']."'	 
+		                                           WHERE id_clienteIn = '" . $datos['id_clienteIn'] . "'";
+		$res = $this->execute_single_query();
+		return $res;		
+	}
+	 
+	 
+	   
+	 
+	  
 	/**
 	 * Desbloquea la cuenta del usuario para que intente loggearse
 	 */

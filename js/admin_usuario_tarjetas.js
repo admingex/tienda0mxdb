@@ -1,8 +1,9 @@
 function editar_tc(id_tarjeta , id_tipo ){	
 	$.ajax({   
 		cache: false,		 		           
-        url:   ecommerce + "administrador_usuario/editar_tc/" + id_tarjeta + "/" + id_tipo + "/" + id_cliente_js,
-        type:  'POST',                                      
+		data:{"id_tarjeta": id_tarjeta, "id_tipo": id_tipo, "id_cliente": id_cliente_js},
+        url:   administrador + "administrador_usuario.php?accion=editar_tc",
+        type:  'GET',                                              
         beforeSend: function () {                    	     	
 			$("#result_informacion").html("Procesando, espere por favor..." );
         },
@@ -14,6 +15,7 @@ function editar_tc(id_tarjeta , id_tipo ){
 }
 
 function enviar_tc(id_tc, id_tipo){		
+	
 	var txt_nombre = $('#txt_nombre').val();
 	var txt_apellidoPaterno = $('#txt_apellidoPaterno').val();
 	var txt_apellidoMaterno = $('#txt_apellidoMaterno').val();		
@@ -41,7 +43,7 @@ function enviar_tc(id_tc, id_tipo){
 	$.ajax({	
 		cache: false,  
 		data: parametros,    
-	    url:   ecommerce + "administrador_usuario/editar_tc/"+ id_tc + "/"+ id_tipo + "/" + id_cliente_js,
+	    url:   administrador + "administrador_usuario.php?accion=editar_tc&id_tarjeta="+ id_tc + "&id_tipo="+ id_tipo + "&id_cliente=" + id_cliente_js,
 	    type:  'post',
 	    beforeSend: function () {
 			$("#result_informacion").html("Procesando, espere por favor...");
@@ -61,7 +63,8 @@ function eliminar_tc(id_tarjeta){
 	if(conf){
 		$.ajax({   
 			cache: false,		 		           
-        	url:   ecommerce + "administrador_usuario/eliminar_tc/" + id_tarjeta + "/" + id_cliente_js,
+			data: {"id_tarjeta": id_tarjeta, "id_cliente": id_cliente_js},
+        	url:   administrador + "administrador_usuario.php?accion=eliminar_tc",
         	type:  'POST',                                      
         	beforeSend: function () {                    	     	
 				$("#result_informacion").html("Procesando, espere por favor..." );

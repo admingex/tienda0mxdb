@@ -1,9 +1,11 @@
 <?php
 	$total = count($promociones_hijas);	
-	if($total > 6){
-		echo "<script type='text/javascript' src='".TIENDA."js/filtro_formato.js'></script>";
-			include_once('./components/filtro_orden_dos.php');
-	}	
+	//if($total > 6){
+//		echo "<script type='text/javascript' src='".TIENDA."js/filtro_formato.js'></script>";
+			//include_once('./components/filtro_orden_dos.php');
+	//}	
+	echo "<div id='relevancia' style='color:#CCC; font-size:16px; padding-bottom:10px;'> Resultado de busqueda <span style='color:#dd154b;'>RELEVANCIA</span> | FECHA	</div>";
+	echo "<div id='pleca-punteada' style='height: 1px; background-color: #CCC; margin: 10px 0px ;'> &nbsp;	</div>";
 ?>
 <link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
 <div id="contenedor-promo">
@@ -11,7 +13,7 @@
 <?php
 	//echo "promo_padre".$id_promo_padre;
 	if(empty($promociones_hijas)){
-		echo "No se encontraron resultados en la búsqueda";
+		echo "<span style:'color:white;'>No se encontraron resultados en la búsqueda</span>";
 	}
 
 	
@@ -30,7 +32,7 @@
 	}
 	
 	//echo "get pag: " . $_GET['page'];
-	$cantidad = 6; //Cantidad de registros que se desea mostrar por pagina
+	$cantidad = 100; //Cantidad de registros que se desea mostrar por pagina
 	
 	//Para probar solo le coloqué 3
 	//página actual
@@ -50,8 +52,56 @@
 	$j = 0;
 	//foreach ($promociones_hijas as $p) {
 	for ($i = $desde; $i < $limite; $i++){
-					
-			$p = $recorrer[$i];	
+	
+		
+		
+							
+		$p = $recorrer[$i];	
+			
+		$fecha = $p->fin_promocionDt;
+    	$pieces = explode("-", $fecha);
+	    $d = $pieces[2];
+		$m = $pieces[1];
+		$a = $pieces[0];
+
+		 switch ($m) {
+			 Case 1:
+	            $nombreMes = "Enero";
+	            break;
+	        Case 2:
+	            $nombreMes = "Febrero";
+	            break;
+	        Case 3:
+	            $nombreMes = "Marzo";
+	            break;
+	        Case 4:
+	            $nombreMes = "Abril";
+	            break;
+	        Case 5:
+	            $nombreMes = "Mayo";
+	            break;
+	        Case 6:
+	            $nombreMes = "Junio";
+	            break;
+	        Case 7:
+	            $nombreMes = "Julio";
+	            break;
+	        Case 8:
+	            $nombreMes = "Agosto";
+	            break;
+	        Case 9:
+	            $nombreMes = "Septiembre";
+	            break;
+	        Case 10:
+	            $nombreMes = "Octubre";
+	            break;
+	        Case 11:
+	            $nombreMes = "Noviembre";
+	            break;
+	        Case 12:
+	            $nombreMes = "Diciembre";
+	            break;
+		 }
 		//url de la publicación
 		$url_p = '';
 		
@@ -59,28 +109,30 @@
 		$url_p = site_url('promocion/'. $p->id_promocion);
 		
 		//revisar que exista la imagen en caso contrario ponemos el cuadro negro						
-		if(file_exists("./p_images/".$p->url_imagen)){
-			$src = TIENDA ."p_images/".$p->url_imagen;
+		if(file_exists("./l_images/".$p->url_imagen)){
+			$src = TIENDA ."l_images/".$p->url_imagen;
 		}
 		else{
-			$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+			$src = TIENDA ."l_images/css_sprite_PortadaCaja.jpg";
 			//$src = TIENDA ."p_images/".$p->url_imagen;
 		}
 		echo "
-			<div class='catego-left'>
 				<div class='contenedor-imagen'>
 					<a href='". $url_p . "'>";																	
-						echo "<img src='" . $src. "' />";																
-		echo "		</a>
-				</div>				
-				<div class='titulo-categoria-back titulo-categoria'>
-					".$p->nombre."						
-				</div>
-				<div class='descripcion-promocion-back descripcion-promocion'>
-					".$p->descripcion."						
-				</div>									    		
-				<div class='precio-promocion-back'>".$p->terminoVc."</div>	      			     		      	
-      		</div>
+						echo "<img src='" . $src. "' /></a>
+				</div>		";																
+		echo "						
+				  <div id='nombre".$p->nombre."' style='color:white; padding-bottom:10px; padding-top:8px; font-size:14px; margin-left:45px;'>			    			    	
+		      		".$p->descripcion."&nbsp;  						
+				</div>	
+				
+				 <div id='descripcion".$p->nombre."' style='color:white; margin-left:45px;'>			    			    	
+		      		".$p->descripcion_cortaVc."&nbsp;<span style='color:#dd154b;'>
+		      		".$d." de ".$nombreMes." del ".$a."	</span>		
+				</div>	
+		    	
+		    	<div id='pleca-punteada' style='height: 1px; background-color: #CCC; margin: 10px 0px ;'> &nbsp;	</div>    			     		      	
+      		
 	      ";
 		//pinta un espacio en blanco que sirve de margen						
 		if (($j == 0) || ($j == 1) || ($j == 3) || ($j == 4) ){
@@ -90,27 +142,3 @@
 	}
 ?>
 </div>
-
-<div id="separacion"></div>
-<?php
-	if($total>6){ 
-?>
-<div id="paginacion">
-<?php		 																	
-	//$url = TIENDA."promocion_h.php?id_promo_padre=".$id_promo_padre."&page=";
-	$url = TIENDA."buscador.php?fb=".$fb."&s=".$s."&page=";
-		
-	$classCss = "numPages";
-	#$classCss = "actualPage";
-	
-	//Clase CSS que queremos asignarle a los links 
-	$back = "Atrás";
-	$next = "Siguiente";
-	
-	$paginacion->generaPaginacion($total, $back, $next, $url, $classCss);
-?>
-</div>
-<?php
-	} 
-?>
-<div id="separacion"></div>

@@ -9,6 +9,7 @@
 		    print_r($detalles_promociones);
 	echo "</pre>";	
 	*/
+	
 ?>
 <script type="text/javascript">
 	var id_sit = <?php echo $promo_inicial->id_sitio; ?>;
@@ -38,7 +39,9 @@
 		$("#btn_agregar_carrito").attr("onclick", submit_carrito);	
 		  					
 		$('#precio_promo').text('$'+$('#precio'+id).text());
-		$('#descripcion-promo').text($('#descripcion'+id).text());
+		$('#descripcion-promo').text($('#descripcion'+id).text());		
+		$('#ejemplares-promo').text($('#ejemplares'+id).text());
+		$('#descripcion-larga').text($('#texto-oferta'+id).text());	
 			
 		//indica cuál es el que está selceccionado
 		id_ant = id;
@@ -70,10 +73,9 @@
 <link href='<?php echo TIENDA ?>css/viewlet-detalle-suscripcion.css' rel='stylesheet' type="text/css" />
 <?php	
 	//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
-	if (file_exists("./p_images/".$promo_inicial->url_imagen)){
-		$src = TIENDA ."p_images/".$promo_inicial->url_imagen;
-		$logo = TIENDA."l_images/".$promo_inicial->url_imagen;
-		$logo = str_replace(".jpg", ".png", $logo);
+	if (file_exists("./r_images/".$promo_inicial->url_imagen)){
+		$src = TIENDA ."r_images/".$promo_inicial->url_imagen;
+		$logo = TIENDA."l_images/".$promo_inicial->url_imagen;		
 	} else {
 		$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
 		$logo = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
@@ -93,27 +95,29 @@
 				}
 			?>			
 			<div class='selects'>	
-				<div class="styled-select">					
-				<select name="sel_pais" id="sel_pais" class="styled">
-				<?php 
-					$antvalor='ads';
-					foreach($amoneda as $valor){ 
-				
-						if($antvalor !=$valor){				
-				?>
-						<option value="<?php echo $valor;?>" <?php if($valor=='MX') echo "selected='selected'"; ?> >
+				<div class="styled-select">	
+					<div class="cont-select">				
+						<select name="sel_pais" id="sel_pais" >
 						<?php 
-						if($valor=='MX')
-							echo 'México';
-						else
-							echo 'Internacional';
+						$antvalor='ads';
+						foreach($amoneda as $valor){ 
+					
+							if($antvalor !=$valor){				
 						?>
-						</option>
-				<?php
-				 		}
-				 		$antvalor = $valor;
-					} ?>
-				</select>	
+							<option value="<?php echo $valor;?>" <?php if($valor=='MX') echo "selected='selected'"; ?> >
+							<?php 
+							if($valor=='MX')
+								echo 'México';
+							else
+								echo 'Internacional';
+							?>
+							</option>
+						<?php
+					 		}
+					 		$antvalor = $valor;
+						} ?>
+						</select>
+					</div>	
 				</div>					
 				<?php
 					$sel='';
@@ -131,14 +135,18 @@
 							$usd.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda.">".$detalle->descripcion_promocion."</option>";																			
 					}
 					echo "<div id='selmx' class='styled-select'>
-						      <select name='promos' onchange=\"cambia_boton(this.value)\" class='styled' >	
-						      	".$mx."
-						      </select>
+					          <div class='cont-select'>
+						      	<select name='promos' onchange=\"cambia_boton(this.value)\">	
+						      		".$mx."
+						      	</select>
+						      </div>	
 					      </div>";
 					echo "<div id='selusd' class='styled-select'>
-						      <select name='promos' onchange=\"cambia_boton(this.value)\" class='styled' >		
+							<div class='cont-select'>
+						      <select name='promos' onchange=\"cambia_boton(this.value)\" >		
 						      	".$usd."
 						      </select>
+						    </div>  
 					      </div>";	  
 				?>	
 				
@@ -146,16 +154,18 @@
 				//para B2B
 				if (isset($info_publicacion) && $info_publicacion->auditableBi) {
 				?>
-				
-				<div class="styled-select"> 								
-					<form name="enviar_tipo_suscripcion" action="<?php echo site_url('B2B/ptienda.php') ?>" method="POST">
-						<select name='tipo_suscripcion' class="styled" id='sel_b2b'>
-							<option value=''>Selecciona opción</option>
-							<option value='nva_<?php echo $info_publicacion->id_publicacionSi;?>'>Suscripción nueva</option>
-							<option value='ren_<?php echo $info_publicacion->id_publicacionSi;?>'>Renovación</option>
-							<option value='can_<?php echo $info_publicacion->id_publicacionSi;?>'>Cancelar</option>
-						</select>
-					</form>				
+				<div class="descripcion3">Si deseas recibir esta revista de forma gratuita, selecciona la opción de suscripción</div>
+				<div class="styled-select"> 
+					<div class="cont-select">								
+						<form name="enviar_tipo_suscripcion" action="<?php echo site_url('B2B/ptienda.php') ?>" method="POST">
+							<select name='tipo_suscripcion' class="styled" id='sel_b2b'>
+								<option value=''>Selecciona opción</option>
+								<option value='nva_<?php echo $info_publicacion->id_publicacionSi;?>'>Suscripción nueva</option>
+								<option value='ren_<?php echo $info_publicacion->id_publicacionSi;?>'>Renovación</option>
+								<option value='can_<?php echo $info_publicacion->id_publicacionSi;?>'>Cancelar</option>
+							</select>
+						</form>
+					</div>								
 				</div>
 				<?php
 				}
@@ -175,8 +185,14 @@
 	    	</div>
 	    	<div id='descripcion-promo' class="descripcion-promocion">
 	    		<?php echo $promo_inicial->descripcion_promocion?>
+	    	</div>
+	    	<div id='ejemplares-promo' class="descripcion3">
+	    		<?php echo $promo_inicial->ejemplares?>
 	    	</div>	    	
-	    	<div class="back-rayado" style="margin-top: 60px">
+	    	<div id="descripcion-larga" class="descripcion3">
+	    		<?php echo $promo_inicial->texto_oferta?>	    		
+	    	</div>	    	
+	    	<div class="back-rayado" style="position: relative; bottom: 0px;">
 	    		<input type="button" id="btn_comprar_ahora" name="btn_comprar_ahora" value="Comprar ahora" class="boton-comprar-ahora" onclick="submit_to_pagos(<?php echo $promo_inicial->id_promocion;?>)"/>
 	    	</div>
 	    </div>
@@ -201,12 +217,19 @@
 					
 					//promoción seleccionada inicialmente:
 					$class_radio = "class='radio_no_selected'";
+					/*
+					echo "<pre>";
+						print_r($detalle);
+					echo "</pre>";
+					*/
 					if ($promo_inicial->id_promocion == $detalle->id_promocion)
 						$class_radio = "class='radio_selected'";
 			?>
 									
 					<div class="hidden" id='descripcion<?php echo $detalle->id_promocion ?>'><?php echo $detalle->descripcion_promocion; ?></div>
-					<div class="hidden" ><?php echo $detalle->texto_oferta; //Contenido de la promocion(ejemplares, suplementos, regalos, etc.)?></div>
+					<div class="hidden" ><?php echo $detalle->descripcion_publicacion_larga; ?></div>
+					<div class="hidden" id='ejemplares<?php echo $detalle->id_promocion ?>'><?php echo $detalle->ejemplares; ?></div>
+					<div class="hidden" id='texto-oferta<?php echo $detalle->id_promocion ?>'><?php echo $detalle->texto_oferta;?></div>
 					<div class="hidden" id='precio<?php echo $detalle->id_promocion ?>'><?php echo number_format($detalle->costo,2, ".", ",")."&nbsp;".$detalle->moneda; //Precio y descuento aplicado sobre precio de portada?></div>				
 				
 			<?php

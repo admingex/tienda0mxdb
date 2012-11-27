@@ -42,16 +42,15 @@
 	<div id='dialog-modal' rowspan></div>
 	<div id='no-moneda'>Debes seleccionar productos de la misma moneda</div>
     <div id="header-container">
-        <header>
-            <!-- img src="<?php echo TIENDA;?>images/KIOSCO_logo.png" alt="logo gex" / -->
+        <header>            
             <h1><a href="<?php echo TIENDA;?>">Kiosco</a></h1>
         </header>  
         <div id='header_tienda'>
-        	<a href="#">
-			    <div id='01800'>&nbsp;</div>		
+        	<a href="https://pagos.grupoexpansion.mx/pagina/mostrar/contacto" target="new">
+			    <div id='cont'></div>		
 			</a>		
 			<a href="<?php echo site_url('carrito.php');?>">
-			    <div id='carrito'>&nbsp;</div>		
+			    <div id='carrito'><?php if(isset($_SESSION['carrito'])) echo count($_SESSION['carrito']); else echo 0;?></div>		
 			</a>				
 		</div>  
         <section class="header_section"> 

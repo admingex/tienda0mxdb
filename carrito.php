@@ -13,7 +13,7 @@
 	$scripts [] = TIENDA."js/carrito.js";
 	
 	//información para la vista
-	$title = "Publicaciones por Catgoría";
+	$title = "Publicaciones por Categoría";
 	$subtitle = "Publicaciones por Catgoría";
 	
 	$data = array();
@@ -96,7 +96,7 @@
 	
 		## eliminar items del carrito
 		if (isset($_GET['eliminar_item'])) {
-			unset($_SESSION['carrito'][($_GET['eliminar_item'])]);
+			unset($_SESSION['carrito'][($_GET['eliminar_item'])]);			
 		}
 		
 	} else {	//IF ($_GET)
@@ -104,7 +104,7 @@
 	}
 	?>
 	
-	<link href='<?php echo TIENDA ?>css/viewlet-carrito.css' rel='stylesheet' type="text/css" />
+	
 	
 <?php	
 	if (array_key_exists('ajax', $_GET)) {	

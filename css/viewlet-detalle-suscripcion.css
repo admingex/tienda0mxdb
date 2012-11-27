@@ -21,11 +21,12 @@
 	padding: 0px 60px;		
 	width: 165px;	
 }
-
+/*
 #viewlet-detalle-suscripcion .bloque-middle img{
-	height: 225px;
-	width: 165px;
+	#height: 225px;
+	#width: 165px;
 }
+*/
 
 #viewlet-detalle-suscripcion .bloque-right{
 	float: left;	
@@ -124,19 +125,25 @@
 .styled-select {
 	margin-top: 5px;
 	padding-right: 7px;
+	padding-top: 0px;
    	width: 185px;
    	height: 18px;
    	overflow: hidden;
    	background: transparent url('../images/selector.png') no-repeat;   
+   	padding-bottom: 5px; 	
+}
+
+.cont-select{
+	width: 156px;	
+	overflow: hidden;
 }
 
 .styled-select select {
 	background: transparent;
- 	width: 185px;
-   	padding: 0px 25px 0px 5px;
-   	font-size: 10px;
-   	border: 1px solid #800;
-   	height: 20px;
+ 	width: 215px;
+   	padding: 0px 35px 0px 5px;
+   	font-size: 10px;   	
+   	height: 17px;
    	-webkit-appearance: none;   
    	border: none;	   	
 } 

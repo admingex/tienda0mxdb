@@ -2,13 +2,12 @@
 <?php
 	#### TODO Ajustar para video
 	//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
-	if (file_exists("./p_images/".$detalle_promocion->url_imagen)){
-		$src_video = TIENDA ."p_images/".$detalle_promocion->url_imagen;	
-		$logo = TIENDA."l_images/".$detalle_promocion->url_imagen;
-		$logo = str_replace(".jpg", ".png", $logo);
+	if (file_exists("./r_images/".$detalle_promocion->url_imagen)){
+		$src_video = TIENDA ."r_images/".$detalle_promocion->url_imagen;	
+		$logo = TIENDA."l_images/".$detalle_promocion->url_imagen;		
 	} else {
 		//$src = TIENDA ."p_images/".$p->url_imagen;
-		$src_video = TIENDA ."p_images/coIDCEDIG.jpg";
+		$src_video = TIENDA ."r_images/coIDCEDIG.png";
 		$logo = TIENDA."l_images/".$detalle_promocion->url_imagen;
 		$logo = str_replace(".jpg", ".png", $logo);		
 	}
@@ -36,14 +35,16 @@
 		<div class="bloque-left">
 			<img src="<?php echo $logo; ?>" />
 			<div class='selects'>
-				<div class="indicaciones">Numero de lugares</div>
+				<!--<div class="indicaciones">Numero de lugares</div>-->
 				<div class="styled-select">
-					<select name="cantidad" class="styled" >
-						<?php 
-						for ($in=1; $in<=10; $in++)
-							echo "<option value='$in'>$in</option>";
-						?>					
-					</select>
+					<div class="cont-select"> 
+						<select name="cantidad" class="styled" >
+							<?php 
+							for ($in=1; $in<=10; $in++)
+								echo "<option value='$in'>$in</option>";
+							?>					
+						</select>
+					</div>	
 				</div>
 			</div>
 			<div class="back-rayado">			

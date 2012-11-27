@@ -1,0 +1,104 @@
+.list_carousel {	
+	margin: 0px;
+	padding: 0px;		
+}
+
+.list_carousel ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;		
+}
+.list_carousel li {		
+	text-align: center;								
+	padding: 0px;
+	margin: 0px 20px 0px 0px;	
+	display: block;
+	float: left;		
+	height: 190px;			
+}	
+
+/*
+.list_carousel li img{		
+	border: solid 1px #800;
+}
+*/
+
+.list_carousel.responsive {
+	width: auto;
+	margin-left: 0;
+}
+.clearfix {
+	float: none;
+	clear: both;
+}
+.prev {
+	position: absolute;	
+	margin-left: -22px;
+	margin-top: -50px;
+	z-index: 2;			
+	width: 18px;
+	height: 40px;		
+	background: transparent url('../images/kiosco_contenido_flecha_izq.png') no-repeat;	
+	background-position: 0px 0px;
+}
+.next {					
+	position: absolute;
+	margin-left: 695px;
+	z-index: 2;	
+	margin-top: -50px;		
+	width: 18px;
+	height: 40px;		
+	background: transparent url('../images/kiosco_contenido_flecha.png') no-repeat;	
+	background-position: 0px 0px;
+}
+
+#carr_categoria{	
+	float: left;
+	position: relative;
+}
+
+#contenedor_slide{	
+	width: 695px;	
+	margin-top: 10px;
+	margin-left: 35px;			
+}
+
+.roll{
+	background-position: -12px 10px;	
+	background-repeat: no-repeat;
+	width: 216px;
+	height: 190px;			
+}
+
+.roll:hover{
+	background-position: -12px -171px;			
+}
+
+
+#cuadro_der{
+	position: absolute; 
+	margin-top: -175px; 
+	margin-left: 750px; 
+	width: 220px; 
+	height: 210px; 
+	padding: 0px 10px; 
+	text-align: center; 
+}
+
+#titulo_pub{
+	height: 50px; 
+	width: 210px; 
+	font-size: 22px; 
+	font-weight: bold; 
+	color: #FE0000; 
+	font-weight: lighter; 
+	padding: 5px; 
+	background-image:url('../images/kisco_contenido_pleca.png'); 
+	background-position: 0px 0px; 
+	background-repeat: repeat-x;
+}
+
+#temp{
+	color: #9A9A9A; 
+	font-size: 14px;	
+}

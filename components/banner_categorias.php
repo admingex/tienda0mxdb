@@ -13,7 +13,7 @@
 			if(isset($_SESSION['logged_in'])){
 				if($_SESSION['logged_in']==1){
 					echo "<a class='mi_cuenta' href='".site_url('cuenta.php')."'>mi cuenta</a>";
-					echo "<a class='logout' href='".site_url('logout/')."'>logout</a>";                    								
+					echo "<a class='logout' href='".site_url('logout/')."'>salir</a>";                    								
 				}
 			}
 			else{

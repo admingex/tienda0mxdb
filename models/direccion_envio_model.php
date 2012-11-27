@@ -117,8 +117,8 @@ class Direccion_Envio_model extends CI_Model {
 	function quitar_predeterminado($id_cliente) {
 		$this->db->where(array
 							( 'id_clienteIn' => $id_cliente,
-							'id_estatusSi' => self::$CAT_ESTATUS['DEFAULT']));
-		$resultado = $this->db->update('CMS_IntDireccion', array('id_estatusSi' => self::$CAT_ESTATUS['HABILITADA']));
+							'id_estatusSi' => self::$CAT_ESTATUS['DEFAULT'])); //3
+		$resultado = $this->db->update('CMS_IntDireccion', array('id_estatusSi' => self::$CAT_ESTATUS['HABILITADA'])); //1
 	}
 	 
 	/**

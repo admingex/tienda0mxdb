@@ -30,15 +30,15 @@
 	//if (isset($formatos)) {
 	if($total_promociones > 6){
 		//echo "No se encontraron resultados en la búsqueda";
-		echo "<script type='text/javascript' src='".TIENDA."js/filtro_formato.js'></script>";
-		include_once('./components/filtro_orden.php');
+		//echo "<script type='text/javascript' src='".TIENDA."js/filtro_formato.js'></script>";
+		//include_once('./components/filtro_orden.php');
 	}		
 //	}
 	#### Promociones de la publicación (listado)
 	
-	if (isset($ofertas_publicacion)) {
+	if (isset($ofertas_publicacion) && count($ofertas_publicacion) > 0) {		
 		//último nivel de detalle
-		include_once('./components/promociones_publicacion.php');
+		include_once('./components/promociones_publicacion_b.php');
 		//exit;
 	}
 // fin del archivo de la vista que despliega las promociones de una publicación con más de un formato asociado: "promos_publicacion_ofertas.php"

@@ -1,8 +1,8 @@
 function detalle_compra(compra, cliente){	
 	$.ajax({
-	    data:  parametros,
-	    url:   ecommerce + "/administrador_usuario/detalle_compra/" + compra + "/" + cliente,
-	    type:  'post',
+	    data:  {"id_compra": compra, "id_cliente": cliente},
+	    url:   administrador + "administrador_usuario.php?accion=detalle_compra",
+	    type:  'POST',
 	    beforeSend: function () {
 			$("#result_informacion").html("Procesando, espere por favor...");
 	    },

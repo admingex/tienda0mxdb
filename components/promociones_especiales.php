@@ -1,5 +1,5 @@
-<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
-<div style='width: 700px; float: left'>
+<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-slide.css" rel="stylesheet" />
+<div id='contenedor_slide'>
 <?php
 	/*		
 	//paginador	
@@ -18,7 +18,7 @@
 	$paginacion = new paginacion($cantidad, $pg);
 	$desde = $paginacion->getFrom();		
 	*/	
-	$recorrer = $promociones_especiales;
+	//$recorrer = $promociones_especiales;
 	
 	/*
 	$limite = ($desde + $cantidad);
@@ -40,13 +40,11 @@
 		//$pe = $recorrer[$i];
 		echo "<li>";
 		if(isset($pe->promo_padre)){
-			echo "	<div class='catego-left'>
-						<div class='contenedor-imagen'>
-		     				<a href='".TIENDA ."promocion_h.php?id_promo_padre=" .$pe->id_promocionIn."'><img src='" . TIENDA . "p_images/".$pe->url_imagen."' /></a>		     		
-		     			</div>	
-		      			<div class='titulo-promocion-back titulo-promocion'>".$pe->descripcionVc. 
-		      			"</div>	
-					</div>";
+			echo "	<a href='".TIENDA ."promocion_h.php?id_promo_padre=" .$pe->id_promocionIn."'>
+						<img src='" . TIENDA . "p_images/".$pe->url_imagen."' width='179px' height='210px'/>
+					</a>		     		
+		     		<div style='display: none'>".$pe->descripcionVc. 
+		      		"</div>";
 		}
 		else{
 		echo "
@@ -72,7 +70,7 @@
 					}
 				}			      	
 		echo "
-				<div class='boton'>
+				<div class='boton' style='display: none'>
 	          		<input type='submit' name='comprar_ahora' value=' ' class='boton-comprar-ahora' />		      	
 	          		<input type='button' name='carrito' id='carrito".$pe->id_promocion."' value='' onclick='anadir_carrito(\"comprar_promocion_especial\", ".$pe->id_sitio.", ".$pe->id_canal. " ," .$pe->id_promocion . ")' class='boton-anadir-carrito'/>
 		      	</div>
@@ -88,4 +86,3 @@
 			</div>";
 ?>
 </div>
-<div class="space-pleca"></div>

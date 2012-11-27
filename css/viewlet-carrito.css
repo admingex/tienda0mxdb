@@ -7,6 +7,8 @@
 	overflow: hidden;	
 	background-color: #000;	
 	margin: 0px;	
+	display: block;
+	position: relative;
 }
 
 /* new design */
@@ -40,7 +42,7 @@
 	padding: 0px;	
 	list-style: none;	
 	display: block;
-	clear: both;
+	clear: both;	
 }
 
 #viewlet-carrito ul li{	
@@ -49,13 +51,9 @@
 	margin: 0px;
 	display: inline-block;	
 	float: left;		
-	margin-bottom: 15px;	
+	margin-bottom: 15px;			
 }
 
-#viewlet-carrito ul li:last-child{
-	margin-top: 145px;
-	color: #E0E0E0	
-}
 
 #viewlet-carrito ul li .descripcion_producto{
 	padding: 0px 5px;	
@@ -163,8 +161,7 @@
 	float: left;
 	background-image: url('../images/kisco_contenido_pleca.png');	
 	color: #FFFFFF;
-	font-size: 14px;
-	font-weight: bold;
+	font-size: 14px;	
 	padding: 5px 10px;
 	cursor: pointer;
 }
@@ -189,6 +186,21 @@
 	color: #FFF;
 	text-align: left;
 	border: none;
+	cursor: pointer;
 }
 
+.link-eliminar{
+	background: url('../images/kiosco_carrito_eliminar.png') no-repeat;
+	height: 25px;
+	width: 80px;		
+	position: absolute;
+	bottom: 0px; 
+	left: 0px;							
+}
 
+.no-items{
+	color: #E80403;
+	font-size: 16px;
+	font-weight: bold;
+	padding-left: 40px; 
+}
