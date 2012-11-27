@@ -9,7 +9,8 @@
 	   		<div><a href="<?php echo ECOMMERCE .'pagina/mostrar/privacidad';?>" target='new'>Pol&iacute;tica de Privacidad</a></div>            	   		
 	   		<div><a href="<?php echo ECOMMERCE .'pagina/mostrar/ayuda';?>" target='new'>P&aacute;gina de ayuda</a></div>
 	   		<div><a href="<?php echo ECOMMERCE .'pagina/mostrar/contacto';?>" target='new'>Cont&aacute;ctanos</a></div>
-	   	</div>	   	
+	   	</div>	
+	   	<div id='copyright'>&copy;2006 DERECHOS RESERVADOS EXPANSIÓN, S.A. DE C.V.</div>   	
 	</div><!--div main-->
 	
     <div id="footer-container">
@@ -17,6 +18,8 @@
             <img src="<?php echo TIENDA;?>images/text_expansion.gif" alt="Grupo expansión"width="92" height="28"/>            
         </footer>
     </div>
+</div>
+</div>
 </body>
 </html>
 

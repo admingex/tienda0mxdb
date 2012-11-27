@@ -36,19 +36,22 @@
        
 </head>
 <body>
-
+<div id="portal-wrapper">
+<div id="container">
 	
 	<div id='dialog-modal' rowspan></div>
 	<div id='no-moneda'>Debes seleccionar productos de la misma moneda</div>
     <div id="header-container">
-        <header>
-            <!-- img src="<?php echo TIENDA;?>images/KIOSCO_logo.png" alt="logo gex" / -->
+        <header>            
             <h1><a href="<?php echo TIENDA;?>">Kiosco</a></h1>
         </header>  
-        <div id='header_tienda'>		
-			<div id='carrito'>
-				<a id='cuenta-carrito' class="carrito" href="<?php echo site_url('carrito.php');?>">&nbsp;</a>
-			</div>				
+        <div id='header_tienda'>
+        	<a href="https://pagos.grupoexpansion.mx/pagina/mostrar/contacto" target="new">
+			    <div id='cont'></div>		
+			</a>		
+			<a href="<?php echo site_url('carrito.php');?>">
+			    <div id='carrito'><?php if(isset($_SESSION['carrito'])) echo count($_SESSION['carrito']); else echo 0;?></div>		
+			</a>				
 		</div>  
         <section class="header_section"> 
         	<div id="filtro_busqueda_header">       	     	           
@@ -83,7 +86,7 @@
         <section id="contenido"><!--contenido-->
 
             <div class="contenidos"><!--contenidos tienda-->
-                
+                <div class="blank_section">&nbsp;</div>
                 <!--Listado de Publicaciones-->
                 <?php include('components/menu_vertical.php');?>
                 

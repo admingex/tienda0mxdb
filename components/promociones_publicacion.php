@@ -1,6 +1,9 @@
-<link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
-<link type="text/css" href="<?php echo TIENDA;?>css/viewlet-paginador.css" rel="stylesheet" />
-<div id="contenedor-promo">
+<?php
+echo "<link type='text/css' href='".TIENDA."css/viewlet-slide-idc.css' rel='stylesheet' />";
+?>		
+<div id='contenedor_slide'>	
+	<div class='list_carousel responsive'>
+		<ul id='slider'>
 <?php	
 	/**
 	 * Despliega las promociones de una publicación cuando se tienen más de un formato para dicha publicación
@@ -11,46 +14,25 @@
 	 */
 	 /*echo "<pre>";
 	 print_r($ofertas_publicacion->promociones);
-	 echo "<pre>";*/
-	 
-	$total = count($ofertas_publicacion->promociones);	
-	if($total_promociones==0){
-		echo "No se encontraron resultados en la búsqueda";
-	}
-			
-	if (isset($_GET['page'])) {
-		$pg = $_GET['page'];
-	} else {
-		$pg = 0;
-	}
-	
-	$cantidad = MAX_PROMOS_PAGINA;//6; //Cantidad de registros que se desea mostrar por pagina
+	 echo "<pre>";*/	
 	
 	//echo "get: " . $_GET['page'];
 	//Para probar solo le coloque 3
 	
-	$paginacion = new paginacion($cantidad, $pg);
-	$desde = $paginacion->getFrom();		
-		
-	$recorrer = $ofertas_publicacion->promociones;
 	
-	$limite = ($desde + $cantidad);
-	if ($limite > $total) {
-		$limite = $total;
-	}
-	
-	$j = 0;
 	/*echo "<pre>";	######ordenamientos
 			print_r($recorrer[0]);
 		echo "</pre>";*/
-	for ($i = $desde; $i < $limite ; $i++) {
+
+	//for ($i = $desde; $i < $limite ; $i++) {
+	foreach($ofertas_publicacion->promociones as $p){	
 		//echo "<br />->".$i."<-";
 		
 		/*echo "<pre>";
 			print_r($recorrer[$i]);
 		echo "</pre>";*/
 		
-		$p = $recorrer[$i];	 		
+		//$p = $recorrer[$i];	 		
 		// $p trae la información general de la promoción,
 		// $p->detalle trae información más granular 
 		
@@ -88,9 +70,12 @@
 			//$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
 			$src = TIENDA ."p_images/".$p->detalle->url_imagen;
 		}
+		//carga el primer valor en la columna derecha
+		$inides=$descripcion_promocion;
+		$initit=$p->detalle->nombre_publicacion;
 		echo "		
-			<div class='promo-left'>
-			<form id='comprar_promocion".$p->detalle->id_promocion."' name='comprar_promocion".$p->detalle->id_promocion."' action='". $action_pagos ."' method='post'>
+			<li>
+				<form id='comprar_promocion".$p->detalle->id_promocion."' name='comprar_promocion".$p->detalle->id_promocion."' action='". $action_pagos ."' method='post'>
 				<input type='hidden' name='guidx' value='".API::GUIDX."' />
 			    <input type='hidden' name='guidz' value='".API::guid()."' />
 			    <input type='hidden' name='imagen' value='".$src."' />
@@ -98,64 +83,34 @@
 			    <input type='hidden' name='precio' value='".$p->detalle->costo."'/>
 			    <input type='hidden' name='moneda' value='".$p->detalle->moneda."'/>
 			    <input type='hidden' name='iva' value='".$p->detalle->taxable."' />
-			    <input type='hidden' name='cantidad' value='1' />
-			    <div class='contenedor-imagen'>			    
+			    <input type='hidden' name='cantidad' value='1' />			    		    
 		    		<a href='". $url_detalle_promo . "'>
-		    			<img src='" . $src . "' alt='".$src."' />
+		    			<div style=\"background-image: url('".$src."')\" class='roll' onmouseover=\"cambia_img(".$p->detalle->id_promocion.")\"></div>		    			
 		    		</a>
-		    	</div>	
-		      	<div class='titulo-publicacion-back descripcion-promocion'>
-		      		".$descripcion_promocion."
-		      	</div>
-		      	<div class='descripcion-publicacion-back'>
-					<span class='precio-promocion'> $ " . number_format($p->detalle->costo, 2, ".", "," )."</span>
-				</div>		      	
-		      	
-		      	<div class='boton'>
-	          		<input type='submit' name='btn_comprar_ahora' value=' ' class='boton-comprar-ahora' />";
+		    	<div id='descripcion".$p->detalle->id_promocion."' style='display: none'>			    			    	
+		      		".$descripcion_promocion."		      						
+				</div>									
+				<div id='titulo".$p->detalle->id_promocion."'>".$p->detalle->nombre_publicacion."</div>
+	          		<input type='submit' name='btn_comprar_ahora' value=' ' style='display: none'  />";
 		 ?>		      	
-		      		<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value=" " onclick="anadir_carrito(<?php echo $carrito ;?>)" class='boton-anadir-carrito'/>
+		      		<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value=" " onclick="anadir_carrito(<?php echo $carrito ;?>)" style='display: none' />
 		 <?php     	
-	      echo "
-		      	</div>
-		    </form>  	
-	  		</div>
+	      echo "		      	
+		    </form>  
+		    	
+	  		</li>
 	  	";
-		//pinta un espacio en blanco que sirve de margen						
-		if (($j == 0) || ($j == 1) || ($j == 3) || ($j == 4) ){
-			echo "<div class='catego-space'></div>";				
-		}
-		$j++;
+		 
+		 
+		 
 	}
+	echo "</ul>
+	      <a id='prev' class='prev' href='#'></a>
+		  <a id='next' class='next' href='#'></a>	
+	  </div>";
 ?>
 </div>
-
-<?php 
-	if($total > 6) {
-?>		
-<div id="paginacion">
-<?php						
-	
-	if(!empty($buscador)){
-		//echo "<br>".$s ."<br>".$fb."<br>".$buscador;
-		$url = TIENDA."buscador.php?fb=".$fb."&s=".$s."&page=";
-	}else{
-		$url = TIENDA."publicacion/ofertas/".$id_publicacion."/";
-	}
-	
-	
-	$classCss = "numPages";
-	#$classCss = "actualPage";
-	
-	//Clase CSS que queremos asignarle a los links 
-	
-	$back = "Atrás";
-	$next = "Siguiente";
-	
-	$paginacion->generaPaginacion($total, $back, $next, $url, $classCss);
-?>
+<div id='cuadro_der'>
+	<div id="titulo_pub"><?php echo $initit?></div>
+	<div id='temp'><?php echo $inides?></div>	
 </div>
-<?php
-	} 
-?>
-<div id="space-pleca"></div>

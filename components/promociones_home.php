@@ -35,7 +35,7 @@
 		}
 		
 		//echo "get pag: " . $_GET['page'];
-		$cantidad = 10; //Cantidad de registros que se desea mostrar por pagina
+		$cantidad = 15; //Cantidad de registros que se desea mostrar por pagina
 		
 		//Para probar solo le coloqué 3
 		//página actual
@@ -55,8 +55,7 @@
 echo "	<div id='list_carousel'>
 			<ul>";
 				for ($i = $desde; $i < $limite; $i++){		
-					$p = $recorrer[$i];				
-								
+					$p = $recorrer[$i];									
 					//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
 					if(file_exists("./p_images/".$p->url_imagen)){
 						$src = TIENDA ."p_images/".$p->url_imagen;
@@ -71,25 +70,37 @@ echo "	<div id='list_carousel'>
 						//obtener la información de la categoría que se consulta
 						$url_detalle_promo = TIENDA ."promocion_h.php?id_promo_padre=" .$p->id_promocionIn;
 						//
+						/*
 						echo "	<li>									
 							    	<a href='". $url_detalle_promo ."'>							
 							      		<img src='" .$src."'/>
 							      	</a>							      								      						      					      	
 							    </li>";
+						 * 
+						 */
 					} else{
 							
 						//obtener la información de la categoría que se consulta
 						$url_detalle_promo = TIENDA ."promocion/" . $p->id_promocion;
 						//
+						/*
 						echo "	<li>																											      	
 									<a href='". $url_detalle_promo ."'>							
 							      		<img src='" .$src."'/>
 							      	</a>					      							      								      				     
 						    	</li>";
+						 * 
+						 */
+						
+						echo "<li>
+							      <a href='". $url_detalle_promo ."'>
+			            	          <div style=\"background-image: url('".$src."')\" class='mycover'></div>	
+			            	      </a>
+			            	  </li>";							  
+				      		  		
 					 }   			  
 							
-				}
-				echo "<li><a href=''><img src='".TIENDA."p_images/' /></a></li>";
+				}				
 echo "		</ul>										
 		</div>";
 	}

@@ -1,227 +1,206 @@
 ﻿/* viewlet-carrito */
+
+/* new design */
 #viewlet-carrito{	
-	/*padding-right:0px;*/
-	height: auto;
-	font-family:Arial;
-	overflow:hidden;
+	padding: 10px;
+	height: auto;	
+	overflow: hidden;	
+	background-color: #000;	
+	margin: 0px;	
+	display: block;
+	position: relative;
 }
 
-#viewlet-carrito  .pleca{
-	border:none;
-	display: block;			
-	height: 3px;
-
-	/*margin-left: 40px;*/
-	background: url('../images/css_sprite_PlecaCorta04.jpg') no-repeat;	
-	background-position: 0px 0px;	
-	clear: both;
-}
-#viewlet-carrito  .pleca-dos{
-	clear: both;
-	padding:0px;
-	margin:0px;
-	border:none;
-	display: block;			
-	height: 3px;
-	width:100px;
-	/*margin-left: 40px;*/
-	background: url('../images/css_sprite_PlecaCorta04.jpg') no-repeat;	
-	background-position: 0px 0px;	
-	
-}
-
-#viewlet-carrito  .titulo-pag{
-	/*padding-top:20px;
-	padding-bottom:27px;*/	
-}
-#viewlet-carrito  .titulo-pag .img{
-	border: none;
-	height:25px;
-	width:31px;
-	background: url('../images/scc_sprite_econsvarios.png') no-repeat;
-	background-position: -25px -3px;	
-	float:left;
-}
-
-#viewlet-carrito  .titulo-pag span{
-	padding-left:3px;
-	padding-top:3px;
-	color: #4f4f4f;
-	font-weight:bold ;	
-	font-size:18px;
-}
-
-#viewlet-carrito .all-cont{
-	background-color: #E2E2E2;
-	
-}
-
-#viewlet-carrito .all-cont .carrito-pag{
-	background-color: #FAFAFA; 
-	padding: 10px 0px;
-	
-	font-size:13px;
-	color:#262626;
-	
-}
-
-#viewlet-carrito .all-cont .carrito-pag span{
-	font-weight:bold ;	
-}
-#viewlet-carrito .pagar-carrito{
-	border: none;
-	height: 19px;
-	width: 60px;
-	background: url('../images/scc_sprite_pagar.png') no-repeat;	
-	background-position: 0px -7px;
-	
-}
-
-#viewlet-carrito  .pagar-carrito:hover{
-	border: none;
-	height: 19px;
-	width: 60px;
-	background: url('../images/scc_sprite_pagar.png') no-repeat;	
-	background-position: 0px -25px;
-}
-/* LOS DETALLES */
-#viewlet-carrito .all-cont .lista-articulos{
-	clear: both; 
-	padding: 5px 0px;
-	padding-left:10px;
-	padding-right:10px;
-	
-}
-#viewlet-carrito .all-cont .lista-articulos .imgp{
-	float: left;
-}
-#viewlet-carrito .all-cont .lista-articulos .imgp img{
-	height:72px;
-	width:54px;
-}
-#viewlet-carrito .all-cont .lista-articulos .datos{
-	float: left; padding-left: 10px; width: 350px;	
-	
-}
-#viewlet-carrito .all-cont .lista-articulos .datos .titulo{ 
-	font-size: 14px;
-	color:#262626;
-	font-weight:bold ;		
-}
-#viewlet-carrito .all-cont .lista-articulos  .precio{ 
-	font-size: 15px;
-	color:#262626;
-	font-weight:bold ;	
-}
-#viewlet-carrito .all-cont .lista-articulos .datos .descripcion{ 
-	font-size: 13px;
-	color:#808080;	
-}
-#viewlet-carrito .all-cont .lista-articulos .datos a{ 
-	font-size: 12px;
-	color:#39639b;
-}
-#viewlet-carrito .all-cont .lista-articulos .datos a:hover{ 
-	font-size: 12px;
-	color:#39639b;
-}#viewlet-carrito .all-cont .lista-articulos .datos a:visited{ 
-	font-size: 12px;
-	color:#39639b;
-}
-#viewlet-carrito .all-cont .lista-articulos .datos a:active{ 
-	font-size: 12px;
-	color:#39639b;
-}
-#viewlet-carrito .all-cont .lista-articulos .datos a:focus{ 
-	font-size: 12px;
-	color:#39639b;
-}
-/*total*/
-#viewlet-carrito .all-cont .calculo{
-	clear: both;
-	text-align:right;
-	font-size:13px;
-	background-color: #FAFAFA;
-	padding-top:15px;
-	padding-bottom:15px;
-	padding-right:10px;
-}
-#viewlet-carrito .all-cont .calculo span{
-	font-size:15px;
-	font-weight:bold ;
-	margin-left:15px;
-}	
-/*
-#viewlet-carrito .fin-pagar{
-	padding-right:60px;
-	text-align:right;
-}
-*/
-#viewlet-carrito .all-cont .boton-final{
-	background-color: #E2E2E2;
-	
-}
-#viewlet-carrito .continuar-carrito{
-	border: none;
-	height: 19px;
-	width: 150px;
-	background: url('../images/scc_sprite_ContinuarComprando.png') no-repeat;	
-	background-position: 5px -3px;
-	float:left;
-}
-
-#viewlet-carrito .continuar-carrito:hover{
-	border: none;
-	height: 19px;
-	width: 150px;
-	background: url('../images/scc_sprite_ContinuarComprando.png') no-repeat;	
-	background-position: 0px -22px;
-}
-/*********************************************************************************************************/
-#viewlet-carrit .pac{
-	font-weight:bold ;		
-	font-size:13px;	
-	background-color: #E2E2E2;
-	border:none;
-	padding-bottom: 50px;
-	width: 100px;
-}
-
-#viewlet-carrito  .pac .img{
-	border: none;
-	height:25px;
-	width:25px;
-	background: url('../images/scc_sprite_econsvarios.png') no-repeat;
-	background-position: 0px 0px;	
-	float:left;
-}
+/* new design */
 #viewlet-carrito .img-big{
-float: left; width: 25%; height: 100%; text-align: left;
-padding-top:10px;
-padding-bottom:10px;
-padding-right:24px;
-width: 100px;
-margin-right:30px;
+	float: left; 
+	width: 175px; 
+	height: 100%;	
 }
 
-#viewlet-carrito .img-big .titulo{
-	color:#4f4f4f;
-	font-size:13px;
+/* new design */
+#viewlet-carrito .pleca_vertical{	
+	min-height: 330px;
+	width: 48px; 
+	float: left; 
+	padding: 0px; 
+	background-image: url("../images/css_sprite_pleca_home.jpg"); 
+	background-repeat: repeat-y; 
+	margin: 0px 20px; 	
 }
-#viewlet-carrito .img-big .descripcion{
-	font-weight:bold ;	
-	color:#4f4f4f;	
-	font-size:15px;
+
+#viewlet-carrito .plecas{
+	margin-left: 20px; 
+	padding-left: 67px;		
+	background-image: url("../images/css_sprite_pleca_home.jpg");
+	background-repeat: repeat-y;
+	min-height: 300px;
 }
-#viewlet-carrito .img-big .precio{
-	font-weight:bold ;	
-	color: #a70002;	
-	font-size:13px;
+
+#viewlet-carrito ul{	
+	margin: 0px;
+	padding: 0px;	
+	list-style: none;	
+	display: block;
+	clear: both;	
 }
-#viewlet-carrito .all-cont .nproductos{
-	font-weight:bold ;	
-	color: #262626;	
-	font-size:13px;
-	background-color: #E2E2E2;
-	padding-left: 13px;
+
+#viewlet-carrito ul li{	
+	text-align: center;								
+	padding: 0px;
+	margin: 0px;
+	display: inline-block;	
+	float: left;		
+	margin-bottom: 15px;			
+}
+
+
+#viewlet-carrito ul li .descripcion_producto{
+	padding: 0px 5px;	
+	width: 180px;
+	overflow: hidden
+}
+
+#viewlet-carrito ul li .descripcion_producto .precio{
+	color: #E80403;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+#viewlet-carrito ul li .descripcion_producto .descripcion1{
+	color: #9A9A9A;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#viewlet-carrito ul li .descripcion_producto .descripcion2{
+	color: #E80403;
+	font-size: 12px;	
+}
+#viewlet-carrito ul li .descripcion_producto .descripcion3{
+	color: #E0E0E0;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#viewlet-carrito li .precio_pagar{	
+	color: #FFF;
+	font-size: 12px;
+	font-weight: lighter;
+}
+
+#viewlet-carrito li .precio_pagar .rojo{
+	color: #E80403;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#pleca_totales{
+	 height: 1px; 
+	 background-color: #484848;
+}
+
+#totales{
+	padding: 0px 10px 10px 10px; 
+	background-color: #000;	
+}
+
+#total{
+	overflow:hidden; 
+	display: block;	
+}
+
+#total .total-right{	
+	padding-top: 15px;				
+	display: inline; 
+	float: right;	
+}
+
+#total .total-right .carrito{
+	background: url('../images/kiosco_carrito.png') no-repeat;	
+	background-position: 0px 0px;				
+	height: 30px;
+	width: 25px;		
+	display: inline;
+	float: left;
+	padding: 10px 0px 0px 15px;
+	color: #E50304;
+	font-size: 11px;
+	font-weight: bold;	
+}
+
+#total .total-right .blanco{
+	color: #FDFDFD;
+	font-size: 16px;
+	font-weight: lighter;
+	display: inline;
+	float: left;
+	padding: 12px 10px 0px 5px;
+	height: 30px;
+	vertical-align: middle;
+}
+
+#total .total-right .rojo{
+	color: #E80403;
+	font-size: 26px;
+	font-weight: bold;
+	display: inline;
+	float: left;
+	padding: 2px 0px 0px 0px;	
+	height: 30px;
+	vertical-align: middle;
+}
+
+#botones{
+	overflow:hidden; 
+	display: block;
+}
+
+#botones .seguir-comprando{
+	display: inline; 
+	float: left;
+	background-image: url('../images/kisco_contenido_pleca.png');	
+	color: #FFFFFF;
+	font-size: 14px;	
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+#botones .pagar{
+	display: inline; 
+	float: right;
+	background-image: url('../images/kisco_contenido_pleca.png');	
+	color: #FFFFFF;
+	border: none;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 0px 10px 0px 5px;
+	cursor: pointer;	
+}
+
+#botones .boton-pagar{
+	background: url('../images/kiosco_carrito_tarjeta.png') no-repeat;	
+	background-position: 60px 0px;				
+	height: 30px;
+	width: 95px;
+	color: #FFF;
+	text-align: left;
+	border: none;
+	cursor: pointer;
+}
+
+.link-eliminar{
+	background: url('../images/kiosco_carrito_eliminar.png') no-repeat;
+	height: 25px;
+	width: 80px;		
+	position: absolute;
+	bottom: 0px; 
+	left: 0px;							
+}
+
+.no-items{
+	color: #E80403;
+	font-size: 16px;
+	font-weight: bold;
+	padding-left: 40px; 
 }

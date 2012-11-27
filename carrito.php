@@ -13,7 +13,7 @@
 	$scripts [] = TIENDA."js/carrito.js";
 	
 	//información para la vista
-	$title = "Publicaciones por Catgoría";
+	$title = "Publicaciones por Categoría";
 	$subtitle = "Publicaciones por Catgoría";
 	
 	$data = array();
@@ -37,11 +37,22 @@
 					$items = max(array_keys($_SESSION['carrito'])) + 1;
 					foreach ($_SESSION['carrito'] as $i => $j) {
 						if ($j['id_sitio'] == $_GET['id_sitio'] && $j['id_canal'] == $_GET['id_canal'] && $j['id_promocion'] == $_GET['id_promocion']) {
-							$agregar = FALSE;
+							$agregar = FALSE;							
 							/*se quita la parte de agregar cantidad a los artículos*/
 							//echo "agragar cantidad al item: ".$i;						
 							//$_SESSION['carrito'][$i]['cantidad']=$_SESSION['carrito'][$i]['cantidad']+1;
-						
+							
+							$_SESSION['carrito'][$i] = array( 'id_sitio'=>$_GET['id_sitio'], 
+		 									   		'id_canal'=> $_GET['id_canal'],
+											   		'id_promocion'=>$_GET['id_promocion'],
+													'cantidad'=>$_POST['cantidad'],
+													'imagenVc'=>$_POST['imagen'],
+													'descripcion'=>$_POST['descripcion'],
+													'precio'=>$_POST['precio'],
+													'moneda'=>$_POST['moneda'],
+													'iva'=>$_POST['iva']
+													);
+							
 							// Guarda el id del ultimo elemento al que se le agrego cantidad
 							$_SESSION['ult_elem'] = $i;
 						}
@@ -80,19 +91,23 @@
 			}
 			
 		} else {
-			$_SESSION['ult_elem'] = NULL;
+			//$_SESSION['ult_elem'] = NULL;
 		}
 	
 		## eliminar items del carrito
 		if (isset($_GET['eliminar_item'])) {
-			unset($_SESSION['carrito'][($_GET['eliminar_item'])]);
+			unset($_SESSION['carrito'][($_GET['eliminar_item'])]);			
 		}
 		
 	} else {	//IF ($_GET)
-		$_SESSION['ult_elem'] = NULL;
+		//$_SESSION['ult_elem'] = NULL;
 	}
+	?>
 	
-	if (array_key_exists('ajax', $_GET)) {
+	
+	
+<?php	
+	if (array_key_exists('ajax', $_GET)) {	
 		include('./views/detalle_carrito.php');
 	} else {
 		cargar_vista('detalle_carrito', $data);

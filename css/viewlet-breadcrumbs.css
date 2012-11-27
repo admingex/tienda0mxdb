@@ -1,11 +1,10 @@
 #breadcrumbs{
 	/*border-bottom: solid 1px #CCC;*/
 	margin-top: -17px;
-	margin-left: 25px;	
-	padding-bottom: 0px;		
-	z-index: 50px;
+	margin-left: 40px;	
+	padding-bottom: 0px;			
 	position: relative;
-	z-index:10000;
+	z-index:999;
 }
 
 #breadcrumbs a{

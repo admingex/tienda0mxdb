@@ -1,0 +1,114 @@
+#list_carousel {					
+	width: 886px;	
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px 50px;
+	position: relative;			
+}
+#list_carousel ul {
+	margin: 20px 0px 0px 0px;
+	padding: 0px;
+	list-style: none;
+	display: inline-block;
+	height: auto;				
+}
+#list_carousel li {				
+	text-align: center;																			
+	/*margin: 0px 10px;*/
+	display: inline-block;					
+	/*width: 124px;*/
+	/*padding: 0px 7px 7px 5px;*/						
+}	
+
+#list_carousel li img{	
+	/*height: 180px;*/
+	/*width: 124px;*/	
+}	
+
+#list_carousel .mycover {
+	background-position: 0px 20px; 
+	background-repeat:no-repeat; 
+	width:175px; 
+	height:212px; 
+	margin-bottom:4px;
+	background-color: #000;
+}
+
+#list_carousel .mycover:hover{
+	background-position: 0px -190px;
+}
+
+#contenido_carrusel{
+	margin-top: -5px; 
+	z-index: 1000;
+}
+
+.carrusel_slide{
+	height: 330px; 
+	width: 530px; 
+	background-color: #800; 
+	float: left;	
+	margin-left: 45px;
+	margin-right: 40px;	
+}
+
+.columna_derecha{
+	height: 330px; 
+	width: 331px; 
+	float: left;	
+}
+
+.pleca_apps{
+	height: 48px;
+	width: 331px; 	  	 	 	 	 
+	background-image: url('../images/kiosco_apps_pleca.png');	
+	background-position: 0px 1px;
+	background-repeat: repeat-x;			
+	padding: 0px 0px;	
+}
+
+.apps{
+	margin-left: auto;
+	margin-right: auto;	
+	height: 35px;	 	 
+	width: 270px; 	 	 	 	
+	background-image: url('../images/kiosco_apps.png');		
+	background-repeat: no-repeat;	
+	background-position: 55px 4px;	
+	padding-top: 12px;
+	color: #FFF;
+	font-size: 18px;		
+}
+
+.links{
+	position: absolute;
+	width: 35px;
+	height: 33px;
+	background-color: #800;
+	z-index: 999;
+	margin-top: -40px;
+	filter: alpha(opacity=0); 
+	opacity: 0;
+}
+
+.expan{	 	
+	margin-left: 90px;	
+}
+
+.quo{	 	
+	margin-left: 144px;	
+}
+
+.chi{
+	margin-left: 199px;
+}
+
+.cnn{
+	margin-left: 253px;
+}
+
+.promo_destacada{
+	height: 190px; 
+	position: absolute; 
+	z-index: 1001;
+}

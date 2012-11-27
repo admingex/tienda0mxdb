@@ -1,128 +1,93 @@
 #viewlet-detalle-suscripcion{						
-	margin-top: 22px;		
-	width: 528px;	
-	font-family: Arial;										
+	margin-top: 22px;			
+	font-family: Arial;	
+	padding-left: 40px;
+	overflow:hidden; 
+	display: block;								
 }
 
-#viewlet-detalle-suscripcion img{
-	width: 127px;
-	height: 173px;
+#viewlet-detalle-suscripcion .bloque-left{	
+	width: 190px;
+	min-height: 173px;
 	float: left;		
+	text-align: center;
+	padding-top: 20px;
+	display: block;	
+}
+	
+
+#viewlet-detalle-suscripcion .bloque-middle{
+	float: left;
+	padding: 0px 60px;		
+	width: 165px;	
+}
+/*
+#viewlet-detalle-suscripcion .bloque-middle img{
+	#height: 225px;
+	#width: 165px;
+}
+*/
+
+#viewlet-detalle-suscripcion .bloque-right{
+	float: left;	
+	width: 190px;
+	min-height: 173px;
+	padding-top: 20px;
+	text-align: center;	
+}
+
+#viewlet-detalle-suscripcion .back-rayado{
+	background-image: url('../images/kisco_contenido_pleca.png');	
+	color: #FFFFFF;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 3px;
+	text-align: left;
+	margin: 10px 0px;
 }	
 
-#viewlet-detalle-suscripcion .detalle{
-	float: left;
-	margin-left: 26px;		
-	width: 371px;	 			
-}
-
-#viewlet-detalle-suscripcion .bloque-descripcion{
-	padding: 8px 0px 5px 0px;				
-	min-height: 80px;	
-	margin-bottom:10px
-}
-
-#viewlet-detalle-suscripcion .titulo-detalle{				
-	color: #CA0002;
-	font-size: 17px;
+#viewlet-detalle-suscripcion .boton-comprar-ahora{
+	background: url('../images/kiosco_carrito_tarjeta.png') no-repeat;	
+	background-position: 150px 0px;				
+	height: 30px;
+	width: 185px;
+	color: #FFF;
+	text-align: left;
+	border: none;
+	color: #FFFFFF;
+	font-size: 14px;
 	font-weight: bold;
-}
-
-
-#viewlet-detalle-suscripcion .bloque-texto{					
-	padding: 5px 0px 0px 0px;	
-}
-
-#viewlet-detalle-suscripcion .texto-detalle{				
-	color: #939393;
-	font-size: 13px;
-	padding-top: 5px;	
-}
-
-#viewlet-detalle-suscripcion .precio-detalle{				
-	color: #2E2E2E;
-	font-size: 15px;
-	font-weight: bold;	
-}
-
-#viewlet-detalle-suscripcion .botones{
-	position: absolute;
-	margin-left: 178px;		
-	width: 196px;
-	height: 80px;		
-	background: url('../images/css_sprite_formaAnadir01.png') no-repeat;	
-	background-position: -37px -24px;			
+	cursor: pointer;
 }
 
 #viewlet-detalle-suscripcion .boton-anadir-carrito{
+	background: url('../images/kiosco_carrito.png') no-repeat;	
+	background-position: 150px 0px;				
+	height: 30px;
+	width: 185px;
+	color: #FFF;
+	text-align: left;
 	border: none;
-	height: 18px;
-	width: 111px;
-	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
-	background-position: -11px -8px;
-	position: absolute;
-	margin: 12px 0px 0px 10px;
+	color: #FFFFFF;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
 }
 
-#viewlet-detalle-suscripcion .boton-anadir-carrito:hover{	
-	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
-	background-position: -11px -26px;	
+#viewlet-detalle-suscripcion .precio{
+	color: #E80403;
+	font-size: 28px;
+	font-weight: bold;
 }
 
-#viewlet-detalle-suscripcion .boton-pago-express{
-	border: none;
-	height: 18px;
-	width: 163px;
-	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
-	background-position: -122px -8px;
-	position: absolute;
-	margin: 50px 0px 0px 10px;
+#viewlet-detalle-suscripcion .descripcion-promocion{
+	color: #9A9A9A;
+	font-size: 12px;
+	font-weight: bold;
+	padding-top: 10px;
 }
 
-#viewlet-detalle-suscripcion .boton-pago-express:hover{	
-	background: url('../images/css_sprite_BtnformaAnadir01.png') no-repeat;	
-	background-position: -122px -26px;	
-}
 
-#viewlet-detalle-suscripcion .space-pleca{
-	clear: both;		
-	height: 22px;	
-}
-
-#viewlet-detalle-suscripcion .pleca-separacion{	
-	background-color: #ECECEC;	
-	height: 1px;			
-}
-
-#viewlet-detalle-suscripcion .banner-descripcion{	
-	background-color: #ECECEC;			
-	padding: 5px 0px;
-	color: #3D3D3D;
-	font-size: 13px;
-	font-weight: bold;		
-}
-
-#viewlet-detalle-suscripcion .triangulo-negro-der{	
-	border:none;
-	width: 3px;			
-	height: 8px;
-	background: url('../images/css_sprite_Triangulos.png') no-repeat;	
-	background-position: -11px -2px;	
-	float:left;
-	padding-left:2px;
-	margin: 5px 0px 0px 3px;		
-}
-
-#viewlet-detalle-suscripcion .triangulo-rojo-der{	
-	border:none;
-	width: 3px;			
-	height: 8px;
-	background: url('../images/css_sprite_Triangulos.png') no-repeat;	
-	background-position: -16px -2px;	
-	float:left;
-	padding-left:2px;
-	margin: 5px 3px 0px 3px;		
-}
 
 #viewlet-detalle-suscripcion .descripcion{					
 	padding: 10px 0px 5px 0px;
@@ -130,21 +95,56 @@
 	font-size: 13px;			
 }
 
-
-th{
-	background-color: #D0D0D0;	
-	height: 18px;			
-	padding: 3px 5px;
-	color: #3D3D3D;
-	font-size: 13px;
-	font-weight: bold;		
-}
-td{
-	background-color: #F1F1F1;				
-	padding: 3px 5px;	
-	color: #525252;
-	font-size: 13px;
-	font-weight: bold;	
+#viewlet-detalle-suscripcion .indicaciones{
+	color: #FFF;
+	margin-top: 5px;	
 }
 
+#viewlet-detalle-suscripcion .descripcion1{
+	color: #9A9A9A;
+	font-size: 12px;
+	font-weight: bold;
+}
 
+#viewlet-detalle-suscripcion .descripcion2{
+	color: #E80403;
+	font-size: 12px;	
+}
+#viewlet-detalle-suscripcion .descripcion3{
+	color: #E0E0E0;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 10px 0px;
+}
+
+
+.hidden{
+	display: none
+}
+
+.styled-select {
+	margin-top: 5px;
+	padding-right: 7px;
+	padding-top: 0px;
+   	width: 185px;
+   	height: 18px;
+   	overflow: hidden;
+   	background: transparent url('../images/selector.png') no-repeat;   
+   	padding-bottom: 5px; 	
+}
+
+.cont-select{
+	width: 156px;	
+	overflow: hidden;
+}
+
+.styled-select select {
+	background: transparent;
+ 	width: 215px;
+   	padding: 0px 35px 0px 5px;
+   	font-size: 10px;   	
+   	height: 17px;
+   	-webkit-appearance: none;   
+   	border: none;	   	
+} 
+   

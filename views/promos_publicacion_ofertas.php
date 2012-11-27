@@ -2,7 +2,7 @@
 	/** 
 	 * Mostrará el listado de promocionesde una publicación que tiene promociones en diferentes formatos,
 	 * además de permitir filtrarlas por formato y precio 
-	/*	 
+	
 	echo "<pre>"; 
 	print_r($ofertas_publicacion);
 	echo "</pre>";
@@ -29,18 +29,29 @@
 	##### Filtro por formatos y precio
 	if (isset($formatos)) {
 		echo "<script type='text/javascript' src='".TIENDA."js/filtro_formato.js'></script>";
+		echo "<script type='text/javascript' src='".TIENDA."js/slide.js'></script>";
+		echo "<script type='text/javascript' src='".TIENDA."js/funcion_slide.js'></script>";
+		//$scripts [] = TIENDA."js/funcion_slide.js";
 		//include_once('./components/filtro_formatos.php');
-		
+		/*echo "<pre>";
+			print_r($formatos);
+		echo "</pre>";
+		 * 
+		 */		
 		##incluye el html de formatos para el canal idc es necesario que no se haya elegido ningun formato por medio del POST
 		if( !$_POST && $info_publicacion->nombreVc == "IDC" ){		
 			include ("views/canal_idc.php");
+		}
+		
+		if( !$_POST && $info_publicacion->nombreVc == "Expansión" ){		
+			include ("views/canal_exp.php");			
 		}
 		
 	}
 	#### Promociones de la publicación (listado)
 	## agregue $_POST para obligar a que se seleccione por lo menos un filtro para poder mostrar las ofertas lo origino el nuevo diseño con las flechas para IDC
 	if (isset($ofertas_publicacion) && $_POST) {
-		//último nivel de detalle
+		//último nivel de detalle						
 		include_once('./components/promociones_publicacion.php');
 		//exit;
 	}

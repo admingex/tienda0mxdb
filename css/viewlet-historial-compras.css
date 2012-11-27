@@ -2,224 +2,179 @@
 	font-family: Arial, Helvetica, sans-serif;		
 }
 
-#historial-compras .boton-historial{
-	border:none;			
-	height: 20px;
-	width: 122px;	
-	background: url('../images/css_sprite_MenuHistorialCompras.png') no-repeat;	
-	background-position: -6px -5px;		
-}
-
-#historial-compras .boton-historial-sel{
-	border:none;	
-	height: 20px;
-	width: 122px;				
-	background: url('../images/css_sprite_MenuHistorialCompras.png') no-repeat;	
-	background-position: -6px -25px;	
-}
-
-#historial-compras .boton-medios{
-	border:none;			
-	height: 20px;
-	width: 116px;	
-	background: url('../images/css_sprite_MenuHistorialCompras.png') no-repeat;	
-	background-position: -128px -5px;		
-}
-
-#historial-compras .boton-medios-sel{
-	border:none;	
-	height: 20px;
-	width: 116px;			
-	background: url('../images/css_sprite_MenuHistorialCompras.png') no-repeat;	
-	background-position: -128px -25px;	
-}
-
-#historial-compras .boton-datos{
-	border:none;			
-	height: 20px;
-	width: 170px;	
-	background: url('../images/css_sprite_MenuHistorialCompras.png') no-repeat;	
-	background-position: -244px -5px;		
-}
-
-#historial-compras .boton-datos-sel{
-	border:none;	
-	height: 20px;
-	width: 170px;				
-	background: url('../images/css_sprite_MenuHistorialCompras.png') no-repeat;	
-	background-position: -244px -25px;	
-}
-
-#historial-compras .boton-configuracion{
-	border:none;			
-	height: 20px;
-	width: 110px;	
-	background: url('../images/css_sprite_MenuHistorialCompras.png') no-repeat;	
-	background-position: -421px -5px;		
-}
-
-#historial-compras .boton-configuracion-sel{
-	border:none;	
-	height: 20px;
-	width: 110px;				
-	background: url('../images/css_sprite_MenuHistorialCompras.png') no-repeat;	
-	background-position: -421px -25px;	
-}
-
-#historial-compras th{
-	color: #000;
-	background-color: #D0D0D0;
-	text-align: left;
-	padding: 3px 5px; 
-	font-size: 13px;
-	border: none;
-	border-right: solid #FFF 2px; 
-	
-}
-
-#historial-compras td{
-	color: #525252;	
-	text-align: left;
-	padding: 3px 5px; 
-	font-size: 13px;
-	border: none;
-	border-right: solid #FFF 2px;
-}
-
-#historial-compras td a{
-	color: #3B6991;			
-	font-size: 12px;
-	text-decoration: underline;	
-}
-
-
 #result_informacion{	
-	margin-top: 12px;
+	display: block; 		
+	padding-top: 5px;
 }
 
 #result_informacion .titulo-descripcion{
-	color: #4F4F4F;
-	font-size: 17px;
-	font-weight: bold;
-	margin-bottom: 15px;	
+	color: #FFF;
+	font-size: 15px;
+	font-weight: bold;	
+	padding: 0px 0px 10px 30px;	
 }
 
-#result_informacion .img-reloj{
-	border:none;			
-	height: 20px;
-	width: 30px;	
-	background: url('../images/scc_sprite_econsvarios.png') no-repeat;	
-	background-position: -52px -6px;	
-	float:left;	
-}
-
-#result_informacion .img-hoja{
-	border:none;			
-	height: 20px;
-	width: 30px;	
-	background: url('../images/scc_sprite_econsvarios.png') no-repeat;	
-	background-position: -78px -6px;	
-	float:left;	
-}
 
 #result_informacion .pleca-titulo{
 	height: 1px;
 	background-color: #ECECEC;
-	width: 525px ;	
+	width: 98% ;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;	
 }
 
-#result_informacion .boton-regresar{
-	border:none;	
-	height: 17px;
-	width: 63px;				
-	background: url('../images/css_sprite_btnRegresar.png') no-repeat;	
-	background-position: 0px 0px;	
-	float: right;
-}
-
-#result_informacion .boton-regresar:hover{
-	border:none;					
-	background: url('../images/css_sprite_btnRegresar.png') no-repeat;	
-	background-position: 0px -17px;	
+#result_informacion .space10{
+	margin: 15px 0px;
 }
 
 #result_informacion .encabezado-descripcion{
-	color: #A70002;
-	font-size: 15px;	
-	margin-bottom: 12px;
+	color: #9F9F9F;
+	font-size: 16px;	
+	margin: 10px 0px 12px 40px;	
 	font-weight: bold		
 }
 
-#result_informacion .clear{
-	clear: both;
+#result_informacion .form-container{	
+	margin-left: 30px;
+	margin-top: 10px;
 }
 
-#result_informacion .contenedor1{
-	background-color: #E6E6E6;
-	padding: 5px;
-	margin-bottom: 25px;
-}
-
-#result_informacion .contenedor2{
-	background-color: #F1F1F1;
-	padding: 5px;	
-}
-
-#result_informacion .width50{
-	width: 254px;
-	height: 98px;
-	float: left;					
-}
-
-#result_informacion .info-rojo{
-	color: #A70002;
-	font-size: 13px;
-	font-weight: bolder;			
-}
-
-#result_informacion .info-negro{
-	color: #000;
-	font-size: 13px;
-	font-weight: bolder;			
-}
+#result_informacion .form-container a{
+	color: #CF1820;
+	text-decoration: none;
+	font-weight: bold;
+	margin-left: 37px;	
+}	
 
 #result_informacion .form-label{
-	font-size: 12px;
-	color: #000;
-	font-weight: bold;	
-	text-align: right;
-	width: 140px;
-	float: left;
-	padding: 5px 0px 0px 0px;
-	margin-right: 5px;	
-}
-#result_informacion .space-label{	
-	margin-top: 5px;
-	clear: both;
-}
-
-#result_informacion a{
-	color: #063F84;
+	color: #FFF;
 	font-size: 12px;
 	font-weight: bold;
-}
-
-#result_informacion .boton-guardar{
-	margin-left: 245px
-}
-
-#result_informacion .input-tex{
-	width: 220px;
+	display: inline-block;
+	width: 160px;
+	text-align: right;
+	padding: 5px;
 }
 
 #result_informacion .check-label{
+	color: #FFF;
+	display: inline-block;	
+}
+
+#result_informacion .input-tex{
+	width: 250px;
+	display: inline-block;
+}
+
+#result_informacion .space-label{
+	display: block;
+	margin-top: 10px;	
+}
+
+#result_informacion .contenedor1{	
+	padding-left: 40px;	
+	padding-bottom: 5px;
+}
+
+#result_informacion .info-blanco{
+	color: #FFF;	
 	font-size: 12px;
-	color: #000;
+}
+
+#result_informacion .info-rojo{
+	color: #CF1820;
+	font-size: 12px;
 	font-weight: bold;	
-	text-align: left;	
-	float: left;
-	padding: 5px 0px 0px 0px;	
 }
+
 table{
-	width: 100%;
+	margin-left: 40px;
+	width: 950px;	
 }
+
+th{
+	color: #CF1820;
+	text-align: left;
+	font-size: 14px;
+	padding: 5px 0px;
+}
+
+td:last-child{
+	width: 105px;		
+}
+
+td{
+	color: #CECECE;
+	font-size: 12px;
+	padding: 0px;
+	vertical-align: middle;
+}
+
+td a{
+	background: #000000 url(../images/kisco_contenido_pleca.png) repeat-x top left;    
+    color: #FFF;
+    font-size: 12px;
+    text-decoration: none;
+    padding: 5px 5px;
+    height: 15px;   
+    margin:5px 3px;
+    display: block;  
+    width: 90px;
+    text-align: center;
+}
+
+
+.banner_compras ul{	
+    height:26px;
+    list-style:none;
+    margin:15px 0 0 0px;
+    padding:0;       
+    width: 985px;            
+}
+
+.banner_compras ul li {
+	float:left;
+}                                           
+
+.banner_compras ul li{
+	color:#FFFFFF;
+    font-weight:bold;
+    line-height:26px;
+    padding:0 0 0 40px;
+    text-decoration:none;
+    text-transform:uppercase;
+    font-size: 12px;
+    cursor: pointer
+}
+
+.banner_compras ul li:hover {
+	color:#8DC540;
+}
+
+.boton-guardar{
+	background: #000000 url(../images/kisco_contenido_pleca.png) repeat-x top left;
+    height:30px;
+    color: #FFF;
+    font-size: 12px;  
+    font-weight: bold;  
+    padding: 5px 10px;    
+    border: none;    
+    cursor: pointer;    
+}
+
+.procesando{
+	color: #D81830; 
+	height: 20px; 
+	font-size: 15px; 
+	font-weight: bold;
+	padding-left: 40px;
+	padding-top: 10px;
+}
+
+.label_tarjeta{
+	color: #CECECE;
+	font-size: 12px;
+	padding: 0px;	
+	display: inline-block;
+}	
