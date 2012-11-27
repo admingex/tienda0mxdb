@@ -2,45 +2,23 @@
 <div id='contenedor_slide'>
 	<div class='list_carousel responsive'>
 				<ul id='slider'>
-<?php
-	//echo "promo_padre".$id_promo_padre;		
+<?php			
 	/*
 	echo "<pre>";
 		print_r($promociones_hijas);
 	echo "</pre>";
-	 * 
-	 */	
-	$dist_promo= array();
-	
-	foreach($promociones_hijas as $i => $ph){
-		if(count($dist_promo)>0){
-			$repetido = 0;
-			foreach($dist_promo as $j){
-				if($ph->nombre == $j->nombre){
-					$repetido = 1;	
-				}				
-			}			 		
-			if($repetido == 0){		
-				$dist_promo[] = $ph;
-			}
-		}		
-		else{
-			$dist_promo[]= $ph;
-		}				
-	}			
-	/*
-	echo "<pre>";
-		print_r($dist_promo);
-	echo "</pre>";
 	*/						
 	
-	foreach ($dist_promo as $p) {
+	foreach ($promociones_hijas as $p) {
 		echo "<li>";			
 		//url de la publicación
 		$url_p = '';
 		
-		//Si no trae más de un formato, ir al detalle de la promoción: suscripción / producto / PDF
-		$url_p = site_url('promocion/'. $p->id_promocion);
+		///sustituye espacios y & al nombre de la publicacion para que no haya problema en el GET		
+		$pub = str_replace(' ', '_', $p->nombre);
+		$pub = str_replace('&', '.', $pub);
+		
+		$url_p = site_url('promocion_h.php?id_promo_padre='. $id_promo_padre.'&publicacion='.$pub);
 		
 		//revisar que exista la imagen en caso contrario ponemos el cuadro negro						
 		if(file_exists("./r_images/".$p->url_imagen)){

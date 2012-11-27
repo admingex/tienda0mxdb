@@ -187,7 +187,7 @@
 	    		<?php echo $promo_inicial->descripcion_promocion?>
 	    	</div>
 	    	<div id='ejemplares-promo' class="descripcion3">
-	    		<?php echo $promo_inicial->ejemplares?>
+	    		<?php if(isset ($promo_inicial->ejemplares)) echo $promo_inicial->ejemplares?>
 	    	</div>	    	
 	    	<div id="descripcion-larga" class="descripcion3">
 	    		<?php echo $promo_inicial->texto_oferta?>	    		
@@ -228,7 +228,7 @@
 									
 					<div class="hidden" id='descripcion<?php echo $detalle->id_promocion ?>'><?php echo $detalle->descripcion_promocion; ?></div>
 					<div class="hidden" ><?php echo $detalle->descripcion_publicacion_larga; ?></div>
-					<div class="hidden" id='ejemplares<?php echo $detalle->id_promocion ?>'><?php echo $detalle->ejemplares; ?></div>
+					<div class="hidden" id='ejemplares<?php echo $detalle->id_promocion ?>'><?php if(isset($detalle->ejemplares))echo $detalle->ejemplares; ?></div>
 					<div class="hidden" id='texto-oferta<?php echo $detalle->id_promocion ?>'><?php echo $detalle->texto_oferta;?></div>
 					<div class="hidden" id='precio<?php echo $detalle->id_promocion ?>'><?php echo number_format($detalle->costo,2, ".", ",")."&nbsp;".$detalle->moneda; //Precio y descuento aplicado sobre precio de portada?></div>				
 				
