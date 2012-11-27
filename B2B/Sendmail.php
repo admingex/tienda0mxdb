@@ -14,11 +14,11 @@
 		</section>
 		<div id="pleca-punteada"></div>
 		<section class="contenedor">	
-		<div class="contenedor-gris">
+	
 			<p class="label_izq">Estimado cliente su solicitud esta siendo procesada, en breve lo contactaremos.</p>
 			<!--<p class="label_izq">Su solicitud ha sido procesada con éxito.</p>-->
-			<p class="label_izq">Muchas gracias por solicitar productos a través de "Tienda GEx".</p>
-			<span><a href="<?php echo $ip; echo $revista; ?>" class="">Regresar</a></span>
+			<p class="label_izq">Muchas gracias por solicitar productos a través de Kiosco.</p>
+			<span style="padding-left:10px; "><a href="<?php echo $ip; echo $revista; ?>" class="">Regresar</a></span>
 <?php
     require('templates/footer.php');
 ?>

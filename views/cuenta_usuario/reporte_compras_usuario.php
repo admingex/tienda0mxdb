@@ -27,16 +27,16 @@
 			if($detalle_compra['respuesta_banco'] == "approved"){								
 				
 				echo "	<tr>
-							<td $bck >".$detalle_compra['compra']['fecha_compraDt']."
+							<td>".$detalle_compra['compra']['fecha_compraDt']."
 							</td>
-							<td $bck>".$detalle_compra['compra']['id_compraIn']."
+							<td>".$detalle_compra['compra']['id_compraIn']."
 							</td>
-							<td $bck>";							
+							<td>";							
 							foreach($detalle_compra['articulos'] as $articulo){
 								
 								//revisar si la descripcion de la promocion tiene slash's quitarlos
-								if(stristr($detalle_compra['promocion']->descripcionVc, "|")){
-									$mp=explode('|',$detalle_compra['promocion']->descripcionVc);
+								if(stristr($detalle_compra['promocion']['descripcionVc'], "|")){
+									$mp=explode('|',$detalle_compra['promocion']['descripcionVc']);
 									$nmp=count($mp);
 									if($nmp==2){
 										$desc_promo = $mp[0];		
@@ -46,7 +46,7 @@
 									}								
 								}
 								else{
-									$desc_promo = $detalle_compra['promocion']->descripcionVc;	
+									$desc_promo = $detalle_compra['promocion']['descripcionVc'];	
 								}
 								//revisar si la descripcion del articulo tiene slash's quitarlos	
 								if(stristr($articulo['tipo_productoVc'], "|")){
@@ -67,9 +67,9 @@
 									 $desc_art."<br />";							
 							}						
 				echo "		</td>
-							<td $bck align='right'>$&nbsp;".number_format($detalle_compra['monto'], 2, '.', ',')."
+							<td align='right'>$&nbsp;".number_format($detalle_compra['monto'], 2, '.', ',')."
 							</td>
-							<td $bck align='right'><a href=\"javascript: detalle_compra(".$detalle_compra['compra']['id_compraIn'].", ".$id_cliente.")\" >Ver detalle</a>
+							<td align='right'><a href=\"javascript: detalle_compra(".$detalle_compra['compra']['id_compraIn'].", ".$id_cliente.")\" >Ver detalle</a>
 							</td>  
 						</tr>";	
 			} 			

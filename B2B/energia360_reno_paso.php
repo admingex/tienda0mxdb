@@ -1,4 +1,6 @@
 <?php
+ require('./templates/db.php');
+
 $p=$_POST['paso'];
 if($p==1){
 //insertamos en la base de datos de paso 1

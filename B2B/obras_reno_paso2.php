@@ -4,23 +4,21 @@
 		<div class="titulo-proceso">
 		Renovación gratuita para lectores calificados en M&eacute;xico.	
 		</div>
-		<br>
-		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que proporcione correctamente sus datos. 
-			"Tienda GEx" le garantiza absoluta confidencialidad en la información proporcionada.</p>
+		
+		<p style="margin-left: 25px;">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que proporcione correctamente sus datos. 
+			Kiosco le garantiza absoluta confidencialidad en la información proporcionada.</p>
 		</section>
 		<div id="pleca-punteada"></div>
 		<section class="contenedor">	
-		<div class="contenedor-gris">
+	
 <!-- INICIO -->
 <form ACTION="obras_reno_paso.php" name=frmcaja METHOD="post" onSubmit="return checkFieldsSEIS(this)">
 <table width="100%">
-
-
-    <tr>
+<tr>
       <td colspan="2" class="instrucciones">
-         Paso 2 de 2:<br>Conteste
-        completamente el siguiente cuestionario:</td>
-    </tr>
+      Complete cuestionario <span class="indicador">2/2</span>
+	  </td>
+</tr>
 
 <tr>
       <td class="label_izq" colspan="2">
@@ -104,7 +102,7 @@
         <input type="radio" value="20." name="cargo6" id="cargo6" />
 		<div id="radio6" class="radio_no_selected">&nbsp;					
 		  </div>	
-        Otro (especifique):  <input  class="text" type="text" name="cargootro" id="cargootro" size="15" maxlength="64" disabled="disabled" /></td>
+        Otro (especifique):  <input  class="text-short" type="text" name="cargootro" id="cargootro" size="15" maxlength="64" disabled="disabled" /></td>
 		
     </tr>
 
@@ -113,10 +111,10 @@
     </tr>    
 	<tr>
        <td class="label_izq" colspan="2">
-		<select size="1" name="ramo">
-
-
-           <option value="35. Inmobiliaria">Inmobiliaria</option>
+       	<div id="selmx" class="styled-select">
+       		<div class='cont-select'>
+		<select size="1" name="ramo" class="styled">
+          <option value="35. Inmobiliaria">Inmobiliaria</option>
           <option value="36. Arquitectura">Arquitectura</option>
           <option value="39. Urbanismo">Urbanismo</option>
           <option value="44. Consultoría">Consultoría</option>
@@ -128,6 +126,8 @@
           <option value="50. Ingeniería">Ingeniería</option>          
           <option value="51. Infraestructura">Infraestructura</option>
 </select>
+</div>
+</div>
 </td>
 </tr>
 
@@ -136,7 +136,9 @@
     </tr>
     <tr>
       <td class="label_izq" colspan="2">
-        <select size="1" name="decision" style="font-family: arial; font-size: 9pt">
+      	<div id="selmx" class="styled-select">
+      		<div class='cont-select'>
+        <select size="1" name="decision" class="styled">
           <option value="A. Decide estrategias empresariales">Decide estrategias empresariales</option>
           <option value="B. Elabora estrategias empresariales">Elabora estrategias empresariales</option>
           <option value="C. Toma decisi&oacute;n ejecutiva">Toma decisi&oacute;n ejecutiva</option>
@@ -146,7 +148,10 @@
           <option value="G. Desarrolla especificaciones">Desarrolla especificaciones</option>
           <option value="H. Ejecuta la compra">Ejecuta la compra</option>
           <option value="I. No se involucra">No se involucra</option>
-        </select></td>
+        </select>
+        </div>
+        </div>
+        </td>
     </tr>
     <td colspan="2" class="label_izq">
         8. El n&uacute;mero aproximado de empleados con que cuenta su empresa es de:</td>
@@ -229,7 +234,7 @@
 
     <tr>
       <td class="label_izq" colspan="2"> Financiero,especif&Iacute;que por favor. Monto de Activos Gestionados: 
-        <input type="text" class="text" name="activosgestionados" size="15" maxlength="100" 
+        <input type="text" class="text-short" name="activosgestionados" size="15" maxlength="100" 
              /></td>
     </tr>
     
@@ -285,7 +290,9 @@
     
 <tr>
       <td  colspan="2" class="label_izq">
-        <select name="construye" id="construye" onchange="construyeOtro(this)"><!--seria construye-->
+      <div id="selmx" class="styled-select">
+      	<div class='cont-select'>
+        <select name="construye" id="construye" onchange="construyeOtro(this)" class="styled"><!--seria construye-->
           <option value="-1">1. Edificaci&oacute;n (seleccione)</option>
           <option value="A. Vivienda unifamiliar">|--- 1.A Vivienda unifamiliar</option>
           <option value="B. Vivienda multifamiliar">|--- 1.B Vivienda multifamiliar</option>
@@ -301,6 +308,8 @@
           <option value="5. Petr&oacute;leo y petroqu&iacute;mica">5. Petr&oacute;leo y petroqu&iacute;mica</option>							
           <option value="J">6. Otras construcciones (especifique)</option>							  
         </select>
+        </div>
+        </div>
         </td>
 </tr>
 
@@ -308,7 +317,7 @@
 
 <tr>
       <td class="label_izq" colspan="2">Otras Contrucciones:
-      	<input class="text" type="text" name="construyetxt" id="actividadtxt"size="15" maxlength="64" disabled="disabled"/></td>
+      	<input class="text-short" type="text" name="construyetxt" id="actividadtxt"size="15" maxlength="64" disabled="disabled"/></td>
 </tr>
 
 <!-- fin nuevo campo otracons-->
@@ -320,26 +329,29 @@
     <tr>
        <td  colspan="2" class="label_izq" />
         <input type="text" name="mes" size="16" maxlength="16" 
-              class="text" /></td>
+              class="text-short" /></td>
     </tr>
 	<!---->
 	    <tr>
-      <td colspan="2" class="instrucciones">
-        Los editores se reservan el derecho de incluir en la<br>
+      <td colspan="2" class="instrucciones-paso">
+        Los editores se reservan el derecho de incluir en la
         lista de circulacion solo a suscriptores calificados</td>
     </tr>
 <input type="hidden" name="paso" id="paso" value="2" />
+
+<tr>
+	   <td colspan="2" class="label" style="padding-right: 50%; padding-top: 20px; padding-bottom: 10px;">
+      <sup class="tilde">*</sup>Campos
+      	Requeridos
+	</td>
+</tr>
+
     <tr>
-      <td colspan="2" >
-        <input class="crear_cuenta" TYPE="submit" VALUE="" id=submit1 name=submit1>
-        <input type="reset" value="Limpiar" id=reset1 name=reset1></td>
-		
+       <td colspan="2" align="center" style="padding-right: 10%;">
+		<input type="submit" value="crear cuenta y continuar" id="submit1" name="submit1" class="crear_cuenta" />
+	</td>
     </tr>
-    <tr>
-      <td colspan="2" class="label">
-      	<sup class="tilde">*</sup>Campos
-      	Requeridos</td>
-    </tr>
+    
   </table>
   </form>
 <?php

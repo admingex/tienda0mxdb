@@ -31,7 +31,7 @@
 			<div class="bloque-left">
 				<img src="<?php echo $logo; ?>" />
 				
-				<div class="back-rayado" style="padding: 10px">enviar a un amigo</div>
+				<!--<div class="back-rayado" style="padding: 10px">enviar a un amigo</div>-->s
 				<div class="back-rayado">
 					<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value="añadir al carrito" class="boton-anadir-carrito" onclick="anadir_carrito(<?php echo $carrito ;?>)"/>
 				</div>
