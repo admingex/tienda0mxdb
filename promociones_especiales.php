@@ -29,6 +29,27 @@
 		if (array_key_exists('id_categoria', $_GET) && filter_var($_GET['id_categoria'], FILTER_VALIDATE_INT, array('min_range' => 1))) {	### TO DO seguridad!
 			$id_categoria = $_GET['id_categoria'];
 			$data['id_categoria'] = $id_categoria;
+				
+			//Sacar la información de la categoría
+			$path_categoria = "./json/categorias/categorias.json";
+			
+			if (file_exists($path_categoria)) {
+				$json = file_get_contents($path_categoria);
+				$c = json_decode($json);
+				
+				//obtener la información de la categoría que se consulta
+				foreach ($c->categorias as $cat) {
+					if ($cat->id_categoriaSi == $id_categoria) {
+						$data["info_categoria"] = $cat;
+						break;
+					}
+				}
+			} else {
+				//si no existe el archivo con la información ¿¿ir a BD??
+			}
+		
+	
+			
 			
 			##### TODO 	validar que corresponda con la de promos especiales
 			if ($id_categoria == 6 ) {

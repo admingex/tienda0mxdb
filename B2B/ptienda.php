@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$ip="http://10.177.78.54/subir_tienda/";
+$ip="https://tienda.grupoexpansion.mx/";
 
 if(!isset($_REQUEST['tipo_suscripcion'])){
 	//echo "nasdas";

@@ -4,22 +4,19 @@
 	<div class="titulo-proceso">
 		Renovacion gratuita para lectores calificados en M&eacute;xico.	
 		</div>
-		<br>
-		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rapido y seguro, es muy importante que proporcione correctamente sus datos. "Tienda GEx" le garantiza absoluta confidencialidad en la informacion proporcionada.</p>
+		<p style="margin-left: 25px;">Con el fin de ofrecerle un servicio eficiente, rapido y seguro, es muy importante que proporcione correctamente sus datos. Kiosco le garantiza absoluta confidencialidad en la informacion proporcionada.</p>
 		</section>
 		<div id="pleca-punteada"></div>
 		<section class="contenedor">	
-		<div class="contenedor-gris">
 		
 <form ACTION="energia360_reno_paso.php" name=frmcaja METHOD="post" onSubmit="return checkPasodos(this)">
 <table width="100%">
-
-
-	 <tr>
+<tr>
       <td colspan="2" class="instrucciones">
-         Paso 2 de 2:<br>Conteste
-        completamente el siguiente cuestionario:</td>
-    </tr>
+      Complete cuestionario <span class="indicador">2/2</span>
+	  </td>
+</tr>
+
 
 <tr>
       <td colspan="2" class="label_izq"> 
@@ -29,6 +26,8 @@
 </tr> 
 <tr>
 <td colspan="2" >
+	<div class="styled-select">
+      		<div class='cont-select'>
         <select name="actividad" id="actividad" onChange="validaOtro(this)">
           <option value="A	Presidencia">Presidencia </option>          
           <option value="B	Direccion">Direccion</option>          
@@ -41,6 +40,8 @@
 		  <option value="I	Operacion">Operacion</option>          
           <option value="J">Otro (describa)</option>
         </select>
+        </div>
+        </div>
 </td>
 </tr>
 <tr>  
@@ -51,7 +52,7 @@
         Otro (describa):
 
 
-        <input type="text" class="text" name="actividadtxt" id="actividadtxt" size="15" maxlength="64" value=""  disabled="disabled" ></td>
+        <input type="text" class="text-short" name="actividadtxt" id="actividadtxt" size="15" maxlength="64" value=""  disabled="disabled" ></td>
     </tr>
 <!-- 3 -->
     <tr>
@@ -60,6 +61,8 @@
     </tr>
     <tr>
       <td colspan="2">
+      <div class="styled-select">
+      		<div class='cont-select'>
         <select name="cargo" onChange="validaOtro(this)">
           <option value="A	Direccion General">Direccion General</option>
           <option value="B	Administracion/Finanzas/Legal/Comercial">Administracion/Finanzas/Legal/Comercial</option>
@@ -73,6 +76,8 @@
           <option value="J	Academicos">Academicos</option>
           <option value="K">Otro, especifique por favor</option>
         </select>
+        </div>
+        </div>
 	</td>
     </tr>
       <tr>
@@ -81,7 +86,7 @@
 		<div id="divtipo_inicio3" class="radio_no_selected"></div>
         Otro (describa):
 		
-        <input type="text" name="cargotxt" id="cargotxt" size="15" maxlength="64" value="" class="text" disabled /></td>
+        <input type="text" name="cargotxt" id="cargotxt" size="15" maxlength="64" value="" class="text-short" disabled /></td>
     </tr>
 <!-- 4 -->    
 	<tr>
@@ -91,6 +96,8 @@
 
     <tr>
       <td colspan="2">
+      	<div class="styled-select">
+      		<div class='cont-select'>
         <select name="ramo" onChange="validaOtro(this)">
           <option value="A	Alimentos y Bebidas">Alimentos y Bebidas</option>
           <option value="B	Automotriz">Automotriz</option>
@@ -119,6 +126,8 @@
 		  <option value="Y	Transportistas">Transportistas</option>
           <option value="Z">Otro tipo de Actividad/Industria: (describa)</option>
         </select>
+        </div>
+        </div>
 	</td>
     </tr>
 
@@ -128,7 +137,7 @@
 		<div id="divtipo_inicio4" class="radio_no_selected"></div>
        Otro (describa):
 	   
-        <input type="text" class="text" name="ramotxt" id="ramotxt" size="15" maxlength="64" value="" disabled></td>
+        <input type="text" class="text-short" name="ramotxt" id="ramotxt" size="15" maxlength="64" value="" disabled></td>
     </tr>
 <!-- 5 -->
    <tr>
@@ -138,6 +147,8 @@
     </tr>
     <tr>
       <td colspan="2"  >
+      	<div class="styled-select">
+      		<div class='cont-select'>
         <select size="1" name="decision" >
           <option value="A. Toma de Decision Final">Toma de Decisi&oacute;n 
           Final</option>
@@ -149,7 +160,9 @@
           y Proveedores</option>
           <option value="E. Desarrolla Especificaciones">Desarrolla Especificaciones</option>
           <option value="F. No Se Involucra">No Se Involucra</option>
-        </select></td>
+        </select>
+        </div>
+        </div></td>
     </tr>
     <tr>
       <td colspan="2" class="label_izq"> 
@@ -157,6 +170,8 @@
     </tr>
    <tr>
       <td colspan="2" >
+      	<div class="styled-select">
+      		<div class='cont-select'>
         <select name="empleados">
           <option value="A	1-9">1-9</option>
 		  <option value="B	10-19">10-19</option>
@@ -168,6 +183,8 @@
 		  <option value="H	1000-2499">1000-2499</option>
 		  <option value="I	2500+">2500+</option>
         </select>
+        </div>
+        </div>
 	</td>
     </tr>
 
@@ -178,26 +195,29 @@
     </tr>
     <tr >
       <td colspan="2">
-        <input class="text" type="text" name="mes" size="16" maxlength="16" value="" /></td>
+        <input class="text-short" type="text" name="mes" size="16" maxlength="16" value="" /></td>
     </tr>
 	
     <tr>
-      <td colspan="2" class="instrucciones">
-        Los editores se reservan el derecho de incluir en la<br>
+      <td colspan="2" class="instrucciones-paso">
+        Los editores se reservan el derecho de incluir en la
         lista de circulacion solo a suscriptores calificados</td>
     </tr>
 <input type="hidden" name="paso" id="paso" value="2" />
+
+<tr>
+	   <td colspan="2" class="label" style="padding-right: 50%; padding-top: 20px; padding-bottom: 10px;">
+      <sup class="tilde">*</sup>Campos
+      	Requeridos
+	</td>
+</tr>
+
     <tr>
-      <td colspan="2" >
-        <input class="crear_cuenta" TYPE="submit" VALUE="" id=submit1 name=submit1>
-        <input type="reset" value="Limpiar" id=reset1 name=reset1></td>
-		
+       <td colspan="2" align="center" style="padding-right: 10%;">
+		<input type="submit" value="crear cuenta y continuar" id="submit1" name="submit1" class="crear_cuenta" />
+	</td>
     </tr>
-    <tr>
-      <td colspan="2" class="label">
-      	<sup class="tilde">*</sup>Campos
-      	Requeridos</td>
-    </tr>
+    
   </table>
   </form>
 <?php

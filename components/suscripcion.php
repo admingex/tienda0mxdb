@@ -171,7 +171,7 @@
 				}
 				?>	
 			</div>	
-			<div class="back-rayado" style="padding: 10px">enviar a un amigo</div>
+			<!--<div class="back-rayado" style="padding: 10px">enviar a un amigo</div>-->
 			<div class="back-rayado">
 				<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value="añadir al carrito" class="boton-anadir-carrito" onclick="submit_to_carrito(<?php echo $promo_inicial->id_promocion;?>)"/>
 			</div>	
@@ -183,15 +183,17 @@
 	    	<div id='precio_promo' class="precio"> 
 	    		$ <?php echo number_format($promo_inicial->costo,2 ,"." ,",")."&nbsp;".$promo_inicial->moneda?> 
 	    	</div>
-	    	<div id='descripcion-promo' class="descripcion-promocion">
-	    		<?php echo $promo_inicial->descripcion_promocion?>
-	    	</div>
-	    	<div id='ejemplares-promo' class="descripcion3">
-	    		<?php echo $promo_inicial->ejemplares?>
-	    	</div>	    	
-	    	<div id="descripcion-larga" class="descripcion3">
-	    		<?php echo $promo_inicial->texto_oferta?>	    		
-	    	</div>	    	
+	    	<div style='min-height: 155px'>
+	    		<div id='descripcion-promo' class="descripcion-promocion">
+	    			<?php echo $promo_inicial->descripcion_promocion?>
+	    		</div>
+	    		<div id='ejemplares-promo' class="descripcion3">
+	    			<?php if(isset ($promo_inicial->ejemplares)) echo $promo_inicial->ejemplares?>
+	    		</div>	    	
+	    		<div id="descripcion-larga" class="descripcion3">
+	    			<?php echo $promo_inicial->texto_oferta?>	    		
+	    		</div>
+	    	</div>		    	
 	    	<div class="back-rayado" style="position: relative; bottom: 0px;">
 	    		<input type="button" id="btn_comprar_ahora" name="btn_comprar_ahora" value="Comprar ahora" class="boton-comprar-ahora" onclick="submit_to_pagos(<?php echo $promo_inicial->id_promocion;?>)"/>
 	    	</div>
@@ -228,7 +230,7 @@
 									
 					<div class="hidden" id='descripcion<?php echo $detalle->id_promocion ?>'><?php echo $detalle->descripcion_promocion; ?></div>
 					<div class="hidden" ><?php echo $detalle->descripcion_publicacion_larga; ?></div>
-					<div class="hidden" id='ejemplares<?php echo $detalle->id_promocion ?>'><?php echo $detalle->ejemplares; ?></div>
+					<div class="hidden" id='ejemplares<?php echo $detalle->id_promocion ?>'><?php if(isset($detalle->ejemplares))echo $detalle->ejemplares; ?></div>
 					<div class="hidden" id='texto-oferta<?php echo $detalle->id_promocion ?>'><?php echo $detalle->texto_oferta;?></div>
 					<div class="hidden" id='precio<?php echo $detalle->id_promocion ?>'><?php echo number_format($detalle->costo,2, ".", ",")."&nbsp;".$detalle->moneda; //Precio y descuento aplicado sobre precio de portada?></div>				
 				

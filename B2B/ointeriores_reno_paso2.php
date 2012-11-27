@@ -4,22 +4,21 @@
 		<div class="titulo-proceso">
 		Renovación gratuita para lectores calificados en M&eacute;xico.	
 		</div>
-		<br>
-		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que proporcione correctamente sus datos. 
-			"Tienda GEx" le garantiza absoluta confidencialidad en la información proporcionada.</p>
+		<p style="margin-left: 25px;">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que proporcione correctamente sus datos. 
+			Kiosco le garantiza absoluta confidencialidad en la información proporcionada.</p>
 		</section>
 		<div id="pleca-punteada"></div>
 		<section class="contenedor">	
-		<div class="contenedor-gris">
+		
 <!-- INICIO -->
 <form ACTION="ointeriores_reno_paso.php" name=frmcaja METHOD="post" onSubmit="return checkFieldSiete(this)">
 <table width="100%">
 	<tr>
       <td colspan="2" class="instrucciones">
-       Paso 2 de 2 <br>Conteste completamente el siguiente cuestionario:
+      Completamente cuestionario <span class="indicador">2/2</span>
 	  </td>
-    </tr>
-	
+</tr>
+
 
 <!-- 2 -->
 <tr>
@@ -28,6 +27,8 @@
     </tr>
     <tr>
       <td colspan="2">
+      	<div class="styled-select">
+      		<div class='cont-select'>
         <select name="edad" id="edad" > 
           <option value="A	25-29">25-29 </option>          
           <option value="B	30-34">30-34</option>          
@@ -36,6 +37,8 @@
           <option value="E	45-49">45-49</option>          
 		  <option value="F	50 a mas">50 a mas</option>          
         </select>
+        </div>
+        </div>
 	  </td>
   </tr>
 <!-- 3 -->
@@ -65,6 +68,8 @@
     </tr>
     <tr>
       <td  colspan="2" class="label_izq" >
+      	<div class="styled-select">
+      		<div class='cont-select'>
         <select name="trabaja_como" onChange="validaInter(this)">
           <option value="A	Arquitecto">Arquitecto </option>          
           <option value="B	Arquitecto paisajista">Arquitecto paisajista</option>          
@@ -74,6 +79,8 @@
 		  <option value="F  Ingenieria">Ingenier&iacute;a</option>          
 		  <option value="G">Otro (especifique)</option>          
         </select>
+        </div>
+        </div>
 	  </td>
   </tr>
       <tr>
@@ -82,7 +89,7 @@
         <div id="trabaja_comodiv" class="radio_no_selected">&nbsp;					
 		</div>	
         Otro (describa):
-        <input type="text" name="trabaja_comotxt" id="trabaja_comotxt" class="text" size="15" maxlength="64" value=""  disabled></td>
+        <input type="text" name="trabaja_comotxt" id="trabaja_comotxt" class="text-short" size="15" maxlength="64" value=""  disabled></td>
     </tr>
 <!-- 5 -->
 <tr>
@@ -91,6 +98,8 @@
     </tr>
     <tr>
       <td  colspan="2"   class="label_izq">
+      	<div class="styled-select">
+      		<div class='cont-select'>
         <select name="construye" onChange="validaInter(this)">
           <option value="A	Residencial">Residencial </option>          
           <option value="B	Corporativo">Corporativo</option>          
@@ -103,6 +112,8 @@
 		  <option value="I	Gobierno">Gobierno</option>          
 		  <option value="J">Otro (especifique)</option>          
 		 </select>
+		 </div>
+		 </div>
 	  </td>
   </tr>
   
@@ -112,7 +123,7 @@
          <div id="construyediv" class="radio_no_selected">&nbsp;					
 		</div>	
         Otro (describa):
-        <input type="text" name="construyetxt" size="15" maxlength="64"  disabled></td>
+        <input type="text" class="text-short" name="construyetxt" size="15" maxlength="64"  disabled></td>
     </tr>
 
 <!-- 6 -->
@@ -122,6 +133,8 @@
     </tr>
     <tr>
       <td colspan="2" class="label_izq">
+      	<div class="styled-select">
+      		<div class='cont-select'>
         <select name="cargo" onChange="validaInter(this)">
           <option value="A	Direcci�n General (Propietario, Presidente, Vicepresidente, Director General, Director)">Direcci&oacute;n General (Propietario, Presidente, Vicepresidente, Director General, Director)</option>
           <option value="B	Gerencial (Gerente General, Gerente, Gerente de área,Gerente de Diseño,Jefatura)">Gerencial (Gerente General, Gerente, Gerente de &Aacute;rea,Gerente de Diseño,Jefatura)</option>
@@ -129,6 +142,8 @@
           <option value="D	Acad�mico, Investigador (Director/Coordinador de carrera, Investigación y Desarrollo)">Acad&eacute;mico, Investigador (Director/Coordinador de carrera, Investigaci&oacute;n y Desarrollo)</option>
 		  <option value="E">Otro, especifique por favor</option>
         </select>
+        </div>
+        </div>
 	</td>
     </tr>
       <tr>
@@ -137,7 +152,7 @@
         <div id="cargodiv" class="radio_no_selected">&nbsp;					
 		</div>	
         Otro (describa):
-        <input type="text" name="cargotxt" id="cargotxt" size="15" maxlength="64" disabled></td>
+        <input type="text" name="cargotxt" class="text-short" id="cargotxt" size="15" maxlength="64" disabled></td>
     </tr>
 
 <!-- 7 -->
@@ -147,6 +162,8 @@
     </tr>
     <tr>
       <td colspan="2"  class="label_izq">
+      	<div class="styled-select">
+      		<div class='cont-select'>
         <select name="actividad" onChange="validaInter(this)">
           <option value="A	Fabricante">Fabricante </option>          
           <option value="B	Distribuidor">Distribuidor</option>          
@@ -162,7 +179,7 @@
         <div id="actividaddiv" class="radio_no_selected">&nbsp;					
 		</div>	
         Otro (describa):
-        <input type="text" name="actividadtxt" size="15" maxlength="64" 
+        <input type="text" name="actividadtxt" class="text-short" size="15" maxlength="64" 
               disabled></td>
     </tr>
 <!-- 8 -->    
@@ -173,6 +190,8 @@
 
     <tr>
       <td colspan="2" class="label_izq">
+      	<div class="styled-select">
+      		<div class='cont-select'>
         <select name="ramo" onChange="validaInter(this)">
           <option value="1	Acabados en pisos">Acabados en pisos</option>
           <option value="2	Acabados en muro">Acabados en muro</option>
@@ -188,6 +207,10 @@
 		  <option value="12	Investigaci�n y desarrollo">Investigaci&oacute;n y desarrollo</option>
 		  <option value="E">Otro (especifique)</option>
         </select>
+        </div>
+        </div>
+        </div>
+        </div>
 	</td>
     </tr>
 
@@ -197,7 +220,7 @@
         <div id="ramodiv" class="radio_no_selected">&nbsp;					
 		</div>	
         Otro (describa):        
-        <input type="text" name="ramotxt" size="15" maxlength="64" disabled></td>
+        <input type="text" name="ramotxt" class="text-short" size="15" maxlength="64" disabled></td>
     </tr>
 
 <!-- 9 -->
@@ -207,6 +230,8 @@
     </tr>
     <tr>
       <td colspan="2"  class="label_izq">
+      	<div class="styled-select">
+      		<div class='cont-select'>
         <select size="1" name="decision" >
           <option value="A. Toma de Decision Final">Toma de Decisi&oacute;n 
           Final</option>
@@ -218,7 +243,10 @@
           y Proveedores</option>
           <option value="E. Desarrolla Especificaciones">Desarrolla Especificaciones</option>
           <option value="F. No Se Involucra">No Se Involucra</option>
-        </select></td>
+        </select>
+        </div>
+        </div>
+        </td>
     </tr>
 <!-- 10 -->
     <tr>
@@ -227,7 +255,7 @@
     </tr>
    <tr>
       <td  colspan="2" class="label_izq">
-		<input type="text" name="med" size="15" maxlength="64" class="text"/></td>
+		<input type="text" name="med" size="15" maxlength="64" class="text-short"/></td>
 	</td>
     </tr>
 
@@ -238,7 +266,7 @@
     </tr>
    <tr>
       <td colspan="2" class="label_izq">
-		<input type="text" name="proyecto" size="15" maxlength="64" class="text" /></td>
+		<input type="text" name="proyecto" size="15" maxlength="64" class="text-short" /></td>
 	</td>
     </tr>
 
@@ -249,7 +277,7 @@
     </tr>
    <tr>
       <td colspan="2" class="label_izq">
-		<input type="text" name="expo12m" size="60" maxlength="200"class="text" /></td>
+		<input type="text" name="expo12m" size="60" maxlength="200"class="text-long" /></td>
 	</td>
     </tr>
 <!--  -->
@@ -259,26 +287,26 @@
     </tr>
     <tr>
       <td colspan="2" class="label_izq">
-        <input type="text" name="mes" size="16" maxlength="16" class="text" /></td>
+        <input type="text" name="mes" size="16" maxlength="16" class="text-short" /></td>
     </tr>
 
 	<!---->
 	    <tr>
-      <td colspan="2" class="instrucciones">
-        Los editores se reservan el derecho de incluir en la<br>
+      <td colspan="2" class="instrucciones-paso">
+        Los editores se reservan el derecho de incluir en la
         lista de circulacion solo a suscriptores calificados</td>
     </tr>
 <input type="hidden" name="paso" id="paso" value="2" />
+<tr>
+	   <td colspan="2" class="label" style="padding-right: 50%; padding-top: 20px; padding-bottom: 10px;">
+      <sup class="tilde">*</sup>Campos
+      	Requeridos
+	</td>
+</tr>
+
     <tr>
-      <td colspan="2" >
-        <input class="crear_cuenta" TYPE="submit" VALUE="" id=submit1 name=submit1>
-        <input type="reset" value="Limpiar" id=reset1 name=reset1></td>
-		
-    </tr>
-    <tr>
-      <td colspan="2" class="label">
-      	<sup class="tilde">*</sup>Campos
-      	Requeridos</td>
+      <td colspan="2" align="center" style="padding-right: 10%;">
+        <input class="crear_cuenta" TYPE="submit" VALUE="crear cuenta y continuar" id="submit1" name="submit1">		
     </tr>
   </table>
   </form>

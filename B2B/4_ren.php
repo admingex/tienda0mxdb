@@ -4,20 +4,23 @@
 		<div class="titulo-proceso">
 		Renovación gratuita para lectores calificados en M&eacute;xico.	
 		</div>
-		<br>
-		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que proporcione correctamente sus datos. 
-			"Tienda GEx" le garantiza absoluta confidencialidad en la información proporcionada.</p>
+		<p style="margin-left: 25px;">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que proporcione correctamente sus datos. 
+			Kiosco le garantiza absoluta confidencialidad en la información proporcionada.</p>
 		</section>
 		<div id="pleca-punteada"></div>
 		<section class="contenedor">	
-		<div class="contenedor-gris">
+		
 <!-- INICIO -->
 <form ACTION="obras_reno_paso.php" name="frmcaja" METHOD="post" onSubmit="return checkFieldsTres(this)">
 <table width="100%">
-
+<tr>
+      <td colspan="2" class="instrucciones">
+       Datos personales <span class="indicador">1/2</span>
+	  </td>
+</tr>
       
 <tr>
-<td colspan="2" CLASS="instrucciones">
+<td colspan="2" CLASS="instrucciones-paso">
 			Instrucciones para renovar su suscripci&oacute;n:<br />
         	<b>A.</b> Si usted ya recibe Obras gratuitamente por favor
         	vea la etiqueta de correo de su &uacute;ltimo ejemplar y 
@@ -32,37 +35,32 @@
         
       
   <tr>
-      <td colspan="2" >
-        
+  	<td width="250px;">&nbsp;</td>
+   <td class="label_izq">
           <input type="radio"  name="autorizar" value='S' checked >
 		  		  <div id="divtipo_inicio2" class="radio_selected">&nbsp;					
 		  </div>
-          <b>S&iacute;, deseo renovar mi suscripci&oacute;n a la revista Obras</b>
+        S&iacute;, deseo renovar mi suscripci&oacute;n a la revista Obras
       </td>
  </tr>
  
     <tr>
-      <td colspan="2" >
+  	<td width="250px;">&nbsp;</td>
+   <td class="label_izq">
         <div id="divtipo_e360_inicio3" class="checkbox_selected">&nbsp;					
 		  </div>
           <input type="checkbox" name="bulk" id="bulk" value="S" checked="checked" />
-          <b>Deseo suscribirme al Newsletter de Obras</b><br>
+          Deseo suscribirme al Newsletter de Obras</b>
       </td>
     </tr>
     
-    
-    <tr>
-      <td colspan="2" class="instrucciones">
-        Paso 1 de 2 <br>Datos Personales:</td>
-    </tr>
-	
 	<tr>
       <td class="label">
         <sup class="tilde">*</sup>N&uacute;mero
         de Cliente:</td>
       <td >
         <input type="text" name="cliente" size="5" maxlength="8" 
-             class="text" onkeypress="return ValidaNum(event)"></td>
+             class="text-long" onkeypress="return ValidaNum(event)"></td>
     </tr>
     
     
@@ -72,7 +70,7 @@
 Nombre:
 </td>
 <td>
-   <input type="text" class="text" name="nombre" size="30" maxlength="15" value="" />
+   <input type="text" class="text-long" name="nombre" size="30" maxlength="15" value="" />
 </td>
 </tr>
 
@@ -81,14 +79,14 @@ Nombre:
 	  A. Paterno:
 	  </td>
      <td>
-        <input type="text" class="text" name="paterno" size="30" maxlength="32" value="" />
+        <input type="text" class="text-long" name="paterno" size="30" maxlength="32" value="" />
 	</td>
     </tr>
 	
     <tr>
       <td class="label">&nbsp;A. Materno:</td>
       <td>
-        <input type="text" class="text" name="materno" size="30" maxlength="32" value="" /></td>
+        <input type="text" class="text-long" name="materno" size="30" maxlength="32" value="" /></td>
     </tr>
 
 <tr>
@@ -149,7 +147,7 @@ Maestro(a)</td>
         <input type="radio" value="20." name="cargo6" id="cargo6" />
 		<div id="radio6" class="radio_no_selected">&nbsp;					
 		  </div>	
-        Otro (especifique):  <input  class="text" type="text" name="cargootro" id="cargootro" size="15" maxlength="64" disabled="disabled" /></td>
+        Otro (especifique):  <input  class="text-short" type="text" name="cargootro" id="cargootro" size="15" maxlength="64" disabled="disabled" /></td>
 		
     </tr>
 
@@ -158,39 +156,39 @@ Maestro(a)</td>
       <td class="label">
         <sup class="tilde">*</sup>Empresa:</td>
       <td>
-        <input type="text" class="text" name="empresa" size="30" maxlength="80" value="" /></td>
+        <input type="text" class="text-long" name="empresa" size="30" maxlength="80" value="" /></td>
     </tr>
 	
     <tr>
       <td class="label">
         <sup class="tilde">*</sup>Cargo:</td>
       <td>
-        <input type="text" class="text" name="puesto" size="30" maxlength="40" value="" /></td>
+        <input type="text" class="text-long" name="puesto" size="30" maxlength="40" value="" /></td>
     </tr>
 	
 	<tr>
       <td class="label"> 
         <sup class="tilde">*</sup>Calle:</td>
       <td>
-        <input type="text" class="text" name="direccion" size="30" maxlength="74" value="" /></td>
+        <input type="text" class="text-long" name="direccion" size="30" maxlength="74" value="" /></td>
     </tr>
 	
 	  <tr>
       <td class="label"> 
         <sup class="tilde">*</sup>Número:</td>
       <td>
-        <input type="text" class="text" name="numero" size="5" maxlength="10" value="" /></td>
+        <input type="text" class="text-short" name="numero" size="5" maxlength="10" value="" /></td>
     </tr>
 	
 	 <tr>
       <td class="label">
         Entre:</td>
       <td>
-        <input type="text" class="text" name="entre" size="30" maxlength="64" value="" /></td>
+        <input type="text" class="text-long" name="entre" size="30" maxlength="64" value="" /></td>
     </tr>
 	
 	<tr>
-	<td colspan="2" class="label">
+	<td colspan="2" class="label-centro">
 	En México: con base al c&oacute;digo postal proporcionado, se recuperar&aacute; 
         su Estado, Ciudad y posibles Colonias.
 		 
@@ -203,7 +201,7 @@ Maestro(a)</td>
 		</td>
       <td>
       
-        <input type="text" class="text" name="cp" id="cp" size="5" maxlength="5" value="" onblur="limpiar(this.id),getproductos4()" onkeypress="return ValidaNum(event)"  />
+        <input type="text" class="text-short" name="cp" id="cp" size="5" maxlength="5" value="" onblur="limpiar(this.id),getproductos4()" onkeypress="return ValidaNum(event)"  />
     <a href="#" title="" onClick="javascript:zip('zip.php','POP')" >Ingresar 
         C&oacute;digo Postal
 		</a></td>
@@ -211,8 +209,9 @@ Maestro(a)</td>
     <tr>
       <td class="label">
         <sup class="tilde">*</sup>Estado:</td>
-      <td>
-        <select size="1" name="estado" id="estado">
+      <td><div id="selmx" class="styled-select">
+        <select size="1" name="estado" id="estado" class="styled">
+        	<div class='cont-select'>
           <!--pongo un selected por default-->
 		  <option selected="selected" value="">Seleccione uno</option>
           <option  value="AGS">Aguascalientes</option>
@@ -251,31 +250,37 @@ Maestro(a)</td>
           <option  value="ZAC">Zacatecas</option>
           <option value="INTL">Internacional</option>
         </select>
+        </div>
+        </div>
 		</td>
     </tr>
         <tr>
       <td class="label">
         <sup class="tilde">*</sup>Ciudad:</td>
       <td>
-        <input class="text" type="text" name="ciudad" id="ciudad" size="30" maxlength="36" value="" /></td>
+        <input class="text-short" type="text" name="ciudad" id="ciudad" size="30" maxlength="36" value="" /></td>
     </tr>
   <tr>
       <td class="label">
         <sup class="tilde">*</sup>Colonia:</td>
       <td>
-      	<select size="1" name="colonias" id="colonias">
+      	<div id="selmx" class="styled-select">
+      		<div class='cont-select'>
+      	<select size="1" name="colonias" id="colonias" class="styled">
       		<option value="0">Seleccione uno</option>
       		
       	</select>
-        <input class="text" type="hidden" name="colonia" id="colonia" size="30" maxlength="38" value="" /></td>
+      	</div>
+      	</div>
+        <input class="text-short" type="hidden" name="colonia" id="colonia" size="30" maxlength="38" value="" /></td>
     </tr>
   
     <tr>
       <td class="label"> 
         <sup class="tilde">*</sup>Lada y Teléfono:</td>
       <td>
-        <input class="text" type="text" size="4" maxlength="5" id="lada" name="lada" value="" onkeypress="return ValidaNum(event)" /> 
-		<input class="text" type="text" name="telefono" size="16" maxlength="16" value="" onkeypress="return ValidaNum(event)" />
+        <input class="text-short" type="text" size="4" maxlength="5" id="lada" name="lada" value="" onkeypress="return ValidaNum(event)" /> 
+		<input class="text-short" type="text" name="telefono" size="16" maxlength="16" value="" onkeypress="return ValidaNum(event)" />
         </td>
     </tr>
 	
@@ -284,7 +289,7 @@ Maestro(a)</td>
 	   <sup class="tilde">*</sup>Asociaciones o c&aacute;maras a las que pertenece:</td>
 	  </td>
 	  <td>
-	  <input class="text" type="text" name="asoc" size="30" maxlength="16" value="" />
+	  <input class="text-short" type="text" name="asoc" size="30" maxlength="16" value="" />
 	  </td>
 	  </tr>
 	
@@ -292,7 +297,7 @@ Maestro(a)</td>
       <td class="label">
         Fax:</td>
       <td>
-        <input class="text" type="text" name="fax" size="30" maxlength="16" value="" onkeypress="return ValidaNum(event)" /></td>
+        <input class="text-short" type="text" name="fax" size="30" maxlength="16" value="" onkeypress="return ValidaNum(event)" /></td>
     </tr>
 	
     <tr>
@@ -300,7 +305,7 @@ Maestro(a)</td>
         <sup class="tilde">*</sup>Correo
         Electronico:</td>
       <td>
-        <input class="text" type="text" name="email" size="30" maxlength="80" value="" onblur="vemail(this.value,1,'frmcaja.email')"  /></td>
+        <input class="text-short" type="text" name="email" size="30" maxlength="80" value="" onblur="vemail(this.value,1,'frmcaja.email')"  /></td>
     </tr>
 
 
@@ -310,7 +315,7 @@ Maestro(a)</td>
         Clave de Promoción Obras
         </td>
     <td>
-        <input class="text" type="text" name="b2bSourcecode" size="30" maxlength="255" value=""/>
+        <input class="text-short" type="text" name="b2bSourcecode" size="30" maxlength="255" value=""/>
 	</td>
 </tr>
 <!--fin agregado de promo-->
@@ -319,19 +324,21 @@ Maestro(a)</td>
 
 
 
+<tr>
+	   <td colspan="2" class="label" style="padding-right: 50%; padding-top: 20px; padding-bottom: 10px;">
+      <sup class="tilde">*</sup>Campos
+      	Requeridos
+	</td>
+</tr>
+
+   
 
     <tr>
-      <td align="center" colspan="2" >
+     <td colspan="2" align="center" style="padding-right: 10%;">
 		<input type="hidden" name="paso" id="paso" value="1" />
-        <input TYPE="submit" VALUE="" id=submit1 name=submit1 class="crear_cuenta">
-        <input type="reset" value="Limpiar" id=reset1 name=reset1></td>
+        <input TYPE="submit" VALUE="crear cuenta y continuar" id=submit1 name=submit1 class="crear_cuenta">
+      
     </tr>
-    
-<tr>
-    <td class="label" colspan="2">
-     	<sup class="tilde">*</sup>Campos
-      	Requeridos</td>
-</tr>
 
     
   </table>
