@@ -5,7 +5,7 @@ echo "<link type='text/css' href='".TIENDA."css/viewlet-slide-idc.css' rel='styl
 	<div class='list_carousel responsive'>
 		<ul id='slider'>
 <?php	
-	echo "<div id='relevancia' style='color:#CCC; font-size:16px; padding-bottom:10px;'> Resultado de busqueda <span style='color:#dd154b;'>RELEVANCIA</span> | FECHA	</div>";
+	echo "<div id='relevancia' style='color:#CCC; font-size:16px; padding-bottom:10px;'> Resultado de busqueda <span style='color:#dd154b; text-transform: uppercase'>".$s."</span></div>";
 	echo "<div id='pleca-punteada' style='height: 1px; background-color: #CCC; margin: 10px 0px ;'> &nbsp;	</div>";
 	foreach($ofertas_publicacion->promociones as $p){
 		

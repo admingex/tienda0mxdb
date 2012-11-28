@@ -4,7 +4,7 @@
 //		echo "<script type='text/javascript' src='".TIENDA."js/filtro_formato.js'></script>";
 			//include_once('./components/filtro_orden_dos.php');
 	//}	
-	echo "<div id='relevancia' style='color:#CCC; font-size:16px; padding-bottom:10px;'> Resultado de busqueda <span style='color:#dd154b;'>RELEVANCIA</span> | FECHA	</div>";
+	echo "<div id='relevancia' style='color:#CCC; font-size:16px; padding-bottom:10px;'> Resultado de busqueda: <span style='color:#dd154b;'>".$s."</span></div>";
 	echo "<div id='pleca-punteada' style='height: 1px; background-color: #CCC; margin: 10px 0px ;'> &nbsp;	</div>";
 ?>
 <link type="text/css" href="<?php echo TIENDA;?>css/promociones.css" rel="stylesheet" />
