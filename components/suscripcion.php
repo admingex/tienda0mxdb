@@ -73,13 +73,13 @@
 <link href='<?php echo TIENDA ?>css/viewlet-detalle-suscripcion.css' rel='stylesheet' type="text/css" />
 <?php	
 	//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
-	if (file_exists("./r_images/".$promo_inicial->url_imagen)){
+	//if (file_exists("./r_images/".$promo_inicial->url_imagen)){
 		$src = TIENDA ."r_images/".$promo_inicial->url_imagen;
 		$logo = TIENDA."l_images/".$promo_inicial->url_imagen;		
-	} else {
-		$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
-		$logo = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
-	}
+	//} else {
+	//	$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+	//	$logo = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+	//}
 	
 	$op='';
 	if(!strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")) {	
@@ -101,7 +101,7 @@
 			?>			
 			<div class='selects'>	
 				<div class="styled-select">	
-					<div class="cont-select">				
+					<div class="#cont-select">				
 						<select name="sel_pais" id="sel_pais">
 						<?php 
 						$antvalor='ads';
@@ -140,14 +140,14 @@
 							$usd.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda." $op>".$detalle->descripcion_promocion."</option>";																			
 					}
 					echo "<div id='selmx' class='styled-select'>
-					          <div class='cont-select'>
+					          <div class='#cont-select'>
 						      	<select name='promos' onchange=\"cambia_boton(this.value)\">	
 						      		".$mx."
 						      	</select>
 						      </div>	
 					      </div>";
 					echo "<div id='selusd' class='styled-select'>
-							<div class='cont-select'>
+							<div class='#cont-select'>
 						      <select name='promos' onchange=\"cambia_boton(this.value)\" >		
 						      	".$usd."
 						      </select>
@@ -160,14 +160,21 @@
 				if (isset($info_publicacion) && $info_publicacion->auditableBi) {
 				?>
 				<div class="descripcion3">Si deseas recibir esta revista de forma gratuita, selecciona la opción de suscripción</div>
+				<?php //echo "<pre>".print_r($info_publicacion)."</pre>";?>
 				<div class="styled-select"> 
-					<div class="cont-select">								
+					<div class="#cont-select">								
 						<form name="enviar_tipo_suscripcion" action="<?php echo site_url('B2B/ptienda.php') ?>" method="POST">
 							<select name='tipo_suscripcion' class="styled" id='sel_b2b'>
 								<option value='' <?php echo $op;?>>Selecciona opción</option>
 								<option value='nva_<?php echo $info_publicacion->id_publicacionSi;?>' <?php echo $op;?>>Suscripción nueva</option>
 								<option value='ren_<?php echo $info_publicacion->id_publicacionSi;?>' <?php echo $op;?>>Renovación</option>
+								<?php
+									if($info_publicacion->id_publicacionSi != 17 && $info_publicacion->id_publicacionSi != 18 && $info_publicacion->id_publicacionSi != 20){
+								?>
 								<option value='can_<?php echo $info_publicacion->id_publicacionSi;?>' <?php echo $op;?>>Cancelar</option>
+								<?php
+									}
+								?>
 							</select>
 						</form>
 					</div>								

@@ -92,27 +92,30 @@
 	echo "<form id='form_filtro_formatos' method='post' action='".TIENDA."publicacion/ofertas/".$id_publicacion."'>";				
 ?>	
 	<img src="<?php echo TIENDA?>images/kiosco_arbol_idc.png" alt='contenido_idc' />
-	
-	<!--<div style="border: solid 1px #800; height: 40px; width: 40px; position: absolute ; top: 166px; margin-left: 317px; cursor: pointer">		
-	</div>-->
-	<div id='selector_pdf' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(4)">		
-	</div>
+		
 	<div id='selector_asisprint' class='selector' onmouseover="cambia_img(this.id)"  onclick="activa_check(1)">		
-	</div>	
-	<div id='selector_contenido' class='selector' onmouseover="cambia_img(this.id)">		
 	</div>
-	<div id='selector_sempersona' class='selector' onmouseover="cambia_img(this.id)">		
+	<div id='selector_carpeta' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(2)">	
 	</div>
-	<div id='selector_asistel' class='selector' onmouseover="cambia_img(this.id)">		
-	</div>	
-	<div id='selector_semonline' class='selector' onmouseover="cambia_img(this.id)">		
+	<div id='selector_pdf' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(4)">		
+	</div>		
+	<div id='selector_semonline' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(33)">		
 	</div>
-	<div id='selector_carpeta' class='selector' onmouseover="cambia_img(this.id)">		
+	<div id='selector_sempersona' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(34)">		
+	</div>
+	<div id='selector_asistel' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(35)">		
+	</div>		
+	<div id='selector_contenido' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(36)" >		
 	</div>
 <?php
 
-	echo "<input type='checkbox' id='chk_formato4' name='chk_formato4' value='4' style='display: none'/>";
 	echo "<input type='checkbox' id='chk_formato1' name='chk_formato1' value='1' style='display: none'/>";
+	echo "<input type='checkbox' id='chk_formato2' name='chk_formato2' value='2' style='display: none'/>";	
+	echo "<input type='checkbox' id='chk_formato4' name='chk_formato4' value='4' style='display: none'/>";
+	echo "<input type='checkbox' id='chk_formato33' name='chk_formato33' value='33' style='display: none'/>";
+	echo "<input type='checkbox' id='chk_formato34' name='chk_formato34' value='34' style='display: none'/>";
+	echo "<input type='checkbox' id='chk_formato35' name='chk_formato35' value='35' style='display: none'/>";
+	echo "<input type='checkbox' id='chk_formato36' name='chk_formato36' value='36' style='display: none'/>";
 	echo "</form>"; 
 ?>
 </div>
@@ -127,7 +130,7 @@
 </div>
 
 <script type="text/javascript">
-	function cambia_img(id){
+	function cambia_img(id){		
 		var matimg = id.split("_");
 		if(matimg[1]){
 			$('#imagen_thumb').attr('src', '<?php echo TIENDA  ?>images/kiosco_idc_'+ matimg[1] +'.png')
@@ -139,7 +142,7 @@
 				case "asisprint": 	$('#titulo_formato').text('Paquete Integral IDC')
 				    				break;
 				    				
-				case "contenido": 	$('#titulo_formato').html('<span style="font-size: 18px">Suscripción al boletín impreso</span>')
+				case "contenido": 	$('#titulo_formato').html('IDC Online')
 				    				break;
 				
 				case "sempersona": 	$('#titulo_formato').text('Seminario Presencial')

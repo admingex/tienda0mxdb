@@ -1,13 +1,13 @@
 <link href='<?php echo TIENDA ?>css/viewlet-detalle-suscripcion.css' rel='stylesheet' type="text/css" />
 <?php	
 	//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
-	if (file_exists("./r_images/".$detalle_promocion->url_imagen)){
+	//if (file_exists("./r_images/".$detalle_promocion->url_imagen)){
 		$src_imagen = TIENDA ."r_images/".$detalle_promocion->url_imagen;
 		$logo = TIENDA."l_images/".$detalle_promocion->url_imagen;		
-	} else {
-		$src_imagen = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
-		$logo = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
-	}
+	//} else {
+	//	$src_imagen = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+	//	$logo = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+	//}
 ?>
 
 <div id="viewlet-detalle-suscripcion">
@@ -31,7 +31,7 @@
 			<div class="bloque-left">
 				<img src="<?php echo $logo; ?>" />
 				
-				<!--<div class="back-rayado" style="padding: 10px">enviar a un amigo</div>-->s
+				<!--<div class="back-rayado" style="padding: 10px">enviar a un amigo</div>-->
 				<div class="back-rayado">
 					<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value="añadir al carrito" class="boton-anadir-carrito" onclick="anadir_carrito(<?php echo $carrito ;?>)"/>
 				</div>

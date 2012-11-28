@@ -35,9 +35,9 @@
 		<div class="bloque-left">
 			<img src="<?php echo $logo; ?>" />
 			<div class='selects'>
-				<!--<div class="indicaciones">Numero de lugares</div>-->
-				<div class="styled-select">
-					<div class="cont-select"> 
+				<div class="indicaciones">Numero de lugares</div>
+				<div class="styled-select">					
+					<div class="#cont-select"> 
 						<select name="cantidad" class="styled" >
 							<?php 
 							for ($in=1; $in<=10; $in++)
@@ -54,8 +54,10 @@
 				<input type="submit" id="btn_comprar_ahora" name="btn_comprar_ahora" value="Comprar ahora" class="boton-comprar-ahora"/>
 			</div>	
 		</div>
-		<div class="bloque-middle" style="width: 280px">
-			<iframe width="320px" height="240px" src="http://www.youtube.com/embed/ptO63I9jzZ0" frameborder="0" allowfullscreen></iframe>	
+		<div class="bloque-middle" style="width: 280px; text-align: center">
+			<?php
+				echo "<img src ='".$src_video."' />"; 
+			?>				
 		</div>
 		<div class="bloque-right" style="width: 300px">
 			<div id='descripcion-promo' class="descripcion3">

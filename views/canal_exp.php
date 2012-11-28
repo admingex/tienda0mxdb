@@ -62,14 +62,14 @@
 	echo "<form id='form_filtro_formatos' method='post' action='".TIENDA."publicacion/ofertas/".$id_publicacion."'>";				
 ?>	
 	<img src="<?php echo TIENDA?>images/kiosco_arbol_exp.png" alt='contenido_idc' />
-	<div id='selector_pdf' class='selector' onmouseover="cambia_img(this.id)" >		
+	<div id='selector_pdf' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(3)">		
 	</div>	
 	<div id='selector_asisprint' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(1)">		
 	</div>		
 	
 <?php
 
-	echo "<input type='checkbox' id='chk_formato4' name='chk_formato4' value='4' style='display: none'/>";
+	echo "<input type='checkbox' id='chk_formato3' name='chk_formato3' value='3' style='display: none'/>";
 	echo "<input type='checkbox' id='chk_formato1' name='chk_formato1' value='1' style='display: none'/>";
 	echo "</form>"; 
 ?>

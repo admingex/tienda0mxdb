@@ -13,9 +13,12 @@
 		$url_breadcum 	= (isset($info_categoria)) 	? site_url("categoria/".$info_categoria->id_categoriaSi) : NULL;
 		$bread_cat 		= (!empty($url_breadcum))	? " <a href='$url_breadcum'> ".ucwords(strtolower($info_categoria->nombreVc))."</a><div class='triangulo-negro-der'></div>" : '';
 		
+		if(!$url_breadcum){
+			$url_breadcum = $id_publicacion;	
+		}		
 		//la ruta de la publicación va siempre en este caso
-		//$bread_pub		= " <a href=''>".ucwords(strtolower($info_publicacion->nombreVc))."</a></h3></div>";
-		$bread_pub		= "<div class='noref'>" . $info_publicacion->nombreVc . "</div>";
+		$bread_pub		= " <a href='$url_breadcum'>".ucwords(strtolower($info_publicacion->nombreVc))."</a></h3></div>";
+		//$bread_pub		= "<div class='noref'>" . $info_publicacion->nombreVc . "</div>";
 		
 		//breadcum final
 		echo "<div id='breadcrumbs'><a href='".site_url("home")."'>Home</a><div class='triangulo-negro-der'></div>". $bread_cat . $bread_pub . "</div>";

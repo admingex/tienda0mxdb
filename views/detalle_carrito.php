@@ -109,12 +109,24 @@ if (isset($_SESSION['carrito'])) {
 		echo "</div>
       		  <div id='totales'>
           	  	<div id='pleca_totales'>
+              	</div>
+              	<div id='total'>
+              		<div class='total-right'>                  		
+                  		<div class='blanco'>subtotal</div>
+                  		<div class='rojo'>$".number_format($total,2,".",",")."</div>
+              		</div>
               	</div>  
+              	<div id='total'>
+              		<div class='total-right'>                  		
+                  		<div class='blanco'>IVA</div>
+                  		<div class='rojo'>$".number_format($iva_compra,2,".",",")."</div>
+              		</div>
+              	</div>
               	<div id='total'>
               		<div class='total-right'>
                   		<div id='cuenta-detalle-carrito' class='carrito'>".$na."</div>
                   		<div class='blanco'>total</div>
-                  		<div class='rojo'>$".number_format($total,2,".",",")."</div>
+                  		<div class='rojo'>$".number_format(($total+$iva_compra),2,".",",")."</div>
               		</div>
               	</div>   
               	<div id='botones'>
