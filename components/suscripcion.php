@@ -4,6 +4,7 @@
 	//para pasar a pagar en la plataforma de pagos, es la acción por defecto:
 	$action_pagos_inicial = ECOMMERCE."api/". $promo_inicial->id_sitio . "/" . $promo_inicial->id_canal . "/" . $promo_inicial->id_promocion . "/pago";
 	$onclick_action_pagos_inicial = "document.comprar_promocion" . $promo_inicial->id_promocion . ".action='" . $action_pagos_inicial . "'; ";
+	$inicial_p=0;
 	/*			
 	echo "<pre>";
 		    print_r($detalles_promociones);
@@ -19,7 +20,7 @@
 	var form_submit = "document.comprar_promocion" + id_ant;			
 	//iniciales
 		
-	function cambia_boton(id) {		
+	function cambia_boton(id) {				
 		//if (document.getElementById(id_ant)) {
 			//limpia la selección anterior
 			//document.getElementById(id_ant).innerHTML = '';
@@ -67,6 +68,21 @@
 		submit_pagos="''";
 		$("#btn_agregar_carrito").attr("onclick", submit_carrito);
 		$("#btn_comprar_ahora").attr("onclick", submit_pagos);
+	}
+	
+	function cambia_select(mx){
+		//alert (mx);
+		
+		if(mx == "MX"){			
+			$("#selmx").show();
+			$("#selusd").hide();					
+		}
+		if(mx == "USD"){
+			$("#selusd").show();
+			$("#selmx").hide();												
+		}
+			
+				
 	}
 </script>
 
@@ -136,7 +152,7 @@
 						if($detalle->moneda=="MX")
 							$mx.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda." $op>".$detalle->descripcion_promocion."</option>";
 												
-						if($detalle->moneda=="USD")
+						else
 							$usd.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda." $op>".$detalle->descripcion_promocion."</option>";																			
 					}
 					echo "<div id='selmx' class='styled-select'>
@@ -236,8 +252,9 @@
 						print_r($detalle);
 					echo "</pre>";
 					*/
-					if ($promo_inicial->id_promocion == $detalle->id_promocion)
+					if ($promo_inicial->id_promocion == $detalle->id_promocion){
 						$class_radio = "class='radio_selected'";
+					}	
 			?>
 									
 					<div class="hidden" id='descripcion<?php echo $detalle->id_promocion ?>'><?php echo $detalle->descripcion_promocion; ?></div>
@@ -247,6 +264,10 @@
 					<div class="hidden" id='precio<?php echo $detalle->id_promocion ?>'><?php echo number_format($detalle->costo,2, ".", ",")."&nbsp;".$detalle->moneda; //Precio y descuento aplicado sobre precio de portada?></div>				
 				
 			<?php
+					if($inicial_p==0){
+						echo "<script>cambia_select('".$detalle->moneda."');</script>";
+						$inicial_p = 1;						
+					}		
 				}
 			?>			
 		<!--
@@ -283,3 +304,6 @@
 	</div>						
 				
 
+<?php 
+echo "->".$usd;
+?>

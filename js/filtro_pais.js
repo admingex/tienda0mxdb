@@ -1,9 +1,7 @@
 $(document).ready(function() {
 /*-PARA CARGAR LOS MX AL CARGAR LA PAGINA -*/
 fmx=$('option.MX:first').attr("id");
-$("#selusd").hide();
-cambia_boton(fmx);
-
+fmx=$('option.MX:first').attr("id");
 	
 	$("#sel_pais").change(function(){
 			
@@ -34,5 +32,9 @@ cambia_boton(fmx);
 	$("#sel_b2b").change(function(){
 		document.enviar_tipo_suscripcion.submit();			
 	});	
+		
 				
 });
+
+
+
