@@ -38,10 +38,10 @@
 		$("#btn_comprar_ahora").attr("onclick", submit_pagos);
 		$("#btn_agregar_carrito").attr("onclick", submit_carrito);	
 		  					
-		$('#precio_promo').text('$'+$('#precio'+id).text());
-		$('#descripcion-promo').text($('#descripcion'+id).text());		
-		$('#ejemplares-promo').text($('#ejemplares'+id).text());
-		$('#descripcion-larga').text($('#texto-oferta'+id).text());	
+		$('#precio_promo').html('$'+$('#precio'+id).html());
+		$('#descripcion-promo').html($('#descripcion'+id).html());		
+		$('#ejemplares-promo').html($('#ejemplares'+id).html());
+		$('#descripcion-larga').html($('#texto-oferta'+id).html());	
 			
 		//indica cuál es el que está selceccionado
 		id_ant = id;
@@ -80,6 +80,11 @@
 		$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
 		$logo = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
 	}
+	
+	$op='';
+	if(!strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")) {	
+		$op = "style='background-color: #FFF; color: #000'";
+	}
 ?>
 <div id="viewlet-detalle-suscripcion">
 	    <div class="bloque-left">	    	
@@ -97,14 +102,13 @@
 			<div class='selects'>	
 				<div class="styled-select">	
 					<div class="cont-select">				
-						<select name="sel_pais" id="sel_pais" >
+						<select name="sel_pais" id="sel_pais">
 						<?php 
 						$antvalor='ads';
-						foreach($amoneda as $valor){ 
-					
+						foreach($amoneda as $valor){ 							
 							if($antvalor !=$valor){				
 						?>
-							<option value="<?php echo $valor;?>" <?php if($valor=='MX') echo "selected='selected'"; ?> >
+							<option value="<?php echo $valor;?>" <?php if($valor=='MX') echo "selected='selected'"; echo $op?> >
 							<?php 
 							if($valor=='MX')
 								echo 'México';
@@ -123,16 +127,17 @@
 					$sel='';
 					$usd='';
 					$mx = '';
+					
 					foreach ($detalles_promociones as $detalle) {
 												
 						if($detalle->id_promocion == $promo_inicial->id_promocion)
 						    $sel = "selected='selected'";
 						
 						if($detalle->moneda=="MX")
-							$mx.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda.">".$detalle->descripcion_promocion."</option>";
+							$mx.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda." $op>".$detalle->descripcion_promocion."</option>";
 												
 						if($detalle->moneda=="USD")
-							$usd.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda.">".$detalle->descripcion_promocion."</option>";																			
+							$usd.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda." $op>".$detalle->descripcion_promocion."</option>";																			
 					}
 					echo "<div id='selmx' class='styled-select'>
 					          <div class='cont-select'>
@@ -159,10 +164,10 @@
 					<div class="cont-select">								
 						<form name="enviar_tipo_suscripcion" action="<?php echo site_url('B2B/ptienda.php') ?>" method="POST">
 							<select name='tipo_suscripcion' class="styled" id='sel_b2b'>
-								<option value=''>Selecciona opción</option>
-								<option value='nva_<?php echo $info_publicacion->id_publicacionSi;?>'>Suscripción nueva</option>
-								<option value='ren_<?php echo $info_publicacion->id_publicacionSi;?>'>Renovación</option>
-								<option value='can_<?php echo $info_publicacion->id_publicacionSi;?>'>Cancelar</option>
+								<option value='' <?php echo $op;?>>Selecciona opción</option>
+								<option value='nva_<?php echo $info_publicacion->id_publicacionSi;?>' <?php echo $op;?>>Suscripción nueva</option>
+								<option value='ren_<?php echo $info_publicacion->id_publicacionSi;?>' <?php echo $op;?>>Renovación</option>
+								<option value='can_<?php echo $info_publicacion->id_publicacionSi;?>' <?php echo $op;?>>Cancelar</option>
 							</select>
 						</form>
 					</div>								

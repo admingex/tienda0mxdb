@@ -1,8 +1,10 @@
 <?php
 	session_start();
     require('./templates/header.php');
-	$ip="http://10.177.78.54/subir_tienda/publicacion/detalle/";	
-	$revista=$_SESSION['lugarTienda'];
+	//$ip="http://10.177.78.54/subir_tienda/publicacion/detalle/";	
+	$ip="";
+	//$revista=$_SESSION['lugarTienda'];
+	$revista="";
 	//session_unset(); 
 	//session_destroy();
 ?>

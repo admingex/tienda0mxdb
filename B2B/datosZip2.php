@@ -4,9 +4,9 @@ $pa=$_REQUEST['items'];
 $i=0;
 
 
-$host="10.177.73.120";
-$usuario="ecommerce_user";
-$password="ecommerce";
+$host="10.43.29.196";
+$usuario="cms_user";
+$password="3xp4n5i0n";
 $conectar=mysql_connect($host,$usuario,$password);
 mysql_select_db("cms0mxdb",$conectar);
 

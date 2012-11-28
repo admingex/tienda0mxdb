@@ -226,7 +226,7 @@ document.getElementById('carlos').value=products4[2].firstChild.data;
 			<option value=''>(seleccione una opción)</option>
 			
 			<script language="php">
-			mysql_connect ("10.177.73.120","ecommerce_user","ecommerce");
+			mysql_connect ("10.43.29.196","cms_user","3xp4n5i0n");
 			@mysql_query("SET NAMES 'utf8'");
 			$consulta=mysql_db_query("cms0mxdb","select * from CMS_CatEstado");
 			while($arreglo=mysql_fetch_array($consulta))

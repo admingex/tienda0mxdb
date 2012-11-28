@@ -96,8 +96,6 @@ else{
 		//echo "insercion lista";
 		//echo "aplica";
 		}
-		
-	}		
 		header('location:Sendmail.php');
 		//mandamos el mail
 		$headers="From: servicioaclientes@expansion.com.mx";
@@ -109,5 +107,7 @@ else{
 		 
 		// Finalmente, destruye la sesi�n
 		//session_destroy();
+	}		
+		
 
 ?>

@@ -63,10 +63,9 @@ class Registro_Controller {
 															
 					$this->crear_sesion($clie['id_cliente'], $this->cliente_info['salutation'], $this->cliente_info['email']);	//crear sesion,
 					//se va a revisar el inicio de sesión
-					$url = ''; 
-					echo 'registrado';
-					exit;
-					//header("Location: $url", TRUE, 302);
+					$url = TIENDA; 										
+					header("Location: $url", TRUE, 302);
+					
 				} else {
 					//echo "Cliente NO registrado";
 					//exit;
