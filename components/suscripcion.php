@@ -264,10 +264,9 @@
 					<div class="hidden" id='precio<?php echo $detalle->id_promocion ?>'><?php echo number_format($detalle->costo,2, ".", ",")."&nbsp;".$detalle->moneda; //Precio y descuento aplicado sobre precio de portada?></div>				
 				
 			<?php
-					if($inicial_p==0){
-						echo "<script>cambia_select('".$detalle->moneda."');</script>";
-						$inicial_p = 1;						
-					}		
+					
+						echo "<script>cambia_select('".$detalle->moneda."'); </script>";
+						echo "<script>cambia_boton(".$detalle->id_promocion."); </script>";							
 				}
 			?>			
 		<!--
@@ -301,9 +300,4 @@
 		-->
 		
 		
-	</div>						
-				
-
-<?php 
-echo "->".$usd;
-?>
+	</div>								
