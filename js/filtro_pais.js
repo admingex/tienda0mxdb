@@ -1,7 +1,18 @@
 $(document).ready(function() {
 /*-PARA CARGAR LOS MX AL CARGAR LA PAGINA -*/
-fmx=$('option.MX:first').attr("id");
-fmx=$('option.MX:first').attr("id");
+
+if($('option.MX:first').attr("id")){
+	$("#selmx").show();
+	$("#selusd").hide();
+	cambia_boton($('option.MX:first').attr("id"));		
+}
+else{
+	$("#selusd").show();
+	$("#selmx").hide();
+	cambia_boton($('option.USD:first').attr("id"));		
+}
+
+//fmx=$('option.MX:first').attr("id");
 	
 	$("#sel_pais").change(function(){
 			

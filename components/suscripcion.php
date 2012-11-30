@@ -265,7 +265,7 @@
 				
 			<?php
 					
-						echo "<script>cambia_select('".$detalle->moneda."'); </script>";
+						//echo "<script>cambia_select('".$detalle->moneda."'); </script>";
 						echo "<script>cambia_boton(".$detalle->id_promocion."); </script>";							
 				}
 			?>			
