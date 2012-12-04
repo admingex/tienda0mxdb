@@ -27,6 +27,10 @@
 		    "<input type='hidden' name='moneda' value='".$detalle_promocion->moneda."' />\n" .
 		    "<input type='hidden' name='iva' value='".$detalle_promocion->taxable."' />\n" .
 		    "<input type='hidden' name='cantidad' value='1' />\n";
+			if (isset($_SESSION['datos_login'])) {
+				$datos_login = $_SESSION['datos_login'];
+				echo "<textarea name='datos_login' style='display: none'>".$datos_login."</textarea>";	
+			}	
 	?>
 			<div class="bloque-left">
 				<img src="<?php echo $logo; ?>" />

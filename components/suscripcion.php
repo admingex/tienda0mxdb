@@ -146,8 +146,8 @@
 					
 					foreach ($detalles_promociones as $detalle) {
 												
-						if($detalle->id_promocion == $promo_inicial->id_promocion)
-						    $sel = "selected='selected'";
+						//if($detalle->id_promocion == $promo_inicial->id_promocion)
+						//    $sel = "selected='selected'";
 						
 						if($detalle->moneda=="MX")
 							$mx.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda." $op>".$detalle->descripcion_promocion."</option>";
@@ -155,6 +155,7 @@
 						else
 							$usd.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda." $op>".$detalle->descripcion_promocion."</option>";																			
 					}
+					echo "<div class='descripcion3'>Selecciona Promoción</div>";
 					echo "<div id='selmx' class='styled-select'>
 					          <div class='#cont-select'>
 						      	<select name='promos' onchange=\"cambia_boton(this.value)\">	
@@ -242,7 +243,12 @@
 					    "<input type='hidden' name='precio' value='".$detalle->costo."' />\n" .
 					    "<input type='hidden' name='moneda' value='".$detalle->moneda."' />\n" .
 					    "<input type='hidden' name='iva' value='".$detalle->taxable."' />\n" .
-					    "<input type='hidden' name='cantidad' value='1' />\n					     
+					    "<input type='hidden' name='cantidad' value='1' />\n";
+						if (isset($_SESSION['datos_login'])) {
+							$datos_login = $_SESSION['datos_login'];
+							echo "<textarea name='datos_login' style='display: none'>".$datos_login."</textarea>";	
+						}											     	
+					echo "
 					</form>";
 					
 					//promoción seleccionada inicialmente:

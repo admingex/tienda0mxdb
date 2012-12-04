@@ -60,7 +60,7 @@
             <h1><a href="<?php echo TIENDA;?>">Kiosco</a></h1>
         </header>  
         <div id='header_tienda'>
-        	<a href="https://pagos.grupoexpansion.mx/pagina/mostrar/contacto" target="new">
+        	<a href="<?php echo TIENDA ?>/templates/contacto.html" target="new">
 			    <div id='cont'></div>		
 			</a>		
 			<a href="<?php echo site_url('carrito.php');?>">
