@@ -41,8 +41,8 @@ if (isset($_SESSION['carrito'])) {
 				$img1 = str_replace("r_images", "l_images", $ultimo['imagenVc']);						
 				
 				echo "<div class='img-big'>";
-				echo "    <img src='".$ultimo['imagenVc']."' alt='".$ultimo['imagenVc']."' />";
-				echo "    <img src='".$img1."' alt 'logo'/>";			
+				echo "    <img src='".TIENDA."r_images/".$ultimo['imagenVc']."' alt='".$ultimo['imagenVc']."' />";
+				echo "    <img src='".TIENDA."l_images/".$img1."' alt 'logo'/>";			
 				echo "</div>";	
 			########		
 															
@@ -52,17 +52,17 @@ if (isset($_SESSION['carrito'])) {
 				
 			foreach ($_SESSION['carrito'] as $k => $v) {
 				    // obtener imagen logo revista
-					$img1 = str_replace("r_images", "l_images", $v['imagenVc']);					
+					//$img1 = str_replace("r_images", "l_images", $v['imagenVc']);					
 					echo "	<div>
 						        <ul>
 						            <li>
 						            	<div>
-						            		<img src='".$v['imagenVc']."' alt='".$v['imagenVc']."' height='155px' width='115px'/>
+						            		<img src='".TIENDA."r_images/".$v['imagenVc']."' alt='".$v['imagenVc']."' height='155px' width='115px'/>
 						            	</div>	
 						            </li>
 						            <li style='overflow: hidden; height: 165px; position: relative; display: block;'>						            	
 						            	<div class='descripcion_producto'>
-						            	    <img src='".$img1."' alt 'logo'/>";
+						            	    <img src='".TIENDA."l_images/".$v['imagenVc']."' alt 'logo'/>";
 											if($v['cantidad']>1){
 						            	    	echo "<div class='descripcion3'>".$v['cantidad']." lugares</div>";
 											}

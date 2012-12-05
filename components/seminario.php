@@ -26,7 +26,7 @@
 		echo		
 			"<input type='hidden' name='guidx' value='".API::GUIDX."'/>\n" . 
 			"<input type='hidden' name='guidz' value='".API::guid()."'/>\n". 
-		    "<input type='hidden' name='imagen' value='".$src_video."' />\n" .
+		    "<input type='hidden' name='imagen' value='".$detalle_promocion->url_imagen."' />\n" .
 		    "<input type='hidden' name='descripcion' value='". $detalle_promocion->descripcion_promocion."' />\n" .
 		    "<input type='hidden' name='precio' value='".$detalle_promocion->costo."' />\n" .
 		    "<input type='hidden' name='moneda' value='".$detalle_promocion->moneda."' />\n" .

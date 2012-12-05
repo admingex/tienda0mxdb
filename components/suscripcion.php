@@ -238,7 +238,7 @@
 					<form id='comprar_promocion".$detalle->id_promocion."' name='comprar_promocion" . $detalle->id_promocion . "' action='" . $action_pagos . "' method='post'>".
 						"<input type='hidden' name='guidx' value='".API::GUIDX."' />\n" . 
 						"<input type='hidden' name='guidz' value='".API::guid()."' />\n". 
-					    "<input type='hidden' name='imagen' value='".$src."' />\n" .
+					    "<input type='hidden' name='imagen' value='".$detalle->url_imagen."' />\n" .
 					    "<input type='hidden' name='descripcion' value='". $detalle->descripcion_promocion."' />\n" .
 					    "<input type='hidden' name='precio' value='".$detalle->costo."' />\n" .
 					    "<input type='hidden' name='moneda' value='".$detalle->moneda."' />\n" .
