@@ -26,9 +26,7 @@
 	$fb = $_GET['fb'];
 	$s = $_GET['s'];
 	$data["criterios_ordenacion"] = catalogo_criterios_ordenacion();	//para mostraren el combo de la búsqueda
-	if($s=='navidad'){
-		$fb='promociones_especiales';
-	}
+	
 	//echo $fb;
 	/****************************************************************************************************************************************/			
 	switch ($fb) {
@@ -49,6 +47,7 @@
 					$id_promocion = $promo->id_promocion;
 					$data['id_publicacion'] = property_exists(get_class($promo), 'id_publicacion') ? $promo->id_publicacion: 0;
 					//sacar las promociones del archivo
+					//echo $id_promocion;
 					$path_detalle_promo = "./json/detalle_promociones/detalle_promo_".$id_promocion.".json";
 					
 					//echo "<br>". $path_detalle_promo." - ".file_exists($path_detalle_promo);

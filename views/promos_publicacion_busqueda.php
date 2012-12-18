@@ -2,11 +2,11 @@
 	/** 
 	 * Mostrará el listado de promocionesde una publicación que tiene promociones en diferentes formatos,
 	 * además de permitir filtrarlas por formato y precio 
-	/*	 
+	/*	
 	echo "<pre>"; 
 	print_r($ofertas_publicacion);
 	echo "</pre>";
-	*/
+	*/ 
 	// formación del breadcum correspondiente
 	/*
 	if (isset($info_publicacion)) {
