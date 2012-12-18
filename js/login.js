@@ -100,7 +100,7 @@ function consulta_mail(mail) {
 		success: function(data) {			
 			if (data.mail) {
 				cte_reg=document.getElementById('tipo_inicio2').checked;
-				if (!cte_reg && data.mail==1) {
+				if (!cte_reg && data.mail > 1) {
 					$('#email').focus().after("<div class='error2'>Esta dirección de correo ya se encuentra registrada</div>");
 				}
 			}

@@ -25,8 +25,8 @@ if($_SESSION['paso']==1){
 	$_SESSION['numbers'][]=$_POST['email'];
 	$emailenvio=$_POST['email'];
 	$_SESSION['numbers'][]=$_POST['b2bSourcecode'];
-	/*
-	echo "<pre>";
+	
+	/*echo "<pre>";
 	print_r($_SESSION['numbers']);
 	echo "</pre>";*/
 	header('location:manuf_nuevo_paso2.php');
@@ -34,7 +34,7 @@ if($_SESSION['paso']==1){
 if($_SESSION['paso']==3){
 	header('location:Sendmail.php');
 }
-else{
+if($_SESSION['paso']==2){
 		$ac=$_POST['actividad'];
 		//insertamos en la base de datos de paso 1
 		//redireccionamos a la pantalla de listo
@@ -138,18 +138,19 @@ else{
 		//echo "insercion lista";
 		//echo "aplica";
 		}
+		//mandamos el mail
+		$headers="From: servicioaclientes@expansion.com.mx";
+		//mail($emailenvio.',mercadotecnia@expansion.com.mx', "=?UTF-8?B?".$asunto."?=", $mensaje, $headers)
 		
+		
+		//Para destruir una variable en espec�fico
+		//unset($_SESSION['username']);
+		 
+		// Finalmente, destruye la sesi�n
+		//session_destroy();
+		header('location:Sendmail.php');
+				
 	}		
 		
-//mandamos el mail
-$headers="From: servicioaclientes@expansion.com.mx";
-//mail($emailenvio.',mercadotecnia@expansion.com.mx', "=?UTF-8?B?".$asunto."?=", $mensaje, $headers)
 
-
-//Para destruir una variable en espec�fico
-//unset($_SESSION['username']);
- 
-// Finalmente, destruye la sesi�n
-//session_destroy();
-header('location:Sendmail.php');
 ?>

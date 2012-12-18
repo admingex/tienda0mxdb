@@ -11,7 +11,7 @@
 		<section class="contenedor">	
 		
 		
-<form ACTION="manuf_nuevo_paso.php" name=frmcaja METHOD="post" onSubmit="return checkFieldsSEIS(this)">
+<form ACTION="manuf_nuevo_paso.php" name="frmcaja" METHOD="post" onSubmit="return checkFieldsSEIS(this)">
 <table width="100%">
 <tr>
       <td colspan="2" class="instrucciones">

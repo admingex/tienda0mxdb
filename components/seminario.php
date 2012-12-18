@@ -26,18 +26,22 @@
 		echo		
 			"<input type='hidden' name='guidx' value='".API::GUIDX."'/>\n" . 
 			"<input type='hidden' name='guidz' value='".API::guid()."'/>\n". 
-		    "<input type='hidden' name='imagen' value='".$src_video."' />\n" .
+		    "<input type='hidden' name='imagen' value='".$detalle_promocion->url_imagen."' />\n" .
 		    "<input type='hidden' name='descripcion' value='". $detalle_promocion->descripcion_promocion."' />\n" .
 		    "<input type='hidden' name='precio' value='".$detalle_promocion->costo."' />\n" .
 		    "<input type='hidden' name='moneda' value='".$detalle_promocion->moneda."' />\n" .
-		    "<input type='hidden' name='iva' value='".$detalle_promocion->taxable."' />\n";		    
+		    "<input type='hidden' name='iva' value='".$detalle_promocion->taxable."' />\n";
+			if (isset($_SESSION['datos_login'])) {
+				$datos_login = $_SESSION['datos_login'];
+				echo "<textarea name='datos_login' style='display: none'>".$datos_login."</textarea>";	
+			}			    
 	?>
 		<div class="bloque-left">
 			<img src="<?php echo $logo; ?>" />
 			<div class='selects'>
-				<!--<div class="indicaciones">Numero de lugares</div>-->
-				<div class="styled-select">
-					<div class="cont-select"> 
+				<div class="indicaciones">Numero de lugares</div>
+				<div class="styled-select">					
+					<div class="#cont-select"> 
 						<select name="cantidad" class="styled" >
 							<?php 
 							for ($in=1; $in<=10; $in++)
@@ -54,8 +58,10 @@
 				<input type="submit" id="btn_comprar_ahora" name="btn_comprar_ahora" value="Comprar ahora" class="boton-comprar-ahora"/>
 			</div>	
 		</div>
-		<div class="bloque-middle" style="width: 280px">
-			<iframe width="320px" height="240px" src="http://www.youtube.com/embed/ptO63I9jzZ0" frameborder="0" allowfullscreen></iframe>	
+		<div class="bloque-middle" style="width: 280px; text-align: center">
+			<?php
+				echo "<img src ='".$src_video."' />"; 
+			?>				
 		</div>
 		<div class="bloque-right" style="width: 300px">
 			<div id='descripcion-promo' class="descripcion3">

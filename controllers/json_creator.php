@@ -308,17 +308,10 @@ class Json_Creator {
 	public function generar_json_alianza() {
 		//recuperar las promociones de la base de datos
 		$pc = $this->modelo->get_promos_alianza();
-		
-		//$this->promos_carrusel = json_encode(array("promos_carrusel" => $pc));
-		//escribir las promociones en un archivo json
-		//self::Write_To_Json_File($this->archivo_carrusel_home, $this->promos_carrusel);
-		
-		//echo "     Detalle de Promociones para el carrusel..................</br><br/>";
+	
 		$this->generar_json_promos_detalle($pc);
 		
-		/*echo "<pre>";
-		echo json_encode($this->promos_carrusel);
-		echo "</pre>";*/
+		
 		//return $this->promos_carrusel;
 	}
 	

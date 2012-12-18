@@ -42,8 +42,13 @@
 			switch ($_GET['accion']) {
 				case 'consulta_mail':
 									//requiere $_GET['mail]
-									//if (filter_var($_GET['mail'], FILTER_VALIDATE_EMAIL))																									
+									if (filter_var($_GET['mail'], FILTER_VALIDATE_EMAIL)){																									
 										$admin_controller->consulta_mail($_GET['mail']);
+									}	
+									else{
+										$value['mail']=0;
+										echo json_encode($value);	
+									}
 																											
 									break;
 				case 'cliente_id': 

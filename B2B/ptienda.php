@@ -1,21 +1,17 @@
 <?php
 session_start();
 
-$ip="https://tienda.grupoexpansion.mx/";
+$ip="https://Kiosco.grupoexpansion.mx/";
 
-if(!isset($_REQUEST['tipo_suscripcion'])){
+if(!isset($_POST['tipo_suscripcion'])){	
 	//echo "nasdas";
 	header('location:'.$ip.'categoria/5');
 }
 else{
-	$publicacion=$_REQUEST['tipo_suscripcion'];
-	if($publicacion==''){
-		header('location:'.$ip.'categoria/5');
-	}
-	else{
-		$publicacion=explode("_",$_REQUEST['tipo_suscripcion']);
-		echo $publicacion[0]."<br>";
-		echo $publicacion[1];
+	if(preg_match('/^[A-Z0-9_]{1,10}$/i', $_POST['tipo_suscripcion']) ){
+		//echo "valido";
+		//exit;		
+		$publicacion=explode("_",$_POST['tipo_suscripcion']);		
 		$_SESSION['lugarTienda']=$publicacion[1];
 		/*
 		 * 7 - Energia 360
@@ -28,17 +24,17 @@ else{
 		 */
 		switch ($publicacion[0]) {
 			case "nva":
-				echo "entro nva";
+				//echo "entro nva";
 				header('location:'.$ip.'B2B/'.$publicacion[1].'_nva.php');
 				break;
 				
 			case 'ren':
-				echo "entro ren";
+				//echo "entro ren";
 				header('location:'.$ip.'B2B/'.$publicacion[1].'_ren.php');
 				break;
 				
 			case 'can':
-				echo "entro can";
+				//echo "entro can";
 				header('location:'.$ip.'B2B/'.$publicacion[1].'_can.php');
 				break;
 			
@@ -46,7 +42,14 @@ else{
 				header('location:'.$ip.'categoria/5');
 				break;
 		}
+		
 	}
+	else{
+		//echo "no valido";
+		//exit;		
+		header('location:'.$ip.'categoria/5');
+	}
+	
 }
 
 ?>

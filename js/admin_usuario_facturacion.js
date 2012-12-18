@@ -99,7 +99,7 @@ function listar_dir_facturacion(){
   													 v.cp  + '</td><td>' +  
   													 v.ciudad + '</td><td>' + 
   													 v.estado  + '</td>'+  													 
-  													 '<td valign="top"><div onclick=\"eliminar_dir_facturacion('+ v.id_consecutivoSi +')\"><a href="#">eliminar cuenta</a></div><div onclick=\"editar_dir_facturacion('+ v.id_consecutivoSi +')\"><a href="#">editar cuenta</a></div></td>'+
+  													 '<td valign="top"><div onclick=\"editar_dir_facturacion('+ v.id_consecutivoSi +')\"><a href="#">editar</a></div><div onclick=\"eliminar_dir_facturacion('+ v.id_consecutivoSi +')\"><a href="#">eliminar</a></div></td>'+
   													 '</tr>');          				          				          				          				 
           			});  
           			

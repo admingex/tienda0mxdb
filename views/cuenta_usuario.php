@@ -67,7 +67,7 @@ $(document).ready(function() {
           				$("#tarjetas").append("<tr><td>" + v.descripcionVc + " terminación" + v.terminacion_tarjetaVc  + pe + "</td>" +
           										  "<td>" + v.nombre_titularVc + ' ' + v.apellidoP_titularVc + ' ' + v.apellidoM_titularVc + "</td>" +
           										  "<td>" + v.mes_expiracionVc + '/' + v.anio_expiracionVc + "</td>" +
-          										  "<td><div onclick=\"editar_tc('"+ v.id_TCSi+ "', '"+v.id_tipo_tarjetaSi+ "')\" ><a href='#'>editar cuenta</a></div><div onclick=\"eliminar_tc('"+ v.id_TCSi+ "')\" ><a href='#'>eliminar cuenta</a></div></td>" +          										  
+          										  "<td><div onclick=\"editar_tc('"+ v.id_TCSi+ "', '"+v.id_tipo_tarjetaSi+ "')\" ><a href='#'>editar</a></div><div onclick=\"eliminar_tc('"+ v.id_TCSi+ "')\" ><a href='#'>eliminar</a></div></td>" +          										  
           										  "</tr>");          				          				          				          				 
           			});          			                   			          			    			             			     				      				   			      				          																		             
                 }
@@ -105,7 +105,7 @@ $(document).ready(function() {
           				$("#rfcs").append('<tr><td>'+ v.company + pe +
           				                  '</td><td>' + v.tax_id_number  + 
           				                  '</td><td>' +  v.email + '</td>' +
-          				                  '<td><div onclick=\"eliminar_rs('+ v.id_razonSocialIn +')\"><a href="#">eliminar cuenta</a></div><div onclick=\"editar_rs('+ v.id_razonSocialIn +')\"><a href="#">editar cuenta</a></div></td>'+
+          				                  '<td><div onclick=\"editar_rs('+ v.id_razonSocialIn +')\"><a href="#">editar</a></div><div onclick=\"eliminar_rs('+ v.id_razonSocialIn +')\"><a href="#">eliminar</a></div></td>'+
           				                  '</tr>');          				          				          				          				 
           			});
           			                   			          			    			             			     				      				   			      				          																		             
