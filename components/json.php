@@ -32,6 +32,10 @@
 	$promos_carrusel = $jc->generar_json_carrusel_promos();
 	echo "Promociones para el carrusel..................</br><br/>";
 	
+	/*************************/
+	$promos_carrusel = $jc->generar_json_alianza();
+	echo "Promociones para el aliza..................</br><br/>";
+	
 	$promos_home = $jc->generar_json_home_promos();
 	echo "Promociones para el home..................</br><br/>";
 	
