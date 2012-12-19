@@ -65,7 +65,8 @@
 		</div>
 		<div class="bloque-right" style="width: 300px">
 			<div id='descripcion-promo' class="descripcion3">
-				<?php echo $detalle_promocion->descripcion_promocion;?>	
+				<?php echo $detalle_promocion->descripcion_promocion;?>
+				<?php echo "<br />".$detalle_promocion->texto_oferta;?>	
 			</div>		
 		    <div id='precio_promo' class="precio">
 		    	$<?php echo number_format($detalle_promocion->costo, 2, ".", ","), " ", $detalle_promocion->moneda;?>

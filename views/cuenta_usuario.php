@@ -8,7 +8,7 @@
 var administrador = 'http://localhost/tienda/';
  
 	// se agrega la variable id_cliente_js con el valor del id de cliente para poderla utilizar con javascript
-var id_cliente_js =<?php echo $_SESSION['id_cliente'] ?>
+var id_cliente_js =<?php echo $_SESSION['id_cliente']; ?>
 
 var parametros = {
 	"id_cliente"  : id_cliente_js			
