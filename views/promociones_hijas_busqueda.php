@@ -19,7 +19,7 @@
 	
 	/*Despliega las publicaciones de una categoría*/
 	
-	echo "<pre>";
+	/*echo "<pre>";
 		print_r($promociones_hijas);
 	echo "</pre>";
 	/**/

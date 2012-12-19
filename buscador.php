@@ -24,7 +24,7 @@
 
 	//vista que se cargará dependiendo del número de formatos de la publicación
 	// validmos que los parametros de busqueda contengan 
-	if(preg_match('/^[A-Z0-9áéíóúÁÉÍÓÚÑñ ]{1,30}$/i', $_GET['s']) && preg_match('/^[A-Z0-9áéíóúÁÉÍÓÚÑñ ]{1,30}$/i', $_GET['fb'])) {
+	if(preg_match('/^[A-Z0-9áéíóúÁÉÍÓÚÑñ _]{1,30}$/i', $_GET['s']) && preg_match('/^[A-Z0-9áéíóúÁÉÍÓÚÑñ _]{1,30}$/i', $_GET['fb'])) {
 		$fb = $_GET['fb'];
 		$s = $_GET['s'];
 		$data["criterios_ordenacion"] = catalogo_criterios_ordenacion();	//para mostraren el combo de la búsqueda
