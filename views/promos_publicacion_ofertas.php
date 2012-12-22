@@ -58,4 +58,18 @@
 		include_once('./components/promociones_publicacion.php');
 		//exit;
 	}
+	
+	if(count($ofertas_publicacion->promociones) == 0)
+		echo "<div class='no-items' style='margin: 30px 0px 0px 0px'>Por el momento no hay ninguna promoción</div>";
+	
+	if(count($ofertas_publicacion->promociones) == 1){
+	    $det=end($ofertas_publicacion->promociones);
+				
+		echo "<form id='resulta_1' method='GET' action='".TIENDA."publicacion/".$det->id_publicacion."/promocion/".$det->id_promocion."'>	      	
+	      	      <input type='submit' name='enviar' value='enviar' style='display: none' />
+	          </form>";
+	    //echo  "<script>document.getElementById('resulta_1').submit()</script>";		 	 
+		
+	}
+	
 // fin del archivo de la vista que despliega las promociones de una publicación con más de un formato asociado: "promos_publicacion_ofertas.php"

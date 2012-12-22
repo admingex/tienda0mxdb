@@ -144,7 +144,7 @@
 			$data['moneda'] = '';
 		}						
 		
-		if(array_key_exists('iva', $_POST) && is_integer($_POST['iva'])){
+		if(array_key_exists('iva', $_POST)){
 			$data['iva'] = $_POST['iva'];
 		}								
 		else{

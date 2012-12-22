@@ -99,7 +99,7 @@
 	</div>
 	<div id='selector_pdf' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(4)">		
 	</div>		
-	<div id='selector_semonline' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(33)">		
+	<div id='selector_semonline' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(37)">		
 	</div>
 	<div id='selector_sempersona' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(34)">		
 	</div>
@@ -108,14 +108,14 @@
 	<div id='selector_contenido' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(36)" >		
 	</div>
 <?php
-
+// quite el formato 33 que corresponde a los seminarios online para poner el 37 de especiales IDC
 	echo "<input type='checkbox' id='chk_formato1' name='chk_formato1' value='1' style='display: none'/>";
 	echo "<input type='checkbox' id='chk_formato2' name='chk_formato2' value='2' style='display: none'/>";	
 	echo "<input type='checkbox' id='chk_formato4' name='chk_formato4' value='4' style='display: none'/>";
-	echo "<input type='checkbox' id='chk_formato33' name='chk_formato33' value='33' style='display: none'/>";
 	echo "<input type='checkbox' id='chk_formato34' name='chk_formato34' value='34' style='display: none'/>";
 	echo "<input type='checkbox' id='chk_formato35' name='chk_formato35' value='35' style='display: none'/>";
 	echo "<input type='checkbox' id='chk_formato36' name='chk_formato36' value='36' style='display: none'/>";
+	echo "<input type='checkbox' id='chk_formato37' name='chk_formato37' value='37' style='display: none'/>";
 	echo "</form>"; 
 ?>
 </div>
@@ -151,7 +151,7 @@
 				case "asistel": 	$('#titulo_formato').text('Consultoría Telefónica')
 				    				break;    				    				 					    								
 				
-				case "semonline": 	$('#titulo_formato').text('Seminario en Línea')
+				case "semonline": 	$('#titulo_formato').text('Especiales IDC')
 				    				break;
 				    				
 				case "carpeta": 	$('#titulo_formato').text('Productos')

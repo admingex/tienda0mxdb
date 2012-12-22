@@ -15,7 +15,7 @@ if (isset($_SESSION['carrito'])) {
 			foreach ($_SESSION['carrito'] as $item) {
 				$total += ($item['cantidad'] * $item['precio']);
 				if ($item['iva']) {
-					$iva_compra += $item['precio'] * 0.16;
+					$iva_compra += ($item['cantidad'] * $item['precio']) * 0.16;
 				}
 			}
 			

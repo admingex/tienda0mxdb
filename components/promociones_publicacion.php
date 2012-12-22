@@ -12,10 +12,11 @@ echo "<link type='text/css' href='".TIENDA."css/viewlet-slide-idc.css' rel='styl
 	 * y posibles descuentos de la promoción -esta información se trae del primer artículo de la promoción-,
 	 * de aqu[i se mostrará el detalle final del contenido de la promoción. 
 	 */
-	 /*echo "<pre>";
+	/* 
+	 echo "<pre>";
 	 print_r($ofertas_publicacion->promociones);
-	 echo "<pre>";*/	
-	
+	 echo "<pre>";
+	*/
 	//echo "get: " . $_GET['page'];
 	//Para probar solo le coloque 3
 	

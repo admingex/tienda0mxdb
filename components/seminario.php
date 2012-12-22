@@ -38,6 +38,9 @@
 	?>
 		<div class="bloque-left">
 			<img src="<?php echo $logo; ?>" />
+	<?php
+		if(strstr($detalle_promocion->nombre_formato,'Seminario')){
+	?>		
 			<div class='selects'>
 				<div class="indicaciones">Numero de lugares</div>
 				<div class="styled-select">					
@@ -51,6 +54,9 @@
 					</div>	
 				</div>
 			</div>
+	<?php
+		}
+	?>		
 			<div class="back-rayado">			
 				<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value="añadir al carrito" class="boton-anadir-carrito" onclick="anadir_carrito(<?php echo $carrito ;?>)" class="boton_continuar_compra" />
 			</div>
