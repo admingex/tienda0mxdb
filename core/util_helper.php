@@ -89,7 +89,7 @@
 		
 		//header
 		require('./templates/header.php');
-		
+				
 		//contenido
 		include('./views/'.$vista.'.php');
 		//include('./components/promociones.php');

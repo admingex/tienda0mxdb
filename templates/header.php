@@ -51,6 +51,17 @@
        
 </head>
 <body>
+<!-- ClickTale Top part -->
+<script type="text/javascript">
+var WRInitTime=(new Date()).getTime();
+</script>
+<!-- ClickTale end of Top part -->
+	
+<?php
+	//carga los tags de google
+	require('./views/tags_quien.php');
+?>	
+
 <div id="portal-wrapper">
 <div id="container">
 	
