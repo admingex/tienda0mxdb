@@ -116,10 +116,10 @@
 		?>
 		<div class="pleca_apps">
 			<div class="apps">APPS</div>
-			<a href='http://itunes.apple.com/mx/app/cnnexpansion/id332010537' target="_blank"><div class='links expan'></div></a>
+			<a href='http://itunes.apple.com/mx/app/expansion/id447270447?mt=8' target="_blank"><div class='links expan'></div></a>
 			<a href='https://play.google.com/store/apps/details?id=com.aurasma.skinned.quo_en_vivo' target="_blank"><div class='links quo'></div></a>
 			<a href='http://itunes.apple.com/mx/app/chilango/id474609773' target="_blank"><div class='links chi'></div></a>
-			<a href='http://itunes.apple.com/mx/app/cnnmexico/id492116980' target="_blank"><div class='links cnn'></div></a>						
+			<a href='http://itunes.apple.com/mx/app/cnnexpansion/id332010537' target="_blank"><div class='links cnn'></div></a>						
 		</div>		
 	</div>
 </div>		
