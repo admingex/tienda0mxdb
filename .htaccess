@@ -78,7 +78,7 @@
 	##remove trail slash
 	RewriteRule ^(.+)/$  /$1 [R=301,L]
 	##redirecciona cualquier alfanumerico sin slash
-	RewriteRule ^([^\/][a-zA-Z0-9]*)$ ${mapeo:$1}
+	RewriteRule ^([^\/][a-zA-Z0-9]*)$ ${mapeo:$1} 
 	
 </IfModule>
 
