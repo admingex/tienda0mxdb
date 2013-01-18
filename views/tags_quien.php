@@ -5,7 +5,7 @@ print_r($detalles_promociones);
 echo "</pre>";
 */
 
-
+if(isset($detalles_promociones))
 		foreach($detalles_promociones as $detalle){
 			// oc 94 es para quien				
 			if($detalle->oc_id == 94){

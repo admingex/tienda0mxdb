@@ -1,1 +1,4 @@
-quien	promocion/645
+quien promocion/645
+manufactura categoria/5/publicacion/detalle/3
+energia	categoria/5/publicacion/detalle/17
+elle categoria/2/publicacion/detalle/8
