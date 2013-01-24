@@ -30,7 +30,8 @@
 	 */ 
 	echo "<div class='list_carousel responsive'>
 				<ul id='slider'>"; 
-	foreach($promociones_especiales as $pe){ 
+	foreach($promociones_especiales as $pe){
+		if($pe->publicado==1){ 
 		//echo "<br />->".$i."<-";
 		
 		/*echo "<pre>";
@@ -78,6 +79,7 @@
 	  	</div>";
 		}
 		echo "</li>";
+		}
 		
 	}
 	echo "	</ul>
