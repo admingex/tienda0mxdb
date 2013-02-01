@@ -6,8 +6,8 @@ $(document).ready(function() {
 	var email = $("#email");
 	var passwd = $("#password");
 	var registro = false;
-	var url = "http://localhost/tienda/";
-	var url_ecommerce = "http://localhost/ecommerce/";
+	var url = "http://kiosco/";
+	var url_ecommerce = "http://ecommerce/";
 	
 	$('input').bind("click keypress", function() {
 		$(".error").remove();
@@ -89,7 +89,7 @@ $(document).ready(function() {
 });
 
 function consulta_mail(mail) {
-	var url_ecommerce = "http://localhost/tienda/"
+	var url_ecommerce = "http://kiosco/"
 	$(".error2").remove();
 	$.ajax({
 		type: "GET",

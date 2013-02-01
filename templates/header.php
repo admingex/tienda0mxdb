@@ -48,7 +48,10 @@
     ?>  
     
     <title><?php if (isset($title)) echo $title; else echo "Portal"; ?> - Tienda GEX</title>
-       
+    <?php
+    //carga los tags de ELLE facebook
+	require('./views/tags_elle.php');
+	?>   
 </head>
 <body>
 <!-- ClickTale Top part -->
