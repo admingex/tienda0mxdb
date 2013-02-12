@@ -1,6 +1,6 @@
 function anadir_carrito(nameform, sitio, canal, promocion) {
 		 					
-	var tienda = 'http://localhost/tienda/';	//##c##		
+	var tienda = 'http://kiosco/';	//##c##		
 	
 	var formid = document.getElementById(nameform+promocion);											
 	var parametros = {

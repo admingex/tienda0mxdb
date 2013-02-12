@@ -130,7 +130,7 @@ if (isset($_SESSION['carrito'])) {
               		</div>
               	</div>   
               	<div id='botones'>
-              	  	<a href='".site_url('home')."'>	
+              	  	<a href='".site_url()."'>	
               	  		<div class='seguir-comprando'>
                       		Regresar a la tienda
               	  		</div>
