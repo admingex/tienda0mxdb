@@ -4,12 +4,12 @@
 		margin-left: 20px;				
 	}	
 	
-	#selector_pdf{
+	#selector_pass{
 		top: 282px; 
 		margin-left: 453px;				 	
 	}
 	
-	#selector_asisprint{		 
+	#selector_revista{		 
 		top: 334px; 
 		margin-left: 412px; 			
 	}
@@ -62,9 +62,9 @@
 	echo "<form id='form_filtro_formatos' method='post' action='".TIENDA."publicacion/ofertas/".$id_publicacion."'>";				
 ?>	
 	<img src="<?php echo TIENDA?>images/kiosco_arbol_exp.png" alt='contenido_idc' />
-	<div id='selector_pdf' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(3)">		
+	<div id='selector_pass' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(3)">		
 	</div>	
-	<div id='selector_asisprint' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(1)">		
+	<div id='selector_revista' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(1)">		
 	</div>		
 	
 <?php
@@ -79,7 +79,7 @@
 		seminarios online			
 	</div>
 	<div id='imagen_formato'>
-		<img id='imagen_thumb' src="<?php echo TIENDA  ?>images/kiosco_idc_semonline.png" />
+		<img id='imagen_thumb' src="<?php echo TIENDA  ?>images/kiosco_exp_pass.png" />
 	</div>
 	<div id='pleca_formato'></div>
 </div>
@@ -88,7 +88,7 @@
 	function cambia_img(id){
 		var matimg = id.split("_");
 		if(matimg[1]){
-			$('#imagen_thumb').attr('src', '<?php echo TIENDA  ?>images/kiosco_idc_'+ matimg[1] +'.png')
+			$('#imagen_thumb').attr('src', '<?php echo TIENDA  ?>images/kiosco_exp_'+ matimg[1] +'.png')
 			
 			switch(matimg[1]){
 				case "pdf": 		$('#titulo_formato').text('Venta de Contenido')
