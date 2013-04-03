@@ -68,7 +68,7 @@
 		echo "<form id='resulta_1' method='GET' action='".TIENDA."publicacion/".$det->id_publicacion."/promocion/".$det->id_promocion."'>	      	
 	      	      <input type='submit' name='enviar' value='enviar' style='display: none' />
 	          </form>";
-	    //echo  "<script>document.getElementById('resulta_1').submit()</script>";		 	 
+	    echo  "<script>document.getElementById('resulta_1').submit()</script>";		 	 
 		
 	}
 	

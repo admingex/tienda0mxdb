@@ -17,13 +17,13 @@ width:985px;
 }
 #header-container
 {
-    background:#3c3c3c;
-    background-image: linear-gradient(bottom, #3d3d3d 16%, #151515 100%);
-    background-image: -o-linear-gradient(bottom, #3d3d3d 16%, #151515 100%);
-    background-image: -moz-linear-gradient(bottom, #3d3d3d 16%, #151515 100%);
-    background-image: -webkit-linear-gradient(bottom, #3d3d3d 16%, #151515 100%);
-    background-image: -ms-linear-gradient(bottom, #3d3d3d 16%, #151515 100%);
-    background-image: -webkit-gradient( 	linear, 	left bottom, 	left top, 	color-stop(0.16, #3d3d3d), 	color-stop(1, #151515) );
+    background:#4C4C4C;
+    background-image: linear-gradient(bottom, #4C4C4C 16%, #151515 100%);
+    background-image: -o-linear-gradient(bottom, #4C4C4C 16%, #151515 100%);
+    background-image: -moz-linear-gradient(bottom, #4C4C4C 16%, #151515 100%);
+    background-image: -webkit-linear-gradient(bottom, #4C4C4C 16%, #151515 100%);
+    background-image: -ms-linear-gradient(bottom, #4C4C4C 16%, #151515 100%);
+    background-image: -webkit-gradient( 	linear, 	left bottom, 	left top, 	color-stop(0.16, #4C4C4C), 	color-stop(1, #151515) );
     height:105px;
     overflow:hidden;    
 }

@@ -1,6 +1,7 @@
 <link type="text/css" href="<?php echo TIENDA;?>css/viewlet-slide.css" rel="stylesheet" />
 <div id='contenedor_slide'>
 <?php
+	$promos_enc=0;
 	/*		
 	//paginador	
 	$total = count($promociones_especiales);	
@@ -31,7 +32,8 @@
 	echo "<div class='list_carousel responsive'>
 				<ul id='slider'>"; 
 	foreach($promociones_especiales as $pe){
-		if($pe->publicado==1){ 
+		if($pe->publicado==1){
+		$promos_enc=1;		 
 		//echo "<br />->".$i."<-";
 		
 		/*echo "<pre>";
@@ -41,7 +43,7 @@
 		//$pe = $recorrer[$i];
 		echo "<li>";
 		if(isset($pe->promo_padre)){
-			echo "	<a href='".TIENDA ."promocion_h.php?id_promo_padre=" .$pe->id_promocionIn."'>
+			echo "	<a href='".TIENDA ."promocion_h/" .$pe->id_promocionIn."'>
 						<img src='" . TIENDA . "p_images/".$pe->url_imagen."' width='179px' height='210px'/>
 					</a>		     		
 		     		<div style='display: none'>".$pe->descripcionVc. 
@@ -83,8 +85,13 @@
 		
 	}
 	echo "	</ul>
-				<a id='prev' class='prev' href='#'>&lt;</a>
-				<a id='next' class='next' href='#'>&gt;</a>
+				<a id='prev' class='prev' href='#'> </a>
+				<a id='next' class='next' href='#'> </a>
 			</div>";
 ?>
 </div>
+<?php
+	if($promos_enc == 0){
+		echo "<div class='no-items' style='margin: 30px 0px'>Por el momento no hay ninuguna promoción</div>";
+	}
+?>

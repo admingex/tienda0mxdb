@@ -68,16 +68,15 @@ echo "	<div id='list_carousel'>
 						
 					if(isset($p->promo_padre)){
 						//obtener la información de la categoría que se consulta
-						$url_detalle_promo = TIENDA ."promocion_h.php?id_promo_padre=" .$p->id_promocionIn;
+						$url_detalle_promo = TIENDA ."promocion_h/" .$p->id_promocionIn;
 						//
-						/*
+						
 						echo "	<li>									
 							    	<a href='". $url_detalle_promo ."'>							
 							      		<img src='" .$src."'/>
 							      	</a>							      								      						      					      	
 							    </li>";
-						 * 
-						 */
+						
 					} else{
 							
 						//obtener la información de la categoría que se consulta

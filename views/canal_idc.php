@@ -5,43 +5,48 @@
 	}	
 	
 	#selector_pdf{		
-		top: 247px; 
-		margin-left: 258px; 		
+		top: 255px; 
+		margin-left: 265px; 		
 	}
 	
 	#selector_asisprint{		 
-		top: 288px; 
-		margin-left: 360px; 			
+		top: 296px; 
+		margin-left: 367px; 			
 	}
 	
 	#selector_contenido{
-		top: 387px; 
-		margin-left: 305px;
+		top: 395px; 
+		margin-left: 314px;
 	}
 	
 	#selector_asistel{
-		top: 415px; 
-		margin-left: 375px; 
+		top: 423px; 
+		margin-left: 382px; 
 	}
 	
 	#selector_video{
-		top: 373px; 
-		margin-left: 410px; 
+		top: 381px; 
+		margin-left: 417px; 
 	}
 	
 	#selector_sempersona{
-		top: 287px; 
-		margin-left: 515px;
+		top: 295px; 
+		margin-left: 523px;
 	}
 	
 	#selector_semonline{
-		top: 322px; 
-		margin-left: 448px;
+		top: 330px; 
+		margin-left: 455px;
 	}
 	
 	#selector_carpeta{
-		top: 210px;
-		margin-left: 318px
+		top: 218px;
+		margin-left: 325px
+	}
+	
+	#selector_especial{
+		top: 427px;
+		margin-left: 480px
 	}
 	
 	.selector{
@@ -99,13 +104,15 @@
 	</div>
 	<div id='selector_pdf' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(4)">		
 	</div>		
-	<div id='selector_semonline' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(37)">		
+	<div id='selector_semonline' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(33)">	este	
 	</div>
 	<div id='selector_sempersona' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(34)">		
 	</div>
 	<div id='selector_asistel' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(35)">		
 	</div>		
 	<div id='selector_contenido' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(36)" >		
+	</div>
+	<div id='selector_especial' class='selector' onmouseover="cambia_img(this.id)" onclick="activa_check(37)" >		
 	</div>
 <?php
 // quite el formato 33 que corresponde a los seminarios online para poner el 37 de especiales IDC
@@ -115,6 +122,7 @@
 	echo "<input type='checkbox' id='chk_formato34' name='chk_formato34' value='34' style='display: none'/>";
 	echo "<input type='checkbox' id='chk_formato35' name='chk_formato35' value='35' style='display: none'/>";
 	echo "<input type='checkbox' id='chk_formato36' name='chk_formato36' value='36' style='display: none'/>";
+	echo "<input type='checkbox' id='chk_formato33' name='chk_formato33' value='33' style='display: none'/>";
 	echo "<input type='checkbox' id='chk_formato37' name='chk_formato37' value='37' style='display: none'/>";
 	echo "</form>"; 
 ?>
@@ -151,11 +159,14 @@
 				case "asistel": 	$('#titulo_formato').text('Consultoría Telefónica')
 				    				break;    				    				 					    								
 				
-				case "semonline": 	$('#titulo_formato').text('Especiales IDC')
+				case "semonline": 	$('#titulo_formato').text('Seminario Online')
 				    				break;
 				    				
 				case "carpeta": 	$('#titulo_formato').text('Productos')
-				    				break;    				    										    				 					    
+				    				break;
+				    				
+				case "especial": 	$('#titulo_formato').text('Especiales IDC')
+				    				break;    				    				    										    				 					    
 			}	
 		} 		
 			

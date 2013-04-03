@@ -16,7 +16,12 @@
     <script type="text/javascript" src="<?php echo TIENDA;?>js/home.js"></script>
     <script type="text/javascript" src="<?php echo TIENDA;?>js/carrito.js"></script>
     <script type="text/javascript" src="<?php echo TIENDA;?>js/ui.selectmenu.js"></script>
+    <script src="<?php echo TIENDA;?>js/html5placeholder.jquery.js"></script>
     <script type="text/javascript">
+     	$(function(){
+      		$(':input[placeholder]').placeholder();
+    	});	
+    	
 	  var _gaq = _gaq || [];
 	  _gaq.push(['_setAccount', 'UA-36639811-1']);
 	  _gaq.push(['_setDomainName', 'grupoexpansion.mx']);
@@ -52,6 +57,51 @@
     //carga los tags de ELLE facebook
 	require('./views/tags_elle.php');
 	?>   
+	<?php if (isset($_GET['tipo'])  ){ ?>
+	<style type="text/css">
+		#breadcrumbs{
+			display: none;
+		}
+		
+		#header-container{
+			height: auto;
+			margin-left: 2px;			
+		}
+		
+		div#main {
+			margin-left: auto; 
+			margin-right: auto; 
+			width: 760px;						  
+		}	
+		
+		nav.banner_categorias{
+			margin-top: -9px; z-index: -5
+		}
+		
+		.header_section{
+			display: none;
+		}
+		nav.banner_categorias ul {
+			display: none;
+		}	
+		div #carrito{
+			display: none;
+		}	
+		div #cont{
+			margin: -85px 10px;
+			
+		}		
+		.selects{
+			#visibility: hidden
+		}
+		.bloque-left #btn_agregar_carrito{
+			display: none			
+		}
+		.bloque-left .back-rayado{
+			display: none							
+		}
+	</style>
+	<?php }?>
 </head>
 <body>
 <!-- ClickTale Top part -->
@@ -77,15 +127,16 @@ var WRInitTime=(new Date()).getTime();
         <div id='header_tienda'>
         	<a href="<?php echo TIENDA ?>/templates/contacto.html" target="new">
 			    <div id='cont'></div>		
-			</a>		
+			</a>					
 			<a href="<?php echo site_url('carrito.php');?>">
-			    <div id='carrito'><?php if(isset($_SESSION['carrito'])) echo count($_SESSION['carrito']); else echo 0;?></div>		
-			</a>				
+			    	<div id='carrito'><?php if(isset($_SESSION['carrito'])) echo count($_SESSION['carrito']); else echo 0;?></div>		
+			</a>							
 		</div>  
+		
         <section class="header_section"> 
         	<div id="filtro_busqueda_header">       	     	           
 	            <form name="searh_form" method="get" action="<?php echo TIENDA; ?>buscador.php" class="form_search">
-	            	<input type="text" id="s" name="s" value="" placeholder="Escriba un código de promoción o palabras clave"/>
+	            	<input type="text" id="s" name="s" value="" placeholder="Escriba un código de promoción"/>
 	                <input type="submit" value="Ir"/>                
 	                <select id="filtro_busqueda" name="fb">                	
 	                    <?php
@@ -106,10 +157,13 @@ var WRInitTime=(new Date()).getTime();
 	                
 	            </form>  
             </div>                                        
-        </section>                                   
+        </section>
+                                    
     </div>
-    <!--Categorías -->           
-    <?php include('components/banner_categorias.php'); ?>
+    <!--Categorías -->          
+    
+    <?php  include('components/banner_categorias.php'); ?>
+    
     
     <div id="main"><!--div main-->    	
         <section id="contenido"><!--contenido-->

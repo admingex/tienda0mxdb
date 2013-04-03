@@ -2,39 +2,14 @@ $(function() {
 
 	//	Responsive layout, resizing the items
 	$('#slider').carouFredSel({
-		responsive: false,					
+		responsive: false,				
 		prev: '#prev',
 		next: '#next',
-		scroll: 1,
-		items: {
-			width: 192,			
-			//height: '30%',	//	optionally resize item-height
-			visible: {
-				min: 1,
-				max: 3
-			}
-		}																				
+		scroll: {duration: 500, items: 1},
+		items: {					
+			visible: 3,			
+		}					
 	});
-	/*
-	//	Responsive layout, resizing the items
-	$('#slideridc').carouFredSel({
-		responsive: false,					
-		prev: '#prev',
-		next: '#next',
-		scroll: 1,
-		items: {
-			//width: 192,			
-			//height: '30%',	//	optionally resize item-height
-			visible: {
-				min: 1,
-				max: 3
-			}
-		}																				
-	});
-	
-	*/
-	
-	
 	
 
 });

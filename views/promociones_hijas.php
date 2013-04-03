@@ -24,7 +24,7 @@
 		$pub = str_replace(' ', '_', $p->nombre);
 		$pub = str_replace('&', '.', $pub);
 		
-		$url_p = site_url('promocion_h.php?id_promo_padre='. $id_promo_padre.'&publicacion='.$pub);
+		$url_p = site_url('promocion_h/'. $id_promo_padre.'/'.$pub);
 		
 		//revisar que exista la imagen en caso contrario ponemos el cuadro negro						
 		if(file_exists("./r_images/".$p->url_imagen)){

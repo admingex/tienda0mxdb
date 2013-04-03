@@ -50,11 +50,10 @@
 	background: url('../images/kiosco_carrito_tarjeta.png') no-repeat;	
 	background-position: 150px 0px;				
 	height: 30px;
-	width: 185px;
-	color: #FFF;
+	width: 185px;	
 	text-align: left;
 	border: none;
-	color: #FFFFFF;
+	color: #8dc63f;
 	font-size: 14px;
 	font-weight: bold;
 	cursor: pointer;
@@ -64,18 +63,17 @@
 	background: url('../images/kiosco_carrito.png') no-repeat;	
 	background-position: 150px 0px;				
 	height: 30px;
-	width: 185px;
-	color: #FFF;
+	width: 185px;	
 	text-align: left;
 	border: none;
-	color: #FFFFFF;
+	color: #8dc63f;
 	font-size: 14px;
 	font-weight: bold;
 	cursor: pointer;
 }
 
 #viewlet-detalle-suscripcion .precio{
-	color: #E80403;
+	color: #8dc63f;
 	font-size: 28px;
 	font-weight: bold;
 }

@@ -76,7 +76,7 @@
 </div>
 <div id='contenedor_formato_exp'>
 	<div id='titulo_formato'>		
-		seminarios online			
+		Venta de contenido			
 	</div>
 	<div id='imagen_formato'>
 		<img id='imagen_thumb' src="<?php echo TIENDA  ?>images/kiosco_exp_pass.png" />
@@ -91,10 +91,10 @@
 			$('#imagen_thumb').attr('src', '<?php echo TIENDA  ?>images/kiosco_exp_'+ matimg[1] +'.png')
 			
 			switch(matimg[1]){
-				case "pdf": 		$('#titulo_formato').text('Venta de Contenido')
+				case "pass": 		$('#titulo_formato').text('Venta de Contenido')
 									break;
 								
-				case "asisprint": 	$('#titulo_formato').text('Suscripciones')
+				case "revista": 	$('#titulo_formato').text('Suscripciones')
 				    				break;				    								  				    										    				 					    
 			}	
 		} 		
