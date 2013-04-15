@@ -1,25 +1,29 @@
 function anadir_carrito(nameform, sitio, canal, promocion) {
 		 					
-	var tienda = 'http://localhost/tienda/';	//##c##		
+	var tienda = 'http://kiosco/';	//##c##		
 	
 	var formid = document.getElementById(nameform+promocion);											
 	var parametros = {
-		"guidx" 	  : formid.guidx.value,
-		'guidz'   	  : formid.guidz.value,
-		'imagen'  	  : formid.imagen.value,
-		'descripcion' : formid.descripcion.value,
-		'precio'	  : formid.precio.value,
-		'cantidad'    : formid.cantidad.value,
-		'moneda'      : formid.moneda.value,
-		'iva'		  : formid.iva.value
+		"guidx" 	  	: formid.guidx.value,
+		'guidz'   	  	: formid.guidz.value,
+		'imagen'  	  	: formid.imagen.value,
+		'descripcion' 	: formid.descripcion.value,
+		'precio'	  	: formid.precio.value,
+		'cantidad'    	: formid.cantidad.value,
+		'moneda'      	: formid.moneda.value,
+		'iva'		  	: formid.iva.value,
+		'id_sitio'	  	: sitio,
+		'id_canal'	  	: canal,
+		'id_promocion'	: promocion,
+		'ajax'	      	: '1'
 	}		
 			
-	var url_carrito = tienda+'carrito.php?id_sitio='+sitio+'&id_canal='+canal+'&id_promocion='+promocion+'&ajax=1';
+	var url_carrito = tienda+'carrito.php';
     
     $.ajax({
         data:  parametros,
         url:   url_carrito,
-        type:  'post',
+        type:  'POST',
         beforeSend: function () {
               $("#dialog-modal").html("Procesando, espere por favor...");
         },

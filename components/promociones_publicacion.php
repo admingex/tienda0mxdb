@@ -12,10 +12,11 @@ echo "<link type='text/css' href='".TIENDA."css/viewlet-slide-idc.css' rel='styl
 	 * y posibles descuentos de la promoción -esta información se trae del primer artículo de la promoción-,
 	 * de aqu[i se mostrará el detalle final del contenido de la promoción. 
 	 */
-	 /*echo "<pre>";
+	/* 
+	 echo "<pre>";
 	 print_r($ofertas_publicacion->promociones);
-	 echo "<pre>";*/	
-	
+	 echo "<pre>";
+	*/
 	//echo "get: " . $_GET['page'];
 	//Para probar solo le coloque 3
 	
@@ -25,7 +26,12 @@ echo "<link type='text/css' href='".TIENDA."css/viewlet-slide-idc.css' rel='styl
 		echo "</pre>";*/
 
 	//for ($i = $desde; $i < $limite ; $i++) {
-	foreach($ofertas_publicacion->promociones as $p){	
+	foreach($ofertas_publicacion->promociones as $p){
+		/*
+		echo "<pre>";
+		print_r($p->detalle);
+		echo "</pre>";	
+		*/
 		//echo "<br />->".$i."<-";
 		
 		/*echo "<pre>";
@@ -64,8 +70,8 @@ echo "<link type='text/css' href='".TIENDA."css/viewlet-slide-idc.css' rel='styl
 		
 		//formulario para la promoción
 		//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
-		if (file_exists("./p_images/".$p->detalle->url_imagen)){
-			$src = TIENDA ."p_images/".$p->detalle->url_imagen;
+		if (file_exists("./ico_images/".$p->detalle->url_imagen)){
+			$src = TIENDA ."ico_images/".$p->detalle->url_imagen;
 		} else {
 			//$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
 			$src = TIENDA ."p_images/".$p->detalle->url_imagen;
@@ -73,6 +79,7 @@ echo "<link type='text/css' href='".TIENDA."css/viewlet-slide-idc.css' rel='styl
 		//carga el primer valor en la columna derecha
 		$inides=$descripcion_promocion;
 		$initit=$p->detalle->nombre_publicacion;
+		
 		echo "		
 			<li>
 				<form id='comprar_promocion".$p->detalle->id_promocion."' name='comprar_promocion".$p->detalle->id_promocion."' action='". $action_pagos ."' method='post'>
@@ -110,7 +117,13 @@ echo "<link type='text/css' href='".TIENDA."css/viewlet-slide-idc.css' rel='styl
 	  </div>";
 ?>
 </div>
+<?php
+if (isset($initit) && isset($inides)){
+?>
 <div id='cuadro_der'>
-	<div id="titulo_pub"><?php echo $initit?></div>
-	<div id='temp'><?php echo $inides?></div>	
+	<div id="titulo_pub"><?php  echo $initit;?></div>
+	<div id='temp'><?php  echo $inides?></div>	
 </div>
+<?php
+}
+?>

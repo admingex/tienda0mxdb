@@ -1,4 +1,4 @@
-﻿<link href='<?php echo TIENDA ?>css/viewlet-carrito.css' rel='stylesheet' type="text/css" />
+﻿<!--<link href='<?php echo TIENDA ?>css/viewlet-carrito.css' rel='stylesheet' type="text/css" />-->
 <?php
 
 
@@ -15,7 +15,7 @@ if (isset($_SESSION['carrito'])) {
 			foreach ($_SESSION['carrito'] as $item) {
 				$total += ($item['cantidad'] * $item['precio']);
 				if ($item['iva']) {
-					$iva_compra += $item['precio'] * 0.16;
+					$iva_compra += ($item['cantidad'] * $item['precio']) * 0.16;
 				}
 			}
 			
@@ -41,8 +41,8 @@ if (isset($_SESSION['carrito'])) {
 				$img1 = str_replace("r_images", "l_images", $ultimo['imagenVc']);						
 				
 				echo "<div class='img-big'>";
-				echo "    <img src='".$ultimo['imagenVc']."' alt='".$ultimo['imagenVc']."' />";
-				echo "    <img src='".$img1."' alt 'logo'/>";			
+				echo "    <img src='".TIENDA."r_images/".$ultimo['imagenVc']."' alt='".$ultimo['imagenVc']."' />";
+				echo "    <img src='".TIENDA."l_images/".$img1."' alt 'logo'/>";			
 				echo "</div>";	
 			########		
 															
@@ -52,17 +52,17 @@ if (isset($_SESSION['carrito'])) {
 				
 			foreach ($_SESSION['carrito'] as $k => $v) {
 				    // obtener imagen logo revista
-					$img1 = str_replace("r_images", "l_images", $v['imagenVc']);					
+					//$img1 = str_replace("r_images", "l_images", $v['imagenVc']);					
 					echo "	<div>
 						        <ul>
 						            <li>
 						            	<div>
-						            		<img src='".$v['imagenVc']."' alt='".$v['imagenVc']."' height='155px' width='115px'/>
+						            		<img src='".TIENDA."r_images/".$v['imagenVc']."' alt='".$v['imagenVc']."' height='155px' width='115px'/>
 						            	</div>	
 						            </li>
 						            <li style='overflow: hidden; height: 165px; position: relative; display: block;'>						            	
 						            	<div class='descripcion_producto'>
-						            	    <img src='".$img1."' alt 'logo'/>";
+						            	    <img src='".TIENDA."l_images/".$v['imagenVc']."' alt 'logo'/>";
 											if($v['cantidad']>1){
 						            	    	echo "<div class='descripcion3'>".$v['cantidad']." lugares</div>";
 											}
@@ -109,16 +109,28 @@ if (isset($_SESSION['carrito'])) {
 		echo "</div>
       		  <div id='totales'>
           	  	<div id='pleca_totales'>
+              	</div>
+              	<div id='total'>
+              		<div class='total-right'>                  		
+                  		<div class='blanco'>subtotal</div>
+                  		<div class='rojo'>$".number_format($total,2,".",",")."</div>
+              		</div>
               	</div>  
+              	<div id='total'>
+              		<div class='total-right'>                  		
+                  		<div class='blanco'>IVA</div>
+                  		<div class='rojo'>$".number_format($iva_compra,2,".",",")."</div>
+              		</div>
+              	</div>
               	<div id='total'>
               		<div class='total-right'>
                   		<div id='cuenta-detalle-carrito' class='carrito'>".$na."</div>
                   		<div class='blanco'>total</div>
-                  		<div class='rojo'>$".number_format($total,2,".",",")."</div>
+                  		<div class='rojo'>$".number_format(($total+$iva_compra),2,".",",")."</div>
               		</div>
               	</div>   
               	<div id='botones'>
-              	  	<a href='".site_url('home')."'>	
+              	  	<a href='".site_url()."'>	
               	  		<div class='seguir-comprando'>
                       		Regresar a la tienda
               	  		</div>

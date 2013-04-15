@@ -1,5 +1,5 @@
-
 <?php
+ require('./templates/db.php');
 session_start();
 //session_destroy();
 $_SESSION['paso']=$_POST['paso'];
@@ -61,7 +61,7 @@ else{
 		
 		//VALIDACION DE CANDIDATO 
 		if($b1=='F	Analista' or $b1=='I  Operacion' or $b2=='F. No Se Involucra'){
-		$mensaje="Agradecemos su inter�s por la revista  Energia 360, 
+		$mensaje="Agradecemos su interés por la revista  Energia 360, 
 		para poder recibir de forma gratuita la revista, es 
 		importante que cubra el perfil que nos requiere nuestra agencia auditora. 
 		
@@ -96,12 +96,10 @@ else{
 		//echo "insercion lista";
 		//echo "aplica";
 		}
-		
-	}		
 		header('location:Sendmail.php');
 		//mandamos el mail
 		$headers="From: servicioaclientes@expansion.com.mx";
-		mail($emailenvio.',mercadotecnia@expansion.com.mx', "=?UTF-8?B?".$asunto."?=", $mensaje, $headers)
+		//mail($emailenvio.',mercadotecnia@expansion.com.mx', "=?UTF-8?B?".$asunto."?=", $mensaje, $headers)
 		
 		//mail
 		//Para destruir una variable en espec�fico
@@ -109,5 +107,7 @@ else{
 		 
 		// Finalmente, destruye la sesi�n
 		//session_destroy();
+	}		
+		
 
 ?>

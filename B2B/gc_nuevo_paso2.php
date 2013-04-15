@@ -5,13 +5,12 @@
 		<div class="titulo-proceso">
 		Suscripción gratuita para lectores calificados en M&eacute;xico.	
 		</div>
-		<br>
-		<p class="label_izq">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que 
-			proporcione correctamente sus datos. "Tienda GEx" le garantiza absoluta confidencialidad en la información proporcionada.</p>
+		<p style="margin-left: 25px;">Con el fin de ofrecerle un servicio eficiente, rápido y seguro, es muy importante que 
+			proporcione correctamente sus datos. Kiosco le garantiza absoluta confidencialidad en la información proporcionada.</p>
 		</section>
 		<div id="pleca-punteada"></div>
 		<section class="contenedor">	
-		<div class="contenedor-gris">
+		
 
 <form ACTION="gc_nuevo_paso.php" name="frmcaja" id="frmcaja" METHOD="post" onSubmit="return checkFields_GC(this)">
 
@@ -19,10 +18,10 @@
 
  
 <tr>
-      <td  class="instrucciones" colspan="2">
-        Paso 2 de 2 <br>Conteste completamente el siguiente cuestionario:</td>
-    </tr>
-
+      <td colspan="2" class="instrucciones">
+      Completamente cuestionario <span class="indicador">2/2</span>
+	  </td>
+</tr>
 
 	<tr>
 	
@@ -86,7 +85,7 @@ Compras</td>
         <input type="radio" value="20." name="cargo6" id="cargo6" />
 		<div id="radio6" class="radio_no_selected">&nbsp;					
 		  </div>	
-        Otro (especifique):  <input  class="text" type="text" name="cargootro" id="cargootro" size="15" maxlength="64" disabled="disabled" /></td>
+        Otro (especifique):  <input  class="text-short" type="text" name="cargootro" id="cargootro" size="15" maxlength="64" disabled="disabled" /></td>
 		
     </tr>
     
@@ -132,7 +131,7 @@ Compras</td>
         <input type="radio" value="24." name="actividad4" />
 		<div id="radio2_4" class="radio_no_selected">&nbsp;					
 		  </div>
-       Otro (especifique): <input  class="text" type="text" name="actividadotra" id="actividadotra" size="15" maxlength="64" disabled="disabled" /></td>
+       Otro (especifique): <input  class="text-short" type="text" name="actividadotra" id="actividadotra" size="15" maxlength="64" disabled="disabled" /></td>
 	
     </tr>
 	
@@ -146,6 +145,8 @@ Compras</td>
     <tr>
       
       <td  colspan="2">
+      	<div class="styled-select">
+      		<div class='cont-select'>
         <select size="1" name="decision"  ID="decision">
           <option value="A. Toma de Decisi&oacute;n Final">Toma de Decisi&oacute;n 
           Final</option>
@@ -158,7 +159,8 @@ Compras</td>
           <option value="E. Desarrolla Especificaciones">Desarrolla Especificaciones</option>
           <option value="F. Ejecuta la compra">Ejecuta la compra</option>
           <option value="G. No Se Involucra">No Se Involucra</option>
-        </select></td>
+        </select>
+        </div>	</div></td>
     </tr>
 	
 	<tr>
@@ -252,7 +254,7 @@ Compras</td>
     <tr> 
       
       <td   CLASS="label_izq" colspan="2">Otro
-	   <input type="text" name="medotro" id="medotro" size="15" maxlength="64" value="" class="text"/>
+	   <input type="text" name="medotro" id="medotro" size="15" maxlength="64" value="" class="text-short"/>
         </td>
     </tr>
  
@@ -264,7 +266,7 @@ Compras</td>
 	
     <tr> 
       <td  class="label_izq" colspan="2">
-        <input type="text" class="text" name="mar" id="mar" size="7" maxlength="200" 
+        <input type="text" class="text-short" name="mar" id="mar" size="7" maxlength="200" 
                ID="mar">
         </td>
     </tr>
@@ -276,7 +278,7 @@ Compras</td>
     <tr> 
       <td colspan="2">
         <input type="text" name="mat" id="mat" size="7" maxlength="200" 
-              class="text" />
+              class="text-short" />
         </td>
     </tr>
 
@@ -302,7 +304,7 @@ Compras</td>
        10-19</td>
     </tr>
 	
-         
+        <tr> 
       <td   colspan="2" class="label_izq">
         <input type="radio" value="3. 20-49" name="empleados3" id="empleados3"/>
 		<div id="radio8_3" class="radio_no_selected">&nbsp;					
@@ -310,7 +312,7 @@ Compras</td>
        20-49</td>
     </tr>
 	
-	      
+	     <tr> 
       <td   colspan="2" class="label_izq">
         <input type="radio" value="4. 50-99" name="empleados4" id="empleados4"/>
 		<div id="radio8_4" class="radio_no_selected">&nbsp;					
@@ -318,7 +320,7 @@ Compras</td>
        50-99</td>
     </tr>
 	
-	      
+	<tr>      
       <td   colspan="2" class="label_izq">
         <input type="radio" value="5. 100-249" name="empleados5" id="empleados5"/>
 		<div id="radio8_5" class="radio_no_selected">&nbsp;					
@@ -326,7 +328,7 @@ Compras</td>
        100-249</td>
     </tr>
 	
-	      
+	      <tr>
       <td   colspan="2" class="label_izq">
         <input type="radio" value="6. 250-499" name="empleados6" id="empleados6"/>
 		<div id="radio8_6" class="radio_no_selected">&nbsp;					
@@ -334,14 +336,14 @@ Compras</td>
        250-499</td>
     </tr>
 	
-  	      
+  	      <tr>
       <td   colspan="2" class="label_izq">
         <input type="radio" value="7. 500-999" name="empleados7" id="empleados7"/>
 		<div id="radio8_7" class="radio_no_selected">&nbsp;					
 		  </div>
        500-999</td>
     </tr>
-	      
+	      <tr>
       <td   colspan="2" class="label_izq">
         <input type="radio" value="8. 1000-2500" name="empleados8" id="empleados8"/>
 		<div id="radio8_8" class="radio_no_selected">&nbsp;					
@@ -349,7 +351,7 @@ Compras</td>
        1000-2500</td>
     </tr>
 	
-	      
+	      <tr>
       <td   colspan="2" class="label_izq">
         <input type="radio" value="9. 2500 o mas" name="empleados9" id="empleados9"/>
 		<div id="radio8_9" class="radio_no_selected">&nbsp;					
@@ -367,6 +369,8 @@ Compras</td>
     
 <tr>
       <td  colspan="2" class="label_izq" />
+        <div class="styled-select">
+      		<div class='cont-select'>
         <select name="construye">
           <option value="-1">1. Edificaci&oacute;n (seleccione)</option>
 		            <option value="1 Vivienda unifamiliar">|---   1.1 Vivienda unifamiliar</option>
@@ -382,7 +386,7 @@ Compras</td>
           <option value="4. Transporte">4. Transporte</option>							
           <option value="5. Petroleo y petroquimica">5. Petróleo y petroquímica</option>							
           <option value="6. Otras construcciones">6. Otras construcciones (especifique)</option>							  
-        </select>
+        </select></div></div>
 </td>
 </tr>
 
@@ -400,27 +404,27 @@ Compras</td>
     <tr>
        <td  colspan="2" class="label_izq" />
         <input type="text" name="mes" size="16" maxlength="16" 
-              class="text" /></td>
+              class="text-short" /></td>
     </tr>
 
 	
 	<!---->
 	    <tr>
-      <td colspan="2" class="instrucciones">
-        Los editores se reservan el derecho de incluir en la<br>
+      <td colspan="2" class="instrucciones-paso">
+        Los editores se reservan el derecho de incluir en la
         lista de circulacion solo a suscriptores calificados</td>
     </tr>
 <input type="hidden" name="paso" id="paso" value="2" />
+   <tr>
+	   <td colspan="2" class="label" style="padding-right: 50%; padding-top: 20px; padding-bottom: 10px;">
+      <sup class="tilde">*</sup>Campos
+      	Requeridos
+	</td>
+</tr>
+
     <tr>
-      <td colspan="2" >
-        <input class="crear_cuenta" TYPE="submit" VALUE="" id=submit1 name=submit1>
-        <input type="reset" value="Limpiar" id=reset1 name=reset1></td>
-		
-    </tr>
-    <tr>
-      <td colspan="2" class="label">
-      	<sup class="tilde">*</sup>Campos
-      	Requeridos</td>
+      <td colspan="2" align="center" style="padding-right: 10%;">
+        <input class="crear_cuenta" TYPE="submit" VALUE="crear cuenta y continuar" id="submit1" name="submit1">		
     </tr>
   </table>
   </form>

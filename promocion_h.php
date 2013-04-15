@@ -38,24 +38,27 @@
 		echo "<pre>";
 			print_r($jph);
 		echo "</pre>";
-		 */ 			
+		*/ 			
 		//echo "promo_padre".$id_promo_padre;								
 		
 		foreach($jph as $i => $ph){
-			if(count($dist_promo)>0){
-				$repetido = 0;
-				foreach($dist_promo as $j){
-					if($ph->nombre == $j->nombre){
-						$repetido = 1;	
-					}				
-				}			 		
-				if($repetido == 0){		
-					$dist_promo[] = $ph;
+			// agregue esta validacion mientras se resuelve el problema de las vigencias para promocines hijas dentro de las promociones especiales
+			if($ph->nombre != "Dinero Inteligente"){
+				if(count($dist_promo)>0){
+					$repetido = 0;
+					foreach($dist_promo as $j){
+						if($ph->nombre == $j->nombre){
+							$repetido = 1;	
+						}				
+					}			 		
+					if($repetido == 0){		
+						$dist_promo[] = $ph;
+					}
+				}		
+				else{
+					$dist_promo[]= $ph;
 				}
-			}		
-			else{
-				$dist_promo[]= $ph;
-			}				
+			}					
 		}
 		
 		$agrupadas = array();

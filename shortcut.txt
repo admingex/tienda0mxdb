@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 quien promocion/645
 manufactura categoria/5/publicacion/detalle/3
 energia	categoria/5/publicacion/detalle/17
 elle categoria/2/publicacion/detalle/8
+=======
+obras promocion/651
+manufactura promocion/652
+ointeriores promocion/654
+manufacturanueva /B2B/3_nva.php
+obrasnueva /B2B/4_nva.php
+
+>>>>>>> 8c86e4914e6845a670c4906c8be804220ed35412

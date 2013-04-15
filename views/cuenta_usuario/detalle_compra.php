@@ -37,8 +37,8 @@
 								foreach($compra['articulos'] as $articulo){
 							
 									//revisar si la descripcion de la promocion tiene slash's quitarlos
-									if(stristr($compra['promocion']->descripcionVc, "|")){
-										$mp=explode('|',$compra['promocion']->descripcionVc);
+									if(stristr($compra['promocion']['descripcionVc'], "|")){
+										$mp=explode('|',$compra['promocion']['descripcionVc']);
 										$nmp=count($mp);
 										if($nmp==2){
 											$desc_promo = $mp[0];		
@@ -48,7 +48,7 @@
 										}								
 									}
 									else{
-										$desc_promo = $compra['promocion']->descripcionVc;	
+										$desc_promo = $compra['promocion']['descripcionVc'];	
 									}
 									//revisar si la descripcion del articulo tiene slash's quitarlos	
 									if(stristr($articulo['tipo_productoVc'], "|")){

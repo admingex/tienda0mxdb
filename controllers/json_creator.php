@@ -44,6 +44,8 @@ class Json_Creator {
 	private $archivo_busqueda_promocion	="./json/busqueda/codigo_promocion_";
 	private $archivo_busqueda_promocion_especial	="./json/busqueda/promocion_especial_";
 	private $archivo_busqueda_all	="./json/busqueda/all_promociones.json";
+	###	Promos canales 
+	//private $archivo_busqueda_all	="./json/promos_canal.json";
 	
 	//modelo a utilizar
 	private $modelo;	//modelo de datos
@@ -297,6 +299,22 @@ class Json_Creator {
 		echo "</pre>";*/
 		return $this->promos_carrusel;
 	}
+	
+	/**
+	 * Generar los archivos con las promociones disponibles para el "aliza
+	 * Devuelve el arreglo con las promociones para el carrusel
+	 * home->carrusel
+	 */
+	public function generar_json_alianza() {
+		//recuperar las promociones de la base de datos
+		$pc = $this->modelo->get_promos_alianza();
+	
+		$this->generar_json_promos_detalle($pc);
+		
+		
+		//return $this->promos_carrusel;
+	}
+	
 	
 	
 	/**

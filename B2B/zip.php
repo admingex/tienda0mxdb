@@ -199,53 +199,84 @@ document.getElementById('carlos').value=products4[2].firstChild.data;
 
 </head>
 <body bgcolor="#FFFFFF" leftmargin="5" topmargin="5" marginwidth="2" marginheight="2">
-<div class="contenedor-gris">
+
 <form action="" method="post" name="tblupdate" id="tblupdate">
 <input type="hidden" name="carlos" id="carlos" value="" />
 
 
-<p class="instrucciones">En base al c&oacute;digo postal proporcionado, 
-  se recuperar&aacute; su Estado, Ciudad y posibles Colonias. <br /> de confirmar 
+<p class="instrucciones-paso">En base al c&oacute;digo postal proporcionado, 
+  se recuperar&aacute; su Estado, Ciudad y posibles Colonias. de confirmar 
   la informaci&oacute;n y dar <i>Aceptar</i>.<br>
 </p>  
 <p class="label_izq">C.P.: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="zip" id="zip" value='' onblur="limpiar(this.id),getproductos4()" size="7"  onkeypress="return ValidaNum(event)" class="text" />&nbsp; <a href="#" ><b>&gt;&gt;</b></a> </p> 
+<input name="zip" id="zip" value='' onblur="limpiar(this.id),getproductos4()" size="7"  onkeypress="return ValidaNum(event)" class="text-short" />&nbsp; 
+<a href="#" style="color:#BC1010;" >&gt;&gt;</a> </p> 
 
 
 <!-- ***************** ESTADO *******************-->
-<p class="label_izq">Estado:&nbsp; 
-<select name="est" id="est" tabindex="16"  onChange="limpiar(this.id),getproductos1()">
-<option value=''>(seleccione una opción)</option>
+<table>
+	<tr>
+		<td class="label_izq">
+			Estado:
+		</td>
+		<td>
+			<div class="styled-select">
+				<div class='cont-select'>
+			<select name="est" id="est" tabindex="16" class="styled"  onChange="limpiar(this.id),getproductos1()">
+			<option value=''>(seleccione una opción)</option>
+			
+			<script language="php">
+			mysql_connect ("10.43.29.196","cms_user","3xp4n5i0n");
+			@mysql_query("SET NAMES 'utf8'");
+			$consulta=mysql_db_query("cms0mxdb","select * from CMS_CatEstado");
+			while($arreglo=mysql_fetch_array($consulta))
+			{
+			echo "<option value=$arreglo[CVE_ESTADO]>$arreglo[ESTADO] </option>";
+			}
+			mysql_close();
+			</script>
+			      
+			</select>
+			</div>
+			</div>
+		</td>
+	</tr>
 
-<script language="php">
-mysql_connect ("10.177.73.120","ecommerce_user","ecommerce");
-@mysql_query("SET NAMES 'utf8'");
-$consulta=mysql_db_query("cms0mxdb","select * from CMS_CatEstado");
-while($arreglo=mysql_fetch_array($consulta))
-{
-echo "<option value=$arreglo[CVE_ESTADO]>$arreglo[ESTADO] </option>";
-}
-mysql_close();
-</script>
-      
-</select></p>
 <!-- ***************** CIUDAD *******************-->	
-<p class="label_izq">Ciudad:&nbsp; 
-	    <select name="ciu" id="ciu" tabindex="17" onchange="limpiar(this.id),getproductos2()" >
-<option value="0">(seleccione una opción)</option>
-      
-    </select></p> 
+<tr>
+	<td class="label_izq">
+		Ciudad
+	</td>
+	<td>
+		<div class="styled-select">
+			<div class='cont-select'>
+		  <select name="ciu" id="ciu" tabindex="17" onchange="limpiar(this.id),getproductos2()" class="styled">
+			<option value="0">(seleccione una opción)</option>
+			</select>
+			</div>
+		</div>
+	</td>
+</tr>
+	  
 <!-- ***************** COLONIA *******************-->
-
-<p class="label_izq">Colonia:&nbsp; 
-    <select name="col" id="col" tabindex="5" onchange="getproductos3()" >
-<option value=''>(seleccione una opción)</option>
-      
-    </select>
-
-</p> 
- 
-    <input type="button" value=' Aceptar '
+<tr>
+	<td class="label_izq">
+		Colonia
+	</td>
+	<td>
+		<div class="styled-select">
+			<div class='cont-select'>
+		  <select name="col" id="col" tabindex="5" onchange="getproductos3()" class="styled">
+			<option value=''>(seleccione una opción)</option>
+			      
+			    </select>
+			    </div>
+		</div>
+	</td>
+</tr>
+<tr>
+	<td style="padding-top: 15px;">
+		 <input type="button" class="bn_aceptar" value=' Aceptar '
 	onclick="
 window.opener.document.frmcaja.colonia.value = document.tblupdate.col.value ,
 window.opener.document.frmcaja.cp.value = document.tblupdate.zip.value,
@@ -257,9 +288,15 @@ window.opener.document.frmcaja.colonias.options[0].text = document.tblupdate.col
 window.close()
 ;"
 	 name="button1" id="button1">
-    <input type="button" value='Cancelar' onclick="window.close()" >
-  <p class="instrucciones"><b>*</b> En caso de tener dificultades, comuníquese 
-    al (55)9177-4342 o <br />escriba a <a href="mailto:servicioaclientes@expansion.com.mx">servicioaclientes@expansion.com.mx</a></form>
-    </div> 
+	</td>
+	<td style="padding-top: 15px;">
+		<input type="button" class="bn_cancelar" value='Cancelar' onclick="window.close()" >
+	</td>
+</tr>
+
+</table>
+  <p class="instrucciones-paso" ><b>*</b> En caso de tener dificultades, comuníquese 
+    al (55)9177-4342 o escriba a <a href="mailto:servicioaclientes@expansion.com.mx">servicioaclientes@expansion.com.mx</a></form>
+    
 </body> 
 </html>

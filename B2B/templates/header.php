@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es-mx">
 <head>
@@ -98,14 +99,8 @@ document.getElementById('lada').value=products4[2].firstChild.data;
 
 </script>
 </head>
-<body>
-    <div id="header-container">
-        <header>
-            <img src="images/logo_expansion.gif" alt="logo gex" width="52" height="52"/>            
-        </header>        
-    </div>
+<body>  
     
     <div id="main"><!--div main-->
         <section id="descripcion-proceso">
-		<div class="titulo-proceso-img">&nbsp;
-		</div>			
+		

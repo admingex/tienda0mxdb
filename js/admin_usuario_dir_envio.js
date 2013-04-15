@@ -29,7 +29,7 @@ function listar_dir_envio(){
   													 v.cp  + '</td><td>' +  
   													 v.ciudad + '</td><td>' + 
   													 v.estado  + '</td>'+
-  													 '<td valign="top"><div onclick=\"eliminar_dir_envio('+ v.id_consecutivoSi +')\"><a href="#">eliminarcuenta</a></div><div onclick=\"editar_dir_envio('+ v.id_consecutivoSi +')\"><a href="#">editar cuenta</a></div></td>'+
+  													 '<td valign="top"><div onclick=\"editar_dir_envio('+ v.id_consecutivoSi +')\"><a href="#">editar</a></div><div onclick=\"eliminar_dir_envio('+ v.id_consecutivoSi +')\"><a href="#">eliminar</a></div></td>'+
   													 '</tr>');          				          				          				          				 
   			});   
   			

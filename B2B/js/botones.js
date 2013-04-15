@@ -511,5 +511,82 @@ $(document).ready(function() {
 		document.getElementById('sexo2').checked='checked';
 		document.getElementById('sexo1').checked='';
 			});
+			
+			//PARA MANOFACTURA PASO DOS EL CAMBIO DEL DIA 08/11/12
+			
+			$("#radio9_1").click(function() {				
+		$("#radio9_1").removeClass('radio_no_selected').addClass('radio_selected');
+		$("#radio9_2").removeClass('radio_selected').addClass('radio_no_selected');
+		$("#radio9_3").removeClass('radio_selected').addClass('radio_no_selected');
+		$("#radio9_4").removeClass('radio_selected').addClass('radio_no_selected');
+		document.getElementById('vacaciones1').checked='checked';
+		document.getElementById('vacaciones2').checked='';
+		document.getElementById('vacaciones3').checked='';
+		document.getElementById('vacaciones4').checked='';		
+		document.getElementById('destino').value="";
+		document.getElementById('destino').disabled=true;
+	});
+	
+		$("#radio9_2").click(function() {				
+		$("#radio9_2").removeClass('radio_no_selected').addClass('radio_selected');
+		$("#radio9_1").removeClass('radio_selected').addClass('radio_no_selected');
+		$("#radio9_3").removeClass('radio_selected').addClass('radio_no_selected');
+		$("#radio9_4").removeClass('radio_selected').addClass('radio_no_selected');
+		document.getElementById('vacaciones2').checked='checked';
+		document.getElementById('vacaciones1').checked='';
+		document.getElementById('vacaciones3').checked='';
+		document.getElementById('vacaciones4').checked='';
+		document.getElementById('destino').disabled=false;
+	});
+	
+	$("#radio9_3").click(function() {				
+		$("#radio9_3").removeClass('radio_no_selected').addClass('radio_selected');
+		$("#radio9_2").removeClass('radio_selected').addClass('radio_no_selected');
+		$("#radio9_1").removeClass('radio_selected').addClass('radio_no_selected');
+		$("#radio9_4").removeClass('radio_selected').addClass('radio_no_selected');
+		document.getElementById('vacaciones3').checked='checked';
+		document.getElementById('vacaciones2').checked='';
+		document.getElementById('vacaciones1').checked='';
+		document.getElementById('vacaciones4').checked='';
+		document.getElementById('destino').disabled=false;
+	});
+	
+	$("#radio9_4").click(function() {				
+		$("#radio9_4").removeClass('radio_no_selected').addClass('radio_selected');
+		$("#radio9_2").removeClass('radio_selected').addClass('radio_no_selected');
+		$("#radio9_3").removeClass('radio_selected').addClass('radio_no_selected');
+		$("#radio9_1").removeClass('radio_selected').addClass('radio_no_selected');
+		document.getElementById('vacaciones4').checked='checked';
+		document.getElementById('vacaciones2').checked='';
+		document.getElementById('vacaciones3').checked='';
+		document.getElementById('vacaciones1').checked='';
+		document.getElementById('destino').disabled=false;
+	});
+			//para el auto 
+			
+		
+	
+	$("#auto_manuf").click(function() {		
+	if ($("#auto").attr("checked")){
+		//alert("activo");
+		$("#auto_manuf").removeClass('radio_selected').addClass('radio_no_selected');
+		document.getElementById('auto').checked='';
+		$("#auto").removeAttr("checked");
+		document.getElementById('marca').disabled=false;
+		document.getElementById('modelo').disabled=false;
+	}
+	else{
+		//alert("descativado");
+		$("#auto_manuf").removeClass('radio_no_selected').addClass('radio_selected');
+		document.getElementById('auto').checked='checked';
+		document.getElementById('auto').checked=true;
+		$("#auto").attr("checked");
+		document.getElementById('marca').value="";
+		document.getElementById('modelo').value="";
+		document.getElementById('marca').disabled=true;
+		document.getElementById('modelo').disabled=true;
+	}
+	});
+			
 });
 

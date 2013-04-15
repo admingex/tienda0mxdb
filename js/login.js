@@ -2,12 +2,12 @@
  * * @author gex
  */
 $(document).ready(function() {
-	var reg_email = /^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/;
+	var reg_email = /^[^0-9][a-zA-Z0-9_.]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/;
 	var email = $("#email");
 	var passwd = $("#password");
 	var registro = false;
-	var url = "http://localhost/tienda/";
-	var url_ecommerce = "http://localhost/ecommerce/";
+	var url = "http://kiosco/";
+	var url_ecommerce = "http://ecommerce/";
 	
 	$('input').bind("click keypress", function() {
 		$(".error").remove();
@@ -89,7 +89,7 @@ $(document).ready(function() {
 });
 
 function consulta_mail(mail) {
-	var url_ecommerce = "http://localhost/tienda/"
+	var url_ecommerce = "http://kiosco/"
 	$(".error2").remove();
 	$.ajax({
 		type: "GET",
@@ -100,7 +100,7 @@ function consulta_mail(mail) {
 		success: function(data) {			
 			if (data.mail) {
 				cte_reg=document.getElementById('tipo_inicio2').checked;
-				if (!cte_reg && data.mail==1) {
+				if (!cte_reg && data.mail > 1) {
 					$('#email').focus().after("<div class='error2'>Esta dirección de correo ya se encuentra registrada</div>");
 				}
 			}

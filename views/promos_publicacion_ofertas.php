@@ -13,9 +13,12 @@
 		$url_breadcum 	= (isset($info_categoria)) 	? site_url("categoria/".$info_categoria->id_categoriaSi) : NULL;
 		$bread_cat 		= (!empty($url_breadcum))	? " <a href='$url_breadcum'> ".ucwords(strtolower($info_categoria->nombreVc))."</a><div class='triangulo-negro-der'></div>" : '';
 		
+		if(!$url_breadcum){
+			$url_breadcum = $id_publicacion;	
+		}		
 		//la ruta de la publicación va siempre en este caso
-		//$bread_pub		= " <a href=''>".ucwords(strtolower($info_publicacion->nombreVc))."</a></h3></div>";
-		$bread_pub		= "<div class='noref'>" . $info_publicacion->nombreVc . "</div>";
+		$bread_pub		= " <a href='$url_breadcum'>".ucwords(strtolower($info_publicacion->nombreVc))."</a></h3></div>";
+		//$bread_pub		= "<div class='noref'>" . $info_publicacion->nombreVc . "</div>";
 		
 		//breadcum final
 		echo "<div id='breadcrumbs'><a href='".site_url("home")."'>Home</a><div class='triangulo-negro-der'></div>". $bread_cat . $bread_pub . "</div>";
@@ -55,4 +58,18 @@
 		include_once('./components/promociones_publicacion.php');
 		//exit;
 	}
+	
+	if(count($ofertas_publicacion->promociones) == 0)
+		echo "<div class='no-items' style='margin: 30px 0px 0px 0px'>Por el momento no hay ninguna promoción</div>";
+	
+	if(count($ofertas_publicacion->promociones) == 1){
+	    $det=end($ofertas_publicacion->promociones);
+				
+		echo "<form id='resulta_1' method='GET' action='".TIENDA."publicacion/".$det->id_publicacion."/promocion/".$det->id_promocion."'>	      	
+	      	      <input type='submit' name='enviar' value='enviar' style='display: none' />
+	          </form>";
+	    echo  "<script>document.getElementById('resulta_1').submit()</script>";		 	 
+		
+	}
+	
 // fin del archivo de la vista que despliega las promociones de una publicación con más de un formato asociado: "promos_publicacion_ofertas.php"

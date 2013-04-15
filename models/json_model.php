@@ -79,6 +79,22 @@ class Json_Model extends DBAbstractModel {
 		 * */
 		return $busqueda_f;
 	}
+	/**
+	 * Devuelve las promociones alianza
+	 */
+	public function get_promos_alianza() {
+		$this->query = "CALL SP_Obtener_Promociones_Alianza()";
+		
+		$this->get_results_from_query();
+		
+		$promo_alianza = $this->rows;
+		/*
+		echo "<pre>";
+		echo json_encode($categorias);
+		echo "</pre>";
+		 * */
+		return $promo_alianza;
+	}
 	
 	/**
 	 * Devuelve las promociones de la busqueda de los codigos de promociones

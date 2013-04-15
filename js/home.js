@@ -4,6 +4,7 @@ $(window).load(function(){
 		directionalNav: false, 						 
 		startClockOnMouseOut: true, 
 		startClockOnMouseOutAfter: 1000,	
-		bullets: true			
+		bullets: true,	
+		advanceSpeed: 12000,		
 	});		
 });

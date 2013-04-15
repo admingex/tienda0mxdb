@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             
-    <!--[if IE]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->	
+    <!--[if IE]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <link href='<?php echo TIENDA ?>css/viewlet-carrito.css' rel='stylesheet' type="text/css" />	
     <link rel="stylesheet" href="<?php echo TIENDA;?>css/style.css" />
     <link rel="stylesheet" href="<?php echo TIENDA;?>css/viewlet-breadcrumbs.css" />       
     <link type="text/css" href="<?php echo TIENDA;?>css/blitzer/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
@@ -15,6 +16,25 @@
     <script type="text/javascript" src="<?php echo TIENDA;?>js/home.js"></script>
     <script type="text/javascript" src="<?php echo TIENDA;?>js/carrito.js"></script>
     <script type="text/javascript" src="<?php echo TIENDA;?>js/ui.selectmenu.js"></script>
+    <script src="<?php echo TIENDA;?>js/html5placeholder.jquery.js"></script>
+    <script type="text/javascript">
+     	$(function(){
+      		$(':input[placeholder]').placeholder();
+    	});	
+    	
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-36639811-1']);
+	  _gaq.push(['_setDomainName', 'grupoexpansion.mx']);
+	  _gaq.push(['_setAllowLinker', true]);
+	  _gaq.push(['_trackPageview']);
+	
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+	
  	
 	<!--[if IE]>
 	    <style type="text/css">
@@ -33,9 +53,68 @@
     ?>  
     
     <title><?php if (isset($title)) echo $title; else echo "Portal"; ?> - Tienda GEX</title>
-       
+    <?php
+    //carga los tags de ELLE facebook
+	require('./views/tags_elle.php');
+	?>   
+	<?php if (isset($_GET['tipo'])  ){ ?>
+	<style type="text/css">
+		#breadcrumbs{
+			display: none;
+		}
+		
+		#header-container{
+			height: auto;
+			margin-left: 2px;			
+		}
+		
+		div#main {
+			margin-left: auto; 
+			margin-right: auto; 
+			width: 760px;						  
+		}	
+		
+		nav.banner_categorias{
+			margin-top: -9px; z-index: -5
+		}
+		
+		.header_section{
+			display: none;
+		}
+		nav.banner_categorias ul {
+			display: none;
+		}	
+		div #carrito{
+			display: none;
+		}	
+		div #cont{
+			margin: -85px 10px;
+			
+		}		
+		.selects{
+			#visibility: hidden
+		}
+		.bloque-left #btn_agregar_carrito{
+			display: none			
+		}
+		.bloque-left .back-rayado{
+			display: none							
+		}
+	</style>
+	<?php }?>
 </head>
 <body>
+<!-- ClickTale Top part -->
+<script type="text/javascript">
+var WRInitTime=(new Date()).getTime();
+</script>
+<!-- ClickTale end of Top part -->
+	
+<?php
+	//carga los tags de google
+	require('./views/tags_quien.php');
+?>	
+
 <div id="portal-wrapper">
 <div id="container">
 	
@@ -46,17 +125,18 @@
             <h1><a href="<?php echo TIENDA;?>">Kiosco</a></h1>
         </header>  
         <div id='header_tienda'>
-        	<a href="https://pagos.grupoexpansion.mx/pagina/mostrar/contacto" target="new">
+        	<a href="<?php echo TIENDA ?>/templates/contacto.html" target="new">
 			    <div id='cont'></div>		
-			</a>		
+			</a>					
 			<a href="<?php echo site_url('carrito.php');?>">
-			    <div id='carrito'><?php if(isset($_SESSION['carrito'])) echo count($_SESSION['carrito']); else echo 0;?></div>		
-			</a>				
+			    	<div id='carrito'><?php if(isset($_SESSION['carrito'])) echo count($_SESSION['carrito']); else echo 0;?></div>		
+			</a>							
 		</div>  
+		
         <section class="header_section"> 
         	<div id="filtro_busqueda_header">       	     	           
 	            <form name="searh_form" method="get" action="<?php echo TIENDA; ?>buscador.php" class="form_search">
-	            	<input type="text" id="s" name="s" value="" placeholder="Escriba un código de promoción o palabras clave"/>
+	            	<input type="text" id="s" name="s" value="" placeholder="Escriba un código de promoción"/>
 	                <input type="submit" value="Ir"/>                
 	                <select id="filtro_busqueda" name="fb">                	
 	                    <?php
@@ -77,10 +157,13 @@
 	                
 	            </form>  
             </div>                                        
-        </section>                                   
+        </section>
+                                    
     </div>
-    <!--Categorías -->           
-    <?php include('components/banner_categorias.php'); ?>
+    <!--Categorías -->          
+    
+    <?php  include('components/banner_categorias.php'); ?>
+    
     
     <div id="main"><!--div main-->    	
         <section id="contenido"><!--contenido-->

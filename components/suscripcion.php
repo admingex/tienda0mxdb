@@ -4,6 +4,7 @@
 	//para pasar a pagar en la plataforma de pagos, es la acción por defecto:
 	$action_pagos_inicial = ECOMMERCE."api/". $promo_inicial->id_sitio . "/" . $promo_inicial->id_canal . "/" . $promo_inicial->id_promocion . "/pago";
 	$onclick_action_pagos_inicial = "document.comprar_promocion" . $promo_inicial->id_promocion . ".action='" . $action_pagos_inicial . "'; ";
+	$inicial_p=0;
 	/*			
 	echo "<pre>";
 		    print_r($detalles_promociones);
@@ -19,7 +20,7 @@
 	var form_submit = "document.comprar_promocion" + id_ant;			
 	//iniciales
 		
-	function cambia_boton(id) {		
+	function cambia_boton(id) {				
 		//if (document.getElementById(id_ant)) {
 			//limpia la selección anterior
 			//document.getElementById(id_ant).innerHTML = '';
@@ -38,10 +39,10 @@
 		$("#btn_comprar_ahora").attr("onclick", submit_pagos);
 		$("#btn_agregar_carrito").attr("onclick", submit_carrito);	
 		  					
-		$('#precio_promo').text('$'+$('#precio'+id).text());
-		$('#descripcion-promo').text($('#descripcion'+id).text());		
-		$('#ejemplares-promo').text($('#ejemplares'+id).text());
-		$('#descripcion-larga').text($('#texto-oferta'+id).text());	
+		$('#precio_promo').html('$'+$('#precio'+id).html());
+		$('#descripcion-promo').html($('#descripcion'+id).html());		
+		$('#ejemplares-promo').html($('#ejemplares'+id).html());
+		$('#descripcion-larga').html($('#texto-oferta'+id).html());	
 			
 		//indica cuál es el que está selceccionado
 		id_ant = id;
@@ -68,17 +69,37 @@
 		$("#btn_agregar_carrito").attr("onclick", submit_carrito);
 		$("#btn_comprar_ahora").attr("onclick", submit_pagos);
 	}
+	
+	function cambia_select(mx){
+		//alert (mx);
+		
+		if(mx == "MX"){			
+			$("#selmx").show();
+			$("#selusd").hide();					
+		}
+		if(mx == "USD"){
+			$("#selusd").show();
+			$("#selmx").hide();												
+		}
+			
+				
+	}
 </script>
 
 <link href='<?php echo TIENDA ?>css/viewlet-detalle-suscripcion.css' rel='stylesheet' type="text/css" />
 <?php	
 	//revisar que exista la imagen en caso contrario ponemos el cuadro negro				
-	if (file_exists("./r_images/".$promo_inicial->url_imagen)){
+	//if (file_exists("./r_images/".$promo_inicial->url_imagen)){
 		$src = TIENDA ."r_images/".$promo_inicial->url_imagen;
 		$logo = TIENDA."l_images/".$promo_inicial->url_imagen;		
-	} else {
-		$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
-		$logo = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+	//} else {
+	//	$src = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+	//	$logo = TIENDA ."p_images/css_sprite_PortadaCaja.jpg";
+	//}
+	
+	$op='';
+	if(!strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")) {	
+		$op = "style='background-color: #FFF; color: #000'";
 	}
 ?>
 <div id="viewlet-detalle-suscripcion">
@@ -96,15 +117,14 @@
 			?>			
 			<div class='selects'>	
 				<div class="styled-select">	
-					<div class="cont-select">				
-						<select name="sel_pais" id="sel_pais" >
+					<div class="#cont-select">				
+						<select name="sel_pais" id="sel_pais">
 						<?php 
 						$antvalor='ads';
-						foreach($amoneda as $valor){ 
-					
+						foreach($amoneda as $valor){ 							
 							if($antvalor !=$valor){				
 						?>
-							<option value="<?php echo $valor;?>" <?php if($valor=='MX') echo "selected='selected'"; ?> >
+							<option value="<?php echo $valor;?>" <?php if($valor=='MX') echo "selected='selected'"; echo $op?> >
 							<?php 
 							if($valor=='MX')
 								echo 'México';
@@ -123,26 +143,28 @@
 					$sel='';
 					$usd='';
 					$mx = '';
+					
 					foreach ($detalles_promociones as $detalle) {
 												
-						if($detalle->id_promocion == $promo_inicial->id_promocion)
-						    $sel = "selected='selected'";
+						//if($detalle->id_promocion == $promo_inicial->id_promocion)
+						//    $sel = "selected='selected'";
 						
 						if($detalle->moneda=="MX")
-							$mx.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda.">".$detalle->descripcion_promocion."</option>";
+							$mx.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda." $op>".$detalle->descripcion_promocion."</option>";
 												
-						if($detalle->moneda=="USD")
-							$usd.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda.">".$detalle->descripcion_promocion."</option>";																			
+						else
+							$usd.= "<option id=".$detalle->id_promocion." value=".$detalle->id_promocion." ".$sel." class=".$detalle->moneda." $op>".$detalle->descripcion_promocion."</option>";																			
 					}
+					echo "<div class='descripcion3'>Selecciona Promoción</div>";
 					echo "<div id='selmx' class='styled-select'>
-					          <div class='cont-select'>
+					          <div class='#cont-select'>
 						      	<select name='promos' onchange=\"cambia_boton(this.value)\">	
 						      		".$mx."
 						      	</select>
 						      </div>	
 					      </div>";
 					echo "<div id='selusd' class='styled-select'>
-							<div class='cont-select'>
+							<div class='#cont-select'>
 						      <select name='promos' onchange=\"cambia_boton(this.value)\" >		
 						      	".$usd."
 						      </select>
@@ -155,14 +177,21 @@
 				if (isset($info_publicacion) && $info_publicacion->auditableBi) {
 				?>
 				<div class="descripcion3">Si deseas recibir esta revista de forma gratuita, selecciona la opción de suscripción</div>
+				<?php //echo "<pre>".print_r($info_publicacion)."</pre>";?>
 				<div class="styled-select"> 
-					<div class="cont-select">								
+					<div class="#cont-select">								
 						<form name="enviar_tipo_suscripcion" action="<?php echo site_url('B2B/ptienda.php') ?>" method="POST">
 							<select name='tipo_suscripcion' class="styled" id='sel_b2b'>
-								<option value=''>Selecciona opción</option>
-								<option value='nva_<?php echo $info_publicacion->id_publicacionSi;?>'>Suscripción nueva</option>
-								<option value='ren_<?php echo $info_publicacion->id_publicacionSi;?>'>Renovación</option>
-								<option value='can_<?php echo $info_publicacion->id_publicacionSi;?>'>Cancelar</option>
+								<option value='' <?php echo $op;?>>Selecciona opción</option>
+								<option value='nva_<?php echo $info_publicacion->id_publicacionSi;?>' <?php echo $op;?>>Suscripción nueva</option>
+								<option value='ren_<?php echo $info_publicacion->id_publicacionSi;?>' <?php echo $op;?>>Renovación</option>
+								<?php
+									if($info_publicacion->id_publicacionSi != 17 && $info_publicacion->id_publicacionSi != 18 && $info_publicacion->id_publicacionSi != 20){
+								?>
+								<option value='can_<?php echo $info_publicacion->id_publicacionSi;?>' <?php echo $op;?>>Cancelar</option>
+								<?php
+									}
+								?>
 							</select>
 						</form>
 					</div>								
@@ -171,7 +200,7 @@
 				}
 				?>	
 			</div>	
-			<div class="back-rayado" style="padding: 10px">enviar a un amigo</div>
+			<!--<div class="back-rayado" style="padding: 10px">enviar a un amigo</div>-->
 			<div class="back-rayado">
 				<input type="button" id="btn_agregar_carrito" name="btn_agregar_carrito" value="añadir al carrito" class="boton-anadir-carrito" onclick="submit_to_carrito(<?php echo $promo_inicial->id_promocion;?>)"/>
 			</div>	
@@ -183,15 +212,17 @@
 	    	<div id='precio_promo' class="precio"> 
 	    		$ <?php echo number_format($promo_inicial->costo,2 ,"." ,",")."&nbsp;".$promo_inicial->moneda?> 
 	    	</div>
-	    	<div id='descripcion-promo' class="descripcion-promocion">
-	    		<?php echo $promo_inicial->descripcion_promocion?>
-	    	</div>
-	    	<div id='ejemplares-promo' class="descripcion3">
-	    		<?php if(isset ($promo_inicial->ejemplares)) echo $promo_inicial->ejemplares?>
-	    	</div>	    	
-	    	<div id="descripcion-larga" class="descripcion3">
-	    		<?php echo $promo_inicial->texto_oferta?>	    		
-	    	</div>	    	
+	    	<div style='min-height: 155px'>
+	    		<div id='descripcion-promo' class="descripcion-promocion">
+	    			<?php echo $promo_inicial->descripcion_promocion?>
+	    		</div>
+	    		<div id='ejemplares-promo' class="descripcion3">
+	    			<?php if(isset ($promo_inicial->ejemplares)) echo $promo_inicial->ejemplares?>
+	    		</div>	    	
+	    		<div id="descripcion-larga" class="descripcion3">
+	    			<?php echo $promo_inicial->texto_oferta?>	    		
+	    		</div>
+	    	</div>		    	
 	    	<div class="back-rayado" style="position: relative; bottom: 0px;">
 	    		<input type="button" id="btn_comprar_ahora" name="btn_comprar_ahora" value="Comprar ahora" class="boton-comprar-ahora" onclick="submit_to_pagos(<?php echo $promo_inicial->id_promocion;?>)"/>
 	    	</div>
@@ -207,12 +238,17 @@
 					<form id='comprar_promocion".$detalle->id_promocion."' name='comprar_promocion" . $detalle->id_promocion . "' action='" . $action_pagos . "' method='post'>".
 						"<input type='hidden' name='guidx' value='".API::GUIDX."' />\n" . 
 						"<input type='hidden' name='guidz' value='".API::guid()."' />\n". 
-					    "<input type='hidden' name='imagen' value='".$src."' />\n" .
+					    "<input type='hidden' name='imagen' value='".$detalle->url_imagen."' />\n" .
 					    "<input type='hidden' name='descripcion' value='". $detalle->descripcion_promocion."' />\n" .
 					    "<input type='hidden' name='precio' value='".$detalle->costo."' />\n" .
 					    "<input type='hidden' name='moneda' value='".$detalle->moneda."' />\n" .
 					    "<input type='hidden' name='iva' value='".$detalle->taxable."' />\n" .
-					    "<input type='hidden' name='cantidad' value='1' />\n					     
+					    "<input type='hidden' name='cantidad' value='1' />\n";
+						if (isset($_SESSION['datos_login'])) {
+							$datos_login = $_SESSION['datos_login'];
+							echo "<textarea name='datos_login' style='display: none'>".$datos_login."</textarea>";	
+						}											     	
+					echo "
 					</form>";
 					
 					//promoción seleccionada inicialmente:
@@ -222,8 +258,9 @@
 						print_r($detalle);
 					echo "</pre>";
 					*/
-					if ($promo_inicial->id_promocion == $detalle->id_promocion)
+					if ($promo_inicial->id_promocion == $detalle->id_promocion){
 						$class_radio = "class='radio_selected'";
+					}	
 			?>
 									
 					<div class="hidden" id='descripcion<?php echo $detalle->id_promocion ?>'><?php echo $detalle->descripcion_promocion; ?></div>
@@ -233,6 +270,9 @@
 					<div class="hidden" id='precio<?php echo $detalle->id_promocion ?>'><?php echo number_format($detalle->costo,2, ".", ",")."&nbsp;".$detalle->moneda; //Precio y descuento aplicado sobre precio de portada?></div>				
 				
 			<?php
+					
+						//echo "<script>cambia_select('".$detalle->moneda."'); </script>";
+						echo "<script>cambia_boton(".$detalle->id_promocion."); </script>";							
 				}
 			?>			
 		<!--
@@ -266,6 +306,4 @@
 		-->
 		
 		
-	</div>						
-				
-
+	</div>								
