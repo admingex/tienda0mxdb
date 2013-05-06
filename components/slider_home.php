@@ -30,15 +30,15 @@
 						
 			
 				foreach ($cp->promos_carrusel as $p) {
-					if($p->publicado == 1){
-						if(isset($p->promo_padre)){
-							$url_p = TIENDA ."promocion_h/" .$p->id_promocionIn;	
-						} else{
-							$url_p = TIENDA ."promocion/" .$p->id_promocion;	
-						}				
+					if ($p->publicado == 1) {
+						if(isset($p->promo_padre)) {
+							$url_p = TIENDA ."promocion_h/" .$p->id_promocionIn;
+						} else {
+							$url_p = TIENDA ."promocion/" .$p->id_promocion;
+						}
 						echo "<a href='".$url_p."'><img src='".TIENDA. "p_images/" .$p->url_imagen."' width='530px' height='310px' /></a>";
-					}	
-				}														
+					}
+				}
 			}		    					
 			?>						  						 											
 			</div>						

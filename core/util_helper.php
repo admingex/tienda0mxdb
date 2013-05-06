@@ -7,7 +7,7 @@
 	 * Clase genérica para la funcionalidad del API
 	 */
 	class API {
-		const   GUIDX   =   '{ADE835D7-3DEA-F42C-31EA-B7950C54D592}';		
+		const   GUIDX   =   '{ADE835D7-3DEA-F42C-31EA-B7950C54D592}';
 		const 	API_URL	=	'http://ecommerce/api/';	//http://tienda.grupoexpansion.mx
 		#API
 		const 	API_KEY =	'AC35-4564-AE4D-0B881031F295';	//la que aparece en el controlador del API de la plataforma

@@ -5,6 +5,6 @@ $(window).load(function(){
 		startClockOnMouseOut: true, 
 		startClockOnMouseOutAfter: 1000,	
 		bullets: true,	
-		advanceSpeed: 12000,		
+		advanceSpeed: 12000		
 	});		
 });
