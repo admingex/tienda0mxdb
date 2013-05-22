@@ -46,7 +46,7 @@
 	</div>	
 	<div class="columna_derecha" >
 		<?php
-			$path_promos_destacada = "./json/home_promociones_destacadas.json";					  
+			$path_promos_destacada = "./json/home_promociones_destacadas.json";
 	    	//$path_promos_carrusel = "./json/home_promociones_destacadas.json";
 		
 			if (file_exists($path_promos_destacada)) {

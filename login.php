@@ -30,13 +30,13 @@
 	$data["subtitle"] = $subtitle;
 	
 	####### END carga de la página
-	
+	////echo "login 2<pre>"; print_r($_POST); echo "</pre>"; exit;
 	####### Lógica de login	
 	if ($_POST) {
 		
 		//para pruebas
 		//$_SESSION = array();
-		
+		////echo "login<pre>"; print_r($_POST); echo "</pre>"; exit;
 		//no caché
 		no_cache();
 		

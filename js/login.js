@@ -40,7 +40,7 @@ $(document).ready(function() {
 	/*Inicio de sesión*/
 	$("#enviar").click(function(e) {
 		e.preventDefault();
-
+		
 		$(".error").remove();	//limpiar mensajes de error
 		
 		if (!registro) {
@@ -52,6 +52,7 @@ $(document).ready(function() {
 				passwd.focus().after("<div class='error2'>Por favor escribe tu contraseña o elige iniciar sesión como cliente nuevo</div>");
 				return false;
 			} else {
+				//alert("registro "  + registro + " action: " + $("#login_tienda").attr("action")); //return false;
 				$("#login_tienda").submit();
 			}
 		}
@@ -89,7 +90,7 @@ $(document).ready(function() {
 });
 
 function consulta_mail(mail) {
-	var url_ecommerce = "http://kiosco/"
+	var url_ecommerce = "http://kiosco/";
 	$(".error2").remove();
 	$.ajax({
 		type: "GET",

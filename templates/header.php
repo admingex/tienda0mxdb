@@ -104,14 +104,18 @@
 	<?php }?>
 </head>
 <body>
-<!-- ClickTale Top part -->
-<script type="text/javascript">
-var WRInitTime=(new Date()).getTime();
-</script>
-<!-- ClickTale end of Top part -->
+<!-- Google Tag Manager Flock -->
+	<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-DGF6"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-DGF6');</script>
+<!-- End Google Tag Manager Flock -->
 	
 <?php
-	//carga los tags de google
+	//carga los tags de google para el caso de Quién
 	require('./views/tags_quien.php');
 ?>	
 
@@ -123,11 +127,11 @@ var WRInitTime=(new Date()).getTime();
     <div id="header-container">
         <header>            
             <h1><a href="<?php echo TIENDA;?>">Kiosco</a></h1>
-        </header>  
+        </header>
         <div id='header_tienda'>
         	<a href="<?php echo TIENDA ?>/templates/contacto.html" target="new">
-			    <div id='cont'></div>		
-			</a>					
+			    <div id='cont'></div>
+			</a>
 			<a href="<?php echo site_url('carrito.php');?>">
 			    	<div id='carrito'><?php if(isset($_SESSION['carrito'])) echo count($_SESSION['carrito']); else echo 0;?></div>		
 			</a>							

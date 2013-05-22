@@ -50,7 +50,7 @@ class Registro_Controller {
 			
 			//recupera y valida info de los campos
 			$this->login_info = $this->get_datos_login();
-			
+			echo "login<pre>"; print_r($this->login_info); echo "</pre>"; exit;
 			if (empty($this->login_errores)) {
 				//verificar que el usuario esté registrado
 				$email 		= $this->login_info['email'];
